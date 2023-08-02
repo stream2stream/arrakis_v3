@@ -24,10 +24,13 @@ CREATE TABLE books (
     bookName VARCHAR(250) NOT NULL
 );
 
---CREATE TABLE book_user (
---    id INT PRIMARY KEY AUTO_INCREMENT,
---    book_id INT FOREIGN KEY REFERENCES books(id)
---);
+CREATE TABLE book_user (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    book_id INT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
 CREATE TABLE security (
     id INT PRIMARY KEY AUTO_INCREMENT,
     isin VARCHAR(50) DEFAULT NULL,

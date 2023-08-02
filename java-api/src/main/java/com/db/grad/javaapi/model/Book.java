@@ -14,6 +14,9 @@ public class Book {
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Trade> tradesList;
 
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<BookUser> bookUserList;
+
 
     @Column(name = "id", nullable = false)
     public long getId() {
