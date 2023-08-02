@@ -20,6 +20,13 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- Google Firebase -->
+		<dependency>
+			<groupId>com.google.firebase</groupId>
+			<artifactId>firebase-admin</artifactId>
+			<version>6.3.0</version>
+		</dependency>
+
 		<!-- H2 database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
