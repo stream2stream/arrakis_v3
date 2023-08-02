@@ -1,8 +1,8 @@
 package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
-import com.db.grad.javaapi.model.Dog;
-import com.db.grad.javaapi.service.DogHandler;
+import com.db.grad.javaapi.model.Bond;
+import com.db.grad.javaapi.service.BondHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,44 +15,44 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
-public class DogsController {
-    private DogHandler dogsService;
+public class BondsController {
+    private BondHandler bondService;
 
     @Autowired
-    public DogsController(DogHandler ds)
+    public BondsController(BondHandler ds)
     {
-        dogsService = ds;
+        bondService = ds;
     }
 
-    @GetMapping("/dogs")
-    public List <Dog> getAllDogs() {
-        return dogsService.getAllDogs();
+    @GetMapping("/Bonds")
+    public List <Bond> getAllBonds() {
+        return bondService.getAllBonds();
     }
 
-    @GetMapping("/dogs/{id}")
-    public ResponseEntity < Dog > getEmployeeById(@PathVariable(value = "id") Long id)
+    @GetMapping("/Bonds/{id}")
+    public ResponseEntity < Bond > getEmployeeById(@PathVariable(value = "id") Long id)
     throws ResourceNotFoundException {
-        Dog dogs = dogsService.getDogById(id);
-        return ResponseEntity.ok().body(dogs);
+        Bond Bonds = bondService.getBondById(id);
+        return ResponseEntity.ok().body(Bonds);
     }
 
-    @PostMapping("/dogs")
-    public Dog createDog(@Valid @RequestBody Dog dog) {
-        return dogsService.addDog(dog);
+    @PostMapping("/Bonds")
+    public Bond createBond(@Valid @RequestBody Bond bond) {
+        return bondService.addBond(bond);
     }
 
-    @PutMapping("/dogs/{id}")
-    public ResponseEntity < Dog > updateDog(@PathVariable(value = "id") Long id,
-        @Valid @RequestBody Dog dogDetails) throws ResourceNotFoundException {
+    @PutMapping("/Bonds/{id}")
+    public ResponseEntity < Bond > updateBond(@PathVariable(value = "id") Long id,
+        @Valid @RequestBody Bond bondDetails) throws ResourceNotFoundException {
 
-        final Dog updatedDogs = dogsService.updateDogDetails(dogDetails);
-        return ResponseEntity.ok(updatedDogs);
+        final Bond updatedBonds = bondService.updateBondDetails(bondDetails);
+        return ResponseEntity.ok(updatedBonds);
     }
 
-    @DeleteMapping("/dogs/{id}")
-    public Map < String, Boolean > deleteDog(@PathVariable(value = "id") Long id)
+    @DeleteMapping("/Bonds/{id}")
+    public Map < String, Boolean > deleteBond(@PathVariable(value = "id") Long id)
     throws ResourceNotFoundException {
-    	boolean removed = dogsService.removeDog(id);
+    	boolean removed = bondService.removeBond(id);
 
         Map < String, Boolean > response = new HashMap <>();
         if( removed )

@@ -19,19 +19,19 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class DogsHandlerTest
+public class BondsHandlerTest
 {
     @Mock
-    private DogsRepository itsDogsRepo;
+    private BondsRepository itsBondsRepo;
 
     @InjectMocks
-    private DogHandler cut;
+    private BondHandler cut;
 
     @Test
     public  void    add_a_dog_return_number_of_dogs_in_repo_is_one()
     {
         // arrange
-        Dog theDog = new Dog();
+        Bond theDog = new Bond();
         theDog.setName("Bruno");
         Mockito.when(itsDogsRepo.save(theDog)).thenReturn(theDog);
         Mockito.when(itsDogsRepo.count()).thenReturn(1L);
