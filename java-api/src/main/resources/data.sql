@@ -1,3 +1,6 @@
-INSERT INTO dogs (dog_id, name, age) VALUES (1, 'Einstein', 3);
-INSERT INTO dogs (dog_id, name, age) VALUES (2, 'Kaya', 5);
-INSERT INTO dogs (dog_id, name, age) VALUES (3, 'Lassie', 7);
+INSERT INTO bondsdata (trade_type, trade_currency, quantity, trade_settlement_date, trade_status, trade_date, unit_price, coupon_percent, bond_currency, cusip, face_value, isin, issuer_name, bond_maturity_date, status, type, book_name, bond_holder) VALUES ('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'US9128285C83', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK1', 'HOLDER1'),
+('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'US9128285C83', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK2', 'HOLDER2'),
+('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'US9128285C83', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK3', 'HOLDER3'),
+('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'US9128285C83', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK4', 'HOLDER4'),
+('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'US9128285C83', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK5', 'HOLDER5'),
+('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'US9128285C83', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK6', 'HOLDER6');
