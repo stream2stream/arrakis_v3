@@ -1,8 +1,19 @@
 import React from "react";
-import { Pets } from "./components/pets/Pets";
+import './App.css';
+import AllBonds from "./components/AllBonds";
 
 const App = () => {
-  return <Pets />;
-};
+  return (
+    <div>
+      
+    <h2>Bonds Detail</h2>
+    <AllBonds />
+
+
+    </div>
+  
+
+  );
+}
 
 export default App;
