@@ -25,7 +25,7 @@ public class DogsHandlerTest
     private BondsRepository itsDogsRepo;
 
     @InjectMocks
-    private DogHandler cut;
+    private BondsDataHandler cut;
 
     @Test
     public  void    add_a_dog_return_number_of_dogs_in_repo_is_one()
@@ -40,7 +40,7 @@ public class DogsHandlerTest
         int expectedResult = 1;
 
         // act
-        long actualResult = cut.getNoOfDogs();
+        long actualResult = cut.getCount();
 
         // assert
         assertEquals( expectedResult, actualResult );
@@ -64,7 +64,7 @@ public class DogsHandlerTest
         int expectedResult = 3;
 
         // act
-        long actualResult = cut.getNoOfDogs();
+        long actualResult = cut.getCount();
 
         // assert
         assertEquals( expectedResult, actualResult );
@@ -88,7 +88,7 @@ public class DogsHandlerTest
 
         // act
         boolean actualStatus = cut.removeDog( uniqueDog.getId() );
-        long actualResult = cut.getNoOfDogs();
+        long actualResult = cut.getCount();
 
         // assert
         assertEquals( expectedStatus, actualStatus);
@@ -118,7 +118,7 @@ public class DogsHandlerTest
         // act
         // There is no dog with ID == 33
         boolean actualStatus = cut.removeDog( invalidId );
-        long actualResult = cut.getNoOfDogs();
+        long actualResult = cut.getCount();
 
         // assert
         assertEquals( expectedStatus, actualStatus);
@@ -196,10 +196,10 @@ public class DogsHandlerTest
         cut.addDog( theDog );
         ArrayList<Dog> expectedList = new ArrayList<>();
         expectedList.add(expectedDog);
-        Mockito.when(itsDogsRepo.findByName(Mockito.any())).thenReturn(expectedList);
+        Mockito.when(itsDogsRepo.findByHolderName(Mockito.any())).thenReturn(expectedList);
 
         // act
-        Dog actualResult = cut.getDogByName( dogToFind );
+        Dog actualResult = cut.getByHolderName( dogToFind );
 
         // assert
         assertEquals( expectedDog.getId(), actualResult.getId() );
@@ -223,10 +223,10 @@ public class DogsHandlerTest
         theDog.setName("Penny");
         cut.addDog( theDog );
         ArrayList<Dog> expectedList = new ArrayList<>();
-        Mockito.when(itsDogsRepo.findByName(Mockito.any())).thenReturn(expectedList);
+        Mockito.when(itsDogsRepo.findByHolderName(Mockito.any())).thenReturn(expectedList);
 
         // act
-        Dog actualResult = cut.getDogByName( dogToFind );
+        Dog actualResult = cut.getByHolderName( dogToFind );
 
         // assert
         assertNull( actualResult );
@@ -247,10 +247,10 @@ public class DogsHandlerTest
         theDog.setName("Penny");
         cut.addDog( theDog );
         ArrayList<Dog> expectedList = new ArrayList<>();
-        Mockito.when(itsDogsRepo.findByName(Mockito.any())).thenReturn(expectedList);
+        Mockito.when(itsDogsRepo.findByHolderName(Mockito.any())).thenReturn(expectedList);
 
         // act
-        Dog actualResult = cut.getDogByName( "Selvyn" );
+        Dog actualResult = cut.getByHolderName( "Selvyn" );
 
         // assert
         assertNull( actualResult );
