@@ -77,7 +77,12 @@ public class BondsDataHandler implements IBondsDataService
     }
 
     @Override
-    public List<BondsData> getByMaturtiyDate(Date date) {
+    public List<BondsData> getByBookName(String bookName) {
+        return repository.findByBookName(bookName);
+    }
+
+    @Override
+    public List<BondsData> getByMaturityDate(Date date) {
         // Clear all time related information from the date
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -88,5 +93,10 @@ public class BondsDataHandler implements IBondsDataService
         date = cal.getTime();
 
         return repository.findByMaturityDate(date);
+    }
+
+    @Override
+    public List<BondsData> getBondByISIN(String isin) {
+        return repository.findByIsin(isin);
     }
 }

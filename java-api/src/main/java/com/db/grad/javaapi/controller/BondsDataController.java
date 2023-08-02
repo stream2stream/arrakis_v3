@@ -39,6 +39,15 @@ public class BondsDataController {
     // TODO: Find all bonds from past and next 5 days from date.
     @GetMapping("/all/{date}")
     public List<BondsData> getByMaturityDate(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
-        return dogsService.getByMaturtiyDate(date);
+        return dogsService.getByMaturityDate(date);
+    }
+
+    @GetMapping("/all/bookName/{bookName}")
+    public List<BondsData> getByBookName(@PathVariable String bookName) {
+        return dogsService.getByBookName(bookName);
+    }
+    @GetMapping("/all/ISIN/{isin}")
+    public List<BondsData> getByIsin(@PathVariable String isin) {
+        return dogsService.getBondByISIN(isin);
     }
 }

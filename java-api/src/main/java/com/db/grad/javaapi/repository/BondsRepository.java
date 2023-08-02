@@ -21,6 +21,12 @@ public interface BondsRepository extends JpaRepository<BondsData, Integer>
     @Query(nativeQuery = true, value = "select * from bondsdata where UPPER(type) = UPPER(:type)")
     List<BondsData> findByType(@Param("type") String type);
 
+    @Query(nativeQuery = true, value = "select * from bondsdata where UPPER(book_name) = UPPER(:bookName)")
+    List<BondsData> findByBookName(@Param("bookName") String bookName);
+
+    @Query(nativeQuery = true, value = "select * from bondsdata where UPPER(isin) = UPPER(:isin)")
+    List<BondsData> findByIsin(@Param("isin") String isin);
+
     @Query(nativeQuery = true, value = "select * from bondsdata where bond_maturity_date = :date")
     List<BondsData> findByMaturityDate(@Param("date") @Temporal(TemporalType.DATE) Date date);
 
