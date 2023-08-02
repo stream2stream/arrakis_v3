@@ -6,7 +6,6 @@ INSERT INTO book (bookName) VALUES ('Trading_book_4');
 INSERT INTO book (bookName) VALUES ('Trading_book_6');
 
 INSERT INTO counter_party (bondHolder) VALUES ('AZ Holdings Inc');
-INSERT INTO counter_party (bondHolder) VALUES ('Acme co');
 INSERT INTO counter_party (bondHolder) VALUES ('Acme Co');
 INSERT INTO counter_party (bondHolder) VALUES ('Sovereign Investments');
 INSERT INTO counter_party (bondHolder) VALUES ('Astra Trading Ltd');
