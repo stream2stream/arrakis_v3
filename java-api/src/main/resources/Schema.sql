@@ -1,4 +1,4 @@
-----DROP DATABASE IF EXISTS  bonds ;
+DROP table IF EXISTS users;
 --CREATE DATABASE  bonds ;
 --use bonds;
 
