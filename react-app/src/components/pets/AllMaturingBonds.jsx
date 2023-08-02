@@ -9,7 +9,7 @@ const AllMaturingBonds = () => {
 
     return (
         arr.map(num =>( 
-            <MaturingBond info={{date:date+num}} key={num} />
+            <MaturingBond info={{date:date+(num*86400000)}} key={num} />
         ))
       )
 }
