@@ -5,7 +5,7 @@ import javax.persistence.*;
 public class BookUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Int id;
 
     @ManyToOne
     @JoinColumn(name = "book_id")
