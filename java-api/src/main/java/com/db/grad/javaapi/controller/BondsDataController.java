@@ -3,7 +3,7 @@ package com.db.grad.javaapi.controller;
 import com.db.grad.javaapi.model.BondsData;
 import com.db.grad.javaapi.service.BondsDataHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -36,9 +36,9 @@ public class BondsDataController {
         return dogsService.getAllSells();
     }
 
-    @GetMapping("/all")
-    public List<BondsData> getByMaturityDate(@RequestParam Date date) {
+    // TODO: Find all bonds from past and next 5 days from date.
+    @GetMapping("/all/{date}")
+    public List<BondsData> getByMaturityDate(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
         return dogsService.getByMaturtiyDate(date);
     }
-
 }
