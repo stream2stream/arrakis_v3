@@ -9,7 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
 const columns = [
-  { id: 'isni', label: 'ISNI', minWidth: 170 },
+  { id: 'isin', label: 'ISIN', minWidth: 170 },
   { id: 'type', label: 'Type', minWidth: 100 },
   {
     id: 'issuer',
@@ -55,14 +55,13 @@ const columns = [
   },
 ];
 
-function createData(isni, type, issuer, maturity, currency, coupon, status) {
-  const facevalue = issuer / maturity;
-  return { isni, type, issuer, maturity, facevalue, currency, coupon, status };
+function createData(isin, type, issuer, maturity, facevalue, currency, coupon, status) {
+  return { isin, type, issuer, maturity, facevalue, currency, coupon, status };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263, 'USD', 23, 'active'),
-  createData('China', 'CN', 1403500365, 9596961, 'GBT'),
+  createData('XS1988387210',	'CORP',	'BNPParibasIssu Microsoft Corp (USD) 4,37%', '05.08.2021', 1000	, 'USD',	'4,37%',	'active'),
+  createData('China', 'CN', 1403500365, 9596961, 134324, 'GBT'),
   createData('Italy', 'IT', 60483973, 301340),
   createData('United States', 'US', 327167434, 9833520),
   createData('Canada', 'CA', 37602103, 9984670),
