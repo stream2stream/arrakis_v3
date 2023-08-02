@@ -1,11 +1,10 @@
 import React from 'react'
 import BondDetail from './BondDetail'
-import { getAllBonds } from '../../services/BondServices'
 
-const AllBonds = () => {
-  const bonds = getAllBonds();
+const AllBonds = (props) => {
+
   return (
-    bonds.map(bond =>(
+    props.map(bond =>(
         <BondDetail info={bond} key={bond.isin.toString()} />
     ))
   )
