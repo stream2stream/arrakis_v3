@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -7,7 +8,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-
+import { DialogBox } from './DialogBox';
 const columns = [
   { id: 'name', label: 'Type', minWidth: 170 },
   { id: 'code', label: 'Bonds matured', minWidth: 50 },
@@ -40,7 +41,7 @@ const rows = [
 export default function BondCardTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(3);
-
+  const [dialogBox, setDialogBox] = React.useState(false)
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -51,10 +52,22 @@ export default function BondCardTable() {
   };
 
   const showBonds = (id) => {
-    console.log(id);
+    setDialogBox(!dialogBox);
+    callOpenDialogFunction();
   }
 
+  const childRef = useRef(null);
+
+  // Function to call the child component's function
+  const callOpenDialogFunction = () => {
+    if (childRef.current) {
+      childRef.current.openDialog(); // Call the child function
+    }
+  };
+
   return (
+    <>
+    <DialogBox  ref={childRef} />
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -109,5 +122,6 @@ export default function BondCardTable() {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+    </>
   );
 }
