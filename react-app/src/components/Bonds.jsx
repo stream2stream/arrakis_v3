@@ -66,5 +66,6 @@ export const Bonds = () => {
         
     </div>
   )
-  }
+}
+
 export default Bonds
