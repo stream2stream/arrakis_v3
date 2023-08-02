@@ -1,5 +1,6 @@
 import React from 'react'
 import MaturingBond from './MaturingBonds';
+import { getBondsByDates } from '../../services/BondServices';
 
 const AllMaturingBonds = () => {
 
@@ -7,7 +8,7 @@ const AllMaturingBonds = () => {
 
     return (
         allBondLists.map(bondList =>(
-            <BondDetail info={bondList} key={bondList.isin.toString()} />
+            <MaturingBond info={bondList} key={bondList.isin.toString()} />
         ))
       )
 }
