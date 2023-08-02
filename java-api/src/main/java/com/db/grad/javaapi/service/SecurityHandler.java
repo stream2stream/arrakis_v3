@@ -50,20 +50,19 @@ public class SecurityHandler implements ISecurityService
         return itsSecuritiesRepo.findById(id).get();
     }
 
-    @Override
-    public Security getSecurityByIssuerName(String issuerName )
-    {
-        Security securityToFind = new Security();
-        securityToFind.setIssuerName(issuerName);
-        List<Security> securities = itsSecuritiesRepo.findByIssuerName(securityToFind);
-        Security result = null;
+    /* @Override
+      public Security getSecurityByIssuerName(String issuerName )
+     {
+          Security securityToFind = new Security();
+          securityToFind.setIssuerName(issuerName);
+          List<Security> securities = itsSecuritiesRepo.findByIssuerName(securityToFind);
+          Security result = null;
 
-        if( securities.size() == 1)
-            result = securities.get(0);
+          if( securities.size() == 1)
+              result = securities.get(0);
 
-        return result;
-    }
-
+          return result;
+      }*/
     @Override
     public Security updateSecurityDetails(Security securityToUpdate)
     {

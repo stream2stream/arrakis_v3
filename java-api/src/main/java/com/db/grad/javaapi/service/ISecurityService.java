@@ -8,13 +8,13 @@ public interface ISecurityService
 {
     public List<Security> getAllSecurities();
 
-    public Security addSecurity(Security theDog);
+    public Security addSecurity(Security theSecurity);
 
-    public boolean removeDog(long uniqueId);
+    public boolean removeSecurity(long id);
 
-    public Security getDogById(long uniqueId);
+    public Security getSecurityByID(long id);
 
-    public Security getDogByName(String dogsName );
+    public Security getSecurityByIssuerName(String issuerName);
 
-    public Security updateDogDetails(Security dogToUpdate);
+    public Security updateSecurityDetails(Security securityToUpdate);
 }
