@@ -55,6 +55,9 @@ coverage.xml
 instance/
 .webassets-cache
 
+# Node stuff
+node_modules/
+
 # pyenv
 .python-version
 
