@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { findPets } from "../../services/PetServices";
-import { findSecurities } from "../services/SecurityServices";
+// import { findSecurities } from "../services/SecurityServices";
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from "@mui/material";
 import { Card } from "@mui/material";
@@ -11,6 +11,7 @@ import styles from "./pets/Pets.module.css";
 
 export const HomePage = () => {
     const [securities, setSecurities] = useState([]);
+    const [cardMessage, setCardMessage] = useState("");
 
     // useEffect(() => {
     //   findSecurities()
@@ -56,21 +57,26 @@ export const HomePage = () => {
         status: 'Active',
         type: 'Bond'
 }]
-    // securities.map(security => 
-    //   rowDef.push({
-    //         id: security.id, 
-    //         couponPercent: security.couponPercent,
-    //         bondCurrency: security.bondCurrency,
-    //         cusip: security.cusip,
-    //         faceValue: security.faceValue,
-    //         isin: security.isin,
-    //         issuerName: security.issuerName,
-    //         bondMaturityDate: security.bondMaturityDate,
-    //         status: security.status,
-    //         type: security.type
-    //     })
-    // )
+    securities.map(security => 
+      rowDef.push({
+            id: security.id, 
+            couponPercent: security.couponpercent,
+            bondCurrency: security.bondcurrency,
+            cusip: security.cusip,
+            faceValue: security.facevalue,
+            isin: security.isin,
+            issuerName: security.issuername,
+            bondMaturityDate: security.bondmaturitydate,
+            status: security.status,
+            type: security.type
+        })
+    )
 
+    const handleRowClick = (params) => {
+        setCardMessage('' + params.row.id + '\n' + params.row.issuerName);
+    }
+
+    console.log(cardMessage);
 
   return (
     <>
@@ -80,9 +86,10 @@ export const HomePage = () => {
               rows={rowDefDev}
               columns={columnDef}
               sx={{ maxWidth: '75%' }}
+              onRowClick={handleRowClick}
               />
             <Card sx={{ minWidth: '25%'}}>
-                Hello
+                {cardMessage}
             </Card>
             </div>
           </Box>
