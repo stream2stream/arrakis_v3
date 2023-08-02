@@ -17,10 +17,10 @@ import java.util.*;
 @RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:3000")
 public class BondsController {
-    private BondServiceImpl bondService;
+    private BondService bondService;
 
     @Autowired
-    public BondsController(BondServiceImpl bondService) {
+    public BondsController(BondService bondService) {
         this.bondService = bondService;
     }
 
