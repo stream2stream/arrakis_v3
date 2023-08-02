@@ -5,6 +5,8 @@ import com.db.grad.javaapi.repository.BondsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -22,16 +24,26 @@ public class BondServiceImpl implements BondService {
     }
 
     @Override
-    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(Date date, int daysBefore, int daysAfter) {
+    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException {
         List<Bond> bonds5BusinessDaysBeforeAndAfter = new ArrayList<>();
-        Date startDate = addBusinessDays(date, daysBefore);//-5
-        Date endDate = addBusinessDays(date, daysAfter);//5
+        // convert date from String to Date
+        Date actualDate = convertStringToDate(date);
+
+        Date startDate = addBusinessDays(actualDate, (-1) * daysBefore);//-5
+        Date endDate = addBusinessDays(actualDate, daysAfter);//5
+
         for (Bond bond : bondsRepository.findAll()) {
-             if (!bond.getBondMaturityDate().before(startDate) && !bond.getBondMaturityDate().after(endDate)) {
+             if (bond.getBondMaturityDate().after(startDate) && bond.getBondMaturityDate().before(endDate)) {
                  bonds5BusinessDaysBeforeAndAfter.add(bond);
              }
         }
         return bonds5BusinessDaysBeforeAndAfter;
+    }
+
+    private Date convertStringToDate(String date) throws ParseException {
+        String format = "dd-MM-yyyy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.parse(date);
     }
 
     private Date addBusinessDays(Date date, int days) {//utility class

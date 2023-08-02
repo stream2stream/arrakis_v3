@@ -34,9 +34,7 @@ public class BondsController {
                                                                @PathVariable(value = "daysBefore") int daysBefore,
                                                                @PathVariable(value = "daysAfter") int daysAfter) throws ParseException {
 
-        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
-        Date formattedDate = format.parse(date);
-        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(formattedDate, daysBefore, daysAfter);
+        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(date, daysBefore, daysAfter);
     }
 
 
