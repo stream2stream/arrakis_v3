@@ -18,6 +18,6 @@ CREATE TABLE bonds (
     status VARCHAR(50) NOT NULL,
     type VARCHAR(50) NOT NULL,
     book_name VARCHAR(50) NOT NULL,
-    bond_holder VARCHAR(50) NOT NULL,
+    bond_holder VARCHAR(50) NOT NULL
 );
 
