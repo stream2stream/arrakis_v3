@@ -4,12 +4,7 @@ const BondDetail = (props) => {
   return (
     <div>
         <h1>{props.info.issuerName}</h1>
-        <p>Face Value: {props.info.faceValue}</p>
-        <p>Coupoon: {props.info.couponPercent}</p>
-        <p>Maturity Date: {props.info.maturityDate}</p>
-        <p>ISIN: {props.info.isin}</p>
-            
-    
+        <p>Face Value: {props.info.faceValue} &emsp; Coupon: {props.info.couponPercent} &emsp; Maturity Date: {props.info.bondMaturityDate} &emsp; ISIN: {props.info.isin}</p>
     </div>
   )
 }

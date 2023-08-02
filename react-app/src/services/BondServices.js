@@ -23,5 +23,5 @@ export const getAllBonds = () => {
         faceValue:900
     }
   ]; //axios.get(`${hostNameUrl}/dogs`);
-  return pets;
+  return bonds;
 };
