@@ -1,22 +1,22 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.security;
+import com.db.grad.javaapi.model.Security;
 
 import java.util.List;
 
 public interface IDogsService
 {
-    public List<security> getAllDogs();
+    public List<Security> getAllDogs();
 
-    public security addDog(security theDog);
+    public Security addDog(Security theDog);
 
     public long getNoOfDogs();
 
     public boolean removeDog(long uniqueId);
 
-    public security getDogById(long uniqueId);
+    public Security getDogById(long uniqueId);
 
-    public security getDogByName(String dogsName );
+    public Security getDogByName(String dogsName );
 
-    public security updateDogDetails(security dogToUpdate);
+    public Security updateDogDetails(Security dogToUpdate);
 }

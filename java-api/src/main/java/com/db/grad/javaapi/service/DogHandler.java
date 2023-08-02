@@ -1,6 +1,6 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.security;
+import com.db.grad.javaapi.model.Security;
 import com.db.grad.javaapi.repository.DogsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +20,13 @@ public class DogHandler implements IDogsService
     }
 
     @Override
-    public List<security> getAllDogs()
+    public List<Security> getAllDogs()
     {
         return itsDogsRepo.findAll();
     }
 
     @Override
-    public security addDog(security theDog)
+    public Security addDog(Security theDog)
     {
         return itsDogsRepo.save( theDog );
     }
@@ -42,7 +42,7 @@ public class DogHandler implements IDogsService
     {
         boolean result = false;
 
-        Optional<security> theDog = itsDogsRepo.findById(uniqueId);
+        Optional<Security> theDog = itsDogsRepo.findById(uniqueId);
         if(theDog.isPresent())
         {
             itsDogsRepo.delete(theDog.get());
@@ -53,18 +53,18 @@ public class DogHandler implements IDogsService
     }
 
     @Override
-    public security getDogById(long uniqueId)
+    public Security getDogById(long uniqueId)
     {
         return itsDogsRepo.findById(uniqueId).get();
     }
 
     @Override
-    public security getDogByName(String dogsName )
+    public Security getDogByName(String dogsName )
     {
-        security dogToFind = new security();
+        Security dogToFind = new Security();
         dogToFind.setName(dogsName);
-        List<security> dogs = itsDogsRepo.findByName(dogToFind);
-        security result = null;
+        List<Security> dogs = itsDogsRepo.findByName(dogToFind);
+        Security result = null;
 
         if( dogs.size() == 1)
             result = dogs.get(0);
@@ -73,7 +73,7 @@ public class DogHandler implements IDogsService
     }
 
     @Override
-    public security updateDogDetails(security dogToUpdate)
+    public Security updateDogDetails(Security dogToUpdate)
     {
         return itsDogsRepo.save( dogToUpdate );
     }
