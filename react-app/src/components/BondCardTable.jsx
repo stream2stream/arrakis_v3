@@ -9,6 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { DialogBox } from './DialogBox';
+import { useNavigate } from 'react-router-dom';
+
 const columns = [
   { id: 'name', label: 'Type', minWidth: 170 },
   { id: 'code', label: 'Bonds matured', minWidth: 50 },
@@ -39,6 +41,7 @@ const rows = [
 ];
 
 export default function BondCardTable() {
+  const navigate = useNavigate();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(3);
   const [dialogBox, setDialogBox] = React.useState(false)
@@ -52,8 +55,10 @@ export default function BondCardTable() {
   };
 
   const showBonds = (id) => {
-    setDialogBox(!dialogBox);
-    callOpenDialogFunction();
+    console.log(id);
+    navigate("/home/zoombond");
+    //setDialogBox(!dialogBox);
+    //callOpenDialogFunction();
   }
 
   const childRef = useRef(null);

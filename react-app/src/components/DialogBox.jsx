@@ -13,12 +13,12 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import { forwardRef, useRef } from 'react';
-
+import ZoomBond from '../pages/ZoomBond';
 
 export const DialogBox = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
-  const [maxWidth, setMaxWidth] = React.useState('sm');
+  const [maxWidth, setMaxWidth] = React.useState('xl');
 
 
   const openDialog = () => {
@@ -60,7 +60,7 @@ export const DialogBox = forwardRef((props, ref) => {
         <DialogTitle>Optional sizes</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            You can set my maximum width and whether to adapt or not.
+            <ZoomBond/>
           </DialogContentText>
           <Box
             noValidate
@@ -72,33 +72,7 @@ export const DialogBox = forwardRef((props, ref) => {
               width: 'fit-content',
             }}
           >
-            <FormControl sx={{ mt: 2, minWidth: 120 }}>
-              <InputLabel htmlFor="max-width">maxWidth</InputLabel>
-              <Select
-                autoFocus
-                value={maxWidth}
-                onChange={handleMaxWidthChange}
-                label="maxWidth"
-                inputProps={{
-                  name: 'max-width',
-                  id: 'max-width',
-                }}
-              >
-                <MenuItem value={false}>false</MenuItem>
-                <MenuItem value="xs">xs</MenuItem>
-                <MenuItem value="sm">sm</MenuItem>
-                <MenuItem value="md">md</MenuItem>
-                <MenuItem value="lg">lg</MenuItem>
-                <MenuItem value="xl">xl</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControlLabel
-              sx={{ mt: 1 }}
-              control={
-                <Switch checked={fullWidth} onChange={handleFullWidthChange} />
-              }
-              label="Full width"
-            />
+           
           </Box>
         </DialogContent>
         <DialogActions>

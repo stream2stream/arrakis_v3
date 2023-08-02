@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import Bonds from './Bonds';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import Box from '@mui/material/Box';
+import ZoomBond from './ZoomBond';
 
 const drawerWidth = 160;
 
@@ -55,7 +56,8 @@ export default function Home() {
           </List>
         </Box>
       </Drawer>
-      <Bonds />
+      <Outlet />
+      
     </Box>
     
   </>

@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 const ZoomBond = () => {
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
+       
            <Row>
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <div style={{ margin: "20px 0" }}>This is the ZoomBondTable</div>
