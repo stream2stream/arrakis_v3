@@ -28,7 +28,7 @@ class BondTest {
         bondsRepository.save(bond);
 
         int expectedResult = 1;
-        assertEquals(1, bondsRepository.count());
+        assertEquals(expectedResult, bondsRepository.count());
     }
 
     @Test
@@ -70,7 +70,7 @@ class BondTest {
         bondsRepository.save(bond3);
 
         int expectedResult = 3;
-        assertEquals(1, bondsRepository.count());
+        assertEquals(expectedResult, bondsRepository.count());
     }
 
     @Test
