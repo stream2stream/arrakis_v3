@@ -6,7 +6,7 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Int id;
 
     @OneToMany(mappedBy = "user")
     private List<BookUser> bookUsers;
