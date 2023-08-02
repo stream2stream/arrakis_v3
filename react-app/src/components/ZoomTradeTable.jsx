@@ -9,7 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
 const columns = [
-  { id: 'isni', label: 'ISNI', minWidth: 170 },
+  { id: 'isin', label: 'ISIN', minWidth: 170 },
   { id: 'bookid', label: 'Book id', minWidth: 100 },
   {
     id: 'client',
@@ -26,8 +26,8 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'facevalue',
-    label: 'Face Value',
+    id: 'unitprice',
+    label: 'Unit Price',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toFixed(2),
@@ -40,28 +40,41 @@ const columns = [
     format: (value) => value.toFixed(2),
   },
   {
-    id: 'coupon',
-    label: 'Coupon %',
+    id: 'buysell',
+    label: 'Buy/Sell',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
   {
-    id: 'status',
-    label: 'Status',
+    id: 'tradedate',
+    label: 'Trade Date',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: 'settledate',
+    label: 'Settlement Date',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: 'quantity',
+    label: 'Quantity',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
 ];
 
-function createData(isni, bookid, client, maturity, currency, coupon, status) {
-  const facevalue = client / maturity;
-  return { isni, bookid, client, maturity, facevalue, currency, coupon, status };
+function createData(isin, bookid, client, status, unitprice, currency, buysell, tradedate, settledate, quantity) {
+  return { isin, bookid, client, status, unitprice, currency, buysell, tradedate, settledate, quantity };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263, 'USD', 23, 'active'),
+  createData('XS1988387210',	'trading_book_1',	'AZ Holdings Inc',	'open', 50,	'USD',	'buy',	'13.05.2021',	'04.08.2021', 90),
   createData('China', 'CN', 1403500365, 9596961, 'GBT'),
   createData('Italy', 'IT', 60483973, 301340),
   createData('United States', 'US', 327167434, 9833520),
