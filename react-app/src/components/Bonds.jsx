@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { getAllBonds } from '../services/TradeServices';
 
 const trades = [
     { coupon_percent: 4.37, bond_currency: "USD", CUSIP: null, face_value: 1000, isin: "XS1988387210", issuer_name: "BNPParibasIssu 4,37% Microsoft Corp (USD)", bond_maturity_date: "5/8/2021", status: "active", type: "CORP" },
@@ -10,6 +11,24 @@ const trades = [
 
 
 export const Bonds = () => {
+    
+    const [bonds,setBonds] = useState([]);
+    useEffect(()=>{
+        getBondsFromAPI();}, 
+        []
+    );
+    const getBondsFromAPI = ()=>{
+        getAllBonds()
+            .then(res => {
+                console.log(res.data);
+                setBonds(res.data);
+            })
+            .catch(err => {
+                setBonds([]);
+                console.log(err);
+        })
+    }
+    
     const createRow = (data) => {     
         return <tr>
             <td>{data.coupon_percent}</td>
@@ -40,7 +59,7 @@ export const Bonds = () => {
                     <th>Status</th>
                     <th>Type</th>
                 </tr>
-                {trades.map(row => createRow(row))}
+                {bonds.map(row => createRow(row))}
             </tbody>
             
         </table>
