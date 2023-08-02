@@ -13,7 +13,7 @@ CREATE TABLE bonds (
     cusip VARCHAR(50),
     face_value INT NOT NULL,
     isin VARCHAR(50) NOT NULL,
-    issuer_name VARCHAR(50) NOT NULL,
+    issuer_name VARCHAR(250) NOT NULL,
     bond_maturity_date DATE NOT NULL,
     status VARCHAR(50) NOT NULL,
     type VARCHAR(50) NOT NULL,
