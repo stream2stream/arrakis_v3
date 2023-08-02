@@ -2,6 +2,7 @@ package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.BondsData;
 
+import java.util.Date;
 import java.util.List;
 
 public interface IBondsDataService
@@ -23,6 +24,7 @@ public interface IBondsDataService
     List<BondsData> getAllBuys();
     List<BondsData> getAllSells();
     List<BondsData> getByType(String type);
+    List<BondsData> getByMaturtiyDate(Date date);
 
     // TODO: Add more as needed by front-end
 }

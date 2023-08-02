@@ -5,6 +5,8 @@ import com.db.grad.javaapi.repository.BondsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -72,5 +74,19 @@ public class BondsDataHandler implements IBondsDataService
     @Override
     public List<BondsData> getByType(String type) {
         return repository.findByType(type);
+    }
+
+    @Override
+    public List<BondsData> getByMaturtiyDate(Date date) {
+        // Clear all time related information from the date
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        date = cal.getTime();
+
+        return repository.findByMaturityDate(date);
     }
 }
