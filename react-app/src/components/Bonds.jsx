@@ -10,11 +10,7 @@ const trades = [
 
 
 export const Bonds = () => {
-<<<<<<< HEAD
-    const createRow = (data) => {
-=======
     const createRow = (data) => {     
->>>>>>> develop
         return <tr>
             <td>{data.coupon_percent}</td>
             <td>{data.bond_currency}</td>
@@ -51,5 +47,6 @@ export const Bonds = () => {
         
     </div>
   )
-  }
+}
+
 export default Bonds
