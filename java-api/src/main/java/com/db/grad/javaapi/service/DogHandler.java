@@ -1,6 +1,6 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Dog;
+import com.db.grad.javaapi.model.security;
 import com.db.grad.javaapi.repository.DogsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,13 +20,13 @@ public class DogHandler implements IDogsService
     }
 
     @Override
-    public List<Dog> getAllDogs()
+    public List<security> getAllDogs()
     {
         return itsDogsRepo.findAll();
     }
 
     @Override
-    public Dog addDog(Dog theDog)
+    public security addDog(security theDog)
     {
         return itsDogsRepo.save( theDog );
     }
@@ -42,7 +42,7 @@ public class DogHandler implements IDogsService
     {
         boolean result = false;
 
-        Optional<Dog> theDog = itsDogsRepo.findById(uniqueId);
+        Optional<security> theDog = itsDogsRepo.findById(uniqueId);
         if(theDog.isPresent())
         {
             itsDogsRepo.delete(theDog.get());
@@ -53,18 +53,18 @@ public class DogHandler implements IDogsService
     }
 
     @Override
-    public Dog getDogById(long uniqueId)
+    public security getDogById(long uniqueId)
     {
         return itsDogsRepo.findById(uniqueId).get();
     }
 
     @Override
-    public Dog getDogByName(String dogsName )
+    public security getDogByName(String dogsName )
     {
-        Dog dogToFind = new Dog();
+        security dogToFind = new security();
         dogToFind.setName(dogsName);
-        List<Dog> dogs = itsDogsRepo.findByName(dogToFind);
-        Dog result = null;
+        List<security> dogs = itsDogsRepo.findByName(dogToFind);
+        security result = null;
 
         if( dogs.size() == 1)
             result = dogs.get(0);
@@ -73,7 +73,7 @@ public class DogHandler implements IDogsService
     }
 
     @Override
-    public Dog updateDogDetails(Dog dogToUpdate)
+    public security updateDogDetails(security dogToUpdate)
     {
         return itsDogsRepo.save( dogToUpdate );
     }
