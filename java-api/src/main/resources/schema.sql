@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS bondsdata;
 
 CREATE TABLE bondsdata (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     trade_type VARCHAR(10),
     trade_currency VARCHAR(10),
     quantity INT,
