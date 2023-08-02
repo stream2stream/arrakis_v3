@@ -7,9 +7,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="trades_counter_parties")
-public class TradesCounterParties {
+Crpublic class TradesCounterParty {
     @Id
-    private int id;
+    private int id; //change to long if IDs exceed 32-bits
     private String bondHolderName;
 
     @Id

@@ -13,7 +13,7 @@ public class Bond {
     @Id
     private String isin;
     private String type;
-    private String issuerName;
+    private int issuerID;
     private Date bondMaturityDate;
     private int faceValue;
     private String bondCurrency;
@@ -43,12 +43,12 @@ public class Bond {
 
     @Column(name = "issuer_name", nullable = false)
 
-    public String getIssuerName() {
-        return issuerName;
+    public int getIssuerID() {
+        return issuerID;
     }
 
-    public void setIssuerName(String issuerName) {
-        this.issuerName = issuerName;
+    public void setIssuerID(int issuerID) {
+        this.issuerID = issuerID;
     }
 
     @Column(name = "bond_maturity_date", nullable = false)
