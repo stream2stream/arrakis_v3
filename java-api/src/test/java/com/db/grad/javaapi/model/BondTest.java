@@ -20,7 +20,7 @@ class BondTest {
         bond.setIsin("ISIN1");
         bond.setType("CORP");
         bond.setIssuerID(1);
-        Date date = new Date("2023-01-01");
+        Date date = new Date(2023,01,01);
         bond.setBondMaturityDate(date);
         bond.setFaceValue(1000);
         bond.setBondCurrency("USD");
@@ -38,7 +38,7 @@ class BondTest {
         bond.setIsin("ISIN1");
         bond.setType("CORP");
         bond.setIssuerID(1);
-        Date date = new Date("2023-01-01");
+        Date date = new Date(2023, 01, 01);
         bond.setBondMaturityDate(date);
         bond.setFaceValue(1000);
         bond.setBondCurrency("USD");
@@ -50,7 +50,7 @@ class BondTest {
         bond2.setIsin("ISIN2");
         bond2.setType("GOVN");
         bond2.setIssuerID(1);
-        Date date2 = new Date("2022-08-01");
+        Date date2 = new Date(2022, 05, 01);
         bond2.setBondMaturityDate(date2);
         bond2.setFaceValue(340);
         bond2.setBondCurrency("GBP");
@@ -62,7 +62,7 @@ class BondTest {
         bond3.setIsin("ISIN3");
         bond3.setType("SOVN");
         bond3.setIssuerID(1);
-        Date date3 = new Date("2023-12-24");
+        Date date3 = new Date(2023, 12, 24);
         bond3.setBondMaturityDate(date2);
         bond3.setFaceValue(690);
         bond3.setBondCurrency("USD");
