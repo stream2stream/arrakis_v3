@@ -11,7 +11,8 @@ import java.util.Date;
 public class BondsData
 {
     @Id
-    private int bondID;
+    @Column(name = "id")
+    private int id;
     private String tradeType;
     private String tradeCurrency;
     private Integer quantity;
@@ -32,12 +33,12 @@ public class BondsData
     private String bondHolder;
 
     @Column(name = "id")
-    public int getBondID() {
-        return bondID;
+    public int getId() {
+        return id;
     }
 
-    public void setBondID(int bondID) {
-        this.bondID = bondID;
+    public void setId(int bondID) {
+        this.id = bondID;
     }
 
     @Column(name = "trade_type")

@@ -20,5 +20,9 @@ public interface IBondsDataService
 
     BondsData update(BondsData data);
 
+    List<BondsData> getAllBuys();
+    List<BondsData> getAllSells();
+    List<BondsData> getByType(String type);
+
     // TODO: Add more as needed by front-end
 }
