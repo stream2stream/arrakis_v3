@@ -4,7 +4,7 @@ import com.db.grad.javaapi.model.Security;
 
 import java.util.List;
 
-public interface IDogsService
+public interface ISecurityService
 {
     public List<Security> getAllDogs();
 

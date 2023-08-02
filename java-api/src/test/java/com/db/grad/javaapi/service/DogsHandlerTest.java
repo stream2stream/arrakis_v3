@@ -25,7 +25,7 @@ public class DogsHandlerTest
     private DogsRepository itsDogsRepo;
 
     @InjectMocks
-    private DogHandler cut;
+    private SecurityHandler cut;
 
     @Test
     public  void    add_a_dog_return_number_of_dogs_in_repo_is_one()

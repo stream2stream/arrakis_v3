@@ -2,7 +2,7 @@ package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
 import com.db.grad.javaapi.model.Security;
-import com.db.grad.javaapi.service.DogHandler;
+import com.db.grad.javaapi.service.SecurityHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +16,10 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
 public class DogsController {
-    private DogHandler dogsService;
+    private SecurityHandler dogsService;
 
     @Autowired
-    public DogsController(DogHandler ds)
+    public DogsController(SecurityHandler ds)
     {
         dogsService = ds;
     }

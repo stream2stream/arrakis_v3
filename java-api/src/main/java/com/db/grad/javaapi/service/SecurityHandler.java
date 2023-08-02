@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DogHandler implements IDogsService
+public class SecurityHandler implements ISecurityService
 {
     private DogsRepository itsDogsRepo;
 
     @Autowired
-    public DogHandler( DogsRepository dogRepo )
+    public SecurityHandler(DogsRepository dogRepo )
     {
         itsDogsRepo = dogRepo;
     }
