@@ -3,8 +3,6 @@
 
 ![dogs](dogs_api.jpg)
 
-![schema](https://github.com/GauZen/arrakis_v3/assets/50848694/a8dab687-da09-497e-9a46-1404e0a0120a)
-
 
 In this example, we are creating crud operations and exposing them through REST APIs so that UI clients can invoke these operations. The demo operations enable the clients to modify the dogs records in database.
 
