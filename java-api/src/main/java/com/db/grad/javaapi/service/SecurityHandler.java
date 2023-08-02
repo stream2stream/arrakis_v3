@@ -1,7 +1,7 @@
 package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Security;
-import com.db.grad.javaapi.repository.DogsRepository;
+import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,70 +11,62 @@ import java.util.Optional;
 @Service
 public class SecurityHandler implements ISecurityService
 {
-    private DogsRepository itsDogsRepo;
+    private SecurityRepository itsSecuritiesRepo;
 
     @Autowired
-    public SecurityHandler(DogsRepository dogRepo )
+    public SecurityHandler(SecurityRepository securityRepo )
     {
-        itsDogsRepo = dogRepo;
+        itsSecuritiesRepo = securityRepo;
     }
 
     @Override
-    public List<Security> getAllDogs()
+    public List<Security> getAllSecurities()
     {
-        return itsDogsRepo.findAll();
+        return itsSecuritiesRepo.findAll();
     }
 
     @Override
-    public Security addDog(Security theDog)
+    public Security addSecurity(Security theSecurity)
     {
-        return itsDogsRepo.save( theDog );
+        return itsSecuritiesRepo.save( theSecurity );
     }
 
     @Override
-    public long getNoOfDogs()
-    {
-        return itsDogsRepo.count();
-    }
-
-    @Override
-    public boolean removeDog(long uniqueId)
+    public boolean removeSecurity(long id)
     {
         boolean result = false;
-
-        Optional<Security> theDog = itsDogsRepo.findById(uniqueId);
-        if(theDog.isPresent())
+        Optional<Security> theSecurity = itsSecuritiesRepo.findById(id);
+        if(theSecurity.isPresent())
         {
-            itsDogsRepo.delete(theDog.get());
+            itsSecuritiesRepo.delete(theSecurity.get());
             result = true;
         }
-
         return  result;
     }
 
     @Override
-    public Security getDogById(long uniqueId)
+    public Security getSecurityByID(long id)
     {
-        return itsDogsRepo.findById(uniqueId).get();
+        return itsSecuritiesRepo.findById(id).get();
     }
 
     @Override
-    public Security getDogByName(String dogsName )
+    public Security getSecurityByIssuerName(String issuerName )
     {
-        Security dogToFind = new Security();
-        dogToFind.setName(dogsName);
-        List<Security> dogs = itsDogsRepo.findByName(dogToFind);
+        Security securityToFind = new Security();
+        securityToFind.setIssuerName(issuerName);
+        List<Security> securities = itsSecuritiesRepo.findByIssuerName(securityToFind);
         Security result = null;
 
-        if( dogs.size() == 1)
-            result = dogs.get(0);
+        if( securities.size() == 1)
+            result = securities.get(0);
 
         return result;
     }
 
     @Override
-    public Security updateDogDetails(Security dogToUpdate)
+    public Security updateSecurityDetails(Security securityToUpdate)
     {
-        return itsDogsRepo.save( dogToUpdate );
+        return itsSecuritiesRepo.save( securityToUpdate );
     }
 }

@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface ISecurityService
 {
-    public List<Security> getAllDogs();
+    public List<Security> getAllSecurities();
 
-    public Security addDog(Security theDog);
-
-    public long getNoOfDogs();
+    public Security addSecurity(Security theDog);
 
     public boolean removeDog(long uniqueId);
 
