@@ -1,22 +1,22 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Bonds;
+import com.db.grad.javaapi.model.Bond;
 
 import java.util.List;
 
 public interface IBondsSrvice
 {
-    public List<Bonds> getAllDogs();
+    public List<Bond> getAllDogs();
 
-    public Bonds addDog(Bonds theBonds);
+    public Bond addDog(Bond theBond);
 
     public long getNoOfDogs();
 
     public boolean removeDog(long uniqueId);
 
-    public Bonds getDogById(long uniqueId);
+    public Bond getDogById(long uniqueId);
 
-    public Bonds getDogByName(String dogsName );
+    public Bond getDogByName(String dogsName );
 
-    public Bonds updateDogDetails(Bonds bondsToUpdate);
+    public Bond updateDogDetails(Bond bondToUpdate);
 }

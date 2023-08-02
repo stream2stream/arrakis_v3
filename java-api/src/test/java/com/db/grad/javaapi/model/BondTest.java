@@ -1,5 +1,5 @@
 package com.db.grad.javaapi.model;
 
-class BondsTest {
+class BondTest {
 
 }

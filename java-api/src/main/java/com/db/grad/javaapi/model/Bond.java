@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Bonds")
-public class Bonds
+public class Bond
 {
     @Id
     private long id;

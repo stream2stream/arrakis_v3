@@ -1,8 +1,8 @@
 package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
-import com.db.grad.javaapi.model.Bonds;
-import com.db.grad.javaapi.service.BondsHandler;
+import com.db.grad.javaapi.model.Bond;
+import com.db.grad.javaapi.service.BondHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,36 +16,36 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:3000")
 public class BondsController {
-    private BondsHandler bondsService;
+    private BondHandler bondsService;
 
     @Autowired
-    public BondsController(BondsHandler ds)
+    public BondsController(BondHandler ds)
     {
         bondsService = ds;
     }
 
     @GetMapping("/dogs")
-    public List <Bonds> getAllDogs() {
+    public List <Bond> getAllDogs() {
         return bondsService.getAllDogs();
     }
 
     @GetMapping("/dogs/{id}")
-    public ResponseEntity <Bonds> getBondsById(@PathVariable(value = "id") Long id)
+    public ResponseEntity <Bond> getBondsById(@PathVariable(value = "id") Long id)
     throws ResourceNotFoundException {
-        Bonds bonds = bondsService.getDogById(id);
-        return ResponseEntity.ok().body(bonds);
+        Bond bond = bondsService.getDogById(id);
+        return ResponseEntity.ok().body(bond);
     }
 
     @PostMapping("/dogs")
-    public Bonds createDog(@Valid @RequestBody Bonds bonds) {
-        return bondsService.addDog(bonds);
+    public Bond createDog(@Valid @RequestBody Bond bond) {
+        return bondsService.addDog(bond);
     }
 
     @PutMapping("/dogs/{id}")
-    public ResponseEntity <Bonds> updateDog(@PathVariable(value = "id") Long id,
-                                            @Valid @RequestBody Bonds bondsDetails) throws ResourceNotFoundException {
+    public ResponseEntity <Bond> updateDog(@PathVariable(value = "id") Long id,
+                                           @Valid @RequestBody Bond bondDetails) throws ResourceNotFoundException {
 
-        final Bonds updatedDogs = bondsService.updateDogDetails(bondsDetails);
+        final Bond updatedDogs = bondsService.updateDogDetails(bondDetails);
         return ResponseEntity.ok(updatedDogs);
     }
 
