@@ -50,6 +50,10 @@ export default function BondCardTable() {
     setPage(0);
   };
 
+  const showBonds = (id) => {
+    console.log(id);
+  }
+
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -76,7 +80,13 @@ export default function BondCardTable() {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell 
+                            key={column.id} 
+                            align={column.align} 
+                            onClick={column.id =='code'? ()=> showBonds(value): null}
+                            style={{ cursor: column.id =='code'? 'pointer': 'hidden',
+                            color: column.id =='code'? 'red': 'black' }}
+                            >
                           {column.format && typeof value === 'number'
                             ? column.format(value)
                             : value}
