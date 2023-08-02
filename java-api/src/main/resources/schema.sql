@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS trade;
 DROP TABLE IF EXISTS book_user;
 
 CREATE TABLE security (
-    id int auto_increment PRIMARY KEY, couponPercent float,  bondCurrency varchar(3),cusip varchar(50), faceValue int,
+    id int auto_increment PRIMARY KEY, couponPercent float, bondCurrency varchar(10),cusip varchar(50), faceValue int,
     isin varchar(50),issuerName varchar(60), bondMaturityDate varchar(10),status varchar(10),type varchar(4)
 
 );

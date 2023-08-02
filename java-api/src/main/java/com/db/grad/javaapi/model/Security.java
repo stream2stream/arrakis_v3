@@ -1,31 +1,42 @@
 package com.db.grad.javaapi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "security")
 public class Security
 {
     @Id
-    private long id;
-    private float couponPercent;
-    private long faceValue;
-    private String bondCurrency, cusip, isin, issuerName,
-            BondMaturityDate, status, type;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Id
-    @Column(name = "id", nullable = false)
+    private long id;
+    @Column(name = "couponpercent",nullable = false)
+    private float couponPercent;
+    @Column(name = "bondcurrency", nullable = false)
+    private String bondCurrency;
+    @Column(name = "cusip", nullable = false)
+    private String cusip;
+    @Column(name = "facevalue", nullable = false)
+    private long faceValue;
+    @Column(name = "isin", nullable = false)
+    private String isin;
+    @Column(name = "issuername", nullable = false)
+    private String issuerName;
+    @Column(name = "bondmaturitydate", nullable = false)
+    private String BondMaturityDate;
+    @Column(name = "status", nullable = false)
+    private String status;
+    @Column(name = "type", nullable = false)
+    private String type;
+
+
     public long getId() {
         return id;
     }
     public void setId(long id) {
         this.id = id;
     }
-
-    @Column(name = "couponPercent", nullable = false)
     public float getCouponPercent() {
         return couponPercent;
     }
@@ -33,15 +44,6 @@ public class Security
         this.couponPercent = couponPercent;
     }
 
-    @Column(name = "faceValue", nullable = false)
-    public long getFaceValue() {
-        return faceValue;
-    }
-    public void setFaceValue(long faceValue) {
-        this.faceValue = faceValue;
-    }
-
-    @Column(name = "bondCurrency", nullable = false)
     public String getBondCurrency() {
         return bondCurrency;
     }
@@ -49,7 +51,6 @@ public class Security
         this.bondCurrency = bondCurrency;
     }
 
-    @Column(name = "cusip", nullable = false)
     public String getCusip() {
         return cusip;
     }
@@ -57,7 +58,13 @@ public class Security
         this.cusip = cusip;
     }
 
-    @Column(name = "isin", nullable = false)
+    public long getFaceValue() {
+        return faceValue;
+    }
+    public void setFaceValue(long faceValue) {
+        this.faceValue = faceValue;
+    }
+
     public String getIsin() {
         return isin;
     }
@@ -65,7 +72,6 @@ public class Security
         this.isin = isin;
     }
 
-    @Column(name = "issuerName", nullable = false)
     public String getIssuerName() {
         return issuerName;
     }
@@ -73,7 +79,6 @@ public class Security
         this.issuerName = issuerName;
     }
 
-    @Column(name = "bondMaturityDate", nullable = false)
     public String getBondMaturityDate() {
         return BondMaturityDate;
     }
@@ -81,7 +86,6 @@ public class Security
         BondMaturityDate = bondMaturityDate;
     }
 
-    @Column(name = "status", nullable = false)
     public String getStatus() {
         return status;
     }
@@ -89,7 +93,6 @@ public class Security
         this.status = status;
     }
 
-    @Column(name = "type", nullable = false)
     public String getType() {
         return type;
     }
