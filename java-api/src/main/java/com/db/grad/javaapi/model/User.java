@@ -15,7 +15,7 @@ public class User
     private String email;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "user_id", nullable = false)
     public int getId() {
         return id;
     }

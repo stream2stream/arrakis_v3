@@ -14,7 +14,7 @@ public class Book
     private String name;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "book_id", nullable = false)
     public int getId() {
         return id;
     }

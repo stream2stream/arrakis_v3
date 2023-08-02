@@ -13,7 +13,7 @@ public class Counterparty {
     private String bond_holder;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "counter_party_id", nullable = false)
     public int getId() {
         return id;
     }

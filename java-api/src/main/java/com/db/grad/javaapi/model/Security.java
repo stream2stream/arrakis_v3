@@ -21,7 +21,7 @@ public class Security {
     private String type;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "security_id", nullable = false)
     public int getId() {
         return id;
     }

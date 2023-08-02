@@ -22,7 +22,7 @@ public class Trade {
     private float unit_price;
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "trade_id", nullable = false)
     public int getId() {
         return id;
     }
