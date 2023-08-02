@@ -1,16 +1,29 @@
 import React from "react";
 import ZoomBondTable from "../components/ZoomBondTable";
 import ZoomTradeTable from "../components/ZoomTradeTable";
-
+import Box from '@mui/material/Box';
+import '../App.css';
+import Toolbar from '@mui/material/Toolbar';
+import Row from "react-bootstrap/Row";
+import Typography from '@mui/material/Typography';
 
 const ZoomBond = () => {
   return (
-    <div>
-      <div>This is the ZoomBondTable</div>
-      <ZoomBondTable /> {/* Render the ZoomBondTable component */}
-      <div>This is the ZoomTradeTable.</div>
-      <ZoomTradeTable /> {/* Render the ZoomBondTable component */}
-    </div>
+    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Toolbar />
+           <Row>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                <div style={{ margin: "20px 0" }}>This is the ZoomBondTable</div>
+               
+                     <ZoomBondTable/>
+            
+                <div style={{ margin: "20px 0" }}>This is the ZoomTradeTable.</div>
+              
+                   <ZoomTradeTable/>
+            
+                </div>
+            </Row>
+    </Box>
   );
 };
 
