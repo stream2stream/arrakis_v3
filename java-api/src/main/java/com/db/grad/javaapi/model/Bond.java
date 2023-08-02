@@ -8,7 +8,7 @@ import java.util.List;
 public class Bond {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Int id;
     private Double couponPercent;
     private String bondCurrency;
     private String cusip;
