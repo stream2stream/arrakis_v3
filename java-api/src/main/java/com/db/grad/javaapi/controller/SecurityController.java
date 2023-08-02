@@ -21,7 +21,7 @@ public class SecurityController {
         securityService = sS;
     }
     @GetMapping("/securities")
-    public List<Security> getAllDogs() {
+    public List<Security> getAllSecurities() {
         return securityService.getAllSecurities();
     }
 }
