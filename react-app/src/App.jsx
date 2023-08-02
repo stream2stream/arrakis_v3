@@ -1,8 +1,9 @@
 import React from "react";
-import { Pets } from "./components/pets/Pets";
+
+import BondCard from "./components/BondCard";
 
 const App = () => {
-  return <Pets />;
+  return <BondCard/>;
 };
 
 export default App;
