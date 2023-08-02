@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DogsRepository extends JpaRepository<Security, Long>
-{
-    @Query(nativeQuery = true, value = "select * from dogs where name = :name")
-    List<Security> findByName(Security name);
+public interface SecurityRepository extends JpaRepository<Security, Long> {
+    @Query(nativeQuery = true, value = "select * from security where bondMaturityDate = :date")
+    List<Security> findByBondMaturityDate(Security date);
 }
