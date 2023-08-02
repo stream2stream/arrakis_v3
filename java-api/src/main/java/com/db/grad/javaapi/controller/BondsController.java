@@ -27,10 +27,11 @@ public class BondsController {
     }
 
     @GetMapping(value = {"/bonds/dates/{date}/{daysBefore}/{daysAfter}"})
-    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(@PathVariable(value = "date") Date date,
+    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(@PathVariable(value = "date") String date,
                                                                @PathVariable(value = "daysBefore") int daysBefore,
                                                                @PathVariable(value = "daysAfter") int daysAfter){
-        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(date, daysBefore, daysAfter);
+        Date date = new Date(date);
+        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(Date dat, daysBefore, daysAfter);
     }
 
 
