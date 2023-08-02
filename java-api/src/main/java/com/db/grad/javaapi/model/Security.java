@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "service")
-public class security
+public class Security
 {
     @Id
     private long id;
