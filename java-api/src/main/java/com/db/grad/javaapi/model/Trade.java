@@ -1,5 +1,4 @@
 package com.db.grad.javaapi.model;
 
-class DogTest {
-
+public class Trade {
 }
