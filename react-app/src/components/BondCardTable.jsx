@@ -90,7 +90,7 @@ export default function BondCardTable() {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}

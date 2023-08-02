@@ -39,6 +39,15 @@
 
 
 .container{
-  max-width: 200px;
+
   padding: 15px;
+
+  display:inline-block;
+    
+    
+}
+
+.bondCard {
+
+ color: red;
 }

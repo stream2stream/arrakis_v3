@@ -17,7 +17,7 @@ import Bonds from './Bonds';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import Box from '@mui/material/Box';
 
-const drawerWidth = 240;
+const drawerWidth = 160;
 
 export default function Home() {
   return (
