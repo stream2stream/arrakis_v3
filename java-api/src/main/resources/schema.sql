@@ -1,4 +1,3 @@
-
 Drop Table IF exists Security;
 Drop table IF exists Trade;
 Drop Table IF exists users;
@@ -15,6 +14,12 @@ CREATE TABLE Security (
     bondCurrency varchar(10) NOT NULL,
     coupon float not null,
     status varchar(20) not null,
+);
+
+create table CounterParty(
+    bond_holder_id int not null AUTO_INCREMENT PRIMARY KEY,
+    bond_holder varchar(250) not null,
+
 );
 
 Create table Trade (
@@ -37,19 +42,23 @@ Create table Trade (
 create table Book(
     book_id int not null AUTO_INCREMENT primary key,
     book_name varchar(50) not null,
-    user_id int not null
 
 );
+
 
 create table users(
     user_id int not null AUTO_INCREMENT PRIMARY KEY,
-    bond_holder_name varchar(250) not null,
-    book_id varchar(50) not null,
-    Foreign key (book_id) REFERENCES book(book_id)
-);
-
-create table CounterParty(
-    issuer_id int not null AUTO_INCREMENT PRIMARY KEY,
-    issuer_name varchar(250) not null,
+    issuer varchar(250) not null,
 
 );
+create table bookuser(
+    bookuser_id int not null AUTO_INCREMENT PRIMARY KEY,
+    user_id int not null,
+    book_id int not null,
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (book_id) REFERENCES Book(book_id),
+
+
+);
+
+
