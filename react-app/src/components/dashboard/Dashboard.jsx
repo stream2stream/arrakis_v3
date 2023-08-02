@@ -9,7 +9,7 @@ export const Dashboard = () => {
     const cols = [
         {field: "id", headerName: "ID", width: 150},
         {field: "name", headerName: "Name", width: 150},
-        {field: "favoriteFood", headName: "Food of Favorite", width: 150}
+        {field: "favoriteFood", headerName: "Food of Favorite", width: 150}
     ];
     return (
         <div>

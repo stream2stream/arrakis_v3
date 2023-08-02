@@ -1,8 +1,8 @@
 import React from "react";
-import { Pets } from "./components/pets/Pets";
+import { Dashboard } from "./components/dashboard/Dashboard";
 
 const App = () => {
-  return <Pets />;
+  return <Dashboard />;
 };
 
 export default App;
