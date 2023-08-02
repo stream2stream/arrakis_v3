@@ -8,7 +8,7 @@ import java.util.List;
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Int id;
     private String tradeType;
     private String tradeCurrency;
     private Integer quantity;
