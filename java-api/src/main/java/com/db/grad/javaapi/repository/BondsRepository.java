@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BondsRepository extends JpaRepository<BondsData, int>
+public interface BondsRepository extends JpaRepository<BondsData, Integer>
 {
     @Query(nativeQuery = true, value = "select * from bondsData where tradeType = :tradeType")
     List<BondsData> findByName(BondsData tradeType);
