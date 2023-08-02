@@ -7,7 +7,7 @@ import java.util.List;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Int id;
     private String bookName;
 
     @OneToMany(mappedBy = "book")
