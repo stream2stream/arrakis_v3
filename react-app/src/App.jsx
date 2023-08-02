@@ -1,8 +1,9 @@
 import React from "react";
 import { Pets } from "./components/pets/Pets";
+import { HomePage } from "./components/HomePage";
 
 const App = () => {
-  return <Pets />;
+  return <HomePage />;
 };
 
 export default App;
