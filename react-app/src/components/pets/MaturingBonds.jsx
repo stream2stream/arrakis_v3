@@ -1,17 +1,16 @@
 import React from 'react'
 import { getBondsByDate } from '../../services/BondServices';
 import BondDetail from './BondDetail';
+import MaturingBondsList from './MaturingBondsList';
 
 const MaturingBond = (props) => {
-  const bonds = getBondsByDate(props);
-
+  console.log(props.info.date)
+  const date = new Date(props.info.date);
   return (
-    bonds.map(bond => (
-      <>
-        <h3>{props}</h3>
-        <BondDetail info={bond} key={bond.isin.toString()} />
-      </>
-    ))
+    <>
+      <h3>{date.toString()}</h3>
+      <MaturingBondsList props={props}/>
+    </>
   )
 
 
