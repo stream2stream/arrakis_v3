@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllBonds } from '../services/TradeServices';
 
+
 const trades = [
     { coupon_percent: 4.37, bond_currency: "USD", CUSIP: null, face_value: 1000, isin: "XS1988387210", issuer_name: "BNPParibasIssu 4,37% Microsoft Corp (USD)", bond_maturity_date: "5/8/2021", status: "active", type: "CORP" },
     { coupon_percent: 4.38, bond_currency: "USD", cusip: null, face_value: 1000, isin: "XS1988387210", issuer_name: "BNPParibasIssu 4,37% Microsoft Corp (USD)", bond_maturity_date: "5/8/2021", status: "active", type: "CORP" }
@@ -31,13 +32,13 @@ export const Bonds = () => {
     
     const createRow = (data) => {     
         return <tr>
-            <td>{data.coupon_percent}</td>
-            <td>{data.bond_currency}</td>
+            <td>{data.couponPercent}</td>
+            <td>{data.bondCurrency}</td>
             <td>{data.cusip}</td>
-            <td>{data.face_value}</td>
+            <td>{data.faceValue}</td>
             <td>{data.isin}</td>
-            <td>{data.issuer_name}</td>
-            <td>{data.bond_maturity_date}</td>
+            <td>{data.issuerName}</td>
+            <td>{data.bondMaturity}</td>
             <td>{data.status}</td>
             <td>{data.type}</td>
         </tr>

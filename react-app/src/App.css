@@ -37,12 +37,7 @@
   }
 }
 
-.imgContainer{
-  padding: 10px;
-  max-height: 250px;
-  min-height: 250px;
-  max-width: 250px;
-}
-.title {
-  font-size:large;
+table, th, td {
+  border: 1px solid;
+  text-align: left;
 }

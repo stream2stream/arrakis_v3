@@ -1,6 +1,5 @@
 import React from "react";
-import { Pets } from "./components/pets/Pets";
-import { Trades } from "./components/Trades";
+import "./App.css";
 import { Bonds } from "./components/Bonds";
 
 const App = () => {
