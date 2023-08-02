@@ -13,7 +13,7 @@ CREATE TABLE bonds (
     cusip varchar,
     face_value int NOT NULL,
     isin varchar PRIMARY KEY,
-    bond_maturity varchar NOT NULL,
+    bond_maturity date NOT NULL,
     issuer_name varchar NOT NULL,
     status varchar NOT NULL,
     type varchar NOT NULL

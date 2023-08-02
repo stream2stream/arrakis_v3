@@ -3,6 +3,7 @@ package com.db.grad.javaapi.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "bonds")
@@ -12,7 +13,8 @@ public class Bond {
     private String isin;
     private float couponPercent;
     private int faceValue;
-    private String bondCurrency, cusip, bondMaturity, issuerName, status, type;
+    private String bondCurrency, cusip, issuerName, status, type;
+    private Date bondMaturity;
 
     public String getIsin() {
         return isin;
@@ -54,11 +56,11 @@ public class Bond {
         this.cusip = cusip;
     }
 
-    public String getBondMaturity() {
+    public Date getBondMaturity() {
         return bondMaturity;
     }
 
-    public void setBondMaturity(String bondMaturity) {
+    public void setBondMaturity(Date bondMaturity) {
         this.bondMaturity = bondMaturity;
     }
 
