@@ -1,14 +1,28 @@
 import React from 'react'
+import Card from 'react-bootstrap/Card';
 
-
-const BondCard = () => {
+const BondCard= (props) =>{
   return (
-    <div>BondCard
-        <title>
-
-        </title>
-    </div>
-  )
+    <Card style={{ width: '18rem', backgroundColor: 'lightblue', border: '5px solid', borderRadius: '10px', borderColor: 'teal', boxShadow: '5px 5px 20px'}}>
+      <Card.Body>
+        <Card.Title>Maturity Date</Card.Title>
+        {/* <Card.Text>
+        {{props.bonds[0]}}
+         Amount
+        </Card.Text>
+        <Card.Text>
+         {props.bonds[1]}
+         Amount
+        </Card.Text>
+        <Card.Text>
+        {props.bonds[2]}
+         Amount
+        </Card.Text> */}
+        {props.bonds.map(bond => (<Card.Text>{bond} </Card.Text>))}
+        <Card.Link href="#">Bond Details</Card.Link>
+      </Card.Body>
+    </Card>
+  );
 }
 
-export default BondCard
+export default BondCard;

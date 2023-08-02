@@ -1,9 +1,8 @@
 import React from "react";
-
-import BondCard from "./components/BondCard";
+import HomePage from "./components/HomePage";
 
 const App = () => {
-  return <BondCard/>;
+  return <HomePage/>;
 };
 
 export default App;
