@@ -1,9 +1,14 @@
 import React from "react";
-import { Pets } from "./components/pets/Pets";
+import Home from "./pages/Home";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 const App = () => {
   return (<>
-  <h1>Welcome to react app</h1>
+  
+    <Routes>
+      <Route path="/" element={<Navigate replace to="/home" />} />
+      <Route path="/home" element={<Home />} />
+    </Routes>
   </>);
 };
 
