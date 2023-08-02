@@ -2,6 +2,7 @@ package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "security")
@@ -19,6 +20,8 @@ public class Security {
     private float face_value;
     private String currency;
     private String status;
+    @OneToMany(mappedBy = "security", cascade = CascadeType.ALL)
+    private List<Trade> tradesList;
 
     @Column(name = "id", nullable = false)
     public int getId() {

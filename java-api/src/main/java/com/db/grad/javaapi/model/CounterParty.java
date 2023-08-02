@@ -1,6 +1,7 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "counter_party")
@@ -10,6 +11,8 @@ public class CounterParty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @OneToMany(mappedBy = "counterParty", cascade = CascadeType.ALL)
+    private List<Trade> tradesList;
 
     @Column(name = "id", nullable = false)
     public int getId() {

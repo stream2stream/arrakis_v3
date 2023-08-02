@@ -1,6 +1,7 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -9,6 +10,10 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String bookName;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Trade> tradesList;
+
 
     @Column(name = "id", nullable = false)
     public long getId() {
