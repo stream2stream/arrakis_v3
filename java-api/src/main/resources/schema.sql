@@ -1,4 +1,20 @@
+DROP TABLE IF EXISTS trades_counter_parties;
+DROP TABLE IF EXISTS bonds_counter_parties;
+DROP TABLE IF EXISTS trades;
 DROP TABLE IF EXISTS bonds;
+
+
+CREATE TABLE trades_counter_parties (
+    id INT NOT NULL,
+    bond_holder_name VARCHAR(250) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE bonds_counter_parties (
+    id INT NOT NULL,
+    issuer_name VARCHAR(250) NOT NULL,
+    PRIMARY KEY (id)
+);
 
 CREATE TABLE bonds (
     isin VARCHAR(250) NOT NULL,
@@ -14,7 +30,6 @@ CREATE TABLE bonds (
     FOREIGN KEY (issuer_id) REFERENCES bonds_counter_parties(id)
 );
 
-DROP TABLE IF EXISTS trades;
 
 CREATE TABLE trades (
     isin VARCHAR(250) NOT NULL,
@@ -31,14 +46,3 @@ CREATE TABLE trades (
     FOREIGN KEY (bond_holder_id) REFERENCES trades_counter_parties(id)
 );
 
-CREATE TABLE trades_counter_parties (
-    id INT NOT NULL,
-    bond_holder_name VARCHAR(250) NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE bonds_counter_parties (
-    id INT NOT NULL,
-    issuer_name VARCHAR(250) NOT NULL,
-    PRIMARY KEY (id)
-);

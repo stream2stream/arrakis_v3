@@ -1,5 +1,6 @@
 package com.db.grad.javaapi.model;
 import com.db.grad.javaapi.repository.TradesRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -11,6 +12,7 @@ public class TradeTest {
     @Mock
     private TradesRepository tradesRepository;
 
+
     @Test
     public void addTradeAndReturnNumberOfTradesInRepo() {
         Trade trade = new Trade();
@@ -21,7 +23,7 @@ public class TradeTest {
         trade.setUnitPrice(90);
         trade.setTradeCurrency("USD");
         trade.setTradeType("buy");
-        Date date = new Date("2023-01-01");
+        Date date = new Date(2023, 01, 01);
         trade.setTradeDate(date);
         trade.setTradeSettlementDate(date);
         trade.setQuantity(50);
@@ -32,7 +34,7 @@ public class TradeTest {
     }
 
     @Test
-    public void addSeveralBondsAndReturnNumberOfBondsInRepo() {
+    public void addSeveralTradesAndReturnNumberOfBondsInRepo() {
         Trade trade = new Trade();
         trade.setIsin("ISIN2");
         trade.setBookName("trading_book_1");
@@ -78,7 +80,7 @@ public class TradeTest {
     }
 
     @Test
-    public void findBondByValidId(){
+    public void findTradeByValidId(){
         Date date = new Date("2023-01-01");
         Trade trade1 = new Trade();
         trade1.setIsin("ISIN4");
