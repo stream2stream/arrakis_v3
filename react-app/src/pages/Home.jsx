@@ -17,10 +17,17 @@ import Bonds from './Bonds';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import Box from '@mui/material/Box';
 import ZoomBond from './ZoomBond';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 160;
 
 export default function Home() {
+  const navigate = useNavigate();
+  const onClickSidebarOption = (data) =>{
+    console.log(data);
+    navigate("/home/" + data);
+  }
+
   return (
     <>
     <Box sx={{ display: 'flex' }}>
@@ -44,7 +51,8 @@ export default function Home() {
         <Box sx={{ overflow: 'auto' }}>
           <List>
             {['Bonds'].map((text, index) => (
-              <ListItem key={text} disablePadding>
+              
+              <ListItem key={text} disablePadding  onClick={()=> {onClickSidebarOption(text)}}>
                 <ListItemButton>
                   <ListItemIcon>
                     {index % 2 === 0 ? <AccountBalanceWalletIcon /> : <AccountBalanceWalletIcon />}

@@ -12,7 +12,7 @@ const App = () => {
       <Route path="home" element={<Home />}>
           <Route path="bonds" element={<Bonds />} />
           <Route path="zoombond" element={<ZoomBond />} />
-        </Route>
+      </Route>
       
     </Routes>
   </>);
