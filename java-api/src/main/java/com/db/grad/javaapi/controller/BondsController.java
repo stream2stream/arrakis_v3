@@ -3,6 +3,7 @@ package com.db.grad.javaapi.controller;
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
 import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.service.BondService;
+import com.db.grad.javaapi.service.BondServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,10 @@ import java.util.*;
 @RequestMapping("/")
 @CrossOrigin(origins = "http://localhost:3000")
 public class BondsController {
-    private BondService bondService;
+    private BondServiceImpl bondService;
 
     @Autowired
-    public BondsController(BondService bondService) {
+    public BondsController(BondServiceImpl bondService) {
         this.bondService = bondService;
     }
 
