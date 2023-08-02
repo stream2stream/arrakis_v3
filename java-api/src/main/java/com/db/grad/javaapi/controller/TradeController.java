@@ -28,19 +28,19 @@ public class TradeController {
         return tradeRepository.save(trade);
     }
 
-    @PutMapping("/{id}")
-    public Trade updateTrade(@PathVariable Long id, @RequestBody Trade updatedTrade) {
-        Trade trade = tradeRepository.findById(id).orElse(null);
-        if (trade != null) {
-            // Update the trade properties from the updatedTrade object
-            trade.setTradeType(updatedTrade.getTradeType());
-            trade.setTradeCurrency(updatedTrade.getTradeCurrency());
-            // ... Set other properties
-
-            return tradeRepository.save(trade);
-        }
-        return null;
-    }
+//    @PutMapping("/{id}")
+//    public Trade updateTrade(@PathVariable Long id, @RequestBody Trade updatedTrade) {
+//        Trade trade = tradeRepository.findById(id).orElse(null);
+//        if (trade != null) {
+//            // Update the trade properties from the updatedTrade object
+//            trade.setTradeType(updatedTrade.getTradeType());
+//            trade.setTradeCurrency(updatedTrade.getTradeCurrency());
+//            // ... Set other properties
+//
+//            return tradeRepository.save(trade);
+//        }
+//        return null;
+//    }
 
     @DeleteMapping("/{id}")
     public void deleteTrade(@PathVariable Long id) {
