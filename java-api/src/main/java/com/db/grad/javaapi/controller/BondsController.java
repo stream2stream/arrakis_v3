@@ -37,15 +37,15 @@ public class BondsController {
     }
 
     @PostMapping("/Bonds")
-    public Bond createBond(@Valid @RequestBody Bond Bond) {
-        return bondService.addBond(Bond);
+    public Bond createBond(@Valid @RequestBody Bond bond) {
+        return bondService.addBond(bond);
     }
 
     @PutMapping("/Bonds/{id}")
     public ResponseEntity < Bond > updateBond(@PathVariable(value = "id") Long id,
-        @Valid @RequestBody Bond BondDetails) throws ResourceNotFoundException {
+        @Valid @RequestBody Bond bondDetails) throws ResourceNotFoundException {
 
-        final Bond updatedBonds = bondService.updateBondDetails(BondDetails);
+        final Bond updatedBonds = bondService.updateBondDetails(bondDetails);
         return ResponseEntity.ok(updatedBonds);
     }
 

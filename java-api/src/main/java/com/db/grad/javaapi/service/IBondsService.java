@@ -17,7 +17,7 @@ public interface IBondsService
 
     public Bond getBondById(long uniqueId);
 
-    public Bond getBondByName(String BondsName );
+//    public Bond getBondByName(String BondsName );
 
     public Bond updateBondDetails(Bond BondToUpdate);
 }

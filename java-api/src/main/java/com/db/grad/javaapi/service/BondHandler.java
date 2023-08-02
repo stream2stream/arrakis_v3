@@ -14,9 +14,9 @@ public class BondHandler implements IBondsService
     private BondsRepository itsBondsRepo;
 
     @Autowired
-    public BondHandler( BondsRepository BondRepo )
+    public BondHandler( BondsRepository bondRepo )
     {
-        itsBondsRepo = BondRepo;
+        itsBondsRepo = bondRepo;
     }
 
     @Override
@@ -58,19 +58,19 @@ public class BondHandler implements IBondsService
         return itsBondsRepo.findById(uniqueId).get();
     }
 
-    @Override
-    public Bond getBondByName(String BondsName )
-    {
-        Bond BondToFind = new Bond();
-        BondToFind.setName(BondsName);
-        List<Bond> Bonds = itsBondsRepo.findByName(BondToFind);
-        Bond result = null;
-
-        if( Bonds.size() == 1)
-            result = Bonds.get(0);
-
-        return result;
-    }
+//    @Override
+//    public Bond getBondByName(String BondsName )
+//    {
+//        Bond BondToFind = new Bond();
+//        BondToFind.setName(BondsName);
+//        List<Bond> Bonds = itsBondsRepo.findByName(BondToFind);
+//        Bond result = null;
+//
+//        if( Bonds.size() == 1)
+//            result = Bonds.get(0);
+//
+//        return result;
+//    }
 
     @Override
     public Bond updateBondDetails(Bond BondToUpdate)
