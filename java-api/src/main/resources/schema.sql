@@ -6,7 +6,7 @@ name VARCHAR(100) NOT NULL
 CREATE TABLE security (
 id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 isin VARCHAR(100) NOT NULL,
-cusip VARCHAR(100) NOT NULL,
+cusip VARCHAR(100) DEFAULT NULL,
 issuer_name VARCHAR(100) NOT NULL,
 maturity_date DATETIME NOT NULL,
 coupon FLOAT NOT NULL,
@@ -55,5 +55,3 @@ FOREIGN KEY (book_id) REFERENCES book(id),
 FOREIGN KEY (security_id) REFERENCES security(id),
 FOREIGN KEY (counterparty_id) REFERENCES counterparty(id)
 );
-
-
