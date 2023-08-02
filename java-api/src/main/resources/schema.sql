@@ -1,8 +1,27 @@
 DROP TABLE IF EXISTS dogs;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS book_user;
+DROP TABLE IF EXISTS trade;
+DROP TABLE IF EXISTS security;
+DROP TABLE IF EXISTS counter_party;
 
 CREATE TABLE dogs (
     dog_id INT NOT NULL,
     name VARCHAR(250) NOT NULL,
     age INT NOT NULL
 );
+
+CREATE TABLE users(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(250) NOT NULL,
+    username VARCHAR(250) NOT NULL,
+    password VARCHAR(250) NOT NULL
+);
+--CREATE TABLE books();
+--CREATE TABLE book_user();
+--CREATE TABLE trade();
+--CREATE TABLE security();
+--CREATE TABLE counter_party();
+
 
