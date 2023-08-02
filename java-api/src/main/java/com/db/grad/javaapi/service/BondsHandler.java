@@ -1,7 +1,7 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Dog;
-import com.db.grad.javaapi.repository.DogsRepository;
+import com.db.grad.javaapi.model.Bonds;
+import com.db.grad.javaapi.repository.BondsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,26 +9,26 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DogHandler implements IDogsService
+public class BondsHandler implements IBondsSrvice
 {
-    private DogsRepository itsDogsRepo;
+    private BondsRepository itsDogsRepo;
 
     @Autowired
-    public DogHandler( DogsRepository dogRepo )
+    public BondsHandler(BondsRepository dogRepo )
     {
         itsDogsRepo = dogRepo;
     }
 
     @Override
-    public List<Dog> getAllDogs()
+    public List<Bonds> getAllDogs()
     {
         return itsDogsRepo.findAll();
     }
 
     @Override
-    public Dog addDog(Dog theDog)
+    public Bonds addDog(Bonds theBonds)
     {
-        return itsDogsRepo.save( theDog );
+        return itsDogsRepo.save(theBonds);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class DogHandler implements IDogsService
     {
         boolean result = false;
 
-        Optional<Dog> theDog = itsDogsRepo.findById(uniqueId);
+        Optional<Bonds> theDog = itsDogsRepo.findById(uniqueId);
         if(theDog.isPresent())
         {
             itsDogsRepo.delete(theDog.get());
@@ -53,28 +53,28 @@ public class DogHandler implements IDogsService
     }
 
     @Override
-    public Dog getDogById(long uniqueId)
+    public Bonds getDogById(long uniqueId)
     {
         return itsDogsRepo.findById(uniqueId).get();
     }
 
     @Override
-    public Dog getDogByName(String dogsName )
+    public Bonds getDogByName(String dogsName )
     {
-        Dog dogToFind = new Dog();
-        dogToFind.setName(dogsName);
-        List<Dog> dogs = itsDogsRepo.findByName(dogToFind);
-        Dog result = null;
+        Bonds bondsToFind = new Bonds();
+        bondsToFind.setName(dogsName);
+        List<Bonds> bonds = itsDogsRepo.findByName(bondsToFind);
+        Bonds result = null;
 
-        if( dogs.size() == 1)
-            result = dogs.get(0);
+        if( bonds.size() == 1)
+            result = bonds.get(0);
 
         return result;
     }
 
     @Override
-    public Dog updateDogDetails(Dog dogToUpdate)
+    public Bonds updateDogDetails(Bonds bondsToUpdate)
     {
-        return itsDogsRepo.save( dogToUpdate );
+        return itsDogsRepo.save(bondsToUpdate);
     }
 }

@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dogs")
-public class Dog
+@Table(name = "Bonds")
+public class Bonds
 {
     @Id
     private long id;
@@ -15,7 +15,7 @@ public class Dog
     private long age;
 
     @Id
-    @Column(name = "dog_id", nullable = false)
+    @Column(name = "Bond_id", nullable = false)
     public long getId() {
         return id;
     }

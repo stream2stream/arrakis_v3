@@ -6,3 +6,7 @@ CREATE TABLE dogs (
     age INT NOT NULL
 );
 
+
+
+
+
