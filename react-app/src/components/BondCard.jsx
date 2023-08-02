@@ -41,7 +41,7 @@ export default function BondCard() {
   
 
   return (
-    <Card  >
+    <Card  sx={{ maxWidth: 405 }}>
         <CardHeader
             title={date}
         />
