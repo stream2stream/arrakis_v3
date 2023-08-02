@@ -1,8 +1,59 @@
-DROP TABLE IF EXISTS dogs;
+DROP TABLE IF EXISTS trade;
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS security;
+DROP TABLE IF EXISTS counter_party;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE dogs (
-    dog_id INT NOT NULL,
-    name VARCHAR(250) NOT NULL,
-    age INT NOT NULL
+CREATE TABLE book (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    status VARCHAR(250) NOT NULL,
+    type VARCHAR(250) NOT NULL,
+    name VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE security (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    coupon_percent FLOAT NOT NULL,
+    bond_currency VARCHAR(250) NOT NULL,
+    cusip VARCHAR(250),
+    face_value INT NOT NULL,
+    isin VARCHAR(250) NOT NULL,
+    issuer_name VARCHAR(250) NOT NULL,
+    bond_maturity_date DATE NOT NULL
+);
+CREATE TABLE counter_party (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    bond_holder VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE trade (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    type VARCHAR(250) NOT NULL,
+    currency VARCHAR(250) NOT NULL,
+    quantity INT NOT NULL,
+    settlement_date DATE NOT NULL,
+    status VARCHAR(250) NOT NULL,
+    trade_date DATE NOT NULL,
+    unit_price FLOAT NOT NULL,
+    book_id INT NOT NULL,
+    counter_party_id INT NOT NULL,
+    security_id INT NOT NULL,
+    FOREIGN KEY (book_id) REFERENCES book(id),
+    FOREIGN KEY (counter_party_id) REFERENCES counter_party(id),
+    FOREIGN KEY (security_id) REFERENCES security(id)
+);
+
+CREATE TABLE users (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(250) NOT NULL,
+    pass_hash VARCHAR(250) NOT NULL
+);
+
+CREATE TABLE book_user (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    book_id INT NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (book_id) REFERENCES book(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
