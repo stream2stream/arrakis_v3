@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -29,9 +31,11 @@ public class BondsController {
     @GetMapping(value = {"/bonds/dates/{date}/{daysBefore}/{daysAfter}"})
     public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(@PathVariable(value = "date") String date,
                                                                @PathVariable(value = "daysBefore") int daysBefore,
-                                                               @PathVariable(value = "daysAfter") int daysAfter){
-        Date date = new Date(date);
-        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(Date dat, daysBefore, daysAfter);
+                                                               @PathVariable(value = "daysAfter") int daysAfter) throws ParseException {
+
+        SimpleDateFormat format = new SimpleDateFormat("dd-MMM-yyyy");
+        Date formattedDate = format.parse(date);
+        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(formattedDate, daysBefore, daysAfter);
     }
 
 
