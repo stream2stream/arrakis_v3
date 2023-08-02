@@ -1,4 +1,9 @@
-DROP TABLE IF EXISTS dogs;
+DROP TABLE IF EXISTS security;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS counter_party;
+DROP TABLE IF EXISTS trade;
+DROP TABLE IF EXISTS book_user;
 
 CREATE TABLE security (
     id int auto_increment PRIMARY KEY, couponPercent float,  bondCurrency varchar(3),cusip varchar(50), faceValue int,
