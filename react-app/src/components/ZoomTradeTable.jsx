@@ -9,39 +9,60 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
 const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+  { id: 'isni', label: 'ISNI', minWidth: 170 },
+  { id: 'bookid', label: 'Book id', minWidth: 100 },
   {
-    id: 'population',
-    label: 'Population',
+    id: 'client',
+    label: 'Client',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
+    id: 'status',
+    label: 'Status',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'density',
-    label: 'Density',
+    id: 'facevalue',
+    label: 'Face Value',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: 'currency',
+    label: 'Currency',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: 'coupon',
+    label: 'Coupon %',
+    minWidth: 170,
+    align: 'right',
+    format: (value) => value.toFixed(2),
+  },
+  {
+    id: 'status',
+    label: 'Status',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toFixed(2),
   },
 ];
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
+function createData(isni, bookid, client, maturity, currency, coupon, status) {
+  const facevalue = client / maturity;
+  return { isni, bookid, client, maturity, facevalue, currency, coupon, status };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
+  createData('India', 'IN', 1324171354, 3287263, 'USD', 23, 'active'),
+  createData('China', 'CN', 1403500365, 9596961, 'GBT'),
   createData('Italy', 'IT', 60483973, 301340),
   createData('United States', 'US', 327167434, 9833520),
   createData('Canada', 'CA', 37602103, 9984670),
@@ -92,7 +113,7 @@ export default function StickyHeadTable() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.type}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
