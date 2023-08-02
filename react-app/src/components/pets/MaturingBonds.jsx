@@ -3,10 +3,14 @@ import { getBondsByDate } from '../../services/BondServices';
 import BondDetail from './BondDetail';
 
 const MaturingBond = (props) => {
+  const bonds = getBondsByDate(props);
 
   return (
-    props.map(bond =>(
+    bonds.map(bond => (
+      <>
+        <h3>{props}</h3>
         <BondDetail info={bond} key={bond.isin.toString()} />
+      </>
     ))
   )
 

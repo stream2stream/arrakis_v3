@@ -28,16 +28,8 @@ export const getAllBonds = () => {
   return bonds;
 };
 
-export const getBondByDate = (date) => {
+export const getBondsByDate = (date) => {
     return bonds.filter(function(itm) {
         return itm.bondMaturityDate == date;
     })
-}
-
-export const getBondsByDates = (date) => {
-    bonds = []
-    for (var i = -5; i <= 5; i++) {
-        bonds.append(getBondByDate(date+i));
-    }
-    return bonds;
 }

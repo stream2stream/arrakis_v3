@@ -4,11 +4,12 @@ import { getBondsByDates } from '../../services/BondServices';
 
 const AllMaturingBonds = () => {
 
-    const allBondLists = getBondsByDates(); //list of list 
+    const arr = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]; //list of list 
+    const date = Date.parse("04/06/2021");
 
     return (
-        allBondLists.map(bondList =>(
-            <MaturingBond info={bondList} key={bondList.isin.toString()} />
+        arr.map(num =>(
+            <MaturingBond info={date+num} key={num} />
         ))
       )
 }
