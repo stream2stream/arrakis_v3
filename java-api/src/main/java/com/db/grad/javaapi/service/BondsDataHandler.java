@@ -5,6 +5,7 @@ import com.db.grad.javaapi.repository.BondsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -72,5 +73,10 @@ public class BondsDataHandler implements IBondsDataService
     @Override
     public List<BondsData> getByType(String type) {
         return repository.findByType(type);
+    }
+
+    @Override
+    public List<BondsData> getByMaturtiyDate(Date date) {
+        return repository.findByMaturityDate(date);
     }
 }

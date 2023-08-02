@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -16,6 +17,9 @@ public interface BondsRepository extends JpaRepository<BondsData, Integer>
 
     @Query(nativeQuery = true, value = "select * from bondsdata where UPPER(type) = UPPER(:type)")
     List<BondsData> findByType(String type);
+
+    @Query(nativeQuery = true, value = "select * from bondsdata where bond_maturity_date = :date")
+    List<BondsData> findByMaturityDate(Date date);
 
     @Query(nativeQuery = true, value = "select * from bondsdata where UPPER(trade_type) = UPPER('buy')")
     List<BondsData> getBuys();
