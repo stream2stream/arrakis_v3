@@ -7,12 +7,15 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     private String name;
     private String username;
     private String password;
 
-    public long getId() {
+    public void setId(int id) {
+        this.id = id;
+    }
+    public int getId() {
         return id;
     }
 

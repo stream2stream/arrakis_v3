@@ -12,16 +12,43 @@ CREATE TABLE dogs (
     age INT NOT NULL
 );
 
-CREATE TABLE users(
+CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(250) NOT NULL,
     username VARCHAR(250) NOT NULL,
     password VARCHAR(250) NOT NULL
 );
---CREATE TABLE books();
---CREATE TABLE book_user();
---CREATE TABLE trade();
---CREATE TABLE security();
---CREATE TABLE counter_party();
+
+CREATE TABLE books (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    bookName VARCHAR(250) NOT NULL
+);
+
+--CREATE TABLE book_user (
+--    id INT PRIMARY KEY AUTO_INCREMENT,
+--    book_id INT FOREIGN KEY REFERENCES books(id)
+--);
+
+--CREATE TABLE trade (
+--    id INT PRIMARY KEY AUTO_INCREMENT,
+--);
+
+CREATE TABLE security (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    isin VARCHAR(50) DEFAULT NULL,
+    cusip VARCHAR(50) DEFAULT NULL,
+    issuer_name VARCHAR(250) NOT NULL,
+    maturity_date DATE NOT NULL,
+    coupon FLOAT NOT NULL,
+    type VARCHAR(250) NOT NULL,
+    face_value FLOAT NOT NULL,
+    currency VARCHAR(5) NOT NULL,
+    status VARCHAR(50) DEFAULT NULL
+);
+
+CREATE TABLE counter_party (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(250) NOT NULL
+);
 
 
