@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from "@mui/material";
 import { Card } from "@mui/material";
-import CardContent from "@mui/material";
+import { CardContent } from "@mui/material";
 import Typography from "@mui/material";
 import styles from "./pets/Pets.module.css";
 
@@ -73,7 +73,8 @@ export const HomePage = () => {
     )
 
     const handleRowClick = (params) => {
-        setCardMessage('' + params.row.id + '\n' + params.row.issuerName);
+        let text = params.row.id + "\n" + params.row.issuerName;
+        setCardMessage(text);
     }
 
     console.log(cardMessage);
@@ -88,8 +89,12 @@ export const HomePage = () => {
               sx={{ maxWidth: '75%' }}
               onRowClick={handleRowClick}
               />
-            <Card sx={{ minWidth: '25%'}}>
-                {cardMessage}
+            <Card sx={{ minWidth: '25%'}} className={styles.card}>
+                <CardContent>
+                    {cardMessage}
+                    <br/>
+                    {cardMessage}
+                </CardContent>
             </Card>
             </div>
           </Box>
