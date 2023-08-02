@@ -41,7 +41,7 @@ public class Bond {
         this.type = type;
     }
 
-    @Column(name = "issuer_name", nullable = false)
+    @Column(name = "issuer_id", nullable = false)
 
     public int getIssuerID() {
         return issuerID;
