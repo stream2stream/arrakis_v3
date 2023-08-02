@@ -1,32 +1,33 @@
 DROP TABLE IF EXISTS dogs;
 
 CREATE TABLE security (
-    id int auto_increment PRIMARY KEY, float couponPercent, varchar(3) bondCurrency, varchar(50) cusip, int faceValue,
-    varchar(50) isin, varchar(10) bondsMaturityDate, varchar(10) status, varchar(4) type, varchar(50) issuerName
+    id int auto_increment PRIMARY KEY, couponPercent float,  bondCurrency varchar(3),cusip varchar(50), faceValue int,
+    isin varchar(50),issuerName varchar(60), bondMaturityDate varchar(10),status varchar(10),type varchar(4)
 
 );
 
 CREATE TABLE users (
-    id int auto_increment PRIMARY KEY, varchar(50) username
+    id int auto_increment PRIMARY KEY, username varchar(50)
 );
 
 CREATE TABLE book (
-    id int auto_increment PRIMARY KEY, varchar(20) bookName
+    id int auto_increment PRIMARY KEY, bookName varchar(20)
 );
 
 CREATE TABLE book_user (
-    bookID int, FOREIGN KEY (bookID) REFERENCES book(id), int userID, FOREIGN KEY (userID) REFERENCES users(id);
+    bookID int,userID int, FOREIGN KEY (bookID) REFERENCES book(id),  FOREIGN KEY (userID) REFERENCES users(id)
 );
 
 CREATE TABLE counter_party (
-    id int auto_increment PRIMARY KEY, varchar(50) bondHolder
+    id int auto_increment PRIMARY KEY, bondHolder varchar(50)
 );
 
 CREATE TABLE trade (
-    id int auto_increment PRIMARY KEY, varchar(4) tradeType, varchar(3) tradeCurrency, int quantity,
-        varchar(10) tradeSettleDate, varchar(10) tradeStatus, varchar(10) tradeDate, float unitPrice,
-        int counterPartyID, FOREIGN KEY (counterPartyID) REFERENCES counter_party(id),
-        int securityID, FOREIGN KEY (securityID) REFERENCES security(id),
-        int bookID, FOREIGN KEY (bookID) REFERENCES book(id)
+    id int auto_increment PRIMARY KEY,tradeType varchar(4),tradeCurrency varchar(3), quantity int,
+        tradeSettlementDate varchar(10),tradeStatus varchar(10), tradeDate varchar(10), unitPrice float,
+        counterPartyID int, securityID int,bookID int,
+        FOREIGN KEY (counterPartyID) REFERENCES counter_party(id),
+        FOREIGN KEY (securityID) REFERENCES security(id),
+        FOREIGN KEY (bookID) REFERENCES book(id)
 );
 
