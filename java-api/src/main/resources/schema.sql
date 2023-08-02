@@ -1,8 +1,57 @@
-DROP TABLE IF EXISTS dogs;
-
-CREATE TABLE dogs (
-    dog_id INT NOT NULL,
-    name VARCHAR(250) NOT NULL,
-    age INT NOT NULL
+CREATE TABLE book (
+id INT PRIMARY KEY NOT NULL UNIQUE,
+name VARCHAR(100) NOT NULL
 );
 
+CREATE TABLE security (
+id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+isin VARCHAR(100) NOT NULL,
+cusip VARCHAR(100) DEFAULT NULL,
+issuer_name VARCHAR(100) NOT NULL,
+maturity_date DATETIME NOT NULL,
+coupon FLOAT NOT NULL,
+type VARCHAR(100) NOT NULL,
+face_value FLOAT NOT NULL,
+currency VARCHAR(20) NOT NULL,
+status VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE counterparty (
+id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE users (
+id INT PRIMARY KEY NOT NULL  AUTO_INCREMENT UNIQUE,
+mail VARCHAR(30) NOT NULL UNIQUE,
+password VARCHAR(30) NOT NULL,
+trading_book_id INT NOT NULL  UNIQUE,
+FOREIGN KEY (trading_book_id) REFERENCES book(id)
+);
+
+
+CREATE TABLE book_users (
+trading_book_id int NOT NULL,
+user_id int NOT NULL,
+FOREIGN KEY (trading_book_id) REFERENCES book(id),
+FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+
+
+CREATE TABLE trades (
+id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+book_id INT NOT NULL,
+security_id INT NOT NULL,
+counterparty_id int NOT NULL,
+currency VARCHAR(20) NOT NULL,
+status VARCHAR(20) NOT NULL,
+quantity INT NOT NULL,
+unit_price FLOAT NOT NULL,
+buy_sell VARCHAR(25) NOT NULL,
+trade_date DATETIME NOT NULL,
+settlement_date DATETIME NOT NULL,
+FOREIGN KEY (book_id) REFERENCES book(id),
+FOREIGN KEY (security_id) REFERENCES security(id),
+FOREIGN KEY (counterparty_id) REFERENCES counterparty(id)
+);
