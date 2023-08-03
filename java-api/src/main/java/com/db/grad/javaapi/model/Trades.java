@@ -1,34 +1,16 @@
+package com.db.grad.javaapi.model;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVReader {
-    public static void main(String[] args) {
-        String csvFile = "/path/to/csv/file.csv";
-        String line = "";
-        String csvSplitBy = ",";
-
-        List<Person> people = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(csvSplitBy);
-                String name = data[0];
-                int age = Integer.parseInt(data[1]);
-                String occupation = data[2];
-                Person person = new Person(name, age, occupation);
-                people.add(person);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // use people list here
-    }
-}
-
+@Entity
+@Table(name = "dogs")
 class Person {
     private String name;
     private int age;
@@ -43,15 +25,6 @@ class Person {
     // getters and setters
 }
 
-
-
-
-package com.db.grad.javaapi.model;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "dogs")
