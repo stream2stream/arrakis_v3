@@ -52,7 +52,7 @@ CREATE TABLE counter_party (
 );
 
 CREATE TABLE trades (
-    id INT PRIMARY KEY AUTO_INCREMENT
+    id INT PRIMARY KEY AUTO_INCREMENT,
     book_id INT NOT NULL,
     security_id INT NOT NULL,
     counter_party_id INT NOT NULL,
@@ -74,8 +74,14 @@ CREATE TABLE bonds (
     isin VARCHAR(250) NOT NULL
 );
 
-CREATE VIEW IF NOT EXISTS all_bonds2 as
-SELECT dog_id as id, name, age FROM dogs;
+CREATE VIEW IF NOT EXISTS all_bonds_old as
+SELECT  id, bond_maturity_date, isin from bonds;
 
 CREATE VIEW IF NOT EXISTS all_bonds as
-SELECT  id, bond_maturity_date, isin from bonds;
+SELECT  s.isin, s.cusip, s.issuer_name, s.maturity_date as bond_maturity_date, s.coupon, s.type as bond_type , s.face_value,
+    s.currency as bond_currency, s.status as bond_status,
+    t.currency as trade_currency, t.status as trade_status, t.quantity, t.unit_price, t.buy_sell, t.trade_date,
+    t.settlement_date, b.book_name, c.name as book_holder
+FROM security s join trades t on s.id = t.security_id join books b on t.book_id = b.id join counter_party c on t.counter_party_id = c.id;
+
+

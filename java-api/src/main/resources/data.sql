@@ -2,18 +2,22 @@ INSERT INTO dogs (dog_id, name, age) VALUES (1, 'Einstein', 3);
 INSERT INTO dogs (dog_id, name, age) VALUES (2, 'Kaya', 5);
 INSERT INTO dogs (dog_id, name, age) VALUES (3, 'Lassie', 7);
 
-INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (1, '01/08/2023', '1234ABCD');
-INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (2, '05/08/2023', '1234ABCE');
-INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (3, '10/08/2023', '1234ABCF');
+--INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (1, '01/08/2023', '1234ABCD');
+--INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (2, '05/08/2023', '1234ABCE');
+--INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (3, '10/08/2023', '1234ABCF');
+
+--INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (3, '10/08/2023', '1234ABCF');
 
 INSERT INTO users (name, email, password) VALUES ('Badulescu Catalin', 'catalin@gmail.com', 'abcd');
 INSERT INTO users (name, email, password) VALUES ('Petrovici Vlad', 'vlad@gmail.com', '1234');
 
 INSERT INTO books (book_name)
-SELECT DISTINCT book_name FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bonds-data.csv');
+SELECT DISTINCT LOWER(book_name) FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bonds-data.csv');
 
---INSERT INTO security (security_id, isin, bond_name, cusip,bond_type,bond_status,bond_maturity_date,bond_currency,issuer_name,trade_id )
---VALUES (1,'XS1988387210','AZ Holdings Inc', ,'CORP','active','05-08-2021','USD','BNPParibasIssu 4,37% Microsoft Corp (USD)',{1,2}),
+
+
+INSERT INTO security ( isin, cusip, type, status, maturity_date,currency, issuer_name, coupon, face_value)
+VALUES ('XS1988387210','AZ Holdings Inc','CORP','active','05-08-2021','USD', 'ASSA',10.2, 202.8);
 --VALUES (2,'USN0280EAR64','Acme co', '123456780','CORP','active','30-07-2021','USD','Airbus 3.15%  USD',{3,4}),
 --
 --VALUES (2,'USN0280EAR64','Astra Trading Ltd','123456780','CORP','active','30-07-2021','USD','Airbus 3.15%  USD',6),
@@ -42,7 +46,7 @@ SELECT DISTINCT book_name FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bo
 --INSERT INTO books (book_name) VALUES ('trading_book_4');
 --INSERT INTO books (book_name) VALUES ('trading_book_6');
 --
---INSERT INTO Counterparty(name) VALUES ('AZ Holdings Inc');
+INSERT INTO counter_party(name) VALUES ('AZ Holdings Inc');
 --INSERT INTO Counterparty(name) VALUES ('Acme co');
 --INSERT INTO Counterparty(name) VALUES ('Sovereign Investments');
 --INSERT INTO Counterparty(name) VALUES ('Astra Trading Ltd');
@@ -54,5 +58,5 @@ SELECT DISTINCT book_name FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bo
 --INSERT INTO Counterparty(name) VALUES ('Pension Holdings');
 --INSERT INTO Counterparty(name) VALUES ('Zurich Pension fund 4');
 
---INSERT INTO trade (trade_id, trade_type,trade_currency,trade_currency,trade_quantity,trade_settlement_date,trade_status,trade_date,trade_unit_price)
---VALUES ('AZ Holdings Inc', ,'XS1988387210','CORP','active','05-08-2021','USD'),
+INSERT INTO trades (book_id, security_id, counter_party_id, currency, status, quantity, unit_price, buy_sell, trade_date, settlement_date)
+VALUES (1, 1, 1, 'USD', 'active', 10, 12.10, 'buy', '10/10/2023', '11/10/2023');
