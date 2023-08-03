@@ -3,15 +3,15 @@ import BondDetail from './BondDetail';
 import { getBondsByDate } from '../../services/BondServices';
 
 const MaturingBondsList = (props) => {
-    const bonds = getBondsByDate(props);
+  const bonds = getBondsByDate(props);
 
-    return (
-      bonds.map(bond => (
-        <>
-          <BondDetail info={bond} key={bond.isin.toString()} />
-        </>
-      ))
-    )
+  return (
+      <div className="container">
+          {bonds.map(bond => (
+              <BondDetail info={bond} key={bond.isin.toString()} />
+          ))}
+      </div>
+  )
 }
 
 export default MaturingBondsList

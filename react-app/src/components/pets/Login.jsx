@@ -1,95 +1,86 @@
-import React, { useState, useEffect } from 'react';
-import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { auth } from '../../firebase';
-import { NavLink, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { auth } from "../../firebase";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
-    const navigate = useNavigate();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    useEffect(() => {
-        var sessionAuth = getAuth();
-        var user = sessionAuth.currentUser;
-        
-        console.log('Navigating to allbonds from useEffect')
-        if (user) {
-            navigate("/allbonds")
-        }
-    })
+  useEffect(() => {
+    var sessionAuth = getAuth();
+    var user = sessionAuth.currentUser;
 
-    const onLogin = (e) => {
-        e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                navigate("/allbonds")
-                console.log('Navigating to allbonds from signInWithEmailAndPassword');
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorCode, errorMessage)
-            });
+    console.log("Navigating to allbonds from useEffect");
+    if (user) {
+      navigate("/allbonds");
     }
+  });
 
+  const onLogin = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigate("/allbonds");
+        console.log("Navigating to allbonds from signInWithEmailAndPassword");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
-    return (
-        <>
-            <main >
-                <section>
-                    <div>
-                        <p> FocusApp </p>
+  return (
+    <>
+      <main className="container">
+        <section className="row justify-content-center">
+          <div className="col-12 col-md-6 col-lg-4">
+            <p className="h2 text-center">FocusApp</p>
 
-                        <form>
-                            <div>
-                                <label htmlFor="email-address">
-                                    Email address
-                                </label>
-                                <input
-                                    id="email-address"
-                                    name="email"
-                                    type="email"
-                                    required
-                                    placeholder="Email address"
-                                    onChange={(e) => setEmail(e.target.value)}
-                                />
-                            </div>
+            <form>
+              <div className="form-group">
+                <label htmlFor="email-address">Email address</label>
+                <input
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  required
+                  className="form-control"
+                  placeholder="Email address"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
 
-                            <div>
-                                <label htmlFor="password">
-                                    Password
-                                </label>
-                                <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    required
-                                    placeholder="Password"
-                                    onChange={(e) => setPassword(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <button
-                                    onClick={onLogin}
-                                >
-                                    Login
-                                </button>
-                            </div>
-                        </form>
-                        <p className="text-sm text-white text-center">
-                            No account yet? {' '}
-                            <NavLink to="/signup">
-                                Sign up
-                            </NavLink>
-                        </p>
-
-                    </div>
-                </section>
-            </main>
-        </>
-    )
-}
+              <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  required
+                  className="form-control"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <button className="btn btn-primary w-100" onClick={onLogin}>
+                  Login
+                </button>
+              </div>
+            </form>
+            <p className="text-center">
+              No account yet? <NavLink to="/signup">Sign up</NavLink>
+            </p>
+          </div>
+        </section>
+      </main>
+    </>
+  );
+};
 
 export default Login;

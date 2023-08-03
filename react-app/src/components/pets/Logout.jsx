@@ -5,10 +5,11 @@ const Logout = () => {
     var userAuth = getAuth();
     userAuth.signOut();
     return (
-        <div>
-            <p>You have been signed out.</p>
-
-            <NavLink to="/">Sign in</NavLink>
+        <div className="container text-center">
+            <p className="my-3">You have been signed out.</p>
+            <NavLink to="/" className="btn btn-primary">
+                Sign in
+            </NavLink>
         </div>
     )
 }
