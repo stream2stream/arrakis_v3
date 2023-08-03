@@ -11,7 +11,7 @@ const Datepicker = () => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <>
-    <Button variant="primary">Primary</Button>
+    <Button variant="primary">Today</Button>
     <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
     </>
   );
