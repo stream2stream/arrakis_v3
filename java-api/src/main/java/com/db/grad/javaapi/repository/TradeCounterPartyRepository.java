@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface TradeCounterPartyRepository extends JpaRepository<TradeCounterParty, Integer> {
 
     TradeCounterParty findByName(String name);
+
 }

@@ -23,7 +23,7 @@ public class BondService {
     }
 
 
-//    public List<Bond> findBondsByBookId(int bookId) {
-//        return br.findByBooks_Id(bookId);
-//    }
+    public List<Bond> findBondsByBookId(int bookId) {
+        return br.findBondsByBookId(bookId);
+    }
 }
