@@ -45,7 +45,7 @@ CREATE TABLE trade (
 CREATE TABLE users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(250) NOT NULL,
-    pass_hash VARCHAR(250) NOT NULL,
+    password VARCHAR(250) NOT NULL,
     role VARCHAR(250) NOT NULL
 );
 

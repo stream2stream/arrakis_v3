@@ -1,15 +1,15 @@
 package com.db.grad.javaapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="counter_party")
 public class CounterParty {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
 
     public int getId() {
