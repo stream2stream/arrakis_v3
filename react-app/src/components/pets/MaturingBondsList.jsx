@@ -2,7 +2,11 @@ import BondDetail from './BondDetail';
 import { getBondsByDate } from '../../services/BondServices';
 import { useState } from 'react'
 import { useEffect } from 'react'
+
 const MaturingBondsList = (props) => {
+  var x = props.props.info.date;
+
+
     const [dateBonds, setDateBonds] = useState([]);
 
     useEffect(()=>{
@@ -26,7 +30,7 @@ const MaturingBondsList = (props) => {
     return (
       dateBonds.map(bond => (
         <>
-          <BondDetail info={bond} key={bond.isin.toString()} />
+          <BondDetail info={bond} key={bond.id.toString()} />
         </>
       ))
     )
