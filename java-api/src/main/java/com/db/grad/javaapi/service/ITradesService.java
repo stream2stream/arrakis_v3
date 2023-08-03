@@ -1,14 +1,14 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Dog;
+import com.db.grad.javaapi.model.Trades;
 
 import java.util.List;
-import java.util.Optional;
 
-public interface IDogsService
+public interface ITradesService
 {
-    public List<Dog> getAllDogs();
+    public List<Trades> getAllTrades();
 
+    /*
     public Dog addDog(Dog theDog);
 
     public long getNoOfDogs();
@@ -20,4 +20,5 @@ public interface IDogsService
     public Dog getDogByName(String dogsName );
 
     public Dog updateDogDetails(Dog dogToUpdate);
+    */
 }
