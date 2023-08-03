@@ -20,7 +20,7 @@ CREATE TABLE book (
 );
 
 CREATE TABLE book_user (
-    bookID int,userID int, FOREIGN KEY (bookID) REFERENCES book(id),  FOREIGN KEY (userID) REFERENCES users(id)
+     id int auto_increment PRIMARY KEY, bookID int,userID int, FOREIGN KEY (bookID) REFERENCES book(id),  FOREIGN KEY (userID) REFERENCES users(id)
 );
 
 CREATE TABLE counter_party (
