@@ -45,13 +45,13 @@ export const HomePage = () => {
     securities.map(security => 
       rowDef.push({
             id: security.id, 
-            couponPercent: security.couponpercent,
-            bondCurrency: security.bondcurrency,
+            couponPercent: security.couponPercent,
+            bondCurrency: security.bondCurrency,
             cusip: security.cusip,
-            faceValue: security.facevalue,
+            faceValue: security.faceValue,
             isin: security.isin,
-            issuerName: security.issuername,
-            bondMaturityDate: security.bondmaturitydate,
+            issuerName: security.issuerName,
+            bondMaturityDate: security.bondMaturityDate,
             status: security.status,
             type: security.type
         })
