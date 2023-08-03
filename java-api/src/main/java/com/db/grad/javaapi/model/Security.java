@@ -1,147 +1,93 @@
 package com.db.grad.javaapi.model;
-import java.util.Date; // Importing this to use for dates related to secuirities
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "security")
+@Table(name = "Book")
 public class Security {
-
-    //#region privateFields
-
-    // The type of security can be : CORP, GOVN, or SOVN
-    private String securityType;
-    // Date that the security will mature
-    private Date securityMaturityDate;
-    // Book on which this security currently sits
-    private String securityBookName;
-    // The security's status can be : active or inactive
-    private String securityStatus;
-    // The entity that is currently holding the security
-    private String securityHolder;
-    // The entity that issued the security
-    private String securityIssuer;
-    // ISIN number of security
     @Id
-    private String securityIsin;
-    // Face value of the security in millions
-    private double securityFaceValue;
-    // CUSIP number of security
-    private String securityCusip;
-    // Double that describes the percentage to be paid in interest by the issuer of the security
-    private double securityCouponPercent;
-    // Currency that the security was issued in
-    private String securityCurrency;
-
-    //#endregion
-    //#region gettersSetters
-    @Column(name = "type", nullable = false)
-    public String getSecurityType() {
-        return securityType;
-    }
-    public void setSecurityType(String securityType) {
-        this.securityType = securityType;
-    }
-
-    @Column(name = "bond_maturity_date", nullable = false)
-    public Date getSecurityMaturityDate() {
-        return securityMaturityDate;
-    }
-    public void setSecurityMaturityDate(Date securityMaturityDate) {
-        this.securityMaturityDate = securityMaturityDate;
-    }
-
-    @Column(name = "book_name", nullable = false)
-    public String getSecurityBookName() {
-        return securityBookName;
-    }
-    public void setSecurityBookName(String securityBookName) {
-        this.securityBookName = securityBookName;
-    }
-
-    @Column(name = "status", nullable = false)
-    public String getSecurityStatus() {
-        return securityStatus;
-    }
-    public void setSecurityStatus(String securityStatus) {
-        this.securityStatus = securityStatus;
-    }
-
-    @Column(name = "bond_holder", nullable = false)
-    public String getSecurityHolder() {
-        return securityHolder;
-    }
-    public void setSecurityHolder(String securityHolder) {
-        this.securityHolder = securityHolder;
-    }
-
-    @Column(name = "issuer_name", nullable = false)
-    public String getSecurityIssuer() {
-        return securityIssuer;
-    }
-    public void setSecurityIssuer(String securityIssuer) {
-        this.securityIssuer = securityIssuer;
-    }
-
+    private String isin;
+    private String bond_currency;
+    private String cusip;
+    private double face_value_mn;
+    private String issuer_name;
+    private Date bond_maturity_date;
+    private String s_status;
+    private String s_type;
+    private double coupon_percent;
+    
     @Id
     @Column(name = "isin", nullable = false)
-    public String getSecurityIsin() {
-        return securityIsin;
+    public String getIsin() {
+        return isin;
     }
-    public void setSecurityIsin(String securityIsin) {
-        this.securityIsin = securityIsin;
+    public void setIsin(String isin) {
+        this.isin = isin;
     }
 
-    @Column(name = "face_value_mn", nullable = false)
-    public double getSecurityFaceValue() {
-        return securityFaceValue;
+    @Column(name = "bond_currency", nullable = false)
+    public String getBond_currency() {
+        return bond_currency;
     }
-    public void setSecurityFaceValue(double securityFaceValue) {
-        this.securityFaceValue = securityFaceValue;
+    public void setBond_currency(String bond_currency) {
+        this.bond_currency = bond_currency;
     }
 
     @Column(name = "cusip", nullable = true)
-    public String getSecurityCusip() {
-        return securityCusip;
+    public String getCusip() {
+        return cusip;
     }
-    public void setSecurityCusip(String securityCusip) {
-        this.securityCusip = securityCusip;
+    public void setCusip(String cusip) {
+        this.cusip = cusip;
+    }
+
+    @Column(name = "face_value_mn", nullable = false)
+    public double getFace_value_mn() {
+        return face_value_mn;
+    }
+    public void setFace_value_mn(double face_value_mn) {
+        this.face_value_mn = face_value_mn;
+    }
+
+    @Column(name = "issuer_name", nullable = false)
+    public String getIssuer_name() {
+        return issuer_name;
+    }
+    public void setIssuer_name(String issuer_name) {
+        this.issuer_name = issuer_name;
+    }
+
+    @Column(name = "bond_maturity_date", nullable = false)
+    public Date getBond_maturity_date() {
+        return bond_maturity_date;
+    }
+    public void setBond_maturity_date(Date bond_maturity_date) {
+        this.bond_maturity_date = bond_maturity_date;
+    }
+
+    @Column(name = "s_status", nullable = false)
+    public String getS_status() {
+        return s_status;
+    }
+    public void setS_status(String s_status) {
+        this.s_status = s_status;
+    }
+
+    @Column(name = "s_type", nullable = false)
+    public String getS_type() {
+        return s_type;
+    }
+    public void setS_type(String s_type) {
+        this.s_type = s_type;
     }
 
     @Column(name = "coupon_percent", nullable = false)
-    public double getSecurityCouponPercent() {
-        return securityCouponPercent;
+    public double getCoupon_percent() {
+        return coupon_percent;
     }
-    public void setSecurityCouponPercent(double securityCouponPercent) {
-        this.securityCouponPercent = securityCouponPercent;
+    public void setCoupon_percent(double coupon_percent) {
+        this.coupon_percent = coupon_percent;
     }
-
-    @Column(name = "trade_currency", nullable = false)
-    public String getSecurityCurrency() {
-        return securityCurrency;
-    }
-    public void setSecurityCurrency(String securityCurrency) {
-        this.securityCurrency = securityCurrency;
-    }
-    //#endregion
-    // //#region constructor
-    // public Security(String securityType, Date securityMaturityDate, String securityBookName, String securityStatus,
-    //         String securityHolder, String securityIssuer, String securityIsin, double securityFaceValue,
-    //         String securityCusip, double securityCouponPercent, String securityCurrency) {
-    //     this.securityType = securityType;
-    //     this.securityMaturityDate = securityMaturityDate;
-    //     this.securityBookName = securityBookName;
-    //     this.securityStatus = securityStatus;
-    //     this.securityHolder = securityHolder;
-    //     this.securityIssuer = securityIssuer;
-    //     this.securityIsin = securityIsin;
-    //     this.securityFaceValue = securityFaceValue;
-    //     this.securityCusip = securityCusip;
-    //     this.securityCouponPercent = securityCouponPercent;
-    //     this.securityCurrency = securityCurrency;
-    // }   
-    // //#endregion 
-    
-}
