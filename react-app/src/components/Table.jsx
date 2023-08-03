@@ -1,8 +1,12 @@
 import DataTable from 'react-data-table-component';
+import { Link } from 'react-router-dom'; 
+
+
 const columns = [
     {
         name: 'ISIN',
         selector: row => row.isin,
+        cell: row => (<a href={row.isin} target="_blank" rel="noopener noreferrer"> {row.isin} </a> ),
     },
     {
         name: 'Maturity Date',

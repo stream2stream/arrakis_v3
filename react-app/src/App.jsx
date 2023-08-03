@@ -1,16 +1,20 @@
 import'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
-import { Pets } from "./components/pets/Pets";
-import Navigation from "./components/Navigation";
-import Datepicker from './components/Datepicker';
-import Table from './components/Table';
+import Home from './pages/Home';
+import Details from './pages/Details';
+import Login from './pages/Login';
+import { Route, Routes } from 'react-router-dom'
+import Navigation from './components/Navigation';
 
 
 const App = () => {
-  return <>
-    <Navigation/>
-    <Datepicker/>
-    <Table/>
+  return <> 
+  <Navigation/>
+    <Routes>
+      <Route path="/Login" element={<Login/>} />
+      <Route path="/Details" element={<Details/>} />
+      <Route path="/" element={<Home/>} />
+    </Routes>
   </>
 };
 
