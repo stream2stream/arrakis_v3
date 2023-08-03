@@ -51,9 +51,15 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
+# Node Stuff
+node_modules/
+
 # Flask stuff:
 instance/
 .webassets-cache
+
+# Node stuff
+node_modules/
 
 # pyenv
 .python-version
