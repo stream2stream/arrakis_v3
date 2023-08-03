@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 import java.util.Date;
 
 @Entity
