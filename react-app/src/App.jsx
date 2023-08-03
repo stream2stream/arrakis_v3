@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Route, Routes } from 'react-router-dom'
+import Logout from "./components/pets/Logout";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Nav className="me-auto">
               <Nav.Link href="/allbonds">All Bonds</Nav.Link>
               <Nav.Link href="/bondsbymaturity">Bonds by Maturity</Nav.Link>
+              <Nav.Link href="/logout">Logout</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -30,6 +32,7 @@ function App() {
         <Route path="/bondsbymaturity" element={<AllMaturingBonds/>} />
         <Route path="/" element={<Login />} />
         <Route path="notauthorized" element={<NotAuthorized />} />
+        <Route path="logout" element={<Logout />} />
       </Routes>
     </>
   );
