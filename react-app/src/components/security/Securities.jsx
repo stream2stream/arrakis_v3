@@ -1,8 +1,11 @@
 import React from 'react'
+import AllSecurities from './AllSecurities'
 
 const Securities = () => {
   return (
-    <div>Books</div>
+    <>
+      <AllSecurities />
+    </>
   )
 }
 
