@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Collections.addAll;
 
 @Service
 public class SecurityHandler implements ISecurityService
@@ -67,5 +71,24 @@ public class SecurityHandler implements ISecurityService
     public Security updateSecurityDetails(Security securityToUpdate)
     {
         return itsSecuritiesRepo.save( securityToUpdate );
+    }
+
+    public List<Security> getByDate(int day, int month, int year){
+        String date = day+"/"+month+"/"+year;
+        List<Security> list = itsSecuritiesRepo.findByBondMaturityDate(date);
+        if(day < 10){
+            String temp = "0" + date;
+            date = temp;
+        }
+        List<Security> list2 = Stream.concat(list.parallelStream(), itsSecuritiesRepo.findByBondMaturityDate(date).parallelStream())
+                .collect(Collectors.toList());
+        if(month < 10) {
+            String temp = date.substring(0, 3) + "0" + date.substring(3);
+            date =temp;
+        }
+        List<Security> finalList = Stream.concat(list2.parallelStream(), itsSecuritiesRepo.findByBondMaturityDate(date).parallelStream())
+                .collect(Collectors.toList());
+        System.out.println(date);
+        return finalList;
     }
 }

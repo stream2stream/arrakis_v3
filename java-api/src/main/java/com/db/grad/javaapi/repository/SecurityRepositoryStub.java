@@ -17,7 +17,7 @@ import java.util.function.Function;
 public class SecurityRepositoryStub implements SecurityRepository {
     private ArrayList<Security> itsSecurities = new ArrayList<>();
 
-    @Override
+    //@Override
     public List<Security> findByBondMaturityDate(Security date) {
         return null;
     }
@@ -96,7 +96,10 @@ public class SecurityRepositoryStub implements SecurityRepository {
     public void flush() {
 
     }
-
+    @Override
+    public List<Security> findByBondMaturityDate(String date){
+        return new ArrayList<Security>();
+    }
     @Override
     public <S extends Security> S saveAndFlush(S entity) {
         return null;
@@ -171,4 +174,5 @@ public class SecurityRepositoryStub implements SecurityRepository {
     public <S extends Security, R> R findBy(Example<S> example, Function<FluentQuery.FetchableFluentQuery<S>, R> queryFunction) {
         return null;
     }
+
 }
