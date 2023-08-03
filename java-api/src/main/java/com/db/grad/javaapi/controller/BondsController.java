@@ -16,10 +16,10 @@ public class BondsController {
 
     @GetMapping("/bonds")
     public List<Bond> getAllBonds() {
-        return bondsService.getBonds();
+        return bondsService.getAllBonds();
     }
     @GetMapping("/bonds/maturity")
     public List<Bond> getBondsByMaturity(){
-        return bondsService.getBondMaturity();
+        return bondsService.getBondsByMaturity();
     }
 }

@@ -9,9 +9,9 @@ import javax.persistence.Table;
 public class Bond {
 
     @Id
-    private int id;
+    private String isin;
     private float couponPercent, faceValue;
-    private String isin, cusip, issuerName, bondMaturity, type, bondCurrency, status;
+    private String cusip, issuerName, bondMaturity, type, bondCurrency, status;
 
     public String getIsin() {
         return isin;
@@ -83,13 +83,5 @@ public class Bond {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 }
