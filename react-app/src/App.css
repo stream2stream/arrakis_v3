@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.row {
+   display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.container{
+
+  padding: 15px;
+
+  flex: 1 1 150px; 
+    
+    
+}
+
+.navbar {
+  background-color: #162784;
+}
+
+.bondCard {
+
+ color: red;
+}
