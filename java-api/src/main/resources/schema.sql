@@ -32,6 +32,7 @@ CREATE TABLE bonds (
 
 
 CREATE TABLE trades (
+    id INT NOT NULL,
     isin VARCHAR(250) NOT NULL,
     book_name VARCHAR(250) NOT NULL,
     bond_holder_id INT NOT NULL,
@@ -42,7 +43,8 @@ CREATE TABLE trades (
     trade_date DATE NOT NULL,
     trade_settlement_date DATE NOT NULL,
     quantity INT NOT NULL,
-    PRIMARY KEY (isin),
-    FOREIGN KEY (bond_holder_id) REFERENCES trades_counter_parties(id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (bond_holder_id) REFERENCES trades_counter_parties(id),
+    FOREIGN KEY (isin) REFERENCES bonds(isin).
 );
 
