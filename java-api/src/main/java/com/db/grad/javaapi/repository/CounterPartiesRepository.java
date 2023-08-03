@@ -1,4 +1,7 @@
 package com.db.grad.javaapi.repository;
 
-public interface CounterPartiesRepository {
+import com.db.grad.javaapi.model.CounterParty;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CounterPartiesRepository extends JpaRepository<CounterParty, Integer> {
 }
