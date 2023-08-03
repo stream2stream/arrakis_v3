@@ -1,83 +1,88 @@
-import React, {useState } from 'react';
-
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import { Container, Paper, Button,IconButton} from '@material-ui/core';
-import '../App.css';
-import axios from 'axios';
-
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import "./LoginStyle.css";
+import { Navigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  // React States
+  //const navigate = useNavigate();
+  const [errorMessages, setErrorMessages] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
-const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
-const handleUsernameChange = (e) => {
-  setUsername(e.target.value);
-};
-
-const handlePasswordChange = (e) => {
-  setPassword(e.target.value);
-};
-
-const handleLogin = () => {
-  // Simulate authentication
-  if (username === 'user' && password === 'password') {
-    console.log('Valid credentials');
-  } else {
-    console.log('Invalid credentials');
-  }
-};
-
-const handleLogout = () => {
-  setIsLoggedIn(false);
-};
-
-const formStyle = {
-  width: '400px', // Adjust width as needed
-  margin: '0 auto', // Center the form horizontally
-  padding: "100px",
-};
+  // User Login info
+  const database = [
+    {
+      username: "user1",
+      password: "pass1"
+    },
+    {
+      username: "user2",
+      password: "pass2"
+    }
+  ];
 
 
-  return (
-  
 
-<form style={formStyle}>
+  const handleSubmit = (event) => {
+    //Prevent page reload
+    event.preventDefault();
 
-        <h3>Sign In</h3>
-        <div className="mb-3">
-          <label>Email address</label>
-          <input
-         type="text" value={username} onChange={handleUsernameChange}
-          />
+    var { uname, pass } = document.forms[0];
+
+    // Find user login info
+    const userData = database.find((user) => 
+    user.username === uname.value);
+
+    // Compare user info
+    if (userData) {
+      if (userData.password !== pass.value) {
+        // Invalid password
+        setErrorMessages({ name: "error", message: 'Invalid username or password'});
+      } else {
+        setIsSubmitted(true);
+        //navigate("/another-page");
+        
+       
+      }
+    } else {
+      // Username not found
+      setErrorMessages({ name: "error", message: 'Invalid username or password'});
+    }
+  };
+
+  // Generate JSX code for error message
+  const renderErrorMessage = (name) =>
+    name === errorMessages.name && (
+      <div className="error">{errorMessages.message}</div>
+    );
+
+  // JSX code for login form
+  const renderForm = (
+    <div className="form"> {renderErrorMessage("error")}
+      <form onSubmit={handleSubmit}>
+        <div className="input-container">
+          <label>Username </label>
+          <input type="text" name="uname" required />
         </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input
-            type="password" value={password} onChange={handlePasswordChange}
-          />
+        <div className="input-container">
+          <label>Password </label>
+          <input type="password" name="pass" required />
         </div>
-        <div className="mb-3">
-          <div className="custom-control custom-checkbox">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
-          </div>
-        </div>
-        <div className="d-grid">
-          <button onClick={handleLogin} type="submit" className="btn btn-primary">
-            Login
-          </button>
+        <div className="button-container">
+          <input type="submit" />
         </div>
       </form>
+    </div>
+  );
 
+  return (
+    <div className="app">
+      <div className="login-form">
+        <div className="title">Sign In</div>
+        {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
+      </div>
+    </div>
   );
 }
+
