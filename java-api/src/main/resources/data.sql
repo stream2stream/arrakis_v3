@@ -8,8 +8,10 @@ INSERT INTO dogs (dog_id, name, age) VALUES (3, 'Lassie', 7);
 
 --INSERT INTO bonds (id, bond_maturity_date, isin) VALUES (3, '10/08/2023', '1234ABCF');
 
-INSERT INTO users (username, email, password) VALUES ('catalin09', 'catalin@gmail.com', 'ZFCbdF+KDZev6wEiO9Bn1Q==');
-INSERT INTO users (username, email, password) VALUES ('vladp70','vlad@gmail.com', 'HKOco3ZnqQ2xfpQZWMFIWw==');
+INSERT INTO users (username, email, password) VALUES ('catalin09', 'catalin@gmail.com', 'ZFCbdF+KDZev6wEiO9Bn1Q=='); --abcd
+INSERT INTO users (username, email, password) VALUES ('yinghao1', 'yinghao@gmail.com', 'Al40rlYk2DHsmON1/YVVXA=='); --abcd
+INSERT INTO users (username, email, password) VALUES ('vladp70','vlad@gmail.com', 'HKOco3ZnqQ2xfpQZWMFIWw=='); --1234
+INSERT INTO users (username, email, password) VALUES ('amrutha1','amrutha@gmail.com', 'S/hYUcMuwakxIvIADFHnLQ=='); --1234
 
 INSERT INTO books (book_name)
 SELECT DISTINCT LOWER(book_name) FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bonds-data.csv');
