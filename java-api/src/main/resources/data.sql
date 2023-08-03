@@ -12,8 +12,8 @@ INSERT INTO security (coupon, currency, cusip, face_value, isin, issuer_name, ma
 
 INSERT INTO counterparty (name) VALUES ('AZ Holdings Inc');
 
-INSERT INTO users (mail, password, trading_book_id) VALUES ('user1@db.com', '1234', 1);
-INSERT INTO users (mail, password, trading_book_id) VALUES ('user2@db.com', '1234', 2);
+INSERT INTO users (mail, password, trading_book_id) VALUES ('user1@db.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 1);
+INSERT INTO users (mail, password, trading_book_id) VALUES ('user2@db.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 2);
 
 INSERT INTO book_users (trading_book_id, user_id) VALUES (1, 1);
 INSERT INTO book_users (trading_book_id, user_id) VALUES (2, 1);
