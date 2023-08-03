@@ -7,12 +7,15 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const userAuth = getAuth();
-    const user = userAuth.currentUser;
 
     useEffect(() => {
-        navigate("/allheroes")
-    }, [])
+        var user = auth.currentUser;
+        
+        console.log(user)
+        if (user) {
+            navigate("/allbonds")
+        }
+    })
 
     const onLogin = (e) => {
         e.preventDefault();
@@ -20,7 +23,7 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                navigate("/allheroes")
+                navigate("/allbonds")
                 console.log(user);
             })
             .catch((error) => {
@@ -31,7 +34,7 @@ const Login = () => {
 
     }
 
-    
+
 
 
     return (

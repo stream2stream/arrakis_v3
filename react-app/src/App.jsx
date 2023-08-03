@@ -12,18 +12,21 @@ function App() {
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="/">Heroes</Navbar.Brand>
+          <Navbar.Brand href="/">Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/allheroes">All Heroes</Nav.Link>
-              <Nav.Link href="/addhero">Add Hero</Nav.Link>
-            </Nav>          </Navbar.Collapse>
-        </Container>      </Navbar>
+              <Nav.Link href="/allbonds">All Bonds</Nav.Link>
+              <Nav.Link href="/bondsbymaturity">Bonds by Maturity</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
 
       <Routes>
-        <Route path="allheroes" element={<AllBonds />} />
-        <Route path="addhero" element={<AllMaturingBonds />} />
+        <Route path="/allbonds" element={<AllBonds />} />
+        <Route path="/bondsbymaturity" element={<AllMaturingBonds/>} />
         <Route path="/" element={<Login />} />
       </Routes>
     </>
