@@ -24,13 +24,9 @@ function Bonds() {
       .catch((error) => console.error("Error fetching bonds:", error));
     }
   
-    const getBondsByDate = () => {
-      console.log('gets bond data');
-  
-      console.log(date);
+    const getBondsByDate = () => {    
       let newDate = new Date(date);
-      newDate = format(newDate, 'dd-MM-yyyy')
-      console.log(newDate);
+      newDate = format(newDate, 'dd-MM-yyyy');
       getAllBondsForBusinessDaysBeforeAndAfter(newDate).then((data) => {
           setBonds(data);
       }).catch((error) => {
@@ -39,17 +35,14 @@ function Bonds() {
     }  
 
     useEffect(() => {
-        const fetchBonds = async () => {
+       console.log(date)
         try {
             getBondsByDate();
-            //const result = await getAllBondsForBusinessDaysBeforeAndAfter(date);
-           
         } catch (error) {
             console.error("Error fetching bonds:", error);
         }
-        };
-        fetchBonds();
-    }, []);
+          
+    }, [date]);
 
     return (
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
