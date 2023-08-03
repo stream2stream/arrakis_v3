@@ -50,11 +50,15 @@ export default function Home() {
             src={DB}
         />
      
-     <div className="datePicker">
-     <LocalizationProvider dateAdapter={AdapterDayjs} >
-        <DatePicker />
-      </LocalizationProvider>
-     </div>
+        <div className="date-picker">
+          <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DatePicker 
+               sx={{
+                svg: { color: '#fff' },
+                input: { color: '#fff' },
+              }} />
+            </LocalizationProvider>
+        </div>
       
     
       
