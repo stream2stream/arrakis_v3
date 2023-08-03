@@ -1,5 +1,4 @@
-import { hostNameUrl } from "../config/api";
-import axios from "axios";
+import http from "axios";
 
 const bonds = [
     {
@@ -23,13 +22,21 @@ const bonds = [
     }
   ]
 
-export const getAllBonds = () => {
-  ; //axios.get(`${hostNameUrl}/dogs`);
-  return bonds;
-};
+// export const getAllBonds = () => {
+//   ; //axios.get(`${hostNameUrl}/dogs`);
+//   return bonds;
+// };
 
-export const getBondsByDate = (date) => {
-    return bonds.filter(function(itm) {
-        return itm.bondMaturityDate == date;
-    })
+export function getAllBonds(){
+    return http.get("http://localhost:8080/api/v1/bondsdata/all")
+}
+
+// export const getBondsByDate = (date) => {
+//     return bonds.filter(function(itm) {
+//         return itm.bondMaturityDate == date;
+//     })
+// }
+
+export function getBondsByDate(date){
+    return http.get("http://localhost:8080/api/v1/bondsdata/all/{date}?date="+date)
 }
