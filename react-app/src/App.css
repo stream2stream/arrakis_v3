@@ -55,9 +55,43 @@
 
 .navbar {
   background-color: #162784;
+  display: flex;
+  justify-content: space-between;
 }
 
 .bondCard {
 
  color: red;
+}
+
+
+.date-picker input {
+  /* Set a custom border to indicate focus */
+  border: 2px solid transparent; /* Change the color as per your requirement */
+  border-radius: 5px;
+  padding: 5px;
+  /* Set the font color to white */
+  color: white;
+  width: 90px;
+}
+
+/* Change the placeholder color to white */
+.date-picker input::placeholder {
+  color: white;
+}
+
+/* Customize the focus outline */
+.date-picker input:focus {
+  border: 2px solid transparent; /* Change the color as per your requirement */
+  outline: none;
+}
+
+.date-picker fieldset {
+  border: none;
+}
+
+
+.date-picker .logo-element {
+  /* Set the logo color to white */
+  color: white;
 }

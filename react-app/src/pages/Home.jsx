@@ -20,15 +20,26 @@ import ZoomBond from './ZoomBond';
 import { useNavigate } from 'react-router-dom';
 import AdbIcon from '@mui/icons-material/Adb';
 import DB from '../images/DB3.png';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+import '../App.css';
 
 const drawerWidth = 160;
 
 export default function Home() {
   const navigate = useNavigate();
+  const [date, setDate] = React.useState(dayjs('2021-08-03'));
+  
+  const onDateChange = (date) => {
+    setDate(date)
+  }
   const onClickSidebarOption = (data) =>{
     console.log(data);
     navigate("/home/" + data);
   }
+  
 
   return (
     <>
@@ -45,6 +56,22 @@ export default function Home() {
             alt="Your logo."
             src={DB}
         />
+     
+        <div className="date-picker">
+          <LocalizationProvider dateAdapter={AdapterDayjs} >
+              <DatePicker 
+                inputFormat="DD-MM-YYYY"
+                format="DD-MM-YYYY"
+                value={date}
+                onChange={(date) => onDateChange(date)}
+               sx={{
+                svg: { color: '#fff' },
+                input: { color: '#fff' },
+              }} />
+            </LocalizationProvider>
+        </div>
+      
+    
       
         </Toolbar>
       </AppBar>
@@ -73,7 +100,7 @@ export default function Home() {
           </List>
         </Box>
       </Drawer>
-      <Outlet />
+      <Outlet context={[date]}/>
       
     </Box>
     
