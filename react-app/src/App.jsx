@@ -2,6 +2,7 @@ import React from "react";
 import AllBonds from "./components/pets/AllBonds";
 import AllMaturingBonds from "./components/pets/AllMaturingBonds";
 import Login from "./components/pets/Login";
+import NotAuthorized from "./components/pets/NotAuthorized";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -25,6 +26,7 @@ function App() {
         <Route path="allheroes" element={<AllBonds />} />
         <Route path="addhero" element={<AllMaturingBonds />} />
         <Route path="/" element={<Login />} />
+        <Route path="notauthorized" element={<NotAuthorized />} />
       </Routes>
     </>
   );

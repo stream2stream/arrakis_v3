@@ -11,7 +11,11 @@ const Login = () => {
     const user = userAuth.currentUser;
 
     useEffect(() => {
-        navigate("/allheroes")
+        console.log(user)
+
+        if(user) {
+            navigate("/allheroes")
+        }
     }, [])
 
     const onLogin = (e) => {
@@ -28,10 +32,7 @@ const Login = () => {
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
             });
-
     }
-
-    
 
 
     return (
