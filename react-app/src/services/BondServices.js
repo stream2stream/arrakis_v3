@@ -1,4 +1,6 @@
 import http from "axios";
+import moment from "moment";
+//npm install moment --save
 
 // const bonds = [
 //     {
@@ -38,6 +40,10 @@ export function getAllBonds(){
 // }
 
 export function getBondsByDate(props){
-    console.log(props.props.info.date);
-    return http.get("http://localhost:8080/api/v1/bondsdata/all/{date}?date="+props)
+    //console.log('final ' + props.customFormat( "#DD#/#MM#/#YYYY#"));
+    //console.log(Date.parse(props).toString("YYYY/MM/DD"));
+    var date = props;
+    date = moment(date).format('YYYY-MM-DD');
+    console.log(date);
+    return http.get("http://localhost:8080/api/v1/bondsdata/all/{date}?date="+date)
 }

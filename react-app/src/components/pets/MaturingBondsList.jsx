@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 
 const MaturingBondsList = (props) => {
-  var x = props.props.info.date;
+  //var x = props.props.info.date;
 
 
     const [dateBonds, setDateBonds] = useState([]);
@@ -15,7 +15,7 @@ const MaturingBondsList = (props) => {
     );
   
     const getBondsByDateFromAPI = ()=>{
-      getBondsByDate(props)
+      getBondsByDate(props.props.info)
       .then(res => {
         setDateBonds(res.data);
         console.log(res);

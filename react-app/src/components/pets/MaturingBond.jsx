@@ -2,7 +2,7 @@ import React from 'react'
 import MaturingBondsList from './MaturingBondsList';
 
 const MaturingBond = (props) => {
-  const date = new Date(props.info.date);
+  const date = new Date(props.info);
   return (
     <>
       <h3>{date.toString()}</h3>
