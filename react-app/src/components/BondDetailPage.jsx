@@ -6,19 +6,26 @@ const BondDetailPage = (props) => {
 , FaceValue: '900', BondCurrency: 'USD', Coupon : '2', Status: 'active', BookID:'book4', Client: 'Goldman Sachs', Quantity: '60', UnitPrice: '70.5',  
 TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '27/09/2021' , TradeStatus: 'open'}]
 
+const TableStyle = {
+  border: '1px solid grey'
+}
+const THStyle = {
+  borderBottom: '1px solid black'
+}
+
   return (<>
         <BondCard bonds= {["test", "test2"]}/>
       
-      <table style = {{border: '1px solid grey'}}> 
+      <table style = {TableStyle}> 
         <tr>  
-          <th> ISIN </th>
-          <th> Type </th>
-          <th> Issuer </th>
-          <th> Maturity </th>
-          <th> Face Value </th>
-          <th> Bond Currency </th>
-          <th> Coupon % </th>
-          <th> Status</th>
+          <th style = {THStyle}> ISIN </th>
+          <th style = {THStyle}> Type </th>
+          <th style = {THStyle}> Issuer </th>
+          <th style = {THStyle}> Maturity </th>
+          <th style = {THStyle}> Face Value </th>
+          <th style = {THStyle}> Bond Currency </th>
+          <th style = {THStyle}> Coupon % </th>
+          <th style = {THStyle}> Status</th>
 
         </tr>
           {data.map(bond =>
@@ -35,18 +42,18 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
           )}
       </table>
 
-      <table style = {{border: '1px solid grey'}}> 
+      <table style = {TableStyle}> 
         <tr>  
-          <th> ISIN </th>
-          <th> Book ID </th>
-          <th> Client </th>
-          <th> Trade Status </th>
-          <th> Quantity </th>
-          <th> Unit Price </th>
-          <th> Trade Currency </th>  
-          <th> Buy/Sell </th>
-          <th> Trade Date </th> 
-          <th> Settlement Date</th>
+          <th style = {THStyle}> ISIN </th>
+          <th style = {THStyle}> Book ID </th>
+          <th style = {THStyle}> Client </th>
+          <th style = {THStyle}> Trade Status </th>
+          <th style = {THStyle}> Quantity </th>
+          <th style = {THStyle}> Unit Price </th>
+          <th style = {THStyle}> Trade Currency </th>  
+          <th style = {THStyle}> Buy/Sell </th>
+          <th style = {THStyle}> Trade Date </th> 
+          <th style = {THStyle}> Settlement Date</th>
 
         </tr>
         {data.map(bond =>
