@@ -2,8 +2,8 @@ import React from 'react'
 import BondCard from './BondCard'
 import {Container, Row, Col} from 'react-bootstrap'
 
-const HomePage = () => {
-  let bonds = ["bond 1", "bond 2", "bond 3", "bond 4"]
+const HomePage = (props) => {
+  // let bonds = ["bond 1", "bond 2", "bond 3", "bond 4"];
   return (
     <div>
         <Container>
@@ -13,7 +13,9 @@ const HomePage = () => {
             </Col>
           </Row>
         </Container>
-        <BondCard bonds = {bonds}/>
+        <Container style={{display: "flex", alignItems: "center", justifyContent: "center", marginTop: "15%"}}>
+            {props.dates.map(date => <BondCard bonds={date}/>)}
+        </Container>
     </div>
   )
 }
