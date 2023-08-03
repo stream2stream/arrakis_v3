@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./LoginStyle.css";
-import { Navigate } from "react-router-dom";
+//import { useNavigate } from 'react'
 //import { useNavigate } from "react-router-dom";
+//import { redirect } from "react-router-dom";
+
 
 export default function Login() {
   // React States
@@ -41,9 +43,8 @@ export default function Login() {
         setErrorMessages({ name: "error", message: 'Invalid username or password'});
       } else {
         setIsSubmitted(true);
-        //navigate("/another-page");
-        
-       
+        //navigate("/dummy");
+        //return redirect("/dummy");
       }
     } else {
       // Username not found
