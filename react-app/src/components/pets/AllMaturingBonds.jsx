@@ -3,17 +3,18 @@ import MaturingBond from './MaturingBonds';
 import { getBondsByDates } from '../../services/BondServices';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
 
-const AllMaturingBonds = () => {
+const AllMaturingBonds = (props) => {
     const navigate = useNavigate();
-    const auth = getAuth();
-    const user = auth.currentUser;
-
+    const [user, setUser] = useState(props.user);
+  
     useEffect(() => {
-        if(!user) {
-            // Route to NotAuthroized
-            navigate("/notauthorized");
-        }
+      console.log(props)
+      //if (!user) {
+        // Route to NotAuthroized
+        //navigate("/notauthorized");
+      //}
     });
 
     const arr = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]; //list of list 

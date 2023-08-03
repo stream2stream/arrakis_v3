@@ -8,41 +8,61 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Route, Routes } from 'react-router-dom'
 import Logout from "./components/pets/Logout";
-import { getAuth } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useState } from "react";
+import { useEffect } from "react";
+
 
 function App() {
   const auth = getAuth();
-  const user = auth.currentUser;
+  const [authenticated, setAuthenticated] = useState(auth.currentUser);
+  const [isLoading, setIsLoading] = useState(true);
+  console.log(isLoading)
+  console.log(authenticated)
+
+  onAuthStateChanged(auth, (usr) => {
+    if (usr) {
+      console.log("user state updated to not null")
+      setAuthenticated(true);
+      setIsLoading(false)
+    } else {
+      console.log("user state updated to null")
+      setAuthenticated(false);
+      setIsLoading(false)
+    }
+  })
 
   return (
-    <>
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand href="/">Home</Navbar.Brand>
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              
-              {user &&
-              <>
-                <Nav.Link href="/logout">Logout</Nav.Link>
-                <Nav.Link href="/allbonds">All Bonds</Nav.Link>
-                <Nav.Link href="/bondsbymaturity">Bonds by Maturity</Nav.Link>
-              </>}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <>
+        <Navbar expand="lg" className="bg-body-tertiary">
+          <Container>
+            <Navbar.Brand href="/">Home</Navbar.Brand>
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+
+                {authenticated &&
+                  <>
+                    <Nav.Link href="/logout">Logout</Nav.Link>
+                    <Nav.Link href="/allbonds">All Bonds</Nav.Link>
+                    <Nav.Link href="/bondsbymaturity">Bonds by Maturity</Nav.Link>
+                  </>}
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
 
 
-      <Routes>
-        <Route path="/" element={<AllBonds />} />
-        <Route path="/allbonds" element={<AllBonds />} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/bondsbymaturity" element={<AllMaturingBonds/>} />
-        <Route path="notauthorized" element={<NotAuthorized />} />
-        <Route path="logout" element={<Logout />} />
-      </Routes>
-    </>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={authenticated ? <AllBonds /> : <Login/>} />
+          <Route path="notauthorized" element={<NotAuthorized />} />
+          <Route path="logout" element={<Logout />} />
+          {!isLoading && authenticated && <>
+          <Route path="/allbonds" element={<AllBonds />} />
+          <Route path="/bondsbymaturity" element={<AllMaturingBonds />} />
+          </>}
+        </Routes>
+      </>
   );
 }
 

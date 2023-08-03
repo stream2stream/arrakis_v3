@@ -13,6 +13,7 @@ const Login = () => {
         var user = sessionAuth.currentUser;
         
         console.log('Navigating to allbonds from useEffect')
+        console.log(user)
         if (user) {
             navigate("/allbonds")
         }
