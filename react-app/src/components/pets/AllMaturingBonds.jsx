@@ -1,5 +1,5 @@
 import React from "react";
-import MaturingBond from "./MaturingBonds";
+import MaturingBond from "./MaturingBond";
 import moment from "moment";
 
 const AllMaturingBonds = () => {
