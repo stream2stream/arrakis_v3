@@ -2,6 +2,9 @@ import React from 'react'
 import BondCard from './BondCard'
 
 const BondDetailPage = (props) => {
+  let data = [{ISIN : 'A12356112', Type : 'Sovereign' , Issuer :'BunderBank', Maturity : '15/07/2021'
+, FaceValue: '900', Currency: 'USD', Coupon : '2', Status: 'active', BookID:'book4', Client: 'Goldman Sachs', Quantity: '60', UnitPrice: '70.5', Currency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '27/09/2021' }]
+
   return (<>
         <BondCard bonds= {["test", "test2"]}/>
       
@@ -17,18 +20,18 @@ const BondDetailPage = (props) => {
           <th> Status</th>
 
         </tr>
-          {props.data.map(bonds => bonds.map(bond =>
+          {data.map(bond =>
               <tr>
                   <td>{bond["ISIN"]}</td>
                   <td>{bond["Type"]}</td>
                   <td>{bond["Issuer"]}</td>
                   <td>{bond["Maturity"]}</td>
-                  <td>{bond["Face Value"]}</td>
+                  <td>{bond["FaceValue"]}</td>
                   <td>{bond["Currency"]}</td>
-                  <td>{bond["Coupon %"]}</td>
+                  <td>{bond["Coupon"]}</td>
                   <td>{bond["Status"]}</td>
               </tr>
-          ))}
+          )}
       </table>
 
       <table style = {{border: '1px solid grey'}}> 
@@ -43,6 +46,18 @@ const BondDetailPage = (props) => {
           <th> Settlement Date</th>
 
         </tr>
+        {data.map(bond =>
+              <tr>
+                  <td>{bond["ISIN"]}</td>
+                  <td>{bond["BookID"]}</td>
+                  <td>{bond["Client"]}</td>
+                  <td>{bond["Status"]}</td>
+                  <td>{bond["Quantity"]}</td>
+                  <td>{bond["Buysell"]}</td>
+                  <td>{bond["TradeDate"]}</td>
+                  <td>{bond["SettlementDate"]}</td>
+              </tr>
+          )}
       </table>
 
 
