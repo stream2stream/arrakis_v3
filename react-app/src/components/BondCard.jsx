@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import BondCardTable from './BondCardTable';
 import Row from "react-bootstrap/Row";
+import { format } from 'date-fns';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -36,9 +37,13 @@ export default function BondCard({ bond }) {
     setExpanded(!expanded);
   };
 
+  const formatDate = (date) => {
+    return format(new Date(date), 'dd MMMM yyyy');
+  }
+
   return (
     <Card sx={{ maxWidth: 450 }}>
-      <CardHeader title={bond.bondMaturityDate} />
+      <CardHeader title={formatDate(bond.bondMaturityDate)} />
       <CardContent>
         <BondCardTable bond={bond} />
       </CardContent>
