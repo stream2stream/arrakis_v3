@@ -1,38 +1,37 @@
---TODO: fix database creation issue "JdbcSQLSyntaxErrorException"
+--TODO: Figure out database creation issue?
 --DROP DATABASE IF EXISTS FIC;
 --CREATE DATABASE FIC;
 --use FIC;
 
+
 DROP TABLE bonds IF EXISTS;
 
 --Original bonds table:
- CREATE TABLE bonds (
-     id int NOT NULL AUTO_INCREMENT,
-     isin varchar(50) DEFAULT NULL,
-     cusip varchar(50) DEFAULT NULL,
-     issuer_name varchar(255) NOT NULL,
-     bond_maturity date NOT NULL,
-     coupon_percent float NOT NULL,
-     type varchar(255) NOT NULL,
-     face_value float NOT NULL,
-     bond_currency varchar(10) NOT NULL,
-     status varchar(32) DEFAULT NULL,
-     PRIMARY KEY (id)
- ) ;
+-- CREATE TABLE bonds (
+--     id int NOT NULL AUTO_INCREMENT,
+--     isin varchar(50) DEFAULT NULL,
+--     cusip varchar(50) DEFAULT NULL,
+--     issuer_name varchar(255) NOT NULL,
+--     bond_maturity date NOT NULL,
+--     coupon_percent float NOT NULL,
+--     type varchar(255) NOT NULL,
+--     face_value float NOT NULL,
+--     bond_currency varchar(10) NOT NULL,
+--     status varchar(32) DEFAULT NULL,
+--     PRIMARY KEY (id)
+-- ) ;
 
---DDL given bonds (securities) table:
---CREATE TABLE bonds (
---    isin varchar(50) PRIMARY KEY,
---    cusip varchar(50),
---    bond_currency varchar(10) NOT NULL,
---    face_value int NOT NULL,
---    bond_maturity varchar(10) NOT NULL,
---    coupon_percent float NOT NULL,
---    issuer_name varchar(255) NOT NULL,
---    status varchar(32) NOT NULL,
---    type varchar(255) NOT NULL
---)ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+CREATE TABLE bonds (
+    isin varchar(50) PRIMARY KEY,
+    cusip varchar(50),
+    bond_currency varchar(10) NOT NULL,
+    face_value int NOT NULL,
+    bond_maturity date NOT NULL,
+    coupon_percent float NOT NULL,
+    issuer_name varchar(255) NOT NULL,
+    status varchar(32) NOT NULL,
+    type varchar(255) NOT NULL
+);
 -- Given DDL format:
 DROP TABLE books IF EXISTS;
 CREATE TABLE books (
@@ -83,7 +82,7 @@ CREATE TABLE trades (
   settlement_date date NOT NULL,
   PRIMARY KEY (id),
   -- From 'books' table
-    CONSTRAINT FK_security_id FOREIGN KEY (bond_id) REFERENCES bonds(id),
+    CONSTRAINT FK_security_id FOREIGN KEY (bond_id) REFERENCES bonds(isin),
   -- From 'books' table
     CONSTRAINT FK_counterparty_id FOREIGN KEY (counterparty_id) REFERENCES counterparties(id),
   -- From 'books' table
@@ -92,3 +91,4 @@ CREATE TABLE trades (
 
 
 ALTER TABLE book_users ADD PRIMARY KEY(book_id, user_id);
+

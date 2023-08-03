@@ -5,33 +5,35 @@ import com.db.grad.javaapi.repository.BondsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.Period;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.text.SimpleDateFormat;
 @Service
 public class BondsService {
-    private final static int SECONDS_IN_DAY = 86400;
 
-    @Autowired
+    private final static int MS_IN_DAY = 86400000;
+
     private BondsRepository bondsRepository;
 
-    public List<Bond> getBonds() {
+    @Autowired
+    public BondsService(BondsRepository bondsRepository) {
+        this.bondsRepository = bondsRepository;
+    }
+
+    public List<Bond> getAllBonds() {
 
         return bondsRepository.findAll();
     }
-    public List<Bond> getBondMaturity(){
+    public List<Bond> getBondsByMaturity() {
 
-        List<Bond> bonds = bondsRepository.findAll();
+        return bondsRepository.findByMaturity();
+    }
 
-        LocalDate today = LocalDate.now();
+    public Bond add(Bond bond) {
 
-        for(Bond bond :  bonds){
-            Period period = Period.between(today, LocalDate.parse(bond.getBondMaturity()))
-            if()
-                bonds.remove(bond);
-        }
-
-        return bonds;
+        return bondsRepository.save(bond);
     }
 }
