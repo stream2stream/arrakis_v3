@@ -31,9 +31,13 @@ INSERT INTO security (isin, cusip, issuer_name, maturity_date, coupon, type, fac
 SELECT DISTINCT isin, cusip, issuer_name, PARSEDATETIME(bond_maturity_date, 'd/M/yyyy'), coupon_percent, type, "face_value (mn)", bond_currency, status
 FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bonds-data.csv');
 
---INSERT INTO trades(currency, status, quantity, unit_price, buy_sell, trade_date, settlement_date)
---SELECT trade_currency, trade_status, quantity, unit_price, trade_type, PARSEDATETIME(trade_date,'d/M/yyyy') , PARSEDATETIME(trade_settlement_date, 'd/M/yyyy')
---FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bonds-data.csv');
+INSERT INTO trades(book_id, counter_party_id, security_id, currency, status, quantity, unit_price, buy_sell, trade_date, settlement_date)
+SELECT book_id, counterparty_id, security_id, trade_currency, trade_status, quantity, unit_price, trade_type, PARSEDATETIME(trade_date,'d/M/yyyy') , PARSEDATETIME(trade_settlement_date, 'd/M/yyyy')
+FROM CSVREAD('.\\java-api\\src\\main\\resources\\trades.csv');
+
+
+
+
 
 
 
