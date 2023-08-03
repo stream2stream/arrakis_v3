@@ -12,14 +12,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import
 
 
 public class SecurityRepositoryStub implements SecurityRepository {
+
+
     private ArrayList<Security> itsSecurities = new ArrayList<>();
 
     @Override
-    public List<Security> findByBondMaturityDate(Security date) {
-        return null;
+    public Security findById(long id) {
+        Security result = null;
+
+        for( Security theSecurity: itsSecurities)
+            if(theSecurity.getId() == id ) {
+                result = theSecurity;
+                break;
+            }
+        return result;
+    }
+
+    @Override
+    public List<Security> findByBondMaturityDate(Security aSecurity) {
+        ArrayList<Security> result = new ArrayList<>();
+
+        for(Security theSecurity : itsSecurities) {
+            if( theSecurity.getBondMaturityDate().equalsIgnoreCase(aSecurity.getBondMaturityDate()) ) {
+                result.add(theSecurity);
+            }
+        }
     }
 
     @Override

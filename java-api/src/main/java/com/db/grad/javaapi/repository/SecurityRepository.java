@@ -11,4 +11,8 @@ import java.util.List;
 public interface SecurityRepository extends JpaRepository<Security, Long> {
     //@Query(nativeQuery = true, value = "select * from security where bondMaturityDate = :date")
     //List<Security> findByBondMaturityDate(Security date);
+
+    Security  findById( long id );
+    List<Security> findByBondMaturityDate(Security theSecurity );
+
 }
