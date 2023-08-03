@@ -2,7 +2,7 @@ INSERT INTO trades_counter_parties (id, bond_holder_name)
 VALUES(1, 'AZ Holdings Inc');
 
 INSERT INTO bonds_counter_parties (id, issuer_name)
-VALUES(1, 'BNPParibasIssu 4,37% Microsoft Corp (USD)');
+VALUES(1, 'BNPParibasIssu 4,37% Microsoft Corp (USD)'),
 (2, 'Airbus 3.15%  USD'),
 (3, 'UBS Facebook (USD)'),
 (4, 'Amazon'),
