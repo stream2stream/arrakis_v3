@@ -29,7 +29,7 @@ public class Trade {
         this.id = id;
     }
 
-    @Id
+     
     @Column(name = "book_id", nullable = false)
     public long getBook_id() {
         return book_id;
@@ -40,7 +40,7 @@ public class Trade {
         this.book_id = book_id;
     }
 
-    @Id
+     
     @Column(name = "security_id", nullable = false)
     public long getSecurity_id() {
         return security_id;
@@ -50,7 +50,7 @@ public class Trade {
         this.security_id = security_id;
     }
 
-    @Id
+     
     @Column(name = "counterparty_id", nullable = false)
     public long getCounterparty_id() {
         return counterparty_id;
@@ -60,7 +60,7 @@ public class Trade {
         this.counterparty_id = counterparty_id;
     }
 
-    @Id
+     
     @Column(name = "currency", nullable = false)
     public String getCurrency() {
         return currency;
@@ -71,7 +71,7 @@ public class Trade {
         this.currency = currency;
     }
 
-    @Id
+     
     @Column(name = "status", nullable = false)
     public String getStatus() {
         return status;
@@ -81,7 +81,7 @@ public class Trade {
         this.status = status;
     }
 
-    @Id
+     
     @Column(name = "quantity", nullable = false)
     public int getQuantity() {
         return quantity;
@@ -91,7 +91,7 @@ public class Trade {
         this.quantity = quantity;
     }
 
-    @Id
+     
     @Column(name = "unit_price", nullable = false)
     public float getUnit_price() {
         return unit_price;
@@ -101,7 +101,7 @@ public class Trade {
         this.unit_price = unit_price;
     }
 
-    @Id
+     
     @Column(name = "buy_sell", nullable = false)
     public String getBuy_sell() {
         return buy_sell;
@@ -111,7 +111,7 @@ public class Trade {
         this.buy_sell = buy_sell;
     }
 
-    @Id
+     
     @Column(name = "trade_date", nullable = false)
     public Date getTrade_date() {
         return trade_date;
@@ -121,7 +121,7 @@ public class Trade {
         this.trade_date = trade_date;
     }
 
-    @Id
+     
     @Column(name = "settlement_date", nullable = false)
     public Date getSettlement_date() {
         return settlement_date;

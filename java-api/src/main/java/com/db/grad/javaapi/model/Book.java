@@ -11,7 +11,9 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-
+/*
+    @ManyToMany(mappedBy = "books")
+    Set<User> users;*/
 
     @Column(name = "id", nullable = false)
     public long getId() {
