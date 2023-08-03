@@ -1,23 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { findUpcoming } from "../services/UpcomingServices";
 import { DataGrid } from '@mui/x-data-grid';
-import { Box } from "@mui/material";
-import { Card } from "@mui/material";
-import { CardContent } from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import styles from "./pets/Pets.module.css";
+import { Button } from "@mui/material";
 
 
 export const UpcomingPage = () => {
     const [securities, setSecurities] = useState([]);
     const [date, setDate] = useState("");
+    const [dateFinal, setDateFinal] = useState("");
 
+
+    const handleDateInput = (event) => {
+        setDate(event.target.value);
+    }
+
+    const handleSubmit = () => {
+        console.log(date)
+        setDateFinal(date)
+    }
 
     useEffect(() => {
-      findUpcoming("5/8/2021")
+      findUpcoming(dateFinal)
             .then(({data}) => {
             setSecurities(data);
             });
-    }, []);
+    }, [dateFinal]);
     const columnDef = [
       {field: 'id', headerName: 'ID', flex: 1},
       {field: 'couponPercent', headerName: 'Coupon %'},
@@ -50,16 +59,30 @@ export const UpcomingPage = () => {
 
   return (
     <>
-          <Box sx={{ height: '100%', width: '100%'}}>
+        <div className={styles.container}>
+        <TextField
+         sx = {{ 'display': 'flex', 'flex-direction': 'row', 'justify-content': 'space-around', 'content-align': 'center'}}
+         id="standard-basic" 
+         variant="standard" 
+         type="search"
+         defaultValue={"DD/MM/YYYY"}
+        //  value={date}
+         onChange={handleDateInput}
+         />
+         <Button variant="contained" color="primary" onClick={handleSubmit}>
+            Submit
+         </Button>
+        </div>
+        <Box sx={{ height: '100%', width: '100%'}}>
             <div className={styles.container}>
-            <DataGrid
-              rows={rowDef}
-              columns={columnDef}
-              sx={{ maxWidth: '75%' }}
-              maxColumns={6}
-              />
+                <DataGrid
+                    rows={rowDef}
+                    columns={columnDef}
+                    sx={{ maxWidth: '75%' }}
+                    maxColumns={6}
+                    />
             </div>
-          </Box>   
+        </Box>   
     </>
   );
 };
