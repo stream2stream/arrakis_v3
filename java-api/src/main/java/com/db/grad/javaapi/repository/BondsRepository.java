@@ -11,4 +11,8 @@ import java.util.List;
 public interface BondsRepository extends JpaRepository<Bond, String>  {
     @Query(nativeQuery = true, value = "select * from bonds where isin = :isin")
     List<Bond> findByISIN(String isin);
+
+//    @Query(nativeQuery = true, value = `select * from bonds where datediff(days,dateadd(),dateadd) = diffDate" )
+//    List<Bond> findByMaturity(String diffDate);
 }
+

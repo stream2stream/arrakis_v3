@@ -9,10 +9,9 @@ import javax.persistence.Table;
 public class Bond {
 
     @Id
-    private String isin;
-    private float couponPercent;
-    private int faceValue;
-    private String bondCurrency, cusip, bondMaturity, issuerName, status, type;
+    private int id;
+    private float couponPercent, faceValue;
+    private String isin, cusip, issuerName, bondMaturity, type, bondCurrency, status;
 
     public String getIsin() {
         return isin;
@@ -30,11 +29,11 @@ public class Bond {
         this.couponPercent = couponPercent;
     }
 
-    public int getFaceValue() {
+    public float getFaceValue() {
         return faceValue;
     }
 
-    public void setFaceValue(int faceValue) {
+    public void setFaceValue(float faceValue) {
         this.faceValue = faceValue;
     }
 
@@ -84,5 +83,13 @@ public class Bond {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
