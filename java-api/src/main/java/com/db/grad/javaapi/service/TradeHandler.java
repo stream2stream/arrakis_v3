@@ -30,6 +30,10 @@ public class TradeHandler implements ITradesService{
         return itsTradesRepo.save(theTrade);
     }
 
+
+    public Trade getTradeBySecurityID(long id){
+        return itsTradesRepo.getTradeBySecurityID(id);
+    }
     @Override
     public boolean removeTrade(long id)
     {

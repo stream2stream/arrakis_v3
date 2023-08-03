@@ -3,10 +3,7 @@ package com.db.grad.javaapi.controller;
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.service.TradeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,8 +16,16 @@ public class TradesController {
     public TradesController(TradeHandler sT){
         TradeHandler = sT;
     }
-    //@GetMapping("/securities")
-    public List<Trade> getAllSecurities() {
+    @GetMapping("/trades/{id}")
+    public Trade getTradeById(@PathVariable(value = "id") long id){
+        return TradeHandler.getTradeByID(id);
+    }
+    @GetMapping("/trades/security/{id}")
+    public Trade getTradeBySecurityID(@PathVariable(value = "id") long id){
+        return TradeHandler.getTradeBySecurityID(id);
+    }
+    @GetMapping("/trades")
+    public List<Trade> getAllTrades() {
         return TradeHandler.getAllTrades();
     }
 }
