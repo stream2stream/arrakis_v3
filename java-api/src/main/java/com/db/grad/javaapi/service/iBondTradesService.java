@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface iBondTradesService
 {
-    public List<Trade> getAllBondTrades(int user_id);
+    public List<Trade> getAllBondTrades();
     public List<Trade> getBondTradesFromBook(int user_id, Book book);
     public List<Trade> getBondTradesDueToMature(int user_id);
     public List<Trade> getBondTradesNotSettled(int user_id);
