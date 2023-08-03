@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "counterparty")
@@ -10,9 +9,6 @@ public class CounterParty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-
-    @OneToMany(mappedBy="counterparty")
-    private Set<Trade> trades;
 
     public CounterParty(int id, String name) {
         this.id = id;

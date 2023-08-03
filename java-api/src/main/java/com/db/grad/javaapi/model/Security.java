@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @Table(name = "security")
@@ -24,8 +23,6 @@ public class Security {
     private float faceValue;
     private String currency;
     private String status;
-    @OneToMany(mappedBy="security")
-    private Set<Trade> trades;
 
     public Security(int id, String isin, String cusip, String issuerName, LocalDateTime maturityDate, float coupon, String type, float faceValue, String currency, String status) {
         this.id = id;
