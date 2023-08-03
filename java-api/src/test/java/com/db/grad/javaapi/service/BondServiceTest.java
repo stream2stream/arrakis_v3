@@ -1,11 +1,7 @@
 package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Bond;
-import com.db.grad.javaapi.repository.BondsCounterPartiesRepository;
 import com.db.grad.javaapi.repository.BondsRepository;
-import com.db.grad.javaapi.repository.TradesCounterPartiesRepository;
-import com.db.grad.javaapi.repository.TradesRepository;
-import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,35 +14,22 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DataJpaTest
+@ExtendWith(MockitoExtension.class)
 public class BondServiceTest {
 
-    private BondService bondService;
+    @InjectMocks
+    private BondServiceImpl bondService;
 
+    @Mock
     private BondsRepository bondsRepository;
 
-    @Autowired
-    public BondServiceTest(BondService bondService, BondsRepository bondsRepository) {
-        this.bondService = bondService;
-        this.bondsRepository = bondsRepository;
-    }
 
-    @Autowired
-    private TestEntityManager entityManager;
-
-    @BeforeEach
-    public void clearDatabase() {
-        bondsRepository.deleteAll();
-        entityManager.clear();
-        System.out.println(bondsRepository.count()); // should print 7 due to H2 config
-    }
 
     @Test
     public void getBondsDueForMaturityPeriod() throws ParseException {
@@ -54,48 +37,52 @@ public class BondServiceTest {
         bond.setIsin("ISIN1");
         bond.setType("CORP");
         bond.setIssuerID(1);
-        Date date = new Date(2023, 8, 17);
+        Date date = new GregorianCalendar(2023, 8, 17).getTime();
         bond.setBondMaturityDate(date);
         bond.setFaceValue(1000);
         bond.setBondCurrency("USD");
         bond.setStatus("active");
         bond.setCusip("CUSIP1");
+        Mockito.when(bondsRepository.save(bond)).thenReturn(bond);
         bondsRepository.save(bond);
 
         Bond bond2 = new Bond();
         bond2.setIsin("ISIN2");
         bond2.setType("GOVN");
         bond2.setIssuerID(1);
-        Date date2 = new Date(2022, 8, 11);
+        Date date2 = new GregorianCalendar(2022, 8, 11).getTime();
         bond2.setBondMaturityDate(date2);
         bond2.setFaceValue(340);
         bond2.setBondCurrency("GBP");
         bond2.setStatus("active");
         bond2.setCusip("CUSIP2");
+        Mockito.when(bondsRepository.save(bond)).thenReturn(bond);
         bondsRepository.save(bond2);
 
         Bond bond3 = new Bond();
         bond3.setIsin("ISIN3");
         bond3.setType("SOVN");
         bond3.setIssuerID(1);
-        Date date3 = new Date(2023, 04, 14);
+        Date date3 = new GregorianCalendar(2023, 04, 14).getTime();
         bond3.setBondMaturityDate(date3);
         bond3.setFaceValue(690);
         bond3.setBondCurrency("USD");
         bond3.setStatus("active");
         bond3.setCusip("CUSIP3");
+        Mockito.when(bondsRepository.save(bond)).thenReturn(bond);
         bondsRepository.save(bond3);
 
         Bond bond4 = new Bond();
         bond4.setIsin("ISIN3");
         bond4.setType("SOVN");
         bond4.setIssuerID(1);
-        Date date4 = new Date(2023, 04, 15);
+        Date date4 = new GregorianCalendar(2023, 04, 15).getTime();
         bond4.setBondMaturityDate(date4);
         bond4.setFaceValue(690);
         bond4.setBondCurrency("USD");
         bond4.setStatus("active");
         bond4.setCusip("CUSIP3");
+        Mockito.when(bondsRepository.save(bond)).thenReturn(bond);
         bondsRepository.save(bond3);
 
         List<Bond> maturityBonds = bondService.getAllBondsForBusinessDaysBeforeAndAfter("16-08-2023", 5, 5);
