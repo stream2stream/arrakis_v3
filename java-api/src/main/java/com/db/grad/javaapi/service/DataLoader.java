@@ -1,20 +1,28 @@
 package com.db.grad.javaapi.service;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.util.Arrays;
 
 import javax.annotation.PostConstruct;
 
 import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.model.Book;
+import com.db.grad.javaapi.model.TradeCounterParty;
+import com.db.grad.javaapi.model.BondCounterParty;
 import com.db.grad.javaapi.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 @Service
 public class DataLoader {
 
@@ -22,86 +30,136 @@ public class DataLoader {
     private final TradeRepository tradeRepository;
     private final BondRepository bondRepository;
 
+    private final TradeCounterPartyRepository tradeCounterPartyRepository;
+
+    private final BondCounterPartyRepository bondCounterPartyRepository;
+
     @Autowired
-    public DataLoader(BookRepository bookRepository, TradeRepository tradeRepository, BondRepository bondRepository) {
+    public DataLoader(BookRepository bookRepository, TradeRepository tradeRepository, BondRepository bondRepository, BondCounterPartyRepository bondCounterPartyRepository, TradeCounterPartyRepository tradeCounterPartyRepository) {
         this.bookRepository = bookRepository;
         this.tradeRepository = tradeRepository;
         this.bondRepository = bondRepository;
+        this.bondCounterPartyRepository = bondCounterPartyRepository;
+        this.tradeCounterPartyRepository = tradeCounterPartyRepository;
     }
 
     @PostConstruct
     public void loadDataFromCsv() {
         try {
             ClassPathResource resource = new ClassPathResource("db-bonds-data.csv");
-            InputStream inputStream = resource.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            Reader reader = new InputStreamReader(resource.getInputStream());
 
-            reader.readLine();
+            CSVParser parser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader);
 
             String line;
-            while ((line = reader.readLine()) != null) {
-                String[] data = line.split(",");
+            for (CSVRecord record : parser){
+                String tradeType = record.get(0);
+                String tradeCurrency = record.get(1);
+                Integer quantity = Integer.parseInt(record.get(2));
+                String tradeSettlementDate = record.get(3);
+                String tradeStatus = record.get(4);
+                String tradeDate = record.get(5);
+                Double unitPrice = Double.parseDouble(record.get(6));
+                Double couponPercent = Double.parseDouble(record.get(7));
+                String bondCurrency = record.get(8);
+                String cusip = record.get(9);
+                Double faceValue = Double.parseDouble(record.get(10));
+                String isin = record.get(11);
+                String issuerName = record.get(12);
+                String bondMaturityDate = record.get(13);
+                String bondStatus = record.get(14);
+                String type = record.get(15);
+                String bookName = record.get(16);
+                String bondHolder = record.get(17);
 
-                String tradeType = data[0];
-                String tradeCurrency = data[1];
-                Integer quantity = Integer.parseInt(data[2]);
-                String tradeSettlementDate = data[3];
 
-//                bool
-                String tradeStatus = data[4];
-                String tradeDate = data[5];
-                Double unitPrice = Double.parseDouble(data[6]);
-                Double couponPercent = Double.parseDouble(data[7]);
-                String bondCurrency = data[8];
-                String cusip = data[9];
-                Double faceValue = Double.parseDouble(data[10]);
-                String isin = data[11];
-                String issuerName = data[12];
-                String bondMaturityDate = data[13];
+                BondCounterParty existingBondCounterParty = bondCounterPartyRepository.findByName(issuerName);
 
-                    //    bool
-                String bondStatus = data[14];
-                String type = data[15];
-                String bookName = data[16];
-                String bondHolder = data[17];
+                if (existingBondCounterParty == null) {
+                    // If the BondCounterParty does not exist, create a new one and save it
+                    BondCounterParty bondCounterParty = new BondCounterParty();
+                    bondCounterParty.setName(issuerName);
+                    bondCounterPartyRepository.save(bondCounterParty);
+                    existingBondCounterParty = bondCounterParty; // seet existingBondCounterParty to the newly created BondCounterParty
+                }
 
-                // Create and save Bond entity
-//                Bond bond = new Bond();
-//                bond.setCouponPercent(couponPercent);
-//                bond.setBondCurrency(bondCurrency);
-//                bond.setCusip(cusip);
-//                bond.setFaceValue(faceValue);
-//                bond.setIsin(isin);
-//                bond.setIssuerName(issuerName);
-//                bond.setBondMaturityDate(bondMaturityDate);
-//                bond.setBondStatus(bondStatus);
-//                bond.setType(type);
-//                bondRepository.save(bond);
-//
-//                // Create and save Book entity
-//                Book book = new Book();
-//                book.setBookName(bookName);
-//                bookRepository.save(book);
-//
-//                // Create and save Trade entity
-//                Trade trade = new Trade();
-//                trade.setTradeType(tradeType);
-//                trade.setTradeCurrency(tradeCurrency);
-//                trade.setQuantity(quantity);
-//                trade.setTradeSettlementDate(tradeSettlementDate);
-//                trade.setTradeStatus(tradeStatus);
-//                trade.setTradeDate(tradeDate);
-//                trade.setUnitPrice(unitPrice);
-//                trade.setBond(bond);
-//                trade.setBook(book);
-//                tradeRepository.save(trade);
+                // Check if a TradeCounterParty with the given bondHolder already exists in the database
+                TradeCounterParty existingTradeCounterParty = tradeCounterPartyRepository.findByName(bondHolder);
 
+                if (existingTradeCounterParty == null) {
+                    // If the TradeCounterParty does not exist, create a new one and save it
+                    TradeCounterParty tradeCounterParty = new TradeCounterParty();
+                    tradeCounterParty.setName(bondHolder);
+                    tradeCounterPartyRepository.save(tradeCounterParty);
+                    existingTradeCounterParty = tradeCounterParty; // Set existingTradeCounterParty to new TradeCounterParty
+                }
+
+                // Check if a Bond with the same isin and cusip already exists in the database
+                Bond existingBond = bondRepository.findByIsinAndCusip(isin, cusip);
+
+                if (existingBond == null) {
+                    // If the Bond does not exist, create a new one and save it
+                    Bond bond = new Bond();
+                    bond.setCouponPercent(couponPercent);
+                    bond.setBondCurrency(bondCurrency);
+                    bond.setCusip(cusip);
+                    bond.setFaceValue(faceValue);
+                    bond.setIsin(isin);
+                    bond.setBondMaturityDate(dateTimeConveter(bondMaturityDate));
+                    bond.setBondStatus(bondStatus);
+                    bond.setType(type);
+                    bond.setBondCounterParty(existingBondCounterParty); // Set the existing BondCounterParty
+                    bondRepository.save(bond);
+                    existingBond = bond; // Set existingBond to the newly created Bond
+                }
+
+                // Create and save a Book entity if it does not exist
+                Book existingBook = bookRepository.findByBookName(bookName);
+
+                if (existingBook == null) {
+                    Book book = new Book();
+                    book.setBookName(bookName);
+                    bookRepository.save(book);
+                    existingBook = book;
+                }
+
+                // Create and save a Trade entity
+                Trade trade = new Trade();
+                trade.setTradeType(tradeType);
+                trade.setTradeCurrency(tradeCurrency);
+                trade.setQuantity(quantity);
+                trade.setTradeSettlementDate(dateTimeConveter(tradeSettlementDate));
+                trade.setTradeStatus(tradeStatus);
+                trade.setTradeDate(dateTimeConveter(tradeDate));
+                trade.setUnitPrice(unitPrice);
+                trade.setBond(existingBond);
+                trade.setBook(existingBook);
+                trade.setTradeCounterParty(existingTradeCounterParty); // Set the existing TradeCounterParty
+                tradeRepository.save(trade);
+
+                System.out.println("---------------------------------------------------------");
             }
 
-            reader.close();
+
         } catch (Exception e) {
             e.printStackTrace();
 
         }
+    }
+
+    public static LocalDate dateTimeConveter(String dateString) {
+        DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                .appendOptional(DateTimeFormatter.ofPattern("d/M/yyyy"))
+                .appendOptional(DateTimeFormatter.ofPattern("M/d/yyyy"))
+                .toFormatter();
+
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(dateString, formatter);
+        } catch (DateTimeParseException e) {
+            // Handle the case where the date is not in either format
+            throw new IllegalArgumentException("Invalid date format: " + dateString, e);
+        }
+        return localDate;
     }
 }
