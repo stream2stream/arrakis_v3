@@ -11,7 +11,7 @@ import java.util.Map;
 public interface BondService {
     List<Bond> getAllBonds();
 
-    List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException;
+    Map<String, Map<String, Integer>> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException;
 
     List<Bond> getAllMatureBondsByBondTypeAndDate(String bondType, String date) throws ParseException;
 //    Bond getBondByDate(Date date);

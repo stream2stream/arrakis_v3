@@ -39,7 +39,7 @@ public class BondServiceImpl implements BondService {
     }
 
     @Override
-    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException {
+    public Map<String, Map<String, Integer>> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException {
         List<Bond> bonds5BusinessDaysBeforeAndAfter = new ArrayList<>();
         // convert date from String to Date
         Date actualDate = convertStringToDate(date);
@@ -52,13 +52,27 @@ public class BondServiceImpl implements BondService {
                 bonds5BusinessDaysBeforeAndAfter.add(bond);
             }
         }
-        return bonds5BusinessDaysBeforeAndAfter;
+        Map<String, Map<String, Integer>> maturityDateMap = new HashMap<>();
+        for (Bond bond : bonds5BusinessDaysBeforeAndAfter){
+            String stringDate = convertDateToString(bond.getBondMaturityDate());
+            String type = bond.getType();
+            maturityDateMap.putIfAbsent(stringDate, new HashMap<>());
+            Map<String, Integer> typeCountMap = maturityDateMap.get(stringDate);
+            typeCountMap.put(type, typeCountMap.getOrDefault(type, 0) + 1);
+        }
+        return maturityDateMap;
     }
 
     private Date convertStringToDate(String date) throws ParseException {
         String format = "dd-MM-yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.parse(date);
+    }
+
+    private String convertDateToString(Date date) throws ParseException {
+        String format = "dd-MM-yyyy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        return dateFormat.format(date);
     }
 
     private Date addBusinessDays(Date date, int days) {//utility class
