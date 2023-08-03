@@ -1,5 +1,4 @@
 package com.db.grad.javaapi.model;
-
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,7 +60,6 @@ public class Security {
         this.issuer_name = issuer_name;
     }
 
-
     @Column(name = "bond_maturity_date", nullable = false)
     public Date getBond_maturity_date() {
         return bond_maturity_date;
@@ -93,4 +91,3 @@ public class Security {
     public void setCoupon_percent(double coupon_percent) {
         this.coupon_percent = coupon_percent;
     }
-}
