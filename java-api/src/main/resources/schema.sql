@@ -45,6 +45,6 @@ CREATE TABLE trades (
     quantity INT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (bond_holder_id) REFERENCES trades_counter_parties(id),
-    FOREIGN KEY (isin) REFERENCES bonds(isin).
+    FOREIGN KEY (isin) REFERENCES bonds(isin)
 );
 

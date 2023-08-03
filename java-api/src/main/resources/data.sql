@@ -20,16 +20,11 @@ INSERT INTO BONDS (isin, type, issuer_id, bond_maturity_date, face_value, bond_c
 ('IE00B29LNP31', 'SOVN', '7', '2030-12-22', '340', 'USD', '1.123', 'active', '87973RAA8');
 
 
-INSERT INTO trades (isin, book_name, bond_holder_id, trade_status, unit_price, trade_currency,
+INSERT INTO trades (id, isin, book_name, bond_holder_id, trade_status, unit_price, trade_currency,
 trade_type, trade_date, trade_settlement_date, quantity) VALUES
-('XS1988387210', 'trading_book_1', 1, 'open', 90, 'USD', 'buy', '2021-05-13', '2021-04-08', 50),
-('XS1988387210', 'trading_book_1',	1, 'open',	89.56,	'GBP', 'sell',	'2021-02-04', '2021-08-04',	40),
-('USN0280EAR64', 'trading_book_2',	2, 'open',	105.775, 'USD', 'buy',	'2021-05-13', '2021-08-23',	1000),
-('USN0280EAR64', 'trading_book_2',	2, 'open',	105.775, 'GBP', 'sell',	'2021-02-04', '2021-09-10',	900),
-('A12356111', 'trading_book_3',	4, 'open',	90, 'USD', 'buy',	'2021-05-13', '2021-08-23',	50),
-('USN0280EAR64', 'trading_book_2',	3, 'open',	105.775, 'USD', 'buy',	'2021-05-13', '2021-08-23',	1000),
-('A12356111', 'trading_book_2',	4, 'open',	90, 'USD', 'sell',	'2021-05-13', '2021-08-23',	50),
-('USU02320AG12', 'trading_book_4',	5, 'open',	98.56, 'GBP', 'buy',	'2021-02-04', '2021-09-27',	60);
+(1, 'XS1988387210', 'trading_book_1', 1, 'open', 90, 'USD', 'buy', '2021-05-13', '2021-04-08', 50),
+(2, 'XS1988387210', 'trading_book_1',	1, 'open',	89.56,	'GBP', 'sell',	'2021-02-04', '2021-08-04',	40);
+
 
 
 

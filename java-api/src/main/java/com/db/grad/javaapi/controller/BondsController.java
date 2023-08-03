@@ -30,7 +30,7 @@ public class BondsController {
     }
 
     @GetMapping(value = {"/bonds/dates/{date}/{daysBefore}/{daysAfter}"})
-    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(@PathVariable(value = "date") String date,
+    public List<Bond> getNoOfBondsForBusinessDaysBeforeAndAfterOfType(@PathVariable(value = "date") String date,
                                                                @PathVariable(value = "daysBefore") int daysBefore,
                                                                @PathVariable(value = "daysAfter") int daysAfter) throws ParseException {
 
