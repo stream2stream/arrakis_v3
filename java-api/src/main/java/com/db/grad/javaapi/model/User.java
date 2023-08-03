@@ -1,6 +1,8 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -10,7 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String username;
+    private String email;
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -32,13 +34,21 @@ public class User {
         this.name = name;
     }
 
-    @Column(name = "username", nullable = false)
-    public String getUsername() {
-        return username;
+    @Column(name = "email", nullable = false)
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<BookUser> getBookUserList() {
+        return bookUserList;
+    }
+
+    public void setBookUserList(List<BookUser> bookUserList) {
+        this.bookUserList = bookUserList;
     }
 
     @Column(name = "password", nullable = false)

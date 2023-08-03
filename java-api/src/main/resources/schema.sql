@@ -15,7 +15,7 @@ CREATE TABLE dogs (
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(250) NOT NULL,
-    username VARCHAR(250) NOT NULL,
+    email VARCHAR(250) NOT NULL,
     password VARCHAR(250) NOT NULL
 );
 
@@ -29,7 +29,8 @@ CREATE TABLE book_user (
     book_id INT NOT NULL,
     user_id INT NOT NULL,
     FOREIGN KEY (book_id) REFERENCES books(id),
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    UNIQUE (book_id, user_id)
 );
 CREATE TABLE security (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -50,9 +51,9 @@ CREATE TABLE counter_party (
 
 CREATE TABLE trades (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    book_id INT NOT NULL,
-    security_id INT NOT NULL,
-    counter_party_id INT NOT NULL,
+    book_id INT,
+    security_id INT,
+    counter_party_id INT,
     currency VARCHAR(5) NOT NULL,
     status VARCHAR(50) NOT NULL,
     quantity INT NOT NULL,
@@ -64,5 +65,6 @@ CREATE TABLE trades (
     FOREIGN KEY (security_id) REFERENCES security(id),
     FOREIGN KEY (counter_party_id) REFERENCES counter_party(id)
     );
+
 
 
