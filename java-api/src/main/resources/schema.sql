@@ -49,7 +49,6 @@ CREATE TABLE book_users (
 );
 
 
-
 DROP TABLE IF EXISTS trades;
 CREATE TABLE trades (
   id int NOT NULL AUTO_INCREMENT,

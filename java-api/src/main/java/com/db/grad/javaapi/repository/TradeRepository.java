@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 @Repository
 public interface TradeRepository extends JpaRepository<Trade, Long> {
-    @Query(nativeQuery = true, value = "select * from trades where book_id = :id ")
-    List<Trade> getTradeByBookId(long id);
 
+
+    @Query(nativeQuery = true, value = "select * from book b natural join trades t where b.book_id = t.book_id")
+    List<Trade> getTradesByBookId(long id);
 
 }
