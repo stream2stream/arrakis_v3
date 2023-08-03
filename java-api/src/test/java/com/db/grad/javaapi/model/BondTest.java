@@ -1,21 +1,41 @@
 package com.db.grad.javaapi.model;
 
 import com.db.grad.javaapi.repository.BondsRepository;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DataJpaTest
 class BondTest {
 
-    //TODO: Deal with BondRepository by creating and clearning @Before each test as done in dogstdd
-    @Mock
-    private BondsRepository bondsRepository;
+    private final BondsRepository bondsRepository;
+
+    @Autowired
+    BondTest(BondsRepository bondsRepository) {
+        this.bondsRepository = bondsRepository;
+    }
+
+
+    @Autowired
+    private TestEntityManager entityManager;
+
+    @BeforeEach
+    public void clearDatabase() {
+        bondsRepository.deleteAll();
+        entityManager.clear();
+        System.out.println(bondsRepository.count()); // should print 7 due to H2 config
+    }
 
     @Test
     public void addBondAndReturnNumberOfBondsInRepo() {
+        long currCount = bondsRepository.count();
         Bond bond = new Bond();
         bond.setIsin("ISIN1");
         bond.setType("CORP");
@@ -28,12 +48,13 @@ class BondTest {
         bond.setCusip("CUSIP1");
         bondsRepository.save(bond);
 
-        int expectedResult = 1;
+        long expectedResult = currCount + 1;
         assertEquals(expectedResult, bondsRepository.count());
     }
 
     @Test
     public void addSeveralBondsAndReturnNumberOfBondsInRepo() {
+        long currCount = bondsRepository.count();
         Bond bond = new Bond();
         bond.setIsin("ISIN1");
         bond.setType("CORP");
@@ -70,24 +91,24 @@ class BondTest {
         bond3.setCusip("CUSIP3");
         bondsRepository.save(bond3);
 
-        int expectedResult = 3;
+        long expectedResult = currCount + 3;
         assertEquals(expectedResult, bondsRepository.count());
     }
 
     @Test
     public void findBondByValidId(){
         Bond bond = new Bond();
-        bond.setIsin("ISIN1");
+        bond.setIsin("ISIN9");
         bond.setType("CORP");
         bond.setIssuerID(1);
-        Date date = new Date("2023-01-01");
+        Date date = new Date(2023, 01, 01);
         bond.setBondMaturityDate(date);
         bond.setFaceValue(1000);
         bond.setBondCurrency("USD");
         bond.setStatus("active");
-        bond.setCusip("CUSIP1");
+        bond.setCusip("CUSIP9");
         bondsRepository.save(bond);
-        assertEquals(bond, bondsRepository.getReferenceById("ISIN1"));
+        assertEquals(bond.getCusip(), bondsRepository.getReferenceById("ISIN9").getCusip());
     }
 
 }

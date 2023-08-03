@@ -49,7 +49,7 @@ public class Trade {
         this.bondHolderID = bondHolderID;
     }
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "trade_status", nullable = false)
     public String getStatus() {
         return status;
     }
