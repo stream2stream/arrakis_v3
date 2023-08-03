@@ -14,10 +14,14 @@ import java.text.SimpleDateFormat;
 @Service
 public class BondsService {
 
-    private final static int SECONDS_IN_DAY = 86400;
+    private final static int MS_IN_DAY = 86400000;
+
+    private BondsRepository bondsRepository;
 
     @Autowired
-    private BondsRepository bondsRepository;
+    public BondsService(BondsRepository bondsRepository) {
+        this.bondsRepository = bondsRepository;
+    }
 
     public List<Bond> getAllBonds() {
 
@@ -27,21 +31,20 @@ public class BondsService {
 
         List<Bond> bonds = bondsRepository.findAll(), result = new ArrayList<Bond>();
 
-        long curr = (new Date().getTime()/100000), temp;
+        long curr = (new Date().getTime()/100), temp;
 
         for(Bond bond : bonds) {
 
             try {
-                temp = new SimpleDateFormat("yyyy-mm-dd").parse(bond.getBondMaturity()).getTime()/100000;
+                temp = new SimpleDateFormat("yyyy-mm-dd").parse(bond.getBondMaturity()).getTime()/100;
 
-                if(Math.abs(curr-temp)/SECONDS_IN_DAY-1 <= 5) {
+                if(Math.abs(curr-temp)/MS_IN_DAY-1 <= 5) {
                     result.add(bond);
                 }
             }
             catch(ParseException e) {
                 System.out.println(e);
             }
-
         }
 
         return result;
