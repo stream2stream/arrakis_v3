@@ -11,15 +11,31 @@ import java.util.List;
 
 @Entity
 @Table(name = "dogs")
-class Person {
-    private String name;
-    private int age;
-    private String occupation;
+public class Trades {
+    private int id;
+    private int bookId;
+    private int securityId;
+    private int counterpartyId;
+    private String currency;
+    private String status;
+    private int quantity;
+    private float unitPrice;
+    private String buySell;
+    private Date tradeDate;
+    private Date settlementDate;
 
-    public Person(String name, int age, String occupation) {
-        this.name = name;
-        this.age = age;
-        this.occupation = occupation;
+    public Trades(int id, int bookId, int securityId, int counterpartyId, String currency, String status, int quantity, float unitPrice, String buySell, Date tradeDate, Date settlementDate) {
+        this.id = id;
+        this.bookId = bookId;
+        this.securityId = securityId;
+        this.counterpartyId = counterpartyId;
+        this.currency = currency;
+        this.status = status;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.buySell = buySell;
+        this.tradeDate = tradeDate;
+        this.settlementDate = settlementDate;
     }
 
     // getters and setters
