@@ -9,9 +9,10 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        var user = auth.currentUser;
+        var sessionAuth = getAuth();
+        var user = sessionAuth.currentUser;
         
-        console.log(user)
+        console.log('Navigating to allbonds from useEffect')
         if (user) {
             navigate("/allbonds")
         }
@@ -24,7 +25,7 @@ const Login = () => {
                 // Signed in
                 const user = userCredential.user;
                 navigate("/allbonds")
-                console.log(user);
+                console.log('Navigating to allbonds from signInWithEmailAndPassword');
             })
             .catch((error) => {
                 const errorCode = error.code;
