@@ -19,7 +19,7 @@ public class TradesController {
     public TradesController(TradeHandler sT){
         TradeHandler = sT;
     }
-    @GetMapping("/securities")
+    //@GetMapping("/securities")
     public List<Trade> getAllSecurities() {
         return TradeHandler.getAllTrades();
     }
