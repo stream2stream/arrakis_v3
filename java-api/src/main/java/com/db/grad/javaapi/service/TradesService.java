@@ -19,6 +19,7 @@ public class TradesService {
     }
 
     public Trade getTradeById( Integer id ) {
+
         return repo.findById(id).get();
     }
 
