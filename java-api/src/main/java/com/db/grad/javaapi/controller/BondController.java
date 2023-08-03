@@ -53,17 +53,18 @@ public class BondController {
     }
 
 
+    // USE OF THESE API LOOKS LIKE THIS: ./getBondsByBookId?bookId=0
     @GetMapping("/getBondsByBookId")
     public List<Bond> getBondsByBookId(@RequestParam int bookId) {
         return s.findBondsByBookId(bookId);
     }
 
-    // USE OF THESE FUNCTIONS LOOKS LIKE THIS: ./getBondsIn5Days?date=2023-08-10
+    // USE OF THESE API LOOKS LIKE THIS: ./getBondsIn5Days?date=2023-08-10
     @GetMapping("getBondsIn5Days")
     public List<Bond> findBondsWithMaturityDateInFiveDays(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return s.findBondsWithMaturityDateInFiveDays(date);
     }
-    // USE OF THESE FUNCTIONS LOOKS LIKE THIS: ./getBondsBefore5Days?date=2023-08-10
+    // USE OF THESE API LOOKS LIKE THIS: ./getBondsBefore5Days?date=2023-08-10
     @GetMapping("getBondsBefore5Days")
     public List<Bond> findBondsWithMaturityDateFiveDaysBefore(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return s.findBondsWithMaturityDateFiveDaysBefore(date);
