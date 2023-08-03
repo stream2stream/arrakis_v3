@@ -15,10 +15,6 @@ public class SecuritiesController {
     @Autowired
     private SecuritiesService securitiesService;
 
-    public SecuritiesController(SecuritiesService securitiesService) {
-        this.securitiesService = securitiesService;
-    }    
-
     @GetMapping("/securities")
     public List<Security> getAllSecurities() {
         return securitiesService.getAllSecurities();

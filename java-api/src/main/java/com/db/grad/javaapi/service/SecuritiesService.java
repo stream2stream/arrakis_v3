@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.db.grad.javaapi.model.Security;
 import com.db.grad.javaapi.repository.SecuritiesRepository;
@@ -19,7 +18,8 @@ public class SecuritiesService {
         return repo.findAll();
     }
 
-    public Security getSecurityById(@PathVariable(value = "id") Integer id) {
+    public Security getSecurityById(Integer id) {
+
         return repo.findById(id).get();
     }
 
