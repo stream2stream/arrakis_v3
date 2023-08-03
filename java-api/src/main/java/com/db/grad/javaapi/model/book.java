@@ -29,4 +29,11 @@ public class book
         this.book_name = book_name;
     }
 
+    @Override
+    public String toString() {
+        return "book{" +
+                "book_id=" + book_id +
+                ", book_name='" + book_name + '\'' +
+                '}';
+    }
 }
