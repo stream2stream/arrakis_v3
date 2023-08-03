@@ -21,8 +21,6 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     Set<Book> books;
 
-
-
     public long getId() {
         return id;
     }

@@ -19,8 +19,7 @@ public class Trade {
     private Date trade_date;
     private Date settlement_date;
 
-    @Id
-    @Column(name = "id", nullable = false)
+
     public long getId() {
         return id;
     }

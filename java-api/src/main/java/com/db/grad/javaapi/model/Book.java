@@ -16,11 +16,9 @@ public class Book {
     @ManyToMany(mappedBy = "books")
     Set<User> users;
 
-    @Column(name = "id", nullable = false)
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
