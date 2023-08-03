@@ -30,7 +30,7 @@ const drawerWidth = 160;
 
 export default function Home() {
   const navigate = useNavigate();
-  const [date, setDate] = React.useState(dayjs('2021-08-03'));
+  const [date, setDate] = React.useState(dayjs('2021-08-05'));
   
   const onDateChange = (date) => {
     setDate(date)

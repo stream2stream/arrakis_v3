@@ -29,25 +29,19 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function BondCard() {
+export default function BondCard({ bond }) {
   const [expanded, setExpanded] = React.useState(false);
-  const [date, setDate] = useState("September 14, 2016")
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
- 
-
   return (
-    <Card  sx={{ maxWidth: 450}}>
-        <CardHeader
-            title={date}
-        />
-        <CardContent>
-            <BondCardTable/>             
-        </CardContent>    
+    <Card sx={{ maxWidth: 450 }}>
+      <CardHeader title={bond.bondMaturityDate} />
+      <CardContent>
+        <BondCardTable bond={bond} />
+      </CardContent>
     </Card>
-  
   );
 }
