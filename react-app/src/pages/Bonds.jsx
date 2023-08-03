@@ -11,7 +11,7 @@ function Bonds() {
     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
        
-        <Row>
+        <Row className="row">
             <div className="container">
                 <BondCard className="container"/>
             </div>

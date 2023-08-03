@@ -8,7 +8,7 @@ const App = () => {
   return (<>
   
     <Routes>
-      <Route path="/" element={<Navigate replace to="/home" />} />
+      <Route path="/" element={<Navigate replace to="/home/bonds" />} />
       <Route path="home" element={<Home />}>
           <Route path="bonds" element={<Bonds />} />
           <Route path="zoombond" element={<ZoomBond />} />

@@ -18,6 +18,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-
 import Box from '@mui/material/Box';
 import ZoomBond from './ZoomBond';
 import { useNavigate } from 'react-router-dom';
+import AdbIcon from '@mui/icons-material/Adb';
+import DB from '../images/DB3.png';
 
 const drawerWidth = 160;
 
@@ -32,11 +34,18 @@ export default function Home() {
     <>
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Clipped drawer
-          </Typography>
+      <AppBar  position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <Toolbar className="navbar">
+          <Box
+            component="img"
+            sx={{
+            height: 44,
+            paddingRight: 1
+            }}
+            alt="Your logo."
+            src={DB}
+        />
+      
         </Toolbar>
       </AppBar>
       <Drawer
