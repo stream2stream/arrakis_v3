@@ -7,3 +7,12 @@ INSERT INTO dogs (dog_id, name, age) VALUES (3, 'Lassie', 7);
 
 INSERT INTO bond (unit_price, coupon_percent, bond_currency, cusip, face_value, isin, issuer_name, bond_maturity_date, bond_status, bond_type) SELECT max("UNIT_PRICE"), max("COUPON_PERCENT"), max("BOND_CURRENCY"), max("CUSIP"), max("face_value (mn)"), "ISIN", max("ISSUER_NAME"),  max(PARSEDATETIME("BOND_MATURITY_DATE", 'dd/MM/yyyy')), max("STATUS"), max("TYPE") FROM CSVREAD('C:\working\arrakis_v3\java-api\src\main\\resources\db-bonds-data.csv') GROUP BY "ISIN";
 INSERT INTO books (book_number) SELECT DISTINCT lower("BOOK_NAME") FROM CSVREAD('C:\working\arrakis_v3\java-api\src\main\\resources\db-bonds-data.csv');
+
+
+INSERT INTO bond_holder (bond_holder_name) SELECT DISTINCT("BOND_HOLDER") FROM CSVREAD('C:\working\arrakis_v3\java-api\src\main\\resources\db-bonds-data.csv');
+
+
+INSERT INTO trade (trade_type, trade_currency, quantity, trade_settlement_date, trade_status, trade_date, bond_holder, bond_reference, book_reference) SELECT "TRADE_TYPE", "TRADE_CURRENCY","QUANTITY", PARSEDATETIME("TRADE_SETTLEMENT_DATE",'dd/MM/yyyy'), "TRADE_STATUS", PARSEDATETIME("TRADE_DATE",'dd/MM/yyyy'), "BOND_HOLDER", "ISIN", lower("BOOK_NAME") FROM CSVREAD('C:\working\arrakis_v3\java-api\src\main\\resources\db-bonds-data.csv');
+--bond_holder
+
+--
