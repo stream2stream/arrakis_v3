@@ -1,9 +1,8 @@
 import React from "react";
 import HomePage from "./components/HomePage";
-import loginPage from "./components/LoginPage";
 import LoginPage from "./components/LoginPage";
 import {Route, Routes} from "react-router-dom";
-import { BondDetailPage } from "./components/BondDetailPage";
+import BondDetailPage from "./components/BondDetailPage";
 
 const App = () => {
     let date;
@@ -19,7 +18,7 @@ const App = () => {
   // return <HomePage dates={dates}/>;
     return <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path={`/bonds/details/${date}`} element={<BondDetailPage date={date} />}/>
+        <Route path={`/bonds/details`} element={<BondDetailPage date={"TEST"} />}/>
         <Route path={`/bonds`} element={<HomePage user={""} dates={dates}/>} />
     </Routes>
 };
