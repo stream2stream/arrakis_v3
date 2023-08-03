@@ -9,16 +9,18 @@ Drop Table IF exists Security;
 --create database Bonds;
 --use Bonds;
 
-CREATE TABLE Security(
-    security_id int Not Null AUTO_INCREMENT PRIMARY KEY,
-    isin VARCHAR(50) NOT NULL,
-    type VARCHAR(50) NOT NULL,
-    issuer VARCHAR(250) NOT NULL,
-    maturity DATE NOT NULL,
-    faceValue int NOT NULL,
-    bondCurrency varchar(10) NOT NULL,
-    coupon float not null,
-    status varchar(20) not null
+create table Book(
+    book_id int not null AUTO_INCREMENT primary key,
+    book_name varchar(50) not null
+
+);
+
+create table users(
+    user_id int not null AUTO_INCREMENT PRIMARY KEY,
+    issuer varchar(255) not null,
+    email VARCHAR (255)  not null,
+    role VARCHAR (255) not null
+
 );
 
 create table CounterParty(
@@ -27,11 +29,25 @@ create table CounterParty(
 
 );
 
+create table bookuser(
+    user_id int not null,
+    book_id int not null,
+    PRIMARY KEY (book_id,user_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (book_id) REFERENCES Book(book_id)
+);
 
-create table Book(
-    book_id int not null AUTO_INCREMENT primary key,
-    book_name varchar(50) not null
-
+CREATE TABLE Security(
+    security_id int Not Null AUTO_INCREMENT PRIMARY KEY,
+    isin VARCHAR(50) DEFAULT NULL,
+    cusip VARCHAR (50) DEFAULT NULL,
+    type VARCHAR(50) DEFAULT NULL,
+    issuer VARCHAR(250) NOT NULL,
+    maturity_date DATE NOT NULL,
+    faceValue float NOT NULL,
+    bondCurrency varchar(10) NOT NULL,
+    coupon float not null,
+    status varchar(20) not null
 );
 
 Create table Trade(
@@ -44,7 +60,7 @@ Create table Trade(
     trade_type varchar(10) not null,
     trade_currency varchar(10) not null,
     trade_status varchar(10) not null,
-    unit_price int not null,
+    unit_price float not null,
     quantity int not null,
     FOREIGN KEY (book_id) REFERENCES Book(book_id),
     FOREIGN KEY (security_id) REFERENCES Security(security_id),
@@ -54,17 +70,7 @@ Create table Trade(
 
 
 
-create table users(
-    user_id int not null AUTO_INCREMENT PRIMARY KEY,
-    issuer varchar(250) not null
 
-);
-create table bookuser(
-    bookuser_id int not null AUTO_INCREMENT PRIMARY KEY,
-    user_id int not null,
-    book_id int not null,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (book_id) REFERENCES Book(book_id)
-);
+
 
 
