@@ -5,10 +5,16 @@ Drop Table IF exists users;
 Drop Table IF exists CounterParty;
 Drop Table IF exists Book;
 Drop Table IF exists Security;
---Drop schema IF exists Bonds;
---create database Bonds;
---use Bonds;
 
+CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+
+--ALTER TABLE TEST RENAME COLUMN `face_value(mn)` to facevalue;
+--UPDATE TEST
+--SET BOND_MATURITY_DATE = TO_DATE(BOND_MATURITY_DATE, '%d/%m/%y');
+--ALTER TABLE TEST
+--MODIFY COLUMN BOND_MATURITY_DATE DATE;
+--UPDATE TEST ADD
+UPDATE TEST SET BOND_MATURITY_DATE = PARSE_DATE('dd-mm-yyyy', BOND_MATURITY_DATE)
 create table Book(
     book_id int not null AUTO_INCREMENT primary key,
     book_name varchar(50) not null
@@ -17,9 +23,9 @@ create table Book(
 
 create table users(
     user_id int not null AUTO_INCREMENT PRIMARY KEY,
-    issuer varchar(255) not null,
-    email VARCHAR (255)  not null,
-    role VARCHAR (255) not null
+    issuer_name varchar(255) not null,
+    email VARCHAR (255)  default null,
+    role VARCHAR (255) default null
 
 );
 
@@ -42,8 +48,9 @@ CREATE TABLE Security(
     isin VARCHAR(50) DEFAULT NULL,
     cusip VARCHAR (50) DEFAULT NULL,
     type VARCHAR(50) DEFAULT NULL,
-    issuer VARCHAR(250) NOT NULL,
-    maturity_date DATE NOT NULL,
+    issuer_name VARCHAR(250) NOT NULL,
+    maturity_date DATE DEFAULT NULL,
+    sample_date varchar(10) not null,
     faceValue float NOT NULL,
     bondCurrency varchar(10) NOT NULL,
     coupon float not null,
@@ -55,8 +62,8 @@ Create table Trade(
     security_id int not null,
     book_id int not null,
     bond_holder_id int not null,
-    trade_date DATE not null,
-    trade_settlement_date DATE not null,
+    trade_date varchar(10) not null,
+    trade_settlement_date varchar(10) not null,
     trade_type varchar(10) not null,
     trade_currency varchar(10) not null,
     trade_status varchar(10) not null,
