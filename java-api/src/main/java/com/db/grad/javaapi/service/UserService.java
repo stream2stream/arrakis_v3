@@ -17,6 +17,7 @@ public class UserService {
         this.ur = ur;
     }
 
+    public void addUser(User user) { ur.save(user) ;}
 
     public List<User> getAllUsers() {
         return ur.findAll();

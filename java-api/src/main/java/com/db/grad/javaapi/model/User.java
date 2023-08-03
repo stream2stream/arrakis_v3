@@ -6,12 +6,13 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
-    @Id
-    private int id;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String userName;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_books",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
@@ -37,4 +38,5 @@ public class User {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
 }

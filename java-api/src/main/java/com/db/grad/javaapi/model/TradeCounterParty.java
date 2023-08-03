@@ -12,8 +12,6 @@ public class TradeCounterParty {
 
     private String name;
 
-
-
     public int getId() {
         return id;
     }
