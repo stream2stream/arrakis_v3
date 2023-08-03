@@ -39,7 +39,12 @@ export const Bonds = () => {
                 console.log(err);
         })
     }
-    
+    const statusCheck = (status) => {
+        if (status === "active") {
+            return <font color="green">{status}</font>;
+        }
+        return {status};
+    }
     const createRow = (data) => {     
         return <tr>
             <td>{data.couponPercent}</td>
@@ -49,7 +54,7 @@ export const Bonds = () => {
             <td>{data.isin}</td>
             <td>{data.issuerName}</td>
             <td>{data.bondMaturity}</td>
-            <td>{data.status}</td>
+            <td>{statusCheck(data.status)}</td>
             <td>{data.type}</td>
         </tr>
             
