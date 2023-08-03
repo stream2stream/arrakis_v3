@@ -10,25 +10,25 @@ import javax.persistence.Table;
 public class Trade {
     @Id
     private long id;
-    @Column(name = "tradeType", nullable = false)
+    @Column(name = "tradetype", nullable = false)
     private String tradeType;
-    @Column(name = "tradeCurrency", nullable = false)
+    @Column(name = "tradecurrency", nullable = false)
     private String tradeCurrency;
     @Column(name = "quantity", nullable = false)
     private long quantity;
-    @Column(name = "tradeSettlementDate", nullable = false)
+    @Column(name = "tradesettlementdate", nullable = false)
     private String tradeSettlementDate;
-    @Column(name = "tradeStatus", nullable = false)
+    @Column(name = "tradestatus", nullable = false)
     private String tradeStatus;
-    @Column(name = "tradeDate", nullable = false)
+    @Column(name = "tradedate", nullable = false)
     private String tradeDate;
-    @Column(name = "unitPrice", nullable = false)
+    @Column(name = "unitprice", nullable = false)
     private float unitPrice;
-    @Column(name = "countPartyID", nullable = false)
+    @Column(name = "counterpartyid", nullable = false)
     private long counterPartyID;
-    @Column(name = "securityID", nullable = false)
+    @Column(name = "securityid", nullable = false)
     private long securityID;
-    @Column(name = "bookID", nullable = false)
+    @Column(name = "bookid", nullable = false)
     private long bookID;
 
     public long getId() {

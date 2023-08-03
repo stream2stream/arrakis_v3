@@ -32,6 +32,9 @@ public class TradeRepositoryStub implements TradesRepository {
         return result;
     }
 
+    public Trade getTradeBySecurityID(long id){
+        return null;
+    }
 
     @Override
     public List<Trade> findAll() {
