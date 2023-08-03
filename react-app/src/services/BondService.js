@@ -17,7 +17,9 @@ export const getAllBonds = async () => {
   }
 };
 
-export const getAllBondsForBusinessDaysBeforeAndAfter = async (date, daysBefore, daysAfter) => {
+export const getAllBondsForBusinessDaysBeforeAndAfter = async (date) => {
+  const daysBefore = 5;
+  const daysAfter = 5;
   try {
     const response = await axios.get(`${hostNameUrl}/bonds/dates/${date}/${daysBefore}/${daysAfter}`);
     const bonds = response.data;
