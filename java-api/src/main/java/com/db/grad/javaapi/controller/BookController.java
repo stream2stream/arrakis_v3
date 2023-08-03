@@ -20,10 +20,6 @@ public class BookController {
     public Book getBookById(@PathVariable(value = "id") long id){
         return BookHandler.getBookByID(id);
     }
-    @GetMapping("/Book/security/{id}")
-    public Book getBookBySecurityID(@PathVariable(value = "id") long id){
-        return BookHandler.getBookBySecurityID(id);
-    }
     @GetMapping("/Book")
     public List<Book> getAllBooks() {
         return BookHandler.getAllBooks();

@@ -1,7 +1,7 @@
 package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Book;
-import com.db.grad.javaapi.repository.BooksRepository;
+import com.db.grad.javaapi.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,10 @@ import java.util.Optional;
 
 @Service
 public class BookHandler implements IBookService{
-    private BooksRepository itsBooksRepo;
+    private BookRepository itsBooksRepo;
 
     @Autowired
-    public BookHandler(BooksRepository BookRepo)
+    public BookHandler(BookRepository BookRepo)
     {
         itsBooksRepo = BookRepo;
     }
@@ -31,9 +31,7 @@ public class BookHandler implements IBookService{
     }
 
 
-    public Book getBookBySecurityID(long id){
-        return itsBooksRepo.getBookBySecurityID(id);
-    }
+
     @Override
     public boolean removeBook(long id)
     {
