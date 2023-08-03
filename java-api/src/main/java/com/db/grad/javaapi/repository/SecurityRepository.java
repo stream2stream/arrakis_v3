@@ -11,6 +11,6 @@ public interface SecurityRepository extends JpaRepository<Security,Long> {
     @Query(nativeQuery = true, value = "select * from security where isin = :isin")
     List<Security> findByIsin(Security isin);
 
-    @Query(nativeQuery = true, value = "select * from security s where s.maturity_date>=startDate and s.maturity_date<=endDate ")
+    @Query(nativeQuery = true, value = "select * from security s where s.maturity_date >= startDate and s.maturity_date<=endDate ")
     List<Security> findByMaturityDateBetween(LocalDate startDate, LocalDate endDate);
 }
