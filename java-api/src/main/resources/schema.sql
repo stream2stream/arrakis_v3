@@ -35,7 +35,7 @@ CREATE TABLE bonds (
 -- Given DDL format:
 DROP TABLE books IF EXISTS;
 CREATE TABLE books (
-  id int NOT NULL AUTO_INCREMENT,
+  id int NOT NULL,
   name varchar(255) NOT NULL,
   PRIMARY KEY (id)
 );
