@@ -3,6 +3,7 @@ package com.db.grad.javaapi.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Date;
 
 @Entity
 @Table(name = "bonds")
@@ -10,8 +11,9 @@ public class Bond {
 
     @Id
     private String isin;
-    private float couponPercent, faceValue;
-    private String cusip, issuerName, bondMaturity, type, bondCurrency, status;
+    private int faceValue;
+    private float couponPercent;
+    private String cusip, bondCurrency, bondMaturity, issuerName, status, type;
 
     public String getIsin() {
         return isin;
@@ -29,11 +31,11 @@ public class Bond {
         this.couponPercent = couponPercent;
     }
 
-    public float getFaceValue() {
+    public int getFaceValue() {
         return faceValue;
     }
 
-    public void setFaceValue(float faceValue) {
+    public void setFaceValue(int faceValue) {
         this.faceValue = faceValue;
     }
 
