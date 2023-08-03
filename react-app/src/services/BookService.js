@@ -13,3 +13,9 @@ export const getTransactionsByBookId = (Id) => {
     return pets;
   }
 
+  export const getbooksByDate = (date) => {
+    const pets = [{id:1,name:"Obi",age:23}];
+    //const pets = axios.get(`${hostNameUrl}/dogs/Id`);
+    return pets;
+  }
+

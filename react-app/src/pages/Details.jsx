@@ -1,6 +1,8 @@
 import Navigation from "../components/Navigation";
 import Datepicker from "../components/Datepicker";
 import Table from "../components/Table";
+import {Route, Link, Routes, useParams} from 'react-router-dom';
+import BookService from "../../services/BookService";
 
 import React from 'react'
 
@@ -38,7 +40,8 @@ const data = [
 
 const Details = () =>  {
 
-
+  const params  =  useParams()
+  // alert("Book Id is " + params.bookId)
   return (
     <>
     <Datepicker />

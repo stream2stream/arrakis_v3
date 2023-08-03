@@ -1,6 +1,7 @@
 import Navigation from "../components/Navigation";
 import Datepicker from "../components/Datepicker";
 import Table from "../components/Table";
+import Button from 'react-bootstrap/Button';
 
 import React from 'react'
 
@@ -54,8 +55,7 @@ const Login = () => {
             </div>
 
             <div className="text-center text-lg-start mt-4 pt-2">
-              <button type="button" className="btn btn-primary btn-lg"
-                >Login</button>
+                 <Button variant="primary">Login</Button>
               {/* <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
                 className="link-danger">Register</a></p> */}
             </div>
