@@ -16,3 +16,4 @@ INSERT INTO trade (trade_type, trade_currency, quantity, trade_settlement_date, 
 --bond_holder
 
 --
+INSERT INTO users (email, password) SELECT "EMAIL", "PASSWORD" FROM CSVREAD('C:\working\arrakis_v3\java-api\src\main\\resources\users.csv');

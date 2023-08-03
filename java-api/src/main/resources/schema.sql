@@ -6,11 +6,11 @@ CREATE TABLE dogs (
     name VARCHAR(250) NOT NULL,
     age INT NOT NULL
 );
-
---CREATE TABLE IF NOT EXISTS users (
---    email varchar(50) check (email like '%@%.%') NOT NULL PRIMARY KEY,
---    password VARCHAR(100) NOT NULL
---);
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users (
+    email varchar(50) PRIMARY KEY NOT NULL,
+    password VARCHAR(100) NOT NULL
+);
 
 CREATE TABLE IF NOT EXISTS books(
     book_number VARCHAR(100) PRIMARY KEY
