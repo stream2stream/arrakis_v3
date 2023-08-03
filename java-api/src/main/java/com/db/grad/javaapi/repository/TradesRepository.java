@@ -12,6 +12,8 @@ public interface TradesRepository extends JpaRepository<Trade, Long> {
     //@Query(nativeQuery = true, value = "select * from security where bondMaturityDate = :date")
     //List<Security> findByBondMaturityDate(Security date);
     Trade getTradeBySecurityID(long id);
+    List<Trade> getTradeByBookID(long id);
+    List<Trade> getTradeByCounterPartyID(long id);
     Trade  findById( long id );
 
 

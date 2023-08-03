@@ -29,8 +29,8 @@ public class TradeHandler implements ITradesService{
     public Trade addTrade(Trade theTrade) {
         return itsTradesRepo.save(theTrade);
     }
-
-
+    public List<Trade> getTradeByCounterPartyID(long id){return itsTradesRepo.getTradeByCounterPartyID(id);}
+    public List<Trade> getTradeByBookID (long id){return itsTradesRepo.getTradeByBookID(id);}
     public Trade getTradeBySecurityID(long id){
         return itsTradesRepo.getTradeBySecurityID(id);
     }

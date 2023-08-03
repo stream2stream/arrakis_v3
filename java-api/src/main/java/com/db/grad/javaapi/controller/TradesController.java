@@ -28,4 +28,12 @@ public class TradesController {
     public List<Trade> getAllTrades() {
         return TradeHandler.getAllTrades();
     }
+    @GetMapping("/trades/book/{id}")
+    public List<Trade> getTradeByBookID(@PathVariable(value = "id") long id){
+        return TradeHandler.getTradeByBookID(id);
+    }
+    @GetMapping("/trades/counterParty/{id}")
+    public List<Trade> getTradeByCounterParty(@PathVariable(value = "id") long id){
+        return TradeHandler.getTradeByCounterPartyID(id);
+    }
 }
