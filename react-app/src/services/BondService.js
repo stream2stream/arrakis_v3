@@ -1,6 +1,9 @@
 import { hostNameUrl } from "../config/api";
 import axios from "axios";
 
+const data = {"03-08-2021":{"CORP":1},"30-07-2021":{"CORP":1},"05-08-2021":{"SOVN":1,"CORP":1},"09-08-2021":{"GOVN":1},"06-08-2021":{"SOVN":1}}
+
+
 export const getAllBonds = async () => {
   try {
     const response = await axios.get(`${hostNameUrl}/bonds`);
@@ -17,7 +20,13 @@ export const getAllBondsForBusinessDaysBeforeAndAfter = async (date) => {
   const daysAfter = 5;
   try {
     const response = await axios.get(`${hostNameUrl}/bonds/dates/${date}/${daysBefore}/${daysAfter}`);
-    const bonds = response.data;
+    // const bonds = response.data;
+    const bonds = new Promise((resolve, reject) => {
+      // Simulating an asynchronous operation (e.g., fetching data from an API)
+      setTimeout(() => {
+        resolve(data); // Resolving the promise with an array of values
+      }, 100);
+    })
     return bonds;
   } catch (error) {
     console.error("Error fetching bonds:", error);
