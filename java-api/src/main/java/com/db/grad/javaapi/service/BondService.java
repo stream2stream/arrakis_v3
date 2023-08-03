@@ -2,13 +2,14 @@ package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Bond;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
 public interface BondService {
     List<Bond> getAllBonds();
 
-    List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(Date date, int daysBefore, int daysAfter);
+    List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException;
 //    Bond getBondByDate(Date date);
 //
 //

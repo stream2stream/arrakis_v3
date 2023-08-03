@@ -43,7 +43,7 @@ public class TradeTest {
         trade.setUnitPrice(90);
         trade.setTradeCurrency("USD");
         trade.setTradeType("buy");
-        Date date = new Date("2023-01-01");
+        Date date = new Date(2023,01,01);
         trade.setTradeDate(date);
         trade.setTradeSettlementDate(date);
         trade.setQuantity(50);
@@ -81,7 +81,7 @@ public class TradeTest {
 
     @Test
     public void findTradeByValidId(){
-        Date date = new Date("2023-01-01");
+        Date date = new Date(2023, 01, 01);
         Trade trade1 = new Trade();
         trade1.setIsin("ISIN4");
         trade1.setBookName("trading_book_3");
