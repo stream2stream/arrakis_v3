@@ -2,6 +2,7 @@ package com.db.grad.javaapi.model;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -11,9 +12,9 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
-/*
+
     @ManyToMany(mappedBy = "books")
-    Set<User> users;*/
+    Set<User> users;
 
     @Column(name = "id", nullable = false)
     public long getId() {

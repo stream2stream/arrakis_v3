@@ -1,9 +1,9 @@
-DROP table IF EXISTS users;
-DROP table IF EXISTS security;
-DROP table IF EXISTS counterparty;
-DROP table IF EXISTS book;
-DROP table IF EXISTS trades;
-DROP table IF EXISTS book_users;
+--DROP table IF EXISTS users;
+--DROP table IF EXISTS security;
+--DROP table IF EXISTS counterparty;
+--DROP table IF EXISTS book;
+--DROP table IF EXISTS trades;
+--DROP table IF EXISTS book_users;
 --CREATE DATABASE  bonds ;
 --use bonds;
 
