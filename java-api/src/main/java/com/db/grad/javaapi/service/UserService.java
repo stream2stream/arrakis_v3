@@ -27,7 +27,7 @@ public class UserService {
         if(searchUsers.size()==1){
             searchUser=searchUsers.get(0);
             String dbPasswordHash = searchUser.getPassword();
-            if(hashedPassword==dbPasswordHash){
+            if(hashedPassword.equals(dbPasswordHash)){
                 return true;
             }
         }

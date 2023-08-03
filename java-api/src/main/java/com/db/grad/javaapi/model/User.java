@@ -8,21 +8,21 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String mail;
     private String password;
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "book_users",
-            joinColumns ={@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "book_id")})
-    Set<Book> books = new HashSet<>();
+//    @ManyToMany(cascade = {CascadeType.ALL})
+//    @JoinTable(name = "book_users",
+//            joinColumns ={@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "book_id")})
+//    Set<Book> books = new HashSet<>();
 
 
-    public User(int id, String mail, String password) {
-        this.id = id;
-        this.mail = mail;
-        this.password = password;
-    }
+//    public User(int id, String mail, String password) {
+//        this.id = id;
+//        this.mail = mail;
+//        this.password = password;
+//    }
 
     public int getId() {
         return id;
