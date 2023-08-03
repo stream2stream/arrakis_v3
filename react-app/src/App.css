@@ -37,7 +37,19 @@
   }
 }
 
-table, th, td {
+table, td {
   border: 1px solid;
   text-align: left;
 }
+th {
+  border: 1px solid;
+}
+
+thead {
+  text-align: center;
+  font-size: 30px;
+  border: 1px solid;
+  width: 10%;
+}
+
+.space { margin-top: 100px; }
