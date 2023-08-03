@@ -3,8 +3,22 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+    const navigate = useNavigate();
+    const handleLogout = () => {               
+        signOut(auth).then(() => {
+        // Sign-out successful.
+            navigate("/body");
+            console.log("Signed out successfully")
+        }).catch((error) => {
+        // An error happened.
+        });
+    }
+
     return (
         <>
             <Navbar expand="lg" className="bg-body-tertiary" >
@@ -19,7 +33,7 @@ const Header = () => {
                             <Nav.Link href="/about">About</Nav.Link>
                         </Nav>
                         <Nav id='ms-auto'>
-                                <Nav.Link href="/login">Sign Out</Nav.Link>
+                                <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>
                                 <NavDropdown title="Language" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">English</NavDropdown.Item>
                                     <NavDropdown.Divider />
