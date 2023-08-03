@@ -2,6 +2,7 @@ package com.db.grad.javaapi.model;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -11,7 +12,7 @@ public class Book {
     private long id;
     private String name;
 
-    @Id
+
     @Column(name = "id", nullable = false)
     public long getId() {
         return id;

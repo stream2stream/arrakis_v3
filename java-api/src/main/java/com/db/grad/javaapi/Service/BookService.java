@@ -47,11 +47,9 @@ public class BookService{
         return  result;
     }
 
-
     public Book getBookById(long uniqueId) {
         return bookRepository.findById(uniqueId).get();
     }
-
 
     public Book getBookByName(String BooksName) {
         Book BookToFind = new Book();

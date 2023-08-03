@@ -4,9 +4,13 @@ import com.db.grad.javaapi.model.Security;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface SecurityRepository extends JpaRepository<Security,Long> {
     @Query(nativeQuery = true, value = "select * from security where isin = :isin")
     List<Security> findByIsin(Security isin);
+
+    @Query(nativeQuery = true, value = "select * from security s where s.maturity_date>=startDate and s.maturity_date<=endDate ")
+    List<Security> findByMaturityDateBetween(LocalDate startDate, LocalDate endDate);
 }
