@@ -1,25 +1,6 @@
-CREATE TABLE `sqldbBonds` (
-  `trade_type` VARCHAR(1024),
-  `trade_currency` VARCHAR(1024),
-  `quantity` BIGINT,
-  `trade_settlement_date` VARCHAR(1024),
-  `trade_status` VARCHAR(1024),
-  `trade_date` VARCHAR(1024),
-  `unit_price` VARCHAR(1024),
-  `coupon_percent` VARCHAR(1024),
-  `bond_currency` VARCHAR(1024),
-  `cusip` VARCHAR(1024),
-  `face_value (mn)` BIGINT,
-  `isin` VARCHAR(1024),
-  `issuer_name` VARCHAR(1024),
-  `bond_maturity_date` VARCHAR(1024),
-  `status` VARCHAR(1024),
-  `type` VARCHAR(1024),
-  `book_name` VARCHAR(1024),
-  `bond_holder` VARCHAR(1024)
-);
 
-INSERT INTO `sqldbBonds` VALUES
+
+INSERT INTO `Bonds` VALUES
 ('buy','USD',50,'04/08/2021','open','13/05/2021','90','4.37','USD','',1000,'XS1988387210','BNPParibasIssu 4,37% Microsoft Corp (USD)','05/08/2021','active','CORP','trading_book_1','AZ Holdings Inc'),
 ('sell','GBP',40,'04/08/2021','open','04/02/2021','89.56','4.37','USD','',1000,'XS1988387210','BNPParibasIssu 4,37% Microsoft Corp (USD)','05/08/2021','active','CORP','trading_book_1','AZ Holdings Inc'),
 ('buy','USD',1000,'23/08/2021','open','13/05/2021','105.775','3.15','USD','123456780',900,'USN0280EAR64','Airbus 3.15%  USD','30/07/2021','active','CORP','trading_book_2','Acme co'),
