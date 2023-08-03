@@ -9,7 +9,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     useEffect(() => {
-        var user = auth.currentUser;
+        var user = auth();
         
         console.log(user)
         if (user) {

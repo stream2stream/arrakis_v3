@@ -26,9 +26,10 @@ function App() {
 
 
       <Routes>
+        <Route path="/" element={<AllBonds />} />
         <Route path="/allbonds" element={<AllBonds />} />
+        <Route path="/login" element={<Login/>} />
         <Route path="/bondsbymaturity" element={<AllMaturingBonds/>} />
-        <Route path="/" element={<Login />} />
         <Route path="notauthorized" element={<NotAuthorized />} />
       </Routes>
     </>
