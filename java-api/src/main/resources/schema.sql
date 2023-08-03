@@ -23,7 +23,7 @@ CREATE TABLE security (
 );
 CREATE TABLE counter_party (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    bond_holder VARCHAR(250) NOT NULL
+    name VARCHAR(250) NOT NULL
 );
 
 CREATE TABLE trade (
