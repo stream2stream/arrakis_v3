@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.TradesRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TradesService {
 
-    private TradesRepository repo;
-
     @Autowired
-    public TradesService(TradesRepository repo) {
-        this.repo = repo;
-    }
+    private TradesRepository repo;
 
     public List<Trade> getAllTrades() {
         return repo.findAll();

@@ -12,12 +12,8 @@ import com.db.grad.javaapi.repository.SecuritiesRepository;
 @Service
 public class SecuritiesService {
 
-    private SecuritiesRepository repo;
-
     @Autowired
-    public SecuritiesService(SecuritiesRepository repo) {
-        this.repo = repo;
-    }
+    private SecuritiesRepository repo;
 
     public List<Security> getAllSecurities() {
         return repo.findAll();
