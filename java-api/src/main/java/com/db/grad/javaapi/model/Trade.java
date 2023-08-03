@@ -24,5 +24,41 @@ public class Trade {
         this.settlement_date = settlement_date;
     }
 
+    public int getTradeBookId(){
+        return book_id;
+    }
+
+    public int getTradeSecurityId(){
+        return security_id;
+    }
+
+    public int getTradeCounterpartyId(){
+        return counterparty_id;
+    }
+
+    public String getTradeCurrency(){
+        return currency;
+    }
+
+    public int getTradeQuantity(){
+        return quantity;
+    }
+
+    public double getTradeUnitPrice(){
+        return unit_price;
+    }
+
+    public String getTradeBuySell(){
+        return buy_sell;
+    }
+
+    public Date getTradeTradeDate(){
+        return trade_date;
+    }
+
+    public Date getTradeSettlementDate(){
+        return settlement_date;
+    }
+
 
 }
