@@ -14,12 +14,38 @@ import java.util.Optional;
 import java.util.function.Function;
 
 
+
 public class SecurityRepositoryStub implements SecurityRepository {
+
+
     private ArrayList<Security> itsSecurities = new ArrayList<>();
 
     //@Override
-    public List<Security> findByBondMaturityDate(Security date) {
+    public List<Security> findByBondMaturityDate(String date) {
         return null;
+    }
+    @Override
+    public Security findById(long id) {
+        Security result = null;
+
+        for( Security theSecurity: itsSecurities)
+            if(theSecurity.getId() == id ) {
+                result = theSecurity;
+                break;
+            }
+        return result;
+    }
+
+    public List<Security> findByBondMaturityDate(Security aSecurity) {
+        ArrayList<Security> result = new ArrayList<>();
+
+        for(Security theSecurity : itsSecurities) {
+            if( theSecurity.getBondMaturityDate().equalsIgnoreCase(aSecurity.getBondMaturityDate()) ) {
+                result.add(theSecurity);
+            }
+        }
+        return result;
+
     }
 
     @Override
@@ -95,10 +121,6 @@ public class SecurityRepositoryStub implements SecurityRepository {
     @Override
     public void flush() {
 
-    }
-    @Override
-    public List<Security> findByBondMaturityDate(String date){
-        return new ArrayList<Security>();
     }
     @Override
     public <S extends Security> S saveAndFlush(S entity) {

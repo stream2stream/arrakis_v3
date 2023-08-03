@@ -5,6 +5,7 @@ import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,7 +18,6 @@ public class SecurityHandler implements ISecurityService
 {
     private SecurityRepository itsSecuritiesRepo;
 
-    @Autowired
     public SecurityHandler(SecurityRepository securityRepo )
     {
         itsSecuritiesRepo = securityRepo;
@@ -39,7 +39,7 @@ public class SecurityHandler implements ISecurityService
     public boolean removeSecurity(long id)
     {
         boolean result = false;
-        Optional<Security> theSecurity = itsSecuritiesRepo.findById(id);
+        Optional<Security> theSecurity = Optional.ofNullable(itsSecuritiesRepo.findById(id));
         if(theSecurity.isPresent())
         {
             itsSecuritiesRepo.delete(theSecurity.get());
@@ -51,7 +51,12 @@ public class SecurityHandler implements ISecurityService
     @Override
     public Security getSecurityByID(long id)
     {
-        return itsSecuritiesRepo.findById(id).get();
+        return itsSecuritiesRepo.findById(id);
+    }
+
+    @Override
+    public Security getSecurityByIssuerName(String issuerName) {
+        return null;
     }
 
     /* @Override

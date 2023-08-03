@@ -22,7 +22,11 @@ class SecurityHandlerTest {
         //arrange
         SecurityHandler cut = new SecurityHandler(securityRepo);
         Security theSecurity = new Security();
-        cut.addSecurity( theSecurity );
+        theSecurity.setIssuerName("Mark");
+        theSecurity.setId(1);
+        theSecurity.setBondCurrency("dollar");
+        theSecurity.setBondMaturityDate("23/10/2023");
+        cut.addSecurity(theSecurity);
 
         boolean expectedResult = true;
         boolean actualResult = false;
