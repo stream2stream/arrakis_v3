@@ -14,6 +14,8 @@ public class Book {
 
     @ManyToMany(mappedBy = "books")
     private Set<User> users = new HashSet<>();
+    @OneToMany(mappedBy="book")
+    private Set<Trade> trades;
 
     public Book(int id, String name) {
         this.id = id;

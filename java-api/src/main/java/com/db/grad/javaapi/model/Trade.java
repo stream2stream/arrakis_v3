@@ -24,6 +24,11 @@ public class Trade {
     @ManyToOne
     @JoinColumn(name="security_id", nullable=false)
     private Security security;
+    @ManyToOne
+    @JoinColumn(name="counterparty_id", nullable=false)
+    private CounterParty counterParty;
+    @JoinColumn(name="book_id", nullable=false)
+    private Book book;
 
     public Trade(int id, String currency, String status, float unitPrice, int quantity, String buySell, LocalDateTime tradeDate, LocalDateTime settlementDate) {
         this.id = id;
