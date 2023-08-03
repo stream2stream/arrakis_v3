@@ -6,9 +6,10 @@ const AllBonds = () => {
   var bonds = getAllBonds();
 
   return (
-    bonds.map(bond =>(
-        <BondDetail info={bond} key={bond.isin.toString()} />
-    ))
+    // bonds.map(bond =>(
+    //     <BondDetail info={bond} key={bond.isin.toString()} />
+    // ))
+    <BondDetail/>
   )
 }
 

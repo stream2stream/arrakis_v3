@@ -1,9 +1,7 @@
 import React from "react";
 import AllBonds from "./components/pets/AllBonds";
 import AllMaturingBonds from "./components/pets/AllMaturingBonds";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import { Route, Routes } from 'react-router-dom'
 
 function App() {
@@ -11,17 +9,17 @@ function App() {
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
-          <Navbar.Brand href="/">Heroes</Navbar.Brand>
+          <Navbar.Brand href="/">Bonds</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/allheroes">All Heroes</Nav.Link>
-              <Nav.Link href="/addhero">Add Hero</Nav.Link>
+              <Nav.Link href="/allbonds">All Bond</Nav.Link>
+              <Nav.Link href="/addhero">All Maturing Bonds</Nav.Link>
             </Nav>          </Navbar.Collapse>
         </Container>      </Navbar>
 
       <Routes>
-        <Route path="allheroes" element={<AllBonds />} />
+        <Route path="allbonds" element={<AllBonds />} />
         <Route path="addhero" element={<AllMaturingBonds />} />
         <Route path="/" element={<AllBonds />} />
       </Routes>
