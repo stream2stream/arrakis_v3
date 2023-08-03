@@ -14,7 +14,7 @@ CREATE TABLE dogs (
 
 CREATE TABLE IF NOT EXISTS books(
     book_number VARCHAR(100) PRIMARY KEY
-) AS SELECT DISTINCT lower("BOOK_NAME") FROM CSVREAD('C:\working\arrakis_v3\java-api\src\main\\resources\db-bonds-data.csv');
+);
 
 --CREATE TABLE IF NOT EXISTS book_users (
 --    book VARCHAR(100),
@@ -33,10 +33,8 @@ CREATE TABLE IF NOT EXISTS bond(
     face_value INT NOT NULL,
     bond_maturity_date VARCHAR(50) NOT NULL,
     bond_status ENUM('active', 'inactive') NOT NULL,
-    bond_type ENUM('CORP','GOVN','SOVN') NOT NULL,
-    bond_book_number VARCHAR(100)
---    FOREIGN KEY (bond_book_number) REFERENCES books(book_number)
-)
+    bond_type ENUM('CORP','GOVN','SOVN') NOT NULL
+);
 
 --CREATE TABLE IF NOT EXISTS bond_holder(
 --    bond_holder_name VARCHAR(100) PRIMARY KEY

@@ -44,11 +44,7 @@ public class Bond {
     @Enumerated(EnumType.STRING)
     @Column(name = "bond_type", nullable = false)
     private type_enum bond_type;
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name="bond_book_number", referencedColumnName = "book_number")
-    @Column(name = "bond_book_number", nullable = false)
-    private String bond_book;
-//     private Books bond_book;
+
 
     public String getIsin() {
         return isin;
@@ -128,18 +124,6 @@ public class Bond {
     }
 
 
-    public String getBond_book() {
-        return this.bond_book;
-    }
-    public void setBond_book(String bond_book) {
-        this.bond_book = bond_book;
-    }
-//    public Books getBond_book() {
-//        return this.bond_book;
-//    }
-//    public void setBond_book(Books bond_book) {
-//        this.bond_book = bond_book;
-//    }
     @Override
     public String toString() {
         return "Bond{" +
@@ -153,7 +137,7 @@ public class Bond {
                 ", bond_maturity_date=" + bond_maturity_date +
                 ", bond_status=" + bond_status +
                 ", bond_type=" + bond_type +
-                ", bond_book_number='" + bond_book + '\'' +
+//                ", bond_book_number='" + bond_book + '\'' +
                 '}';
     }
 }
