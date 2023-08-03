@@ -21,6 +21,11 @@ public class TradeRepositoryStub implements TradesRepository {
     private ArrayList<Trade> itsTrades = new ArrayList<>();
 
     @Override
+    public List<Trade> getTradeByBookID(long id) {
+        return null;
+    }
+
+    @Override
     public Trade findById(long id) {
         Trade result = null;
 

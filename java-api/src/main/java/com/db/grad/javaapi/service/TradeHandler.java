@@ -30,7 +30,7 @@ public class TradeHandler implements ITradesService{
         return itsTradesRepo.save(theTrade);
     }
 
-
+    public List<Trade> getTradeByBookID (long id){return itsTradesRepo.getTradeByBookID(id);}
     public Trade getTradeBySecurityID(long id){
         return itsTradesRepo.getTradeBySecurityID(id);
     }
