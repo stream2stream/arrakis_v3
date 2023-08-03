@@ -1,5 +1,6 @@
 DROP table IF EXISTS users;
 DROP table IF EXISTS security;
+DROP table IF EXISTS counterparty;
 --CREATE DATABASE  bonds ;
 --use bonds;
 

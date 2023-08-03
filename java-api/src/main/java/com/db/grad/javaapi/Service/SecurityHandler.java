@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.Service;
 
 import com.db.grad.javaapi.model.Security;
-import com.db.grad.javaapi.model.User;
 import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SecurityHandler implements ISecurityInterface {
+public class SecurityHandler implements ISecurityService {
     private SecurityRepository securityRepository;
     @Autowired
     public SecurityHandler(SecurityRepository securityRepository) {
@@ -18,7 +17,7 @@ public class SecurityHandler implements ISecurityInterface {
     }
 
     @Override
-    public List<Security> getAllSecurity() {
+    public List<Security> getAllSecurities() {
         return securityRepository.findAll();
     }
 
@@ -28,7 +27,7 @@ public class SecurityHandler implements ISecurityInterface {
     }
 
     @Override
-    public long getNoOfSecurity() {
+    public long getNoOfSecurities() {
         return securityRepository.count();
     }
 
