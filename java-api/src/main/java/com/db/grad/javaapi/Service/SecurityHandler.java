@@ -74,5 +74,10 @@ public class SecurityHandler implements ISecurityService {
         return securitiesDueForMaturity;
     }
 
+    public List<Security> getSecuritiesMatchedWithBook(Long user_id){
+        List<Security> matchedSec = securityRepository.findSecurityByUserBooks(user_id);
+        return matchedSec;
+    }
+
 
 }
