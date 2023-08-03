@@ -15,7 +15,7 @@ public interface ISecurityService
     public Security getSecurityByID(long id);
 
 
-    public Security getSecurityByIssuerName(String issuerName);
+//    public Security getSecurityByIssuerName(String issuerName);
 
 
 
