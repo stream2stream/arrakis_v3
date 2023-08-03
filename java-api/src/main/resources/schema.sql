@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS dogs;
+DROP TABLE IF EXISTS bonds;
 
-CREATE TABLE dogs (
-    dog_id INT NOT NULL,
-    name VARCHAR(250) NOT NULL,
+CREATE TABLE bonds (
+    bonds_id INT NOT NULL,
+    bonds_issuer VARCHAR(250) NOT NULL,
     age INT NOT NULL
 );
 
