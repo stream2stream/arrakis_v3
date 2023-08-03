@@ -1,12 +1,11 @@
 import DataTable from 'react-data-table-component';
-import { Link } from 'react-router-dom'; 
 
 
 const columns = [
     {
         name: 'ISIN',
         selector: row => row.isin,
-        cell: row => (<a href={row.isin} target="_blank" rel="noopener noreferrer"> {row.isin} </a> ),
+        cell: row => (<a href={"/Details/" + row.id} target="_blank" rel="noopener noreferrer"> {row.isin} </a> ),
     },
     {
         name: 'Maturity Date',
@@ -33,9 +32,10 @@ const columns = [
         selector: row => row.cusip,
     }
 ];
+
 const data = [
     {
-        isin: 1,
+        isin: "1SAFN5645",
         maturityDate: 2,
         clientName: 3,
         issuer: 4,
@@ -44,11 +44,13 @@ const data = [
         cusip: 7
     },
 ]
-function Table() {
+
+const Table = (props) => {
+    console.log(props.data)
     return (
         <DataTable
             columns={columns}
-            data={data}
+            data={props.data}
         />
     );
 };

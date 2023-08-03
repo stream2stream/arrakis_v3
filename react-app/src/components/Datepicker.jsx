@@ -11,8 +11,11 @@ const Datepicker = () => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <>
-    <Button variant="primary">Today</Button>
+    <div className="container mt-5">
+    <Button className="" variant="success" onclick={(date) => setStartDate(new Date())}>Today</Button>
+    &nbsp; &nbsp;
     <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+    </div>
     </>
   );
 
