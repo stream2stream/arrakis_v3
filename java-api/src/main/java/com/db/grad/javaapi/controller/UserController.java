@@ -20,16 +20,13 @@ public class UserController {
     private UserHandler userService;
 
     @PostMapping("/login")
-    public ResponseEntity<List<Book>> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody User user) {
         String email = user.getEmail();
         String password = user.getPassword();
-        int userId = userService.checkEmailAndPassword(email, password);
-        if(userId == -1)
-            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-        //TO DO
+        int loginResponse = userService.checkEmailAndPassword(email, password);
+        if(loginResponse == -1)
+            return new ResponseEntity<>("Wrong credentials", HttpStatus.UNAUTHORIZED);
         else
-            return new ResponseEntity<>(null, HttpStatus.OK);
-
-
+            return new ResponseEntity<>("Worked", HttpStatus.OK);
     }
 }

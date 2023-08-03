@@ -18,6 +18,6 @@ public class UserHandler {
             return -1;
         else if (!user.get().getPassword().equals(password))
             return -1;
-        return user.get().getId();
+        return 0;
     }
 }
