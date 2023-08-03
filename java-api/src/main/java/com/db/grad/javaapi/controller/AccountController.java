@@ -40,8 +40,8 @@ public class AccountController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body("Unauthorized access");
         } else {
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body("Logged In");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body("Unauthorized access");
         }
     }
 }
