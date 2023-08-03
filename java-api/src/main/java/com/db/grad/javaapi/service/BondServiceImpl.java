@@ -2,6 +2,7 @@ package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.repository.BondsRepository;
+import com.db.grad.javaapi.service.model.MaturingBondType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class BondServiceImpl implements BondService {
     }
 
     @Override
-    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException {
+    public Map<String, MaturingBondType> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException {
         List<Bond> bonds5BusinessDaysBeforeAndAfter = new ArrayList<>();
         // convert date from String to Date
         Date actualDate = convertStringToDate(date);
@@ -36,6 +37,14 @@ public class BondServiceImpl implements BondService {
              if (bond.getBondMaturityDate().after(startDate) && bond.getBondMaturityDate().before(endDate)) {
                  bonds5BusinessDaysBeforeAndAfter.add(bond);
              }
+        }
+        Map<String, MaturingBondType> maturingBondTypeMap = new HashMap<>();
+        for (Bond bond : bonds5BusinessDaysBeforeAndAfter){
+            bond.getType();
+            bond.getBondMaturityDate();
+            MaturingBondType maturingBondType;
+            maturingBondType.setBondType(bond.getType());
+            maturingBondTypeMap.put(bond.getBondMaturityDate(), )
         }
         return bonds5BusinessDaysBeforeAndAfter;
     }
