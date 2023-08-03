@@ -2,9 +2,16 @@ package com.db.grad.javaapi.model;
 
 import java.time.LocalDateTime;
 import java.util.Currency;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table (name="Trade")
 public class Trade{
-  
+
+    @Id
     /*create private propertie for trade type */
     private String TradeType;
     
@@ -13,15 +20,6 @@ public class Trade{
 
     /*create private propertie for id*/
     private String Iden;
-
-    
-    
-
-    public Trade(String iden) {
-        Iden = iden;
-    }
-
-   
 
     /*create private propertie for Quantity*/
     private int quantity;
@@ -48,6 +46,8 @@ public class Trade{
         this.Iden=Iden;
     }
 
+    @Id
+    @Column(name = " quantity", nullable=false )
     public int getQuantity() {
         return quantity;
     }
@@ -55,7 +55,9 @@ public class Trade{
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
+       
+    
+    @Column(name= "trade_status", nullable=false )
     public String getTradeStatus() {
         return TradeStatus;
     }
@@ -64,6 +66,8 @@ public class Trade{
         TradeStatus = tradeStatus;
     }
 
+
+    @Column(name="trade_date", nullable=false )
     public LocalDateTime getTradeDate() {
         return TradeDate;
     }
@@ -72,6 +76,8 @@ public class Trade{
         TradeDate = tradeDate;
     }
 
+
+    @Column(name="unit_price", nullable=false )
     public double getUnitPrice() {
         return UnitPrice;
     }
@@ -79,7 +85,8 @@ public class Trade{
     public void setUnitPrice(double unitPrice) {
         UnitPrice = unitPrice;
     }
-
+    
+    @Column(name="trade_type", nullable=false )
     public String getTradeType() {
         return TradeType;
     }
@@ -88,6 +95,8 @@ public class Trade{
         TradeType = tradeType;
     }
 
+
+    @Column(name="trade_currency", nullable =false )
     public Currency getTradeCurrency() {
         return TradeCurrency;
     }
@@ -96,7 +105,8 @@ public class Trade{
         TradeCurrency = tradeCurrency;
     }
 
-     public String getIden() {
+    @Column(name = "trade_id", nullable=false )
+    public String getIden() {
         return Iden;
     }
 
