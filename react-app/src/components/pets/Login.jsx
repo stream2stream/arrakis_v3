@@ -31,10 +31,7 @@ const Login = () => {
                 const errorMessage = error.message;
                 console.log(errorCode, errorMessage)
             });
-
     }
-
-
 
 
     return (
