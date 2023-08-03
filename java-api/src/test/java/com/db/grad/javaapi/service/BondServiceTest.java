@@ -1,38 +1,94 @@
 package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.Bond;
-import com.db.grad.javaapi.repository.BondsCounterPartiesRepository;
 import com.db.grad.javaapi.repository.BondsRepository;
-import com.db.grad.javaapi.repository.TradesCounterPartiesRepository;
-import com.db.grad.javaapi.repository.TradesRepository;
-import org.junit.Ignore;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 public class BondServiceTest {
-    @Mock
-    private BondsRepository bondsRepository;
-    @Mock
-    private TradesRepository tradesRepository;
-    @Mock
-    private TradesCounterPartiesRepository tradesCounterPartiesRepository;
-    @Mock
-    private BondsCounterPartiesRepository bondsCounterPartiesRepository;
 
     @InjectMocks
     private BondServiceImpl bondService;
 
+    @Mock
+    private BondsRepository bondsRepository;
 
+
+    /*@Test
+    public void getBondsDueForMaturityPeriod() throws ParseException {
+        Bond bond = new Bond();
+        bond.setIsin("ISIN1");
+        bond.setType("CORP");
+        bond.setIssuerID(1);
+        Date date = new GregorianCalendar(2023, 7, 17).getTime();
+        bond.setBondMaturityDate(date);
+        bond.setFaceValue(1000);
+        bond.setBondCurrency("USD");
+        bond.setStatus("active");
+        bond.setCusip("CUSIP1");
+        Mockito.when(bondsRepository.save(bond)).thenReturn(bond);
+        bondsRepository.save(bond);
+
+        Bond bond2 = new Bond();
+        bond2.setIsin("ISIN2");
+        bond2.setType("GOVN");
+        bond2.setIssuerID(1);
+        Date date2 = new GregorianCalendar(2023, 7, 11).getTime();
+        bond2.setBondMaturityDate(date2);
+        bond2.setFaceValue(340);
+        bond2.setBondCurrency("GBP");
+        bond2.setStatus("active");
+        bond2.setCusip("CUSIP2");
+        Mockito.when(bondsRepository.save(bond2)).thenReturn(bond2);
+        bondsRepository.save(bond2);
+
+        Bond bond3 = new Bond();
+        bond3.setIsin("ISIN3");
+        bond3.setType("SOVN");
+        bond3.setIssuerID(1);
+        Date date3 = new GregorianCalendar(2023, 04, 15).getTime();
+        bond3.setBondMaturityDate(date3);
+        bond3.setFaceValue(690);
+        bond3.setBondCurrency("USD");
+        bond3.setStatus("active");
+        bond3.setCusip("CUSIP3");
+        Mockito.when(bondsRepository.save(bond3)).thenReturn(bond3);
+        bondsRepository.save(bond3);
+
+        Bond bond4 = new Bond();
+        bond4.setIsin("ISIN3");
+        bond4.setType("SOVN");
+        bond4.setIssuerID(1);
+        Date date4 = new GregorianCalendar(2023, 04, 15).getTime();
+        bond4.setBondMaturityDate(date4);
+        bond4.setFaceValue(690);
+        bond4.setBondCurrency("USD");
+        bond4.setStatus("active");
+        bond4.setCusip("CUSIP3");
+        Mockito.when(bondsRepository.save(bond4)).thenReturn(bond4);
+        bondsRepository.save(bond4);
+
+        Mockito.when(bondsRepository.findAll()).thenReturn(Arrays.asList(bond, bond2, bond3, bond4));
+
+        List<Bond> maturityBonds = bondService.getAllBondsForBusinessDaysBeforeAndAfter("16-08-2023", 5, 5);
+        assertEquals(2, maturityBonds.size());
+    }*/
 
 }
