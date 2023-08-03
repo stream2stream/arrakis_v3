@@ -34,9 +34,9 @@ CREATE TABLE IF NOT EXISTS bond(
     bond_maturity_date VARCHAR(50) NOT NULL,
     bond_status ENUM('active', 'inactive') NOT NULL,
     bond_type ENUM('CORP','GOVN','SOVN') NOT NULL,
-    bond_book_number VARCHAR(100),
-    FOREIGN KEY (bond_book_number) REFERENCES books(book_number)
-)AS SELECT "ISIN",max("CUSIP"), max("UNIT_PRICE"), max("COUPON_PERCENT"),max("BOND_CURRENCY"), max("ISSUER_NAME"), max("face_value (mn)"), max("BOND_MATURITY_DATE"), max("STATUS"), max("TYPE"), max(lower("BOOK_NAME")) FROM CSVREAD('C:\working\arrakis_v3\java-api\src\main\\resources\db-bonds-data.csv') GROUP BY "ISIN";
+    bond_book_number VARCHAR(100)
+--    FOREIGN KEY (bond_book_number) REFERENCES books(book_number)
+)
 
 --CREATE TABLE IF NOT EXISTS bond_holder(
 --    bond_holder_name VARCHAR(100) PRIMARY KEY
