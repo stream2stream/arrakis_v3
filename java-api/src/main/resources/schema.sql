@@ -21,7 +21,7 @@ CREATE TABLE users (
 
 CREATE TABLE books (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    bookName VARCHAR(250) NOT NULL
+    book_name VARCHAR(250) NOT NULL
 );
 
 CREATE TABLE book_user (

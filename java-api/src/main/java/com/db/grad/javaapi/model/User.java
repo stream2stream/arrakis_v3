@@ -1,5 +1,8 @@
 package com.db.grad.javaapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -10,12 +13,18 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonIgnore
     private int id;
+
+    @JsonIgnore
     private String name;
+
     private String email;
+
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<BookUser> bookUserList;
 
     public void setId(int id) {
@@ -25,7 +34,6 @@ public class User {
         return id;
     }
 
-    @Column(name = "name", nullable = false)
     public String getName() {
         return name;
     }
@@ -34,7 +42,6 @@ public class User {
         this.name = name;
     }
 
-    @Column(name = "email", nullable = false)
     public String getEmail() {
         return email;
     }
@@ -51,7 +58,6 @@ public class User {
         this.bookUserList = bookUserList;
     }
 
-    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }

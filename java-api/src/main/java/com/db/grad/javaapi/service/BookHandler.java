@@ -10,12 +10,8 @@ import java.util.List;
 @Service
 public class BookHandler {
 
-    private BookRepository bookRepo;
-
     @Autowired
-    public BookHandler(BookRepository bookRepo) {
-        this.bookRepo = bookRepo;
-    }
+    private BookRepository bookRepo;
 
     public List<Book> getAllBooks(){
         return bookRepo.findAll();

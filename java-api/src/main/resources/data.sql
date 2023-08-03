@@ -10,7 +10,7 @@ INSERT INTO users (name, email, password) VALUES ('Catalin Badulescu', 'cata@ema
 --SELECT  "book_name"
 --FROM CSVREAD( ".\\db-bonds-data.csv", 'book_name', NULL );
 
-INSERT INTO books (bookName)
+INSERT INTO books (book_name)
 SELECT DISTINCT book_name FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bonds-data.csv');
 
 INSERT INTO book_user(book_id, user_id) VALUES (1, 1);
