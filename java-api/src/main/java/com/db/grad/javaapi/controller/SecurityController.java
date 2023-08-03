@@ -27,7 +27,7 @@ public class SecurityController {
 
     @GetMapping("/security")
     public List<Security> getAllSecurity() {
-        return securityHandler.getAllSecurity();
+        return securityHandler.getAllSecurities();
     }
 
     @GetMapping("/Security/{id}")
