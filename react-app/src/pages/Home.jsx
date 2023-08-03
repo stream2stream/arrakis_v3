@@ -30,7 +30,7 @@ const drawerWidth = 160;
 
 export default function Home() {
   const navigate = useNavigate();
-  const [date, setDate] = React.useState(dayjs('2022-04-17'));
+  const [date, setDate] = React.useState(dayjs('2021-08-03'));
   
   const onDateChange = (date) => {
     setDate(date)
@@ -39,7 +39,7 @@ export default function Home() {
     console.log(data);
     navigate("/home/" + data);
   }
-
+  
 
   return (
     <>
@@ -60,6 +60,8 @@ export default function Home() {
         <div className="date-picker">
           <LocalizationProvider dateAdapter={AdapterDayjs} >
               <DatePicker 
+                inputFormat="DD-MM-YYYY"
+                format="DD-MM-YYYY"
                 value={date}
                 onChange={(date) => onDateChange(date)}
                sx={{
