@@ -27,4 +27,13 @@ public class SecurityController {
     ){
         return SecurityHandler.getByDate(day,month,year);
     }
+    @GetMapping("/securities/T5")
+    public List<Security> getSecuritiesByDate(){
+        return SecurityHandler.getByDateT5();
+    }
+    @GetMapping("/securities/T5/{day}/{month}/{year}")
+    public List<Security> getSecuritiesT5ByDate(@PathVariable(value="day")int day,
+                                                @PathVariable(value = "month")int month, @PathVariable(value="year") int year){
+        return SecurityHandler.getByDateT5Date(day,month,year);
+    }
 }
