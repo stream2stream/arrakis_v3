@@ -7,7 +7,7 @@ const BondCard= (props) =>{
       <Card.Body>
         <Card.Title>Maturity Date</Card.Title>
         {props.bonds.map((bond, i) => (i < 4 ? <Card.Text>{bond} </Card.Text> : ""))}
-        <Card.Link href="/bonds/details">Bond Details</Card.Link>
+        <Card.Link href="/bonds/details/MaturityDate">Bond Details</Card.Link>
       </Card.Body>
     </Card>
   );

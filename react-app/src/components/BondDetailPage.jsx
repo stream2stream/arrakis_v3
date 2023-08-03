@@ -1,27 +1,30 @@
 import React from 'react'
 import BondCard from './BondCard'
+import { useParams } from 'react-router-dom'
 
 const BondDetailPage = (props) => {
   let data = [{ISIN : 'A12356112', Type : 'Sovereign' , Issuer :'BunderBank', Maturity : '15/07/2021'
 , FaceValue: '900', BondCurrency: 'USD', Coupon : '2', Status: 'active', BookID:'book4', Client: 'Goldman Sachs', Quantity: '60', UnitPrice: '70.5',
 TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '27/09/2021' , TradeStatus: 'open'}];
 
-const TableStyle = {
-  border: '1px solid grey',
-  marginLeft: '30%',
-  paddingBottom: 20,
-  maxHeight: 400,
-  overflow: "auto",
-  minHeight: 100,
-  width: "60%",
-  marginBottom: "5%"
-}
-const THStyle = {
-  borderBottom: '1px solid black'
-}
-const TDStyle = {
-    textAlign: "center"
-}
+  const params = useParams();
+
+    const TableStyle = {
+      border: '1px solid grey',
+      marginLeft: '30%',
+      paddingBottom: 20,
+      maxHeight: 400,
+      overflow: "auto",
+      minHeight: 100,
+      width: "60%",
+      marginBottom: "5%"
+    }
+    const THStyle = {
+      borderBottom: '1px solid black'
+    }
+    const TDStyle = {
+        textAlign: "center"
+    }
 
   return (<>
         <div style={{marginTop: '5%', marginLeft: "5%"}}>
@@ -52,7 +55,7 @@ const TDStyle = {
                 </tr>
             )}
         </table>
-        <div style={{marginLeft: "50%"}}><h1>Transations by ISIN</h1></div>
+        <div style={{marginLeft: "50%"}}><h1>Transations by ISIN - {params["date"]}</h1></div>
         <table style = {TableStyle}>
           <tr>
             <th style = {THStyle}> ISIN </th>

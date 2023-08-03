@@ -18,7 +18,7 @@ const App = () => {
   // return <HomePage dates={dates}/>;
     return <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path={`/bonds/details`} element={<BondDetailPage date={"TEST"} />}/>
+        <Route path={`/bonds/details/:date`} element={<BondDetailPage />} />
         <Route path={`/bonds`} element={<HomePage user={""} dates={dates}/>} />
     </Routes>
 };
