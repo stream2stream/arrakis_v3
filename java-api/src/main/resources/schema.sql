@@ -2,9 +2,11 @@ DROP TABLE IF EXISTS trades_counter_parties;
 DROP TABLE IF EXISTS bonds_counter_parties;
 DROP TABLE IF EXISTS trades;
 DROP TABLE IF EXISTS bonds;
+DROP TABLE IF EXISTS users_books;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS books;
-DROP TABLE IF EXISTS users_books;
+
+
 
 CREATE TABLE users (
     email VARCHAR(250) NOT NULL,

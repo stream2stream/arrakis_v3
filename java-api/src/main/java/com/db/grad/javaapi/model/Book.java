@@ -9,14 +9,15 @@ import java.util.Set;
 public class Book {
 
     @Id
+    @Column(name = "id", nullable = false)
     private String id;
+
+    @Column(name = "book_name", nullable = false)
     private String bookName;
 
     @ManyToMany(mappedBy = "books")
     private Set<User> users = new HashSet<>();
 
-    @Id
-    @Column(name = "id", nullable = false)
     public String getId() {
         return id;
     }
@@ -25,7 +26,6 @@ public class Book {
         this.id = id;
     }
 
-    @Column(name = "book_name", nullable = false)
     public String getBookName() {
         return bookName;
     }

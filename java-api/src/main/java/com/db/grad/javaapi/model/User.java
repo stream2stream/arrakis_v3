@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
-import java.awt.print.Book;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,15 +9,17 @@ import java.util.Set;
 public class User {
 
     @Id
+    @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "password", nullable = false)
     private String password;
 
     @ManyToMany
     @JoinTable(name="users_books", joinColumns = @JoinColumn(name="user_email"), inverseJoinColumns = @JoinColumn(name="book_id"))
     private Set<Book> books = new HashSet<>();
 
-    @Id
-    @Column(name = "email", nullable = false)
+
     public String getEmail() {
         return email;
     }
@@ -27,7 +28,6 @@ public class User {
         this.email = email;
     }
 
-    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
