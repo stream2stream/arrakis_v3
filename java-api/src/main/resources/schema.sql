@@ -16,12 +16,11 @@ CREATE TABLE IF NOT EXISTS books(
     book_number VARCHAR(100) PRIMARY KEY
 );
 
---CREATE TABLE IF NOT EXISTS book_users (
---    book VARCHAR(100),
---    users VARCHAR(100),
---    FOREIGN KEY (book) REFERENCES books(book_number),
---    FOREIGN KEY (users) REFERENCES users(email)
---);
+CREATE TABLE IF NOT EXISTS book_users (
+    book_user_id INT AUTO_INCREMENT PRIMARY KEY,
+    book VARCHAR(100),
+    user_email VARCHAR(100)
+);
 
 CREATE TABLE IF NOT EXISTS bond(
     isin VARCHAR(12) PRIMARY KEY,
