@@ -9,7 +9,7 @@ const NotAuthorized = () => {
             </div>
 
             <div className="login">
-                <NavLink to="/">
+                <NavLink to="/login">
                     <p>Login</p>
                 </NavLink>
             </div>
