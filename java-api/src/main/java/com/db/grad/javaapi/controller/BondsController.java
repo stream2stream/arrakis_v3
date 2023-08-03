@@ -31,11 +31,20 @@ public class BondsController {
     }
 
     @GetMapping(value = {"/bonds/dates/{date}/{daysBefore}/{daysAfter}"})
-    public Map<String, MaturingBondType> getNoOfBondsForBusinessDaysBeforeAndAfterOfType(@PathVariable(value = "date") String date,
+    public List<Bond> getNoOfBondsForBusinessDaysBeforeAndAfterOfType(@PathVariable(value = "date") String date,
                                                                                          @PathVariable(value = "daysBefore") int daysBefore,
                                                                                          @PathVariable(value = "daysAfter") int daysAfter) throws ParseException {
 
-        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(date, daysBefore, daysAfter);
+        //return bondService.getAllBondsForBusinessDaysBeforeAndAfter(date, daysBefore, daysAfter);
+        // TODO
+        return null;
+    }
+
+    @GetMapping(value = {"/bonds/bondType/{bondType}/date/{date}"})
+    public List<Bond> getMaturedBondsByBondTypeAndDate(@PathVariable(value = "bondType") String bondType,
+                                                                                         @PathVariable(value = "date") String date) throws ParseException {
+
+        return bondService.getAllMatureBondsByBondTypeAndDate(bondType, date);
     }
 
 

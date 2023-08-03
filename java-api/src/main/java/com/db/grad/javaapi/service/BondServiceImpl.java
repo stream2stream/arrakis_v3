@@ -25,7 +25,21 @@ public class BondServiceImpl implements BondService {
     }
 
     @Override
-    public Map<String, MaturingBondType> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException {
+    public List<Bond> getAllMatureBondsByBondTypeAndDate(String bondType, String stringDate) throws ParseException {
+        List<Bond> maturingBondsByBondTypeAndDate = new ArrayList<>();
+        Date date = convertStringToDate(stringDate);
+
+        for (Bond bond : getAllBonds()) {
+            if (bond.getType().equals(bondType) && bond.getBondMaturityDate().equals(date)) {
+                maturingBondsByBondTypeAndDate.add(bond);
+            }
+        }
+
+        return maturingBondsByBondTypeAndDate;
+    }
+
+    @Override
+    public List<Bond> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException {
         List<Bond> bonds5BusinessDaysBeforeAndAfter = new ArrayList<>();
         // convert date from String to Date
         Date actualDate = convertStringToDate(date);
@@ -34,17 +48,9 @@ public class BondServiceImpl implements BondService {
         Date endDate = addBusinessDays(actualDate, daysAfter);//5
 
         for (Bond bond : bondsRepository.findAll()) {
-             if (bond.getBondMaturityDate().after(startDate) && bond.getBondMaturityDate().before(endDate)) {
-                 bonds5BusinessDaysBeforeAndAfter.add(bond);
-             }
-        }
-        Map<String, MaturingBondType> maturingBondTypeMap = new HashMap<>();
-        for (Bond bond : bonds5BusinessDaysBeforeAndAfter){
-            bond.getType();
-            bond.getBondMaturityDate();
-            MaturingBondType maturingBondType;
-            maturingBondType.setBondType(bond.getType());
-            maturingBondTypeMap.put(bond.getBondMaturityDate(), )
+            if (bond.getBondMaturityDate().after(startDate) && bond.getBondMaturityDate().before(endDate)) {
+                bonds5BusinessDaysBeforeAndAfter.add(bond);
+            }
         }
         return bonds5BusinessDaysBeforeAndAfter;
     }
