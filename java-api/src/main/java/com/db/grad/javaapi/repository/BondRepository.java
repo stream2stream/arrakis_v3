@@ -12,5 +12,8 @@ public interface BondRepository extends JpaRepository<Bond, Integer> {
 
     Bond findByIsinAndCusip(String isin, String cusip);
 
-//    List<Bond> findByBooks_Id(int bookId);
+    @Query(value = "SELECT * FROM bond WHERE id IN (SELECT bond_id FROM trade WHERE book_id = :bookId)", nativeQuery = true)
+    List<Bond> findBondsByBookId(int bookId);
+
+
 }
