@@ -32,7 +32,7 @@ public class UserHandler {
     }
 
     public User getUserBySecurityID(long id) {
-        return itsUsersRepo.getUserByID(id);
+        return itsUsersRepo.getUserById(id);
     }
 
     public boolean removeUser(long id)

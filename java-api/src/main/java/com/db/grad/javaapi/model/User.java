@@ -6,12 +6,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
     @Id
     private long id;
+
+    @Column(name = "username", nullable = false)
     private String username;
+
+    @Column(name = "firstname", nullable = false)
     private String firstName;
+
+    @Column(name = "lastname", nullable = false)
     private String lastName;
 
     public long getId() {
