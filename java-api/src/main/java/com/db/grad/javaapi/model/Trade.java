@@ -10,6 +10,7 @@ import java.util.Date;
 public class Trade {
 
     @Id
+    private int id;
     private String isin;
     private String bookName;
     private int bondHolderID;
@@ -22,6 +23,15 @@ public class Trade {
     private int quantity;
 
     @Id
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Column(name = "isin", nullable = false)
     public String getIsin() {
         return isin;

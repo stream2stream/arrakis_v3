@@ -36,7 +36,8 @@ public class TradeTest {
     public void addTradeAndReturnNumberOfTradesInRepo() {
         long currCount = tradesRepository.count();
         Trade trade = new Trade();
-        trade.setIsin("ISIN2");
+        trade.setId(5);
+        trade.setIsin("XS1988387210");
         trade.setBookName("trading_book_1");
         trade.setBondHolderID(1);
         trade.setStatus("open");
@@ -57,7 +58,8 @@ public class TradeTest {
     public void addSeveralTradesAndReturnNumberOfBondsInRepo() {
         long currCount = tradesRepository.count();
         Trade trade = new Trade();
-        trade.setIsin("ISIN2");
+        trade.setId(5);
+        trade.setIsin("XS1988387210");
         trade.setBookName("trading_book_1");
         trade.setBondHolderID(1);
         trade.setStatus("open");
@@ -71,7 +73,8 @@ public class TradeTest {
         tradesRepository.save(trade);
 
         Trade trade1 = new Trade();
-        trade1.setIsin("ISIN3");
+        trade1.setId(4);
+        trade1.setIsin("XS1988387210");
         trade1.setBookName("trading_book_2");
         trade1.setBondHolderID(1);
         trade1.setStatus("open");
@@ -84,7 +87,8 @@ public class TradeTest {
         tradesRepository.save(trade1);
 
         Trade trade2 = new Trade();
-        trade2.setIsin("ISIN4");
+        trade2.setId(3);
+        trade2.setIsin("XS1988387210");
         trade2.setBookName("trading_book_3");
         trade2.setBondHolderID(1);
         trade2.setStatus("open");
@@ -104,7 +108,8 @@ public class TradeTest {
     public void findTradeByValidId(){
         Date date = new Date(2023, 01, 01);
         Trade trade1 = new Trade();
-        trade1.setIsin("ISIN4");
+        trade1.setId(1);
+        trade1.setIsin("XS1988387210");
         trade1.setBookName("trading_book_3");
         trade1.setBondHolderID(4);
         trade1.setStatus("open");
@@ -116,6 +121,6 @@ public class TradeTest {
         trade1.setQuantity(533);
         tradesRepository.save(trade1);
 
-        assertEquals(trade1.getQuantity(), tradesRepository.getReferenceById("ISIN4").getQuantity());
+        assertEquals(trade1.getQuantity(), tradesRepository.getReferenceById(1).getQuantity());
     }
 }
