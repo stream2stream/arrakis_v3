@@ -38,8 +38,8 @@ public class UserController {
     }
 
     @PostMapping("/Users")
-    public User createUser(@Valid @RequestBody User User) {
-        return userHandler.addUser(User);
+    public User createUser(@Valid @RequestBody User user) {
+        return userHandler.addUser(user);
     }
 
     @PutMapping("/Users/{id}")
