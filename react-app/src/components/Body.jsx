@@ -9,28 +9,33 @@ import { onAuthStateChanged } from 'firebase/auth'
 
 const Body = (props) => {
     const [currentUser, setCurrentUser] = useState(null)
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setCurrentUser(user)
-              // User is signed in, see docs for a list of available properties
-              // https://firebase.google.com/docs/reference/js/firebase.User
-              const uid = user.uid;
-              // ...
-              console.log("uid", uid)
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                const uid = user.uid;
+                // ...
+                console.log("uid", uid)
             } else {
-              setCurrentUser(null);
-              console.log("user is logged out")
+                setCurrentUser(null);
+                console.log("user is logged out")
             }
-          })});
-    const setUser= ()=> {
+        })
+    });
+    const setUser = () => {
         props.setUser();
     }
+
+    const user = props.user;
+    console.log(user);
     return (
         <>
-        
-            {currentUser? <DashBoard /> : <LoginForm setUser={setUser} />}
+            <div className='dashboard-container'>
+                {currentUser ? <DashBoard /> : <LoginForm setUser={setUser} />}
+            </div>
         </>
     )
 }

@@ -36,7 +36,7 @@ const Header = () => {
                             <Nav.Link href="/products">Free Trial</Nav.Link>
                             <Nav.Link href="/about">About</Nav.Link>
                         </Nav>
-                        <Nav id='ms-auto'>
+                        <Nav className="header-nav-links right-nav-links" >
                                 <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>
                                 <NavDropdown title="Language" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="#action/3.1">English</NavDropdown.Item>
