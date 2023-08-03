@@ -70,4 +70,8 @@ public class AppService {
     public List<Bond> findBondsWithMaturityDateFiveDaysBefore(LocalDate currentDate){
         return bondService.findBondsWithMaturityDateFiveDaysBefore(currentDate);
     }
+
+    public User addUserByName(String name){
+        return userService.addUserByUsername(name);
+    }
 }

@@ -29,4 +29,10 @@ public class UserService {
     public void save(User user) {
         ur.save(user);
     }
+
+    public User addUserByUsername(String username) {
+        User user = new User();
+        user.setUserName(username);
+        return ur.save(user);
+    }
 }
