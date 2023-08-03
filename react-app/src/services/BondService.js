@@ -12,6 +12,17 @@ export const getAllBonds = async () => {
   }
 };
 
+export const getAllTradesByISIN = async (isin) => {
+  try {
+    const response = await axios.get(`${hostNameUrl}/trades/isin/${isin}`);
+    const trades = response.data;
+    return trades;
+  } catch (error) {
+    console.error("Error fetching trades:", error);
+    throw error;
+  }
+};
+
 export const getAllBondsForBusinessDaysBeforeAndAfter = async (date) => {
   const daysBefore = 5;
   const daysAfter = 5;
