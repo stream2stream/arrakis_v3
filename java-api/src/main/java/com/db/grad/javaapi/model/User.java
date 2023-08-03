@@ -14,7 +14,8 @@ public class User {
     private String password;
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "book_users",
-            joinColumns ={@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "book_id")})
+            joinColumns ={@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "book_id")})
     Set<Book> books = new HashSet<>();
 
 

@@ -21,6 +21,9 @@ public class Trade {
     private LocalDateTime tradeDate;
     @Column(name = "settlement_date")
     private LocalDateTime settlementDate;
+    @ManyToOne
+    @JoinColumn(name="security_id", nullable=false)
+    private Security security;
 
     public Trade(int id, String currency, String status, float unitPrice, int quantity, String buySell, LocalDateTime tradeDate, LocalDateTime settlementDate) {
         this.id = id;

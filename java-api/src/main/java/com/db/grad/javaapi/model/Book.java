@@ -1,6 +1,8 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
@@ -9,6 +11,9 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    @ManyToMany(mappedBy = "books")
+    private Set<User> users = new HashSet<>();
 
     public Book(int id, String name) {
         this.id = id;
