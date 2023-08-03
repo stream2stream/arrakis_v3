@@ -11,41 +11,41 @@ import java.util.Optional;
 @Service
 public class BondHandler implements IBondsSrvice
 {
-    private BondsRepository itsDogsRepo;
+    private BondsRepository itsBondsRepo;
 
     @Autowired
-    public BondHandler(BondsRepository dogRepo )
+    public BondHandler(BondsRepository bondsRepo )
     {
-        itsDogsRepo = dogRepo;
+        itsBondsRepo = bondsRepo;
     }
 
     @Override
-    public List<Bond> getAllDogs()
+    public List<Bond> getAllBonds()
     {
-        return itsDogsRepo.findAll();
+        return itsBondsRepo.findAll();
     }
 
     @Override
-    public Bond addDog(Bond theBond)
+    public Bond addBond(Bond theBond)
     {
-        return itsDogsRepo.save(theBond);
+        return itsBondsRepo.save(theBond);
     }
 
     @Override
-    public long getNoOfDogs()
+    public long getNoOfBonds()
     {
-        return itsDogsRepo.count();
+        return itsBondsRepo.count();
     }
 
     @Override
-    public boolean removeDog(long uniqueId)
+    public boolean removeBond(long uniqueId)
     {
         boolean result = false;
 
-        Optional<Bond> theDog = itsDogsRepo.findById(uniqueId);
-        if(theDog.isPresent())
+        Optional<Bond> theBond = itsBondsRepo.findById(uniqueId);
+        if(theBond.isPresent())
         {
-            itsDogsRepo.delete(theDog.get());
+            itsBondsRepo.delete(theBond.get());
             result = true;
         }
 
@@ -53,17 +53,17 @@ public class BondHandler implements IBondsSrvice
     }
 
     @Override
-    public Bond getDogById(long uniqueId)
+    public Bond getBondsById(long uniqueId)
     {
-        return itsDogsRepo.findById(uniqueId).get();
+        return itsBondsRepo.findById(uniqueId).get();
     }
 
     @Override
-    public Bond getDogByName(String dogsName )
+    public Bond getBondsByISIN(String ISIN )
     {
         Bond bondToFind = new Bond();
-        bondToFind.setName(dogsName);
-        List<Bond> bonds = itsDogsRepo.findByName(bondToFind);
+        bondToFind.getISIN(ISIN);
+        List<Bond> bonds = itsBondsRepo.findByISIN(bondToFind);
         Bond result = null;
 
         if( bonds.size() == 1)
@@ -73,8 +73,10 @@ public class BondHandler implements IBondsSrvice
     }
 
     @Override
-    public Bond updateDogDetails(Bond bondToUpdate)
+    public Bond updateBondsDetails(Bond bondToUpdate)
     {
-        return itsDogsRepo.save(bondToUpdate);
+        return itsBondsRepo.save(bondToUpdate);
     }
+
+
 }

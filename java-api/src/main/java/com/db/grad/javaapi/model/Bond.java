@@ -1,21 +1,24 @@
 package com.db.grad.javaapi.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import java.sql.Date;
 @Entity
-@Table(name = "Bonds")
+@Table(name = "bond_details")
 public class Bond
 {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name;
-    private long age;
+    private String TRADE_CURRENCY;
+    private long FACE_VALUE;
+    private Date BOND_MATURITY_DATE;
+    private String CUSIP;
+
+    private String ISIN;
 
     @Id
-    @Column(name = "Bond_id", nullable = false)
+    @Column(name = "Id", nullable = false)
     public long getId() {
         return id;
     }
@@ -23,19 +26,46 @@ public class Bond
         this.id = id;
     }
 
-    @Column(name = "name", nullable = false)
-    public String getName() {
-        return name;
+    @Column(name = "TRADE_CURRENCY", nullable = false)
+    public String getTRADE_CURRENCY() {
+        return TRADE_CURRENCY;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setTRADE_CURRENCY(String TRADE_CURRENCY) {
+        this.TRADE_CURRENCY = TRADE_CURRENCY;
     }
 
-    @Column(name = "age", nullable = false)
-    public long getAge() {
-        return age;
+    @Column(name = "FACE_VALUE", nullable = false)
+    public long getFACE_VALUE() {
+        return FACE_VALUE;
     }
-    public void setAge(long age) {
-        this.age = age;
+    public void setFACE_VALUE(long FACE_VALUE) {
+        this.FACE_VALUE = FACE_VALUE;
+    }
+
+    @Column(name="BOND_MATURITY_DATE")
+    public Date getBOND_MATURITY_DATE() {
+        return BOND_MATURITY_DATE;
+    }
+
+    public void setBOND_MATURITY_DATE(Date BOND_MATURITY_DATE) {
+        this.BOND_MATURITY_DATE = BOND_MATURITY_DATE;
+    }
+
+    @Column(name="CUSIP")
+    public String getCUSIP() {
+        return CUSIP;
+    }
+
+    public void setCUSIP(String CUSIP) {
+        this.CUSIP = CUSIP;
+    }
+
+    @Column(name="ISIN")
+    public String getISIN(String ISIN) {
+        return this.ISIN;
+    }
+
+    public void setISIN(String ISIN) {
+        this.ISIN = ISIN;
     }
 }

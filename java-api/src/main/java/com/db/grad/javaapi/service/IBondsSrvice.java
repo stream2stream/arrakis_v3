@@ -6,17 +6,17 @@ import java.util.List;
 
 public interface IBondsSrvice
 {
-    public List<Bond> getAllDogs();
+    public List<Bond> getAllBonds();
 
-    public Bond addDog(Bond theBond);
+    public Bond addBond(Bond theBond);
 
-    public long getNoOfDogs();
+    public long getNoOfBonds();
 
-    public boolean removeDog(long uniqueId);
+    public boolean removeBond(long uniqueId);
 
-    public Bond getDogById(long uniqueId);
+    public Bond getBondsById(long uniqueId);
 
-    public Bond getDogByName(String dogsName );
+    public Bond getBondsByISIN(String bondISIN );
 
-    public Bond updateDogDetails(Bond bondToUpdate);
+    public Bond updateBondsDetails(Bond bondToUpdate);
 }

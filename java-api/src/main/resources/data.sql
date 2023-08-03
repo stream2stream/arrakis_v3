@@ -1,3 +1,2 @@
-INSERT INTO bonds (bond_id, name, age) VALUES (1, 'Einstein', 3);
-INSERT INTO bonds (bond_id, name, age) VALUES (2, 'Kaya', 5);
-INSERT INTO bonds (bond_id, name, age) VALUES (3, 'Lassie', 7);
+INSERT INTO BOND_DETAILS (ID, TRADE_CURRENCY, FACE_VALUE, BOND_MATURITY_DATE,
+CUSIP, ISIN) VALUES (1, 'USD', 1000, '2021-08-05', ' ' , 'XS1988387210');

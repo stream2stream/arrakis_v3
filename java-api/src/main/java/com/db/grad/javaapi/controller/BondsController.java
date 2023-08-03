@@ -24,35 +24,35 @@ public class BondsController {
         bondsService = ds;
     }
 
-    @GetMapping("/dogs")
-    public List <Bond> getAllDogs() {
-        return bondsService.getAllDogs();
+    @GetMapping("/bonds")
+    public List <Bond> getAllBonds() {
+        return bondsService.getAllBonds();
     }
 
-    @GetMapping("/dogs/{id}")
+    @GetMapping("/bonds/{id}")
     public ResponseEntity <Bond> getBondsById(@PathVariable(value = "id") Long id)
     throws ResourceNotFoundException {
-        Bond bond = bondsService.getDogById(id);
+        Bond bond = bondsService.getBondsById(id);
         return ResponseEntity.ok().body(bond);
     }
 
-    @PostMapping("/dogs")
-    public Bond createDog(@Valid @RequestBody Bond bond) {
-        return bondsService.addDog(bond);
+    @PostMapping("/bonds")
+    public Bond createBond(@Valid @RequestBody Bond bond) {
+        return bondsService.addBond(bond);
     }
 
-    @PutMapping("/dogs/{id}")
-    public ResponseEntity <Bond> updateDog(@PathVariable(value = "id") Long id,
+    @PutMapping("/bonds/{id}")
+    public ResponseEntity <Bond> updateBonds(@PathVariable(value = "id") Long id,
                                            @Valid @RequestBody Bond bondDetails) throws ResourceNotFoundException {
 
-        final Bond updatedDogs = bondsService.updateDogDetails(bondDetails);
-        return ResponseEntity.ok(updatedDogs);
+        final Bond updatedBonds = bondsService.updateBondsDetails(bondDetails);
+        return ResponseEntity.ok(updatedBonds);
     }
 
-    @DeleteMapping("/dogs/{id}")
-    public Map < String, Boolean > deleteDog(@PathVariable(value = "id") Long id)
+    @DeleteMapping("/bonds/{id}")
+    public Map < String, Boolean > deleteBond(@PathVariable(value = "id") Long id)
     throws ResourceNotFoundException {
-    	boolean removed = bondsService.removeDog(id);
+    	boolean removed = bondsService.removeBond(id);
 
         Map < String, Boolean > response = new HashMap <>();
         if( removed )
