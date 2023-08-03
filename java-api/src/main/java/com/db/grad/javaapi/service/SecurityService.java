@@ -16,10 +16,7 @@ public class SecurityService {
     @Autowired
     private BookRepository bookRepository;
 
-    public List<Book> getAllBooksForUser(String userMail){
-        return bookRepository.findBooksByUserId(userMail);
-    }
-    public List<Security> getAllSecuritiesForUserBooks(Long userId){
-        return securityRepository.findSecuritiesForUserBooks(userId);
+    public List<Security> getAllSecuritiesForUserBooks(String userMail){
+        return securityRepository.findSecuritiesForUserBooks(userMail);
     }
 }

@@ -1,5 +1,6 @@
 package com.db.grad.javaapi.repository;
 
+import com.db.grad.javaapi.model.Book;
 import com.db.grad.javaapi.model.Dog;
 import com.db.grad.javaapi.model.Security;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,6 +12,13 @@ import java.util.List;
 
 @Repository
 public interface SecurityRepository extends JpaRepository<Security, Integer> {
-    @Query(nativeQuery = true, value = "SELECT DISTINCT s.*" + "FROM Security s " + "INNER JOIN Book b ON s.book_id = b.id" + "WHERE b.id IN" + "(SELECT bu.book_id FROM book_users bu WHERE bu.user_id = :userId)")
-    List<Security> findSecuritiesForUserBooks(@Param("userId") Long userId);
+    @Query(value =
+            "SELECT * \n" +
+                    "from security as s\n" +
+                    "left join book_users as bu \n" +
+                    "on s.trading_book_id = bu.trading_book_id\n" +
+                    "left join users as u\n" +
+                    "on u.id = bu.user_id\n" +
+                    "where u.mail = 'user1@db.com'", nativeQuery = true)
+    List<Security> findSecuritiesForUserBooks(String userMail);
 }

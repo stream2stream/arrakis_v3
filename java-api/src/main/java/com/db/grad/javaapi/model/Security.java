@@ -37,6 +37,9 @@ public class Security {
         this.status = status;
     }
 
+    public Security() {
+    }
+
     public int getId() {
         return id;
     }

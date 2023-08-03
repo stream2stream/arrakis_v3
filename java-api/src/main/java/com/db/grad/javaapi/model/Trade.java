@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "trade")
+@Table(name = "trades")
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +31,9 @@ public class Trade {
         this.buySell = buySell;
         this.tradeDate = tradeDate;
         this.settlementDate = settlementDate;
+    }
+
+    public Trade() {
     }
 
     public int getId() {

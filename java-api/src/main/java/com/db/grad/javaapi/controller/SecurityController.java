@@ -18,14 +18,8 @@ public class SecurityController {
     @Autowired
     private SecurityService securityService;
 
-    @GetMapping("/user/{userId}/books")
-    public ResponseEntity<List<Book>> getAllBooksForUser(@PathVariable String userMail) {
-        List<Book> books = securityService.getAllBooksForUser(userMail);
-        return ResponseEntity.ok(books);
-    }
-
     @GetMapping("/user/{userId}/securities")
-    public ResponseEntity<List<Security>> getAllSecuritiesForUserBooks(@PathVariable Long userId) {
+    public ResponseEntity<List<Security>> getAllSecuritiesForUserBooks(@PathVariable String userId) {
         List<Security> securities = securityService.getAllSecuritiesForUserBooks(userId);
         return ResponseEntity.ok(securities);
     }
