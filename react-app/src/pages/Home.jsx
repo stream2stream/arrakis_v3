@@ -23,16 +23,23 @@ import DB from '../images/DB3.png';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
 import '../App.css';
 
 const drawerWidth = 160;
 
 export default function Home() {
   const navigate = useNavigate();
+  const [date, setDate] = React.useState(dayjs('2022-04-17'));
+  
+  const onDateChange = (date) => {
+    setDate(date)
+  }
   const onClickSidebarOption = (data) =>{
     console.log(data);
     navigate("/home/" + data);
   }
+
 
   return (
     <>
@@ -53,6 +60,8 @@ export default function Home() {
         <div className="date-picker">
           <LocalizationProvider dateAdapter={AdapterDayjs} >
               <DatePicker 
+                value={date}
+                onChange={(date) => onDateChange(date)}
                sx={{
                 svg: { color: '#fff' },
                 input: { color: '#fff' },
@@ -89,7 +98,7 @@ export default function Home() {
           </List>
         </Box>
       </Drawer>
-      <Outlet />
+      <Outlet context={[date]}/>
       
     </Box>
     
