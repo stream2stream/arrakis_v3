@@ -14,7 +14,6 @@ public class SecurityHandler implements ISecurityService
 {
     private SecurityRepository itsSecuritiesRepo;
 
-    @Autowired
     public SecurityHandler(SecurityRepository securityRepo )
     {
         itsSecuritiesRepo = securityRepo;

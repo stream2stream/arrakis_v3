@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import
+
 
 
 public class SecurityRepositoryStub implements SecurityRepository {
@@ -41,6 +41,7 @@ public class SecurityRepositoryStub implements SecurityRepository {
                 result.add(theSecurity);
             }
         }
+        return result;
     }
 
     @Override
