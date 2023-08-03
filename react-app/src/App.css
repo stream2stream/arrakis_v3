@@ -50,7 +50,13 @@ th {
 th,
 td {
   text-align: center;
+  width: 150px;
+  white-space: normal;
 }
+
+.table-container {
+    overflow-x: auto;
+    }
 
 /* Alternate row background color */
 tbody tr:nth-child(even) {
