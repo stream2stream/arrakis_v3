@@ -1,43 +1,28 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+public class Trades {
+    private int id;
+    private int bookId;
+    private int securityId;
+    private int counterpartyId;
+    private String currency;
+    private String status;
+    private int quantity;
+    private float unitPrice;
+    private String buySell;
+    private Date tradeDate;
+    private Date settlementDate;
 
-public class CSVReader {
-    public static void main(String[] args) {
-        String csvFile = "/path/to/csv/file.csv";
-        String line = "";
-        String csvSplitBy = ",";
-
-        List<Person> people = new ArrayList<>();
-
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(csvSplitBy);
-                String name = data[0];
-                int age = Integer.parseInt(data[1]);
-                String occupation = data[2];
-                Person person = new Person(name, age, occupation);
-                people.add(person);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // use people list here
-    }
-}
-
-class Person {
-    private String name;
-    private int age;
-    private String occupation;
-
-    public Person(String name, int age, String occupation) {
-        this.name = name;
-        this.age = age;
-        this.occupation = occupation;
+    public Trades(int id, int bookId, int securityId, int counterpartyId, String currency, String status, int quantity, float unitPrice, String buySell, Date tradeDate, Date settlementDate) {
+        this.id = id;
+        this.bookId = bookId;
+        this.securityId = securityId;
+        this.counterpartyId = counterpartyId;
+        this.currency = currency;
+        this.status = status;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+        this.buySell = buySell;
+        this.tradeDate = tradeDate;
+        this.settlementDate = settlementDate;
     }
 
     // getters and setters
