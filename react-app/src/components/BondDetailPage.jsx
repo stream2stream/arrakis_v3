@@ -16,20 +16,19 @@ const BondDetailPage = (props) => {
           <th> Coupon % </th>
           <th> Status</th>
 
-        </tr> 
-        {props.data.map(bonds => {<tr> bonds.map(bond => 
-          {
-          <td> {bond["ISIN "]}</td>
-          <td> {bond["Type"]} </td>
-          <td> {bond["Issuer"]} </td>
-          <td> {bond["Maturity"]} </td>
-          <td> {bond["Face Value"]} </td>
-          <td> {bond["Currency" ]}</td>
-          <td> {bond["Coupon %" ]}</td>
-          <td> {bond["Status"]}</td>
-          })
-          </tr>})
-          }
+        </tr>
+          {props.data.map(bonds => bonds.map(bond =>
+              <tr>
+                  <td>{bond["ISIN"]}</td>
+                  <td>{bond["Type"]}</td>
+                  <td>{bond["Issuer"]}</td>
+                  <td>{bond["Maturity"]}</td>
+                  <td>{bond["Face Value"]}</td>
+                  <td>{bond["Currency"]}</td>
+                  <td>{bond["Coupon %"]}</td>
+                  <td>{bond["Status"]}</td>
+              </tr>
+          ))}
       </table>
 
       <table style = {{border: '1px solid grey'}}> 
