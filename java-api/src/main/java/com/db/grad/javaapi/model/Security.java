@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Book")
+@Table(name = "Security")
 public class Security {
     @Id
     private String isin;
