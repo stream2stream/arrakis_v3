@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getAllBonds, getAllBondsMaturity } from '../services/TradeServices';
-
+import { useNavigate } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
+import Home from './home';
 
 // const trades = [
 //     { coupon_percent: 4.37, bond_currency: "USD", CUSIP: null, face_value: 1000, isin: "XS1988387210", issuer_name: "BNPParibasIssu 4,37% Microsoft Corp (USD)", bond_maturity_date: "5/8/2021", status: "active", type: "CORP" },
@@ -15,6 +17,7 @@ export const Bonds = () => {
     
     const [bonds,setBonds] = useState([]);
     const [bondsMaturity,setBondsMaturity] = useState([]);
+    const navigate = useNavigate();
     useEffect(()=>{
         getBondsFromAPI();}, 
         []
@@ -59,9 +62,15 @@ export const Bonds = () => {
         </tr>
             
         }
-    
+        const onButtonClick = () => {
+            navigate("/");
+        }
   return (
-    <><div>
+    <>
+    <div class="align-right">
+        <input type="button" onClick={onButtonClick} value={"Logout"} class="right" />
+      </div>
+    <div>
         <table>
             <thead>
                 <tr><th colSpan="9">All Bonds</th></tr>
@@ -107,7 +116,8 @@ export const Bonds = () => {
         
     </table>
 
-    </div> </>
+    </div> 
+    <div class="space"></div></>
   )
 }
 
