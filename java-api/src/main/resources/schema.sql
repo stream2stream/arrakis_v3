@@ -18,7 +18,7 @@ CREATE TABLE bonds (
     cusip varchar(50),
     bond_currency varchar(10) NOT NULL,
     face_value int NOT NULL,
-    bond_maturity varchar(10) NOT NULL,
+    bond_maturity date NOT NULL,
     coupon_percent float NOT NULL,
     issuer_name varchar(255) NOT NULL,
     status varchar(32) NOT NULL,

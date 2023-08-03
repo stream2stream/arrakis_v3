@@ -29,24 +29,11 @@ public class BondsService {
     }
     public List<Bond> getBondsByMaturity() {
 
-        List<Bond> bonds = bondsRepository.findAll(), result = new ArrayList<Bond>();
+        return bondsRepository.findByMaturity();
+    }
 
-        long curr = (new Date().getTime()/100), temp;
+    public Bond add(Bond bond) {
 
-        for(Bond bond : bonds) {
-
-            try {
-                temp = new SimpleDateFormat("yyyy-mm-dd").parse(bond.getBondMaturity()).getTime()/100;
-
-                if(Math.abs(curr-temp)/MS_IN_DAY-1 <= 5) {
-                    result.add(bond);
-                }
-            }
-            catch(ParseException e) {
-                System.out.println(e);
-            }
-        }
-
-        return result;
+        return bondsRepository.save(bond);
     }
 }

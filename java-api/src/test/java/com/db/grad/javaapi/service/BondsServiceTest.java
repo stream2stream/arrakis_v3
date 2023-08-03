@@ -6,14 +6,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-// @Component ???
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 public class BondsServiceTest {
+
+    private final static int MS_IN_DAY = 86400000;
 
     @Mock
     private BondsRepository bondsRepository;
@@ -24,5 +32,6 @@ public class BondsServiceTest {
     @Test
     public void get_bonds_by_maturity() {
 
+        // arrange
     }
 }
