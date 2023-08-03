@@ -41,7 +41,7 @@ function Bonds() {
         } catch (error) {
             console.error("Error fetching bonds:", error);
         }
-          
+
     }, [date]);
 
     return (
