@@ -20,6 +20,10 @@ import ZoomBond from './ZoomBond';
 import { useNavigate } from 'react-router-dom';
 import AdbIcon from '@mui/icons-material/Adb';
 import DB from '../images/DB3.png';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import '../App.css';
 
 const drawerWidth = 160;
 
@@ -45,6 +49,14 @@ export default function Home() {
             alt="Your logo."
             src={DB}
         />
+     
+     <div className="datePicker">
+     <LocalizationProvider dateAdapter={AdapterDayjs} >
+        <DatePicker />
+      </LocalizationProvider>
+     </div>
+      
+    
       
         </Toolbar>
       </AppBar>
