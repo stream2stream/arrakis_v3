@@ -1,8 +1,13 @@
 import React from 'react'
 
-const SecurityDetails = () => {
+const SecurityDetails = (props) => {
   return (
-    <div>SecurityDetails</div>
+    <tr>
+      <td>1</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
   )
 }
 

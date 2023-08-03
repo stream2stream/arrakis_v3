@@ -27,6 +27,9 @@ const Body = (props) => {
     const setUser= ()=> {
         props.setUser();
     }
+
+    const user = props.user;
+    console.log(user);
     return (
         <>
         
