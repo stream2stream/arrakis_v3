@@ -10,8 +10,7 @@ import { Route, Routes } from 'react-router-dom'
 import Logout from "./components/pets/Logout";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useState } from "react";
-import { useEffect } from "react";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const auth = getAuth();
@@ -38,7 +37,7 @@ function App() {
           <Container>
             <Navbar.Brand href="/">Home</Navbar.Brand>
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
+              <Nav className="ml-auto">
 
                 {authenticated &&
                   <>
@@ -51,17 +50,18 @@ function App() {
           </Container>
         </Navbar>
 
-
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={authenticated ? <AllBonds /> : <Login/>} />
-          <Route path="notauthorized" element={<NotAuthorized />} />
-          <Route path="logout" element={<Logout />} />
-          {!isLoading && authenticated && <>
-          <Route path="/allbonds" element={<AllBonds />} />
-          <Route path="/bondsbymaturity" element={<AllMaturingBonds />} />
-          </>}
-        </Routes>
+        <Container className="mt-3">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={authenticated ? <AllBonds /> : <Login/>} />
+            <Route path="notauthorized" element={<NotAuthorized />} />
+            <Route path="logout" element={<Logout />} />
+            {!isLoading && authenticated && <>
+            <Route path="/allbonds" element={<AllBonds />} />
+            <Route path="/bondsbymaturity" element={<AllMaturingBonds />} />
+            </>}
+          </Routes>
+        </Container>
       </>
   );
 }

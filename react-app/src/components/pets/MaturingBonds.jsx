@@ -7,13 +7,11 @@ const MaturingBond = (props) => {
   console.log(props.info.date)
   const date = new Date(props.info.date);
   return (
-    <>
-      <h3>{date.toString()}</h3>
-      <MaturingBondsList props={props}/>
-    </>
+      <div className="container">
+          <h3 className="my-3">{date.toString()}</h3>
+          <MaturingBondsList props={props}/>
+      </div>
   )
-
-
 }
 
 export default MaturingBond
