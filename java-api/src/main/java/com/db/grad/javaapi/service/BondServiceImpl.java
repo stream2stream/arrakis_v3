@@ -30,7 +30,7 @@ public class BondServiceImpl implements BondService {
         Date date = convertStringToDate(stringDate);
 
         for (Bond bond : getAllBonds()) {
-            if (bond.getType().equals(bondType) && bond.getBondMaturityDate().equals(date)) {
+            if (bond.getType().equals(bondType) && convertDateToString(bond.getBondMaturityDate()).equals(stringDate)) {
                 maturingBondsByBondTypeAndDate.add(bond);
             }
         }
