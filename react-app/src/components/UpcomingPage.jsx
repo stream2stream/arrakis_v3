@@ -4,12 +4,25 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Box, TextField } from "@mui/material";
 import styles from "./pets/Pets.module.css";
 import { Button } from "@mui/material";
+import { Card } from "@mui/material";
+import { CardContent } from "@mui/material";
 
 
 export const UpcomingPage = () => {
     const [securities, setSecurities] = useState([]);
     const [date, setDate] = useState("");
     const [dateFinal, setDateFinal] = useState("");
+    const [cardMessage, setCardMessage] = useState(false);
+    const [id, setID] = useState();
+    const [couponPercent, setCouponPercent] = useState();
+    const [bondCurrency, setBondCurrency] = useState("");
+    const [cusip, setCusip] = useState();
+    const [faceValue, setFaceValue] = useState();
+    const [isin, setIsin] = useState();
+    const [issuerName, setIssuerName] = useState("");
+    const [bondMaturityDate, setBondMaturityDate] = useState();
+    const [status, setStatus] = useState("");
+    const [type, setType] = useState("");
 
 
     const handleDateInput = (event) => {
@@ -21,12 +34,31 @@ export const UpcomingPage = () => {
         setDateFinal(date)
     }
 
+    const handleRowClick = (params) => {
+        setID(params.row.id);
+        setCouponPercent(params.row.couponPercent);
+        setBondCurrency(params.row.bondCurrency);
+        setCusip(params.row.cusip);
+        setFaceValue(params.row.faceValue);
+        setIsin(params.row.isin);
+        setIssuerName(params.row.issuerName);
+        setBondMaturityDate(params.row.bondMaturityDate);
+        setStatus(params.row.status);
+        setType(params.row.type);
+        if (params.row.id !== id) {
+            setCardMessage(true);
+        } else {
+            setCardMessage(!cardMessage);
+        }
+    }
+
     useEffect(() => {
       findUpcoming(dateFinal)
             .then(({data}) => {
             setSecurities(data);
             });
     }, [dateFinal]);
+
     const columnDef = [
       {field: 'id', headerName: 'ID', flex: 1},
       {field: 'couponPercent', headerName: 'Coupon %'},
@@ -59,17 +91,17 @@ export const UpcomingPage = () => {
 
   return (
     <>
-        <div className={styles.container}>
+        <div className={styles.fields}>
         <TextField
          sx = {{ 'display': 'flex', 'flex-direction': 'row', 'justify-content': 'space-around', 'content-align': 'center'}}
          id="standard-basic" 
          variant="standard" 
          type="search"
          defaultValue={"DD/MM/YYYY"}
-        //  value={date}
          onChange={handleDateInput}
+         label="Date"
          />
-         <Button variant="contained" color="primary" onClick={handleSubmit}>
+         <Button variant="contained" color='grey' onClick={handleSubmit}>
             Submit
          </Button>
         </div>
@@ -79,8 +111,36 @@ export const UpcomingPage = () => {
                     rows={rowDef}
                     columns={columnDef}
                     sx={{ maxWidth: '75%' }}
+                    onRowClick={handleRowClick}
                     maxColumns={6}
                     />
+                    {cardMessage &&
+            <Card sx={{ minWidth: '25%'}}>
+                <CardContent>
+                    <b>
+                        Bond ID: {id}
+                    </b>
+                    <br/>
+                      Issuer: {issuerName}
+                    <br/>
+                      Maturity Date: {bondMaturityDate}
+                    <br/>
+                      CUSIP: {cusip}
+                    <br/>
+                      Status: {status}
+                    <br/>
+                      Type: {type}
+                    <br/>
+                      Coupon %: {couponPercent}
+                    <br/>
+                      Currency: {bondCurrency}
+                    <br/>
+                      Face Value: {faceValue}
+                    <br/>
+                      ISIN: {isin}
+                </CardContent>
+            </Card>
+            }
             </div>
         </Box>   
     </>

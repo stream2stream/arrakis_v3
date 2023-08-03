@@ -10,3 +10,10 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
+.fields {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+}

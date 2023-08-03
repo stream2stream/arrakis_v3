@@ -28,14 +28,9 @@ export const HomePage = () => {
             });
     }, []);
     const columnDef = [
-    //   {field: 'id', headerName: 'ID', flex: 1},
-    //   {field: 'couponPercent', headerName: 'Coupon %'},
-    //   {field: 'bondCurrency', headerName: 'Currency'},
       {field: 'cusip', headerName: 'CUSIP', flex: 1},
       {field: 'bondCurrency', headerName: 'Currency', flex: 1},
       {field: 'faceValue', headerName: 'Face Value', flex: 1},
-    //   {field: 'isin', headerName: 'ISIN'},
-    //   {field: 'issuerName', headerName: 'Issuer'},
       {field: 'bondMaturityDate', headerName: 'Maturity Date', flex: 1},
       {field: 'status', headerName: 'Status', flex: 1},
       {field: 'type', headerName: 'Type', flex: 1}
@@ -93,23 +88,23 @@ export const HomePage = () => {
                         Bond ID: {id}
                     </b>
                     <br/>
-                    {issuerName}
+                      Issuer: {issuerName}
                     <br/>
-                    {bondMaturityDate}
+                      Maturity Date: {bondMaturityDate}
                     <br/>
-                    {cusip}
+                      CUSIP: {cusip}
                     <br/>
-                    {status}
+                      Status: {status}
                     <br/>
-                    {type}
+                      Type: {type}
                     <br/>
-                    {couponPercent}
+                      Coupon %: {couponPercent}
                     <br/>
-                    {bondCurrency}
+                      Currency: {bondCurrency}
                     <br/>
-                    {faceValue}
+                      Face Value: {faceValue}
                     <br/>
-                    {isin}
+                      ISIN: {isin}
                 </CardContent>
             </Card>
             }
