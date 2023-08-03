@@ -49,7 +49,7 @@ function Bonds() {
         }
         };
         fetchBonds();
-    }, []);
+    }, [date]);
 
     return (
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
