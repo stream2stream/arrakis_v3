@@ -4,6 +4,7 @@ import com.db.grad.javaapi.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -60,5 +61,13 @@ public class AppService {
 
     public List<Bond> findBondsByBookId(int bookId){
         return bondService.findBondsByBookId(bookId);
+    }
+
+    public List<Bond> findBondsWithMaturityDateInFiveDays(LocalDate currentDate){
+        return bondService.findBondsWithMaturityDateInFiveDays(currentDate);
+    }
+
+    public List<Bond> findBondsWithMaturityDateFiveDaysBefore(LocalDate currentDate){
+        return bondService.findBondsWithMaturityDateFiveDaysBefore(currentDate);
     }
 }
