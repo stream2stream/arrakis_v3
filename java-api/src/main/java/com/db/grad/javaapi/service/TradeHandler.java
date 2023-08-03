@@ -11,7 +11,7 @@ import java.util.Optional;
 
 
 @Service
-public class TradeHandler implements IDogsService{
+public class TradeHandler implements ITradesService{
     private TradesRepository itsTradesRepo;
 
     @Autowired
@@ -34,7 +34,7 @@ public class TradeHandler implements IDogsService{
     public boolean removeTrade(long id)
     {
         boolean result = false;
-        Optional<Trade> theSecurity = Optional.ofNullable(itsSTradesRepo.findById(id));
+        Optional<Trade> theTrade = Optional.ofNullable(itsTradesRepo.findById(id));
         if(theTrade.isPresent())
         {
             itsTradesRepo.delete(theTrade.get());
@@ -43,16 +43,10 @@ public class TradeHandler implements IDogsService{
         return  result;
 
     }
-
     @Override
     public Trade getTradeByID(long id)
     {
         return itsTradesRepo.findById(id);
-    }
-
-    @Override
-    public Trade getTradeBybookID(String bookID) {
-        return null;
     }
 
     @Override

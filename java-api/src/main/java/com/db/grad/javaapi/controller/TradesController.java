@@ -2,7 +2,6 @@ package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.service.TradeHandler;
-import org.springdoc.core.TradeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
