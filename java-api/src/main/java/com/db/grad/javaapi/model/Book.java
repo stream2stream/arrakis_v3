@@ -1,5 +1,10 @@
 package com.db.grad.javaapi.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,16 +17,8 @@ public class Book {
     private String bookName;
 
     @OneToMany(mappedBy = "book")
+    @JsonIgnore
     private List<Trade> trades;
-
-
-    @ManyToMany
-    @JoinTable(
-            name = "book_user", // name of the join table
-            joinColumns = @JoinColumn(name = "book_id"), // foreign key column for Book
-            inverseJoinColumns = @JoinColumn(name = "user_id") // foreign key column for User
-    )
-    private List<User> users = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -44,11 +41,4 @@ public class Book {
         this.trades = trades;
     }
 
-//    public List<BookUser> getBookUsers() {
-//        return bookUsers;
-//    }
-//
-//    public void setBookUsers(List<BookUser> bookUsers) {
-//        this.bookUsers = bookUsers;
-//    }
 }

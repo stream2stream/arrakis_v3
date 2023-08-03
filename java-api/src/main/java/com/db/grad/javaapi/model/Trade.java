@@ -1,5 +1,10 @@
 package com.db.grad.javaapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -16,15 +21,21 @@ public class Trade {
     private String tradeStatus;
     private LocalDate tradeDate;
     private Double unitPrice;
-    private String bondHolder;
 
     @ManyToOne
-    @JoinColumn(name = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "bond_id")
+    @JsonIgnore
     private Bond bond;
 
     @ManyToOne
-    @JoinColumn(name = "book_id", insertable = false, updatable = false)
+    @JoinColumn(name = "book_id")
+    @JsonIgnore //break the infinite loop
     private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "trade_counter_party_id")
+    private TradeCounterParty tradeCounterParty;
+
 
     public int getId() {
         return id;
@@ -86,14 +97,6 @@ public class Trade {
         this.unitPrice = unitPrice;
     }
 
-    public String getBondHolder() {
-        return bondHolder;
-    }
-
-    public void setBondHolder(String bondHolder) {
-        this.bondHolder = bondHolder;
-    }
-
     public Bond getBond() {
         return bond;
     }
@@ -109,4 +112,27 @@ public class Trade {
     public void setBook(Book book) {
         this.book = book;
     }
+
+    public TradeCounterParty getTradeCounterParty() {
+        return tradeCounterParty;
+    }
+
+    public void setTradeCounterParty(TradeCounterParty tradeCounterParty) {
+        this.tradeCounterParty = tradeCounterParty;
+    }
+
+    public int getBondId() {
+        return (bond != null) ? bond.getId() : null;
+    }
+
+    public int getBookId() {
+        return (book != null) ? book.getId() : null;
+    }
+
+    public int getTradeCounterPartyId() {
+        return (tradeCounterParty != null) ? tradeCounterParty.getId() : null;
+    }
+
+
+
 }

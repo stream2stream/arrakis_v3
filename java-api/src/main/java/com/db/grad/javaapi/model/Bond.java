@@ -1,8 +1,12 @@
 package com.db.grad.javaapi.model;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 public class Bond {
@@ -14,18 +18,21 @@ public class Bond {
     private String cusip;
     private Double faceValue;
     private String isin;
-    private String issuerName;
     private LocalDate bondMaturityDate;
     private String bondStatus;
     private String type;
 
-    @OneToMany(mappedBy = "bond")
-    private List<Trade> trades;
+    @ManyToOne
+    @JoinColumn(name = "bond_counter_party_id")
+    private BondCounterParty bondCounterParty;
 
+
+    @OneToMany(mappedBy = "bond")
+    @JsonIgnoreProperties("bond")
+    private List<Trade> trades;
     public int getId() {
         return id;
     }
-
 
     public Double getCouponPercent() {
         return couponPercent;
@@ -67,14 +74,6 @@ public class Bond {
         this.isin = isin;
     }
 
-    public String getIssuerName() {
-        return issuerName;
-    }
-
-    public void setIssuerName(String issuerName) {
-        this.issuerName = issuerName;
-    }
-
     public LocalDate getBondMaturityDate() {
         return bondMaturityDate;
     }
@@ -99,11 +98,17 @@ public class Bond {
         this.type = type;
     }
 
-    public List<Trade> getTrades() {
-        return trades;
+    public BondCounterParty getBondCounterParty() {
+        return bondCounterParty;
     }
 
-    public void setTrades(List<Trade> trades) {
-        this.trades = trades;
+    public void setBondCounterParty(BondCounterParty bondCounterParty) {
+        this.bondCounterParty = bondCounterParty;
+    }
+
+    public List<Integer> getTradeIds() {
+        return trades.stream()
+                .map(Trade::getId)
+                .collect(Collectors.toList());
     }
 }

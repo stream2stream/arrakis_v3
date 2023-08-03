@@ -7,21 +7,34 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToMany(mappedBy = "users") // "users" refers to the "users" field in the Book entity
-    private List<Book> books = new ArrayList<>();
+    private String userName;
+
+    @ManyToMany
+    @JoinTable(name = "user_books",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    private List<Book> books;
 
     public int getId() {
         return id;
     }
 
-//    public List<BookUser> getBookUsers() {
-//        return bookUsers;
-//    }
-//
-//    public void setBookUsers(List<BookUser> bookUsers) {
-//        this.bookUsers = bookUsers;
-//    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 }
