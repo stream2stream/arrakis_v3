@@ -1,14 +1,13 @@
 package com.db.grad.javaapi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "trade")
 public class Trade {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int book_id;
     private int security_id;
@@ -20,7 +19,6 @@ public class Trade {
     private java.sql.Date trade_date;
     private java.sql.Date settlement_date;
 
-    @Id
     public int getId() {
         return id;
     }
