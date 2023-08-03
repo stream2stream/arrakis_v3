@@ -32,7 +32,7 @@ function Bonds() {
       newDate = format(newDate, 'dd-MM-yyyy')
       console.log(newDate);
       getAllBondsForBusinessDaysBeforeAndAfter(newDate).then((data) => {
-          console.log(data)
+          setBonds(data);
       }).catch((error) => {
           console.log(error)
       })
@@ -42,8 +42,8 @@ function Bonds() {
         const fetchBonds = async () => {
         try {
             getBondsByDate();
-            const result = await getAllBondsForBusinessDaysBeforeAndAfter(date);
-            setBonds(result);
+            //const result = await getAllBondsForBusinessDaysBeforeAndAfter(date);
+           
         } catch (error) {
             console.error("Error fetching bonds:", error);
         }
@@ -56,7 +56,7 @@ function Bonds() {
             <Toolbar />
             <Row className="row">
                   {bonds.map((bond, index) => (
-                    <div className="container">
+                    <div className="container" key={index}>
                       <BondCard key={index} bond={bond} date={date} /> 
                     </div>
                   ))}
