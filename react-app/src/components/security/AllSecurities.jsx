@@ -21,10 +21,17 @@ const dummy = [
 
 const AllSecurities = () => {
     const [securities, setSecurities] = useState([]);
+    const [error, setError] = useState("");
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect( ()=>{
+        
+    },[]);
+
+
     return (
-        <div>
-        <h3> Securities</h3>
-        <Table striped bordered hover>
+        <div className='all-securities-table-container'>
+        <Table striped bordered hover className='all-securities-table'>
             <thead>
                 <tr>
                     <th>ISIN</th>

@@ -10,17 +10,25 @@ const App = () => {
   return (
     <>
       <div className="page-container">
-      <div className="content-wrap">
-      <Header />
+        <div className="content-wrap">
 
-      <Routes>
-        <Route path="/" element={<Body/>} />
-        <Route path="/body" element={<Body />} />
-        <Route path="/login" element={<LoginForm />} />
-      </Routes>
-      </div>
-      <Footer />
-      
+          <div className="header-container">
+            <Header />
+          </div>
+
+          <div className="content-container">
+            <Routes>
+              <Route path="/" element={<Body />} />
+              <Route path="/body" element={<Body />} />
+              <Route path="/login" element={<LoginForm />} />
+            </Routes>
+          </div>
+
+          <div className="footer-container">
+            <Footer />
+          </div>
+
+        </div>
       </div>
     </>
   )

@@ -22,11 +22,11 @@ const DashBoard = () => {
             </div>
           ))}
         </div>
-        <div className="tabs-content">
-          {active === "Bonds" && <div className="tab-1"> <Securities /> </div>}
-          {active === "Trades" && <div className="tab-2"> <Trades/> </div>}
-          {active === "User Management" && <div className="tab-3"> User Management </div>}
-          {active === "Settings" && <div className="tab-4"> Settings </div>}
+        <div className="tabs-content-container">
+          {active === "Bonds" && <div className="tab-1 tabs-content"> <Securities /> </div>}
+          {active === "Trades" && <div className="tab-2 tabs-content"> <Trades/> </div>}
+          {active === "User Management" && <div className="tab-3 tabs-content"> User Management </div>}
+          {active === "Settings" && <div className="tab-4 tabs-content"> Settings </div>}
         </div>
       </div>
     </>
