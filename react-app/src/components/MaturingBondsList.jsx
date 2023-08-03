@@ -1,5 +1,5 @@
 import BondDetail from "./BondDetail";
-import { getBondsByDate } from "../../services/BondServices";
+import { getBondsByDate } from "../services/BondServices";
 import { useState } from "react";
 import { useEffect } from "react";
 

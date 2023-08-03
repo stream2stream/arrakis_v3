@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getAllBonds } from "../../services/BondServices";
+import { getAllBonds } from "../services/BondServices";
 import { useState } from "react";
 
 const AllBonds = () => {
