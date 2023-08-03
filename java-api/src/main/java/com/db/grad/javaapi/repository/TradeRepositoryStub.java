@@ -26,6 +26,11 @@ public class TradeRepositoryStub implements TradesRepository {
     }
 
     @Override
+    public List<Trade> getTradeByCounterPartyID(long id) {
+        return null;
+    }
+
+    @Override
     public Trade findById(long id) {
         Trade result = null;
 
