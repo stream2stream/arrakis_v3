@@ -6,9 +6,9 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     private int id;
-
     private String userName;
 
     @ManyToMany
@@ -37,4 +37,5 @@ public class User {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
 }
