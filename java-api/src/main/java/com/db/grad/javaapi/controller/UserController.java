@@ -14,18 +14,18 @@ public class UserController {
     private UserHandler userHandler;
     @Autowired
     public UserController(UserHandler uT){
-        UserHandler = uT;
+        userHandler = uT;
     }
     @GetMapping("/users/{id}")
     public User getTradeById(@PathVariable(value = "id") long id){
-        return UserHandler.getUserByID(id);
+        return userHandler.getUserByID(id);
     }
     @GetMapping("/users/{username}")
-    public User getTradeBySecurityID(@PathVariable(value = "id") long id){
-        return UserHandler.getUserByUsername(id);
+    public User getTradeBySecurityID(@PathVariable(value = "id") String username){
+        return UserHandler.getUserByUsername(username);
     }
     @GetMapping("/users")
     public List<User> getAllUsers() {
-        return UserHandler.getAllUsers();
+        return userHandler.getAllUsers();
     }
 }

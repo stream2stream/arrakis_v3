@@ -19,6 +19,10 @@ public class UserHandler {
         itsUsersRepo = userRepo;
     }
 
+    public static User getUserByUsername(String username) {
+        return getUserByUsername(username);
+    }
+
     public List<User> getAllUsers() {
         return itsUsersRepo.findAll();
     }
