@@ -52,7 +52,7 @@ public class SecurityHandler implements ISecurityService
         return itsSecuritiesRepo.findById(id);
     }
 
-    @Override
+    //@Override
     public Security getSecurityByIssuerName(String issuerName) {
         return null;
     }
