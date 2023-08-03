@@ -6,36 +6,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dogs")
-public class Dog
-{
+@Table(name = "book")
+public class Book {
     @Id
-    private long id;
+    private int id;
     private String name;
-    private long age;
 
     @Id
-    @Column(name = "dog_id", nullable = false)
-    public long getId() {
+    @Column(name= "id", nullable = false)
+    public int getId() {
         return id;
     }
-    public void setId(long id) {
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    @Column(name = "name", nullable = false)
+    @Column(name= "name", nullable = false)
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-
-    @Column(name = "age", nullable = false)
-    public long getAge() {
-        return age;
-    }
-    public void setAge(long age) {
-        this.age = age;
-    }
 }
+
