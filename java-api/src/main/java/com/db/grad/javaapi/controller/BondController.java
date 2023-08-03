@@ -9,20 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//package com.db.grad.javaapi.controller;
-//
-//import com.db.grad.javaapi.exception.ResourceNotFoundException;
-//import com.db.grad.javaapi.model.Dog;
-//import com.db.grad.javaapi.service.DogHandler;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import javax.validation.Valid;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:3000")
