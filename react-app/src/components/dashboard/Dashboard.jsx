@@ -12,8 +12,11 @@ export const Dashboard = () => {
         {field: "favoriteFood", headerName: "Food of Favorite", width: 150}
     ];
     return (
+        <>
+        <h1>Bond Dashboard</h1>
         <div>
             <DataGrid rows={rows} columns={cols}/>
         </div>
+        </>
     )
 }
