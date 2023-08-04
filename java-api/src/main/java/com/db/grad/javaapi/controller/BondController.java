@@ -44,6 +44,33 @@ public class BondController {
 
 
     //These need userId param
+    // USE OF THESE API LOOKS LIKE THIS: ./getBondsByUserId?userId=0
+    @GetMapping("/getBondsByUserId")
+    public List<Bond> getBondsByUserId(@RequestParam int userId) {
+        return s.findBondsByUserId(userId);
+    }
+
+//
+//    @GetMapping("/getTradesByBondIdAndUserId")
+//    public List<Bond> getBondsByBondIdAndUserId(@RequestParam int bondId, @RequestParam int userId) {
+//        return s.findBondsByBondIdAndUserId(bondId, userId);
+//    }
+//
+//
+//
+//    // USE OF THESE API LOOKS LIKE THIS: ./getBondsIn5Days?date=2023-08-10
+//    @GetMapping("/getBondsIn5Days")
+//    public List<Bond> findUserBondsWithMaturityDateInFiveDays(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @RequestParam int userId) {
+//        return s.findUserBondsWithMaturityDateInFiveDays(date, userId);
+//    }
+//    // USE OF THESE API LOOKS LIKE THIS: ./getBondsBefore5Days?date=2023-08-10
+//    @GetMapping("/getBondsBefore5Days")
+//    public List<Bond> findUserBondsWithMaturityDateFiveDaysBefore(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @RequestParam int userId) {
+//        return s.findUerBondsWithMaturityDateFiveDaysBefore(date, userId);
+//    }
+
+
+
 
 
 
@@ -53,16 +80,16 @@ public class BondController {
         return s.findBondsByBookId(bookId);
     }
 
-    // USE OF THESE API LOOKS LIKE THIS: ./getBondsIn5Days?date=2023-08-10
-    @GetMapping("/getBondsIn5Days")
-    public List<Bond> findBondsWithMaturityDateInFiveDays(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return s.findBondsWithMaturityDateInFiveDays(date);
-    }
-    // USE OF THESE API LOOKS LIKE THIS: ./getBondsBefore5Days?date=2023-08-10
-    @GetMapping("/getBondsBefore5Days")
-    public List<Bond> findBondsWithMaturityDateFiveDaysBefore(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        return s.findBondsWithMaturityDateFiveDaysBefore(date);
-    }
+//    // USE OF THESE API LOOKS LIKE THIS: ./getBondsIn5Days?date=2023-08-10
+//    @GetMapping("/getBondsIn5Days")
+//    public List<Bond> findBondsWithMaturityDateInFiveDays(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+//        return s.findBondsWithMaturityDateInFiveDays(date);
+//    }
+//    // USE OF THESE API LOOKS LIKE THIS: ./getBondsBefore5Days?date=2023-08-10
+//    @GetMapping("/getBondsBefore5Days")
+//    public List<Bond> findBondsWithMaturityDateFiveDaysBefore(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+//        return s.findBondsWithMaturityDateFiveDaysBefore(date);
+//    }
 
 
 

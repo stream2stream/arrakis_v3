@@ -30,6 +30,10 @@ public class BondService {
         return br.findBondsByBookId(bookId);
     }
 
+    public List<Bond> findBondsByBookIds(List<Integer> bookIds) {
+        return br.findBondsByBookIds(bookIds);
+    }
+
     public Bond findById(int id){
         return br.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
