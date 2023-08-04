@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
+import companyLogo from '../assets/logo.png';
 
 const pages = ['Home', 'Books', 'Upcoming'];
 
@@ -23,14 +24,18 @@ const NavigationBar = (props) => {
 
   return (
     <>
-    <AppBar position="static"  sx={{ 'background-color': '#e8f6ff'}}>
+    <AppBar position="static"  sx={{ 'background-color': '#ffe6b3'}}>
         <Container maxWidth="xl">
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', 'justify-content': 'space-around' } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex'} }}>
+            <div style={{fontSize: '30px',color:'#B97A57',fontFamily:'papyrus'}}>Arrakis</div>
+            <img width='100px' height = 'auto' src = {companyLogo}/>
+            <div style={{marginLeft:'15%'}}>
                 <Tabs value={selectedTab} onChange={handleTabChange} sx={{color: 'white'}}>
                     <Tab label={pages[0]} />
                     <Tab label={pages[1]}  />
                     <Tab label={pages[2]}  />
                 </Tabs>
+            </div>
             </Box>
         </Container>
     </AppBar>
