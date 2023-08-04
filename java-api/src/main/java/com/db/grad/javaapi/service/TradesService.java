@@ -18,6 +18,9 @@ public class TradesService {
         return repo.findAll();
     }
 
+    public List<Trade> getAllTradesByUsername(String username) {
+        return repo.findTradesByUsername(username);
+    }
     public Trade getTradeById( Integer id ) {
 
         return repo.findById(id).get();

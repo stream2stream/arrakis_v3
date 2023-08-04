@@ -23,6 +23,11 @@ public class TradesController {
         return tradesService.getAllTrades();
     }
 
+    @GetMapping("/trades/user/{username}")
+    public List<Trade> getTradesByUsername(@PathVariable String username) {
+        return tradesService.getAllTradesByUsername(username);
+    }
+
     @GetMapping("/trades/{id}")
     public Trade getTradeById(@PathVariable Integer id) {
         return tradesService.getTradeById(id);
