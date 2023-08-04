@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Form, Row, Card } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import { userLogin } from '../../services/BondServices';
-
 import styles from "./Auth.module.css";
 
 const Auth = (props) => {
@@ -55,7 +54,7 @@ const Auth = (props) => {
         })
     }
 
-    const login =  (e) => {
+    const login = (e) => {
         e.preventDefault();
         const user = dummyData.find(ele => ele.email === email);
         if (user) {

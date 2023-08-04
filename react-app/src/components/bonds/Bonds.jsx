@@ -125,13 +125,14 @@ export const Bonds = (props) => {
 
   for (let i = 0; i < bonds.length; i++) {
     deBonds.push(
-      <tr key={i}>
+      <>
         {Object.values(bonds[i]).map((value, index) => (
           <td key={index}>{value}</td>
         ))}
-      </tr>
+      </>
     );
   }
+
   // useEffect(() => {
   //   findBonds()
   //     .then(({data}) => {
