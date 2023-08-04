@@ -17,3 +17,11 @@
     justify-content: space-around;
     padding: 20px;
 }
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 75%;
+    height: 50%;
+}
