@@ -5,7 +5,7 @@ import Bonds from "./pages/Bonds";
 import Test from "./pages/Test";
 import Login from "./pages/Login";
 import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom";
-
+import ZoomBondAll from "./pages/ZoomBondAll";
 const isAuthenticated = () => {
   // Replace with your actual authentication logic
   return localStorage.getItem('jwtToken') !== null ;
@@ -37,6 +37,7 @@ const App = () => {
           <Route ProtectedRoute path="bonds" element={<Bonds />} />
           <Route ProtectedRoute path="zoombond" element={<ZoomBond />} />
           <Route ProtectedRoute path="test" element={<Test />} />
+          <Route ProtectedRoute path="allbond" element={<ZoomBondAll />} />
       </Route>
     </Routes>
   </>);

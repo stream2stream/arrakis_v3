@@ -36,10 +36,14 @@ export default function Home() {
   const onDateChange = (date) => {
     setDate(date)
   }
-  const onClickSidebarOption = (data) =>{
+  const onClickSidebarOption = (data) => {
     console.log(data);
-    navigate("/home/" + data);
-  }
+    if (data === 'All Bonds Table') {
+      navigate("/home/allbond");
+    } else {
+      navigate("/home/" + data);
+    }
+  };
 
   const logOut = () => {
     console.log('logout');
@@ -95,7 +99,7 @@ export default function Home() {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            {['Bonds'].map((text, index) => (
+            {['Bonds', 'All Bonds Table'].map((text, index) => (
               
               <ListItem key={text} disablePadding  onClick={()=> {onClickSidebarOption(text)}}>
                 <ListItemButton>
