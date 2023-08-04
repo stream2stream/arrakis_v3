@@ -80,3 +80,14 @@ export const getBondHolderNameById = async (id) => {
   }
 };
 
+export const getStatsByBondHolderID = async (bondHolderId) => {
+  try {
+    const response = await axios.get(`${hostNameUrl}/stats/bondHolderId/${bondHolderId}`);
+    const stats = response.data;
+    return stats;
+  } catch (error) {
+    console.error("Error fetching bond holder stats:", error);
+    throw error;
+  }
+};
+

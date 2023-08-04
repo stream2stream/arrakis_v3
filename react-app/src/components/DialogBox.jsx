@@ -14,7 +14,7 @@ import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
 import { forwardRef, useRef, useState, useEffect } from 'react';
 import ZoomBond from '../pages/ZoomBond';
-import { getBondHolderNameById } from '../services/BondService';
+import { getBondHolderNameById, getStatsByBondHolderID } from '../services/BondService';
 
 
 export const DialogBox = forwardRef((props, ref) => {
@@ -22,19 +22,24 @@ export const DialogBox = forwardRef((props, ref) => {
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('xl');
   const [bondHolderName, setBondHolderName] = useState('');
-
-
-  const openDialog = (name) => {
-    setBondHolderName(name);
-    handleClickOpen();
-  };
+  const [bondHolderStats, setBondHolderStats] = useState(null);
 
   useEffect(() => {
-    // Fetch the bond holder name when the component mounts or when bondHolderName prop changes.
     if (props.bondHolderName) {
       fetchBondHolderName();
+      fetchBondHolderStats();
     }
   }, [props.bondHolderName]);
+
+  const fetchBondHolderStats = async () => {
+    try {
+      const stats = await getStatsByBondHolderID(props.bondHolderName);
+      setBondHolderStats(stats);
+    } catch (error) {
+      console.error("Error fetching bond holder stats:", error);
+      setBondHolderStats(null);
+    }
+  };
 
   const fetchBondHolderName = async () => {
     try {
@@ -42,13 +47,18 @@ export const DialogBox = forwardRef((props, ref) => {
       setBondHolderName(name);
     } catch (error) {
       console.error('Error fetching bond holder name:', error);
+      setBondHolderName(''); // Reset bondHolderName if there's an error
     }
   };
 
+  useEffect(() => {
+    setOpen(false); // Reset open state when the component mounts or bondHolderName prop changes
+  }, [props.bondHolderName]);
+
   React.useImperativeHandle(ref, () => ({
     openDialog: (name) => {
+      fetchBondHolderName(); // Fetch bond holder name when opening the dialog
       setOpen(true);
-      setBondHolderName(name);
     },
   }));
 
@@ -58,17 +68,7 @@ export const DialogBox = forwardRef((props, ref) => {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleMaxWidthChange = (event) => {
-    setMaxWidth(
-      // @ts-expect-error autofill of arbitrary value is not handled.
-      event.target.value,
-    );
-  };
-
-  const handleFullWidthChange = (event) => {
-    setFullWidth(event.target.checked);
+    setBondHolderName(''); // Reset bondHolderName when the dialog is closed
   };
 
   return (
@@ -84,6 +84,14 @@ export const DialogBox = forwardRef((props, ref) => {
           <DialogContentText>
             {bondHolderName}
           </DialogContentText>
+          {bondHolderStats ? (
+            <div>
+              <p>Number of Bonds: {bondHolderStats.bondHolderNumberOfBonds}</p>
+              <p>Current position: {bondHolderStats.bondHolderCurrentPosition}</p>
+            </div>
+          ) : (
+            <p>Loading bond holder stats...</p>
+          )}
           <Box
             noValidate
             component="form"
@@ -94,7 +102,6 @@ export const DialogBox = forwardRef((props, ref) => {
               width: 'fit-content',
             }}
           >
-           
           </Box>
         </DialogContent>
         <DialogActions>

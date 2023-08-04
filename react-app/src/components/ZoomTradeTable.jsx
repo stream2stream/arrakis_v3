@@ -14,8 +14,8 @@ import { DialogBox } from './DialogBox';
 const columns = [
   { id: 'isin', label: 'ISIN', minWidth: 170 },
   {
-    id: 'bookName',
-    label: 'Book Name',
+    id: 'bookId',
+    label: 'Book ID',
     minWidth: 170,
     align: 'right',
     format: (value) => value.toLocaleString('en-US'),
@@ -131,28 +131,40 @@ export default function ZoomTradeTable({ isin }) {
               </TableRow>
             </TableHead>
             <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.isin}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align} onClick={() => {
-                          setSelectedBondHolderID(value);
-                          dialogRef.current.openDialog(value);
-                        }}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
+                    {rows
+                      .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                      .map((row) => {
+                        return (
+                          <TableRow hover role="checkbox" tabIndex={-1} key={row.isin}>
+                            {columns.map((column) => {
+                              const value = row[column.id];
+                              return (
+                                <TableCell key={column.id} align={column.align}>
+                                  {column.id === 'bondHolderID' ? (
+                                    <span
+                                      style={{ cursor: 'pointer' }}
+                                      onClick={() => {
+                                        setSelectedBondHolderID(value);
+                                        dialogRef.current.openDialog(value);
+                                      }}
+                                    >
+                                      {column.format && typeof value === 'number'
+                                        ? column.format(value)
+                                        : value}
+                                    </span>
+                                  ) : (
+                                    // Render the cell without the click functionality for other columns
+                                    column.format && typeof value === 'number'
+                                      ? column.format(value)
+                                      : value
+                                  )}
+                                </TableCell>
+                              );
+                            })}
+                          </TableRow>
+                        );
+                      })}
+                  </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
