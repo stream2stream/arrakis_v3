@@ -65,13 +65,13 @@ public class TradeController {
         return response;
     }
 
-
-    @GetMapping("/trades/securityIDs")
+    @PostMapping("/trades/securityIDs")
     public ResponseEntity < ? > getTradesBySecurityId(@RequestBody List<Long> ids)
             throws ResourceNotFoundException {
         List<Trade> trades = tradeHandler.getTradesBySecuritiesID(ids);
 //        if (trades == null) return ResponseEntity.badRequest().body("Security id is invalid or no trades map to id");
         return ResponseEntity.ok().body(trades);
     }
+
 
 }
