@@ -50,7 +50,7 @@ export function getAllBonds(userChecked) {
 
 export function getBondsByDate(props) {
     console.log("service: " + props.info.check);
-    var date = props.date;
+    var date = props.info.date;
     var check = props.check;
     date = moment(date).format('YYYY-MM-DD');
     if(!check){
