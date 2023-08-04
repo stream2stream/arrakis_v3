@@ -9,10 +9,8 @@ const Securities = () => {
 
         <div className='hot-all-securities'>
           <div className='hot-securities-container'>
-            <h5> Hot Securities</h5>
-            <div className='scroll-container'>
+          <h5> Hot Securities</h5>
               <AllSecurities />
-            </div>
           </div>
 
           <div className='all-securities-container'>
@@ -23,9 +21,7 @@ const Securities = () => {
 
         <div className='securities-trade-container'>
           <h5> Trades </h5>
-          <div className='scroll-container'>
-              <Trades />
-            </div>
+          <Trades />
         </div>
 
       </div>

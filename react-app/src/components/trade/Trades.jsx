@@ -59,7 +59,7 @@ const Trades = () => {
             </div>
         )
     }
-    if (!loaded) {
+    if (!loaded && !error) {
         return (
             <div className='x'>
                 <p>

@@ -38,16 +38,28 @@
   background-color: #f1f4f4;
   display: flex;
   flex-direction: column;
-  min-height: 100%;
-  height: auto;
+  height: 100%;
+}
+
+.header-container {
+  max-height: 10%;
 }
 
 .content-container {
-  height: 100%;
   position: relative;
   display: flex;
   flex: 1;
   justify-content: center;
+  height: 85%;
+}
+
+.footer-container {
+  height: 10%;
+}
+
+.vl-white {
+  border-left: 1px solid rgb(249, 251, 249);
+  height: 100%;
 }
 
 .dashboard-container {
@@ -201,7 +213,7 @@
     padding: 10px;
   }
 
-  .tabs-content{
+  .tabs-content {
     width: 100%;
     height: 100%;
   }
@@ -223,7 +235,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .hot-all-securities {
@@ -232,19 +244,28 @@
   justify-content: space-between;
   height: 50%;
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .hot-securities-container {
   height: 100%;
   width: 37%;
   overflow: hidden;
+  background-color: rgb(245, 150, 150);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 
 .all-securities-container {
   height: 100%;
   width: 60%;
-  overflow: hidden;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  /* overflow: hidden; */
 }
 
 .securities-trade-container {
@@ -261,12 +282,88 @@
     width: 80vw;
   }
 
-  .hot-securities-container, .all-securities-container {
+  .hot-securities-container,
+  .all-securities-container {
     width: 100%;
   }
 }
 
-.all-securities-table-container, .trades-table-container {
+.all-securities-table-container,
+.trades-table-container {
   overflow: scroll;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.all-securities-table-container thead tr,
+.trades-table-container thead tr {
+  position: sticky;
+  top: 0;
+}
+
+
+/* =================================================================================== */
+.date-form-picker-container {
+  position: relative;
+}
+
+.date-picker-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+}
+
+.date-range-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.date-range-form {
+  display: flex;
+  flex-direction: row;
+}
+
+#date-range-text-box {
+  width: 120px;
+}
+
+
+.securities-filter-container,
+.securities-attributes-container {
+  background-color: #38393a;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  height: 100%;
+}
+
+.securities-filter-container {
+  background-color: #38393a;
+  padding: 10px;
+  color: #fff;
+  overflow: visible;
+  height: 100px;
+}
+
+.filter-label {
+  font-size: 12px;
+}
+
+.search-bar-container {
+  width: 200px;
+}
+
+/* ============================================================== */
+#check-box-div {
+  background-color: rgb(74, 182, 140);
+  color: rgb(250, 250, 250);
+  border-color: white;
+}
+
+.CheckboxMenu .dropdown-item:hover,
+.CheckboxMenu .dropdown-item:active {
+  background-color: transparent;
+  color: black;
 }
