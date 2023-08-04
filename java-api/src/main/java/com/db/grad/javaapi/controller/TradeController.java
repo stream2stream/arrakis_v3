@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 //@RequestMapping("/api/v1")
 //@CrossOrigin(origins = "http://localhost:3000")
@@ -70,7 +70,7 @@ public class TradeController {
     public ResponseEntity < ? > getTradesBySecurityId(@RequestBody List<Long> ids)
             throws ResourceNotFoundException {
         List<Trade> trades = tradeHandler.getTradesBySecuritiesID(ids);
-        if (trades == null) return ResponseEntity.badRequest().body("Security id is invalid or no trades map to id");
+//        if (trades == null) return ResponseEntity.badRequest().body("Security id is invalid or no trades map to id");
         return ResponseEntity.ok().body(trades);
     }
 
