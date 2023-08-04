@@ -29,12 +29,12 @@ const Body = (props) => {
         props.setUser();
     }
 
-    const user = props.user;
+    const user = props.info;
     console.log(user);
     return (
         <>
             <div className='dashboard-container'>
-                {currentUser ? <DashBoard /> : <LoginForm setUser={setUser} />}
+                {currentUser ? <DashBoard info={props.info}/> : <LoginForm info={setUser} />}
             </div>
         </>
     )

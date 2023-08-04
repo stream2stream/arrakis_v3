@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Body from '../Body';
 
 
-const Header = () => {
+const Header = (props) => {
 
 
     const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Header = () => {
                                     <NavDropdown.Divider />
                                     <NavDropdown.Item href="#action/3.2">German</NavDropdown.Item>
                                 </NavDropdown>
-                                <Nav.Link href="#link">Welcome $</Nav.Link>
+                                <Nav.Link href="#link">Welcome  </Nav.Link>
                             </Nav>
                     </Navbar.Collapse>
                 </Container>

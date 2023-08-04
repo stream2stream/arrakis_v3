@@ -5,7 +5,10 @@ import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
 import javax.persistence.EntityNotFoundException;
+>>>>>>> d342c69656e549dd8f7e0e0a13f0e4b78951013b
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -73,6 +76,9 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.save(securityToUpdate);
     }
 
+<<<<<<< HEAD
+    public List<Security> getSecuritiesByUserDateRange(Long userId, String startDateString, String endDateString) throws IllegalArgumentException {
+=======
 
     public Security updateSecurityStatus(long id) {
         Optional<Security> theSecurity = securityRepository.findById(id);
@@ -85,6 +91,7 @@ public class SecurityHandler implements ISecurityService {
     }
 
     public List<Security> getSecuritiesByUserDateRange(long userId, String startDateString, String endDateString) throws IllegalArgumentException {
+>>>>>>> d342c69656e549dd8f7e0e0a13f0e4b78951013b
         LocalDate startDate=LocalDate.parse(startDateString,dateFormatter);
         LocalDate endDate=LocalDate.parse(endDateString,dateFormatter);
 
@@ -106,6 +113,8 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.findDistinctSecurityTypesByUserId(userId);
     }
 
+<<<<<<< HEAD
+=======
     // API 7: Get distinct issuer name in user books issuer_name
     public List<String> getDistinctSecurityIssuerByUserId(Long userId) {
         return securityRepository.findDistinctSecurityIssuerByUserId(userId);
@@ -126,5 +135,6 @@ public class SecurityHandler implements ISecurityService {
 
 
     }
+>>>>>>> d342c69656e549dd8f7e0e0a13f0e4b78951013b
 
 }

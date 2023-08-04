@@ -4,23 +4,28 @@ import Body from "./components/Body";
 import { Route, Routes } from 'react-router-dom';
 import LoginForm from "./components/auth/LoginForm";
 import Footer from "./components/includes/Footer";
+import { useState } from "react";
 
 
 const App = () => {
+  const [currentUser,setCurrentUser] = useState(null);
+  const setUser = ( loggedInUser ) => {
+    setCurrentUser (loggedInUser);
+  }
   return (
     <>
       <div className="page-container">
         <div className="content-wrap">
 
           <div className="header-container">
-            <Header />
+            <Header info={currentUser}/>
           </div>
 
           <div className="content-container">
             <Routes>
-              <Route path="/" element={<Body />} />
-              <Route path="/body" element={<Body />} />
-              <Route path="/login" element={<LoginForm />} />
+              <Route path="/" element={<Body info={currentUser}/>} />
+              <Route path="/body" element={<Body info={currentUser} setUser={setUser} />} />
+              <Route path="/login" element={<LoginForm info={setUser} />} />
             </Routes>
           </div>
 
