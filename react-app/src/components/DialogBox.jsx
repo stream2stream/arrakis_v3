@@ -84,7 +84,7 @@ export const DialogBox = forwardRef((props, ref) => {
           {bondHolderStats ? (
             <div>
               <p>Number of Bonds: {bondHolderStats.bondHolderNumberOfBonds}</p>
-              <p>Current position: {bondHolderStats.bondHolderCurrentPosition}</p>
+              <p>Current position: {bondHolderStats.bondHolderCurrentPosition} USD</p>
             </div>
           ) : (
             <p>Loading bond holder stats...</p>
