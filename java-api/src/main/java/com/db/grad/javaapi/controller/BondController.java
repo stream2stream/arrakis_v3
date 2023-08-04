@@ -41,6 +41,11 @@ public class BondController {
     }
 
 
+
+    //These need userId param
+
+
+
     // USE OF THESE API LOOKS LIKE THIS: ./getBondsByBookId?bookId=0
     @GetMapping("/getBondsByBookId")
     public List<Bond> getBondsByBookId(@RequestParam int bookId) {
@@ -57,6 +62,10 @@ public class BondController {
     public List<Bond> findBondsWithMaturityDateFiveDaysBefore(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return s.findBondsWithMaturityDateFiveDaysBefore(date);
     }
+
+
+
+
 
     //  curl -X POST -H "Content-Type: application/x-www-form-urlencoded" -d "username=newUser123" http://localhost:8080/api/addUserByName
     @PostMapping("/addUserByName")
