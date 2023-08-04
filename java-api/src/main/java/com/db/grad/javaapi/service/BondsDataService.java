@@ -7,6 +7,7 @@ import com.db.grad.javaapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -105,6 +106,7 @@ public class BondsDataService implements IBondsDataService
         return repository.findByIsin(isin);
     }
 
+    @Transactional
     @Override
     public List<BondsData> getForUser(int userId) {
         User user = userRepository.findById(userId).orElse(null);
