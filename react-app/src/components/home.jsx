@@ -12,6 +12,10 @@ export const Home = ({userID, setUserID}) => {
 
     const [date, setDate] = useState(new Date());
     const navigate = useNavigate();
+
+    if(userID == 0)
+        navigate("/login")
+        
     useEffect(()=>{
         getBondsFromAPI();
         getTradesFromAPI()}, 

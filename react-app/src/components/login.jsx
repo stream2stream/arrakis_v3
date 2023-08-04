@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { login } from "../services/TradeServices";
 
 const Login = ({userID, setUserID}) => {
     const [username, setUsername] = useState("")
@@ -13,7 +14,7 @@ const Login = ({userID, setUserID}) => {
         setUsernameError("")
         setPasswordError("")
 
-        if ("" === email) {
+        if ("" === username) {
             setUsernameError("please enter your username")
             return
         }
@@ -28,7 +29,16 @@ const Login = ({userID, setUserID}) => {
             return
         }
 
-        navigate("/home")
+        login(username, password)
+            .then(res => {
+                console.log("Login response: " + res.data);
+                setUserID(res.data);
+                navigate("/home")
+            })
+            .catch(err => {
+                console.log("Login error response: " + err);
+                setUserID(0);
+        })
     }
 
     return <div className={"mainContainer"}>
@@ -38,17 +48,18 @@ const Login = ({userID, setUserID}) => {
         <br />
         <div className={"inputContainer"}>
             <input
-                value={email}
-                placeholder="Enter your email here"
-                onChange={ev => setEmail(ev.target.value)}
+                value={username}
+                placeholder="username"
+                onChange={ev => setUsername(ev.target.value)}
                 className={"inputBox"} />
-            <label className="errorLabel">{emailError}</label>
+            <label className="errorLabel">{usernameError}</label>
         </div>
         <br />
         <div className={"inputContainer"}>
             <input
                 value={password}
-                placeholder="Enter your password here"
+                placeholder="password"
+                type="password"
                 onChange={ev => setPassword(ev.target.value)}
                 className={"inputBox"} />
             <label className="errorLabel">{passwordError}</label>

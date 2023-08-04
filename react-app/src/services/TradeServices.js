@@ -1,8 +1,9 @@
 
 import http from './axios-common';
 
-
-
+export function login(username, password) {
+  return http.get("/login?u="+username+"&p="+password);
+}
 export function getAllBonds(){
   return http.get("/bonds");
 }

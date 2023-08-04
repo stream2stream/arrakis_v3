@@ -12,6 +12,7 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Login userID={userID} setUserID={setUserID} />} />
           <Route path="/login" element={<Login userID={userID} setUserID={setUserID} />} />
           <Route path="/home" element={<Home userID={userID} setUserID={setUserID} />} />
         </Routes>
