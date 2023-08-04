@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, Typography } from "@mui/material";
 
 import { makeStyles } from "@mui/styles";
-
+import NavBar from "../../components/NavBar/NavBar";
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
@@ -33,6 +33,8 @@ const DetailPage = () => {
   };
 
   return (
+    <>
+    <NavBar/>
     <Card>
       <CardContent>
         <Typography variant="h5" component="div">
@@ -54,6 +56,7 @@ const DetailPage = () => {
         <Typography variant="body2">Status: {bond.Status}</Typography>{" "}
       </CardContent>
     </Card>
+    </>
   );
 };
 

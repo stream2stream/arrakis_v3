@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, Card, CardContent, CardHeader } from "@mui/material";
+import NavBar from "../../components/NavBar/NavBar";
 
 const Dashboard = () => {
   const today = new Date();
@@ -12,6 +13,8 @@ const Dashboard = () => {
   ];
 
   return (
+    <>
+    <NavBar />
     <Grid container spacing={2} direction="row" justify="center" className="container">
     {dates.map((date, index) => (
       <Grid item xs={2} key={index} className="grid-content">
@@ -30,6 +33,7 @@ const Dashboard = () => {
       </Grid>
     ))}
   </Grid>
+  </>
   );
 };
 
