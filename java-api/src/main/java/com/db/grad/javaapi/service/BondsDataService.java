@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BondsDataService implements IBondsDataService
@@ -109,16 +113,41 @@ public class BondsDataService implements IBondsDataService
     @Transactional
     @Override
     public List<BondsData> getForUser(int userId) {
+        List<BondsData> result = null;
         User user = userRepository.findById(userId).orElse(null);
-        if(user == null) {
-            return null;
+        if (user != null) {
+            List<BondsData> ret = new ArrayList<>();
+            for (String book : user.getTradingBooks()) {
+                ret.addAll(repository.findByBookName(book));
+            }
+            result = ret;
         }
-        List<BondsData> ret = new ArrayList<>();
 
-        for (String book : user.getTradingBooks()) {
-            ret.addAll(repository.findByBookName(book));
-        }
+        return result;
+    }
 
-        return ret;
+    @Override
+    public List<BondsData> getForUser(int userId, Date date) {
+        List<BondsData> bondsData = getForUser(userId);
+
+        // Convert the provided date to LocalDateTime
+        LocalDateTime givenDateTime = date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDateTime();
+
+        return bondsData.stream()
+                .filter(x -> {
+                    // Convert bondMaturityDate to LocalDateTime
+                    LocalDateTime bondMaturityDateTime = x.getBondMaturityDate().toInstant()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDateTime();
+
+                    // Calculate the duration between the given date and bondMaturityDate
+                    Duration duration = Duration.between(bondMaturityDateTime, givenDateTime);
+
+                    // Check if the duration is less than or equal to 24 hours
+                    return Math.abs(duration.toHours()) <= 24;
+                })
+                .collect(Collectors.toList());
     }
 }
