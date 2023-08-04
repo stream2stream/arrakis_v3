@@ -2,7 +2,7 @@ import { getBondsByDate } from "../services/BondServices";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { useEffect } from "react";
 
-const MaturingBondsList = forwardRef((props, ref) => {
+const MaturingBondsList = (props) => {
   const [bonds, setDateBonds] = useState([]);
 
   useEffect(() => {
@@ -22,10 +22,6 @@ const MaturingBondsList = forwardRef((props, ref) => {
       });
   };
 
-  useImperativeHandle(ref, ()=>({
-    getBondsByDateFromAPI
-  }));
-
 
 
   const formatDate = (timestamp) => {
@@ -35,10 +31,8 @@ const MaturingBondsList = forwardRef((props, ref) => {
   };
 
 
-  const isBondNotEmpty = Object.keys(bonds).length >0;
+
   return (
-    <div>
-    { isBondNotEmpty ? (
     <table className="table table-striped">
       <thead>
         <tr>
@@ -67,10 +61,7 @@ const MaturingBondsList = forwardRef((props, ref) => {
         ))}
       </tbody>
     </table>
-    ):(<p>There is no bond to show this date.</p>
-    )}
-    </div>
   );
-});
+};
 
 export default MaturingBondsList;

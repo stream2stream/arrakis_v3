@@ -52,8 +52,6 @@ export function getBondsByDate(props) {
     var date = props.info.date;
     var check = props.info.check;
     console.log("service: " + props.info.check);
-    var date = props.info.date;
-    var check = props.check;
     date = moment(date).format('YYYY-MM-DD');
 
     if(!check){
@@ -62,6 +60,8 @@ export function getBondsByDate(props) {
     }else{
         const auth = getAuth();
         const user = auth.currentUser;
-        console.log(user)
+        console.log(user);
+        return http.get("http://localhost:8080/api/v1/bondsdata/all/user/"+user+"?date="+date)
+
     }
 }
