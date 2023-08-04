@@ -36,14 +36,15 @@ function App() {
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand href="/">Home</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
 
               {authenticated &&
                 <>
-                  <Nav.Link href="/logout">Logout</Nav.Link>
                   <Nav.Link href="/allbonds">All Bonds</Nav.Link>
                   <Nav.Link href="/bondsbymaturity">Bonds by Maturity</Nav.Link>
+                  <Nav.Link href="/logout">Logout</Nav.Link>
                 </>}
             </Nav>
           </Navbar.Collapse>
