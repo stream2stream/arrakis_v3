@@ -1,14 +1,17 @@
 package com.db.grad.javaapi.model;
 
-import javax.persistence.*;
 
+
+import javax.persistence.*;
 import java.sql.Date;
+
+
 @Entity
 @Table(name = "bond_details")
 public class Bond
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String TRADE_CURRENCY;
     private long FACE_VALUE;
