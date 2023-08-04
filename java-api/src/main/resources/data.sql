@@ -4,3 +4,6 @@ INSERT INTO bondsdata (trade_type, trade_currency, quantity, trade_settlement_da
 ('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'A12356111', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK4', 'HOLDER4'),
 ('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'US9128285C83', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK5', 'HOLDER5'),
 ('BUY', 'USD', 100, '2019-01-01', 'SETTLED', '2019-01-01', 100.00, 0.05, 'USD', 'US9128285C83', 100, 'GB00B6460507', 'US TREASURY NOTE', '2020-01-01', 'ACTIVE', 'TREASURY', 'BOOK6', 'HOLDER6');
+
+INSERT INTO users (user_id, books) VALUES ('gGnVWdj6GCUmwF26nhG2UuYzNel1', ARRAY['trading_book_2', 'Trading_book_3']),
+('sQh0i0365ngk49ZRQTpAEuR4btB3', ARRAY['trading_book_1', 'Trading_book_6', 'Trading_book_4']);

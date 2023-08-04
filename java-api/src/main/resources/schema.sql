@@ -21,3 +21,9 @@ CREATE TABLE bondsdata (
     book_name VARCHAR(50),
     bond_holder VARCHAR(50)
 );
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id VARCHAR(50) UNIQUE,
+    books VARCHAR(100) ARRAY
+);
