@@ -57,7 +57,7 @@ function App() {
           <Route path="logout" element={<Logout />} />
           {!isLoading && authenticated && <>
             <Route path="/allbonds" element={<AllBonds />} />
-            <Route path="/bondsbymaturity" element={<MatureBondsWrapper/>} />
+            <Route path="/bondsbymaturity" element={<AllMaturingBonds/>} />
             <Route path="/*" element={<AllBonds />} />
           </>}
           {!isLoading && !authenticated && <>
