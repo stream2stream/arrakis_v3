@@ -1,20 +1,36 @@
-import React from "react";
 // import { Button, TextField, Grid, Paper, Typography } from "@material-ui/core";
-import{ Button,Grid, TextField, Paper,Typography} from '@mui/material'
-import { useState } from "react";
-import './Login.css'
+import { Button, Grid, TextField, Paper, Typography } from "@mui/material";
 
+import "./Login.css";
+// To redirect after successful login
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
-   const [username, setUsername] = useState("");
-     const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-       const handleLogin = () => {
-            // logica de autentificare aici
-                console.log("Username: ", username);
-                    console.log("Password: ", password);
-        };
-       
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/api/v1/check_login", {
+        username: username,
+        password: password,
+      });
+      if (response.status === 200) {
+        // Login successful, redirect to dashboard or other protected routes
+        navigate("/dashboard"); // Adjust the path based on your routing configuration
+      } else {
+        // Login failed, handle the error
+        console.log("Login failed");
+      }
+    } catch (error) {
+      console.log("Error during login:", error);
+    }
+  };
+
   return (
     <Grid container className="container">
       <Grid item xs={12} sm={8} md={6} lg={4}>
@@ -50,6 +66,6 @@ const Login = () => {
       </Grid>
     </Grid>
   );
+};
 
-  }
 export default Login;
