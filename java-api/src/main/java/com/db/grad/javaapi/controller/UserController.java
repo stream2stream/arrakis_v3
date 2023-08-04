@@ -29,14 +29,19 @@ public class UserController {
         userService = ds;
     }
 
-    @GetMapping("User/{name}")
-    public User findUser(String name){
-        return userService.findUser(name);
-    }
+//    @GetMapping("User/{name}")
+//    public User findUser(String name){
+//        return userService.getBookId(name);
+//    }
 
     @GetMapping("User")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
+    }
+
+    @GetMapping("User/getId/{name}")
+    public long getUserId(@PathVariable(value = "name") String name){
+        return userService.getBookId(name);
     }
 
 }

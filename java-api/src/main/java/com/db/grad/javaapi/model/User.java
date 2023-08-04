@@ -23,18 +23,25 @@ public class User {
 
     public User() {}
 
+    @Column(name = "id", nullable = false)
+    public long getUserId() {return id;}
+
     @Column(name = "name", nullable = false)
     public String getUserName(){
         return name;
     }
+
     @Column(name = "email", nullable = false)
     public String getUserEmail(){
         return email;
     }
+
     @Column(name = "role", nullable = false)
     public String getUserRole(){
         return role;
     }
+
+
 
     public void setUserName(String name){
         this.name = name;

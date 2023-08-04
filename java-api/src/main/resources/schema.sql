@@ -1,5 +1,5 @@
---DROP DATABASE IF EXISTS `bonds`;
---CREATE DATABASE `bonds`;
+--DROP DATABASE IF EXISTS bonds;
+--CREATE DATABASE bonds;
 --use bonds;
 
 --/* CREATE TABLE bonds_info (
@@ -48,6 +48,20 @@ CREATE TABLE book_users (
   FOREIGN KEY (users_id) REFERENCES users (id)
 );
 
+DROP TABLE IF EXISTS security;
+CREATE TABLE security (
+  id int NOT NULL AUTO_INCREMENT,
+  isin varchar(50) DEFAULT NULL,
+  cusip varchar(50) DEFAULT NULL,
+  issuer_name varchar(255) NOT NULL,
+  maturity_date datetime NOT NULL,
+  coupon float NOT NULL,
+  type varchar(255) NOT NULL,
+  face_value float NOT NULL,
+  currency varchar(10) NOT NULL,
+  status varchar(32) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
 
 DROP TABLE IF EXISTS trades;
 CREATE TABLE trades (

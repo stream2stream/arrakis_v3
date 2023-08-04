@@ -22,5 +22,9 @@ public class UserHandler {
         return itsUserRepo.findAll();
     }
 
+    public long getBookId(String name){
+        return itsUserRepo.getBookId(name);
+    }
+
 
 }

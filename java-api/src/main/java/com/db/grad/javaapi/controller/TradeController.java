@@ -24,10 +24,6 @@ public class TradeController {
         TradeService = ds;
     }
 
-    @GetMapping("/Trades")
-    public List <Trade> getAllTrades() {
-        return TradeService.getAllTrades();
-    }
 
     @GetMapping("/Trades/{id}")
     public ResponseEntity < List<Trade> > getTradesByBookId(@PathVariable(value = "id") Long id)
@@ -41,25 +37,6 @@ public class TradeController {
         return TradeService.addTrade(trade);
     }
 
-//    @PutMapping("/Trades/{id}")
-//    public ResponseEntity < Trade > updateTrade(@PathVariable(value = "id") Long id,
-//                                              @Valid @RequestBody Trade tradeDetails) throws ResourceNotFoundException {
-//
-//        final Trade updatedTrades = TradeService.updateTradeDetails(tradeDetails);
-//        return ResponseEntity.ok(updatedTrades);
-//    }
 
-//    @DeleteMapping("/Trades/{id}")
-//    public Map < String, Boolean > deleteTrade(@PathVariable(value = "id") Long id)
-//            throws ResourceNotFoundException {
-//        boolean removed = TradeService.removeTrade(id);
-//
-//        Map < String, Boolean > response = new HashMap <>();
-//        if( removed )
-//            response.put("deleted", Boolean.TRUE);
-//        else
-//            response.put("deleted", Boolean.FALSE);
-//
-//        return response;
-//    }
+
 }
