@@ -7,7 +7,7 @@ Drop Table IF exists Book;
 Drop Table IF exists Security;
 
 CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
-
+UPDATE TEST SET BOND_HOLDER = LOWER(BOND_HOLDER), BOOK_NAME = LOWER(BOOK_NAME);
 create table Book(
     book_id int not null AUTO_INCREMENT primary key,
     book_name varchar(50) not null
