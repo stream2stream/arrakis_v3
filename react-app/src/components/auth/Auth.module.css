@@ -1,0 +1,15 @@
+.authForm {
+    display: flex;
+    width: 100%;
+    max-width: 40%;
+    margin: 0 auto;
+    padding-top: 20px;
+    justify-content: center;
+}
+
+.warningCard {
+    width: 38.2%;
+    display: flex;
+    margin: 10px auto;
+    color: red;
+}

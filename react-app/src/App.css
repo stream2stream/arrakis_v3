@@ -1,3 +1,9 @@
 tbody, td, tfoot, th, thead, tr {
   border-width: 1px;
 }
+
+.table-responsive {
+  width: 80%;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

@@ -19,6 +19,10 @@ INSERT INTO counter_party (name)
 SELECT DISTINCT bond_holder
 FROM CSVREAD('.\\java-api\\src\\main\\resources\\db-bonds-data.csv');
 
+INSERT INTO users (username, email, password) VALUES ('catalin09', 'catalin@gmail.com', 'ZFCbdF+KDZev6wEiO9Bn1Q=='); --abcd
+INSERT INTO users (username, email, password) VALUES ('yinghao1', 'yinghao@gmail.com', 'Al40rlYk2DHsmON1/YVVXA=='); --abcd
+INSERT INTO users (username, email, password) VALUES ('vladp70','vlad@gmail.com', 'HKOco3ZnqQ2xfpQZWMFIWw=='); --1234
+INSERT INTO users (username, email, password) VALUES ('amrutha1','amrutha@gmail.com', 'S/hYUcMuwakxIvIADFHnLQ=='); --1234
 
 INSERT INTO security (isin,cusip,issuer_name,maturity_date,coupon,type,face_value,currency,status)
 SELECT isin, cusip, issuer_name, maturity_date, coupon_percent, type, face_value, bond_currency, status
