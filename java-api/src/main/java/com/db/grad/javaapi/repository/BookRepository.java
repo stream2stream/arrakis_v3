@@ -14,5 +14,16 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query(nativeQuery = true, value = "select * from book where name = :name")
     List<Book> findByName(Book name);
 
-
+    @Query(nativeQuery = true, value = "\n" +
+            "SELECT *\n" +
+            "FROM book\n" +
+            "WHERE id IN (\n" +
+            "    SELECT book_id\n" +
+            "    FROM users\n" +
+            "    JOIN book_users ON users.id = book_users.users_id\n" +
+            "    WHERE users.id = :userId\n" +
+            ");")
+    List<Book> getAllBooksByUserID(long userId);
 }
+
+

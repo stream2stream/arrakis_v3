@@ -67,4 +67,8 @@ public class BookService{
     public Book updateBookDetails(Book BookToUpdate) {
         return bookRepository.save(BookToUpdate);
     }
+
+    public List<Book> getAllBooksByUserID(long id) {
+        return bookRepository.getAllBooksByUserID(id);
+    }
 }
