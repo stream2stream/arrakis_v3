@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TablePagination } from "@mui/material";
 import "./LandingPage.css";
 import * as React from "react";
@@ -19,6 +19,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import DetailPage from "../DetailPage/DetailPage";
 import NavBar from "../../components/NavBar/NavBar";
+import axios from "axios";
+
 // const LandingPage = () => {
 //   const [selectedISIN, setSelectedISIN] = useState(null);
 
@@ -172,7 +174,6 @@ function Row(props) {
   const [open, setOpen] = React.useState(false);
 
   return (
-
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
@@ -229,7 +230,6 @@ function Row(props) {
         </TableCell>
       </TableRow>
     </React.Fragment>
-    
   );
 }
 
@@ -272,6 +272,57 @@ const rows = [
 const LandingPage = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    // Fetch the data from the API endpoint using Axios
+    axios
+      .get("http://localhost:8080/api/v1/bonds_transactions")
+      .then((response) => {
+        const data = response.data;
+        // Map the API response to match the structure of createData
+        const mappedRows = data.map((item) => {
+          const { security, transactions } = item;
+          const {
+            id,
+            isin,
+            cusip,
+            issuerName,
+            maturityDate,
+            coupon,
+            type,
+            faceValue,
+            currency,
+            status,
+          } = security;
+
+          // Map the transactions to history
+          const history = transactions.map((transaction) => ({
+            transactionId: transaction.id,
+            date: transaction.tradeDate,
+            amount: transaction.unitPrice * transaction.quantity,
+          }));
+
+          return createData(
+            isin,
+            cusip || "", // Handle null or undefined CUSIP
+            issuerName,
+            maturityDate,
+            coupon,
+            type,
+            faceValue,
+            currency,
+            status,
+            history
+          );
+        });
+
+        setRows(mappedRows);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -284,42 +335,42 @@ const LandingPage = () => {
 
   return (
     <>
-    <NavBar/>
-          <TableContainer component={Paper}>
-            <Table aria-label="collapsible table">
-              <TableHead>
-                <TableRow>
-                  <TableCell />
-                  <TableCell>ISIN</TableCell>
-                  <TableCell>CUSIP</TableCell>
-                  <TableCell>Issue Name</TableCell>
-                  <TableCell>Maturity Date</TableCell>
-                  <TableCell>Coupon</TableCell>
-                  <TableCell>Type</TableCell>
-                  <TableCell>Face Value</TableCell>
-                  <TableCell>Currency</TableCell>
-                  <TableCell>Status</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <Row key={row.name} row={row} />
-                  ))}
-              </TableBody>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              />
-            </Table>
-          </TableContainer>
-          </>
+      <NavBar />
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>ISIN</TableCell>
+              <TableCell>CUSIP</TableCell>
+              <TableCell>Issue Name</TableCell>
+              <TableCell>Maturity Date</TableCell>
+              <TableCell>Coupon</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Face Value</TableCell>
+              <TableCell>Currency</TableCell>
+              <TableCell>Status</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <Row key={row.name} row={row} />
+              ))}
+          </TableBody>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 
