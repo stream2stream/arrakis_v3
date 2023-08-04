@@ -35,6 +35,7 @@ public class SecurityService {
 
     public List<Security> getBondsForPreviousFiveDays() {
         return securityRepository.getBondsForPreviousFiveDays();
+    }
 
     public ArrayList<BondTransactionDTO> getActiveBondsTransactions() {
 
