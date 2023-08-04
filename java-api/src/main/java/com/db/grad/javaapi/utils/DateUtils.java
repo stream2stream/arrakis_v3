@@ -5,7 +5,7 @@ import org.springframework.format.datetime.DateFormatter;
 import java.time.format.DateTimeFormatter;
 
 public class DateUtils {
-    public static DateTimeFormatter dateFormatter= DateTimeFormatter.ofPattern("dd-mm-yyyy");
+    public static DateTimeFormatter dateFormatter= DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 }
 
