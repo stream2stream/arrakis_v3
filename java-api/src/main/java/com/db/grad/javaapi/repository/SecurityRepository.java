@@ -43,6 +43,21 @@ public interface SecurityRepository extends JpaRepository<Security,Long> {
             "        )")
     List<Security> findSecurityByUserDateRange(long userID, Date startDate, Date endDate);
 
+
+    //API 5
+    @Query(nativeQuery = true, value = "select distinct(type) from security where id in" +
+            "        (select distinct(security_id) from trades\n" +
+            "        where book_id in\n" +
+            "        (Select book_id from users\n" +
+            "        join\n" +
+            "        book_users on\n" +
+            "        users.id =book_users.users_id\n" +
+            "        and users.id = :userId\n" +
+            "        join\n" +
+            "        book on book.id = book_users.book_id)\n" +
+            "        )")
+    List<String> findDistinctSecurityTypesByUserId(long userId);
+
 }
 
 /* select * from security where id in
