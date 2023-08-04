@@ -36,7 +36,7 @@ export function getAllBonds(userChecked) {
         const auth = getAuth();
         const user = auth.currentUser;
         console.log(user)
-        return http.get("http://localhost:8080/api/v1/bondsdata/user?userid=" + user.uid)
+        return http.get("http://localhost:8080/api/v1/bondsdata/all/user/" + user.uid)
     } else {
         return http.get("http://localhost:8080/api/v1/bondsdata/all")
     }
