@@ -44,8 +44,7 @@ public class TradesCounterPartyServiceTest {
 
         Mockito.when(tradesCounterPartiesRepository.findAll()).thenReturn(Arrays.asList(tradesCounterParty1, tradesCounterParty2, tradesCounterParty3));
         String expectedNameRes = "BondsBrigade";
-        String actualNameRes = tradesCounterPartyService.getBondHolderNameByID(1);
-        System.out.println(tradesCounterPartyService);
+        String actualNameRes = tradesCounterPartyService.getBondHolderNameByID(12);
         assertEquals(expectedNameRes, actualNameRes);
     }
 }
