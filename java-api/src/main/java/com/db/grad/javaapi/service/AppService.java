@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -73,5 +74,20 @@ public class AppService {
 
     public User addUserByName(String name){
         return userService.addUserByUsername(name);
+    }
+
+
+    public List<Bond> findBondsByUserId(int userId) {
+        // get books by user ID
+        User user = userService.findById(userId);
+//        Get ALL books that user has access to
+        List<Book> bookList = user.getBooks();
+
+
+        List<Integer> idList= new ArrayList<>();
+        for (Book book:bookList){
+            idList.add(book.getId());
+        }
+        return bondService.findBondsByBookIds(idList);
     }
 }

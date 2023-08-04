@@ -75,7 +75,7 @@ public class DataLoader {
                         String bondMaturityDate = record.get(13);
                         String bondStatus = record.get(14);
                         String type = record.get(15);
-                        String bookName = record.get(16);
+                        String bookName = record.get(16).toLowerCase();
                         String bondHolder = record.get(17);
 
 
