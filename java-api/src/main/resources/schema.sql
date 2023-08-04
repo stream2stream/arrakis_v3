@@ -24,7 +24,7 @@
 --    bond_holder VARCHAR(50) NOT NULL
 --);*/
 
-
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,

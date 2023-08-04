@@ -1,8 +1,12 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="users")
 public class User {
 
     @Id
@@ -16,6 +20,9 @@ public class User {
         this.email = email;
         this.role = role;
     }
+
+    public User() {}
+
     @Column(name = "name", nullable = false)
     public String getUserName(){
         return name;
