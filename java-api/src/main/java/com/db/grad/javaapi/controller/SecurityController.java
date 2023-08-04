@@ -27,22 +27,15 @@ public class SecurityController {
 
     @GetMapping("/security")
     public List<Security> getAllSecurity() {
-        return securityHandler.getAllSecurity();
+        return securityHandler.getAllSecurities();
     }
 
-    @GetMapping("/Security/{id}")
-    public ResponseEntity < Security > getEmployeeById(@PathVariable(value = "id") Long id)
-            throws ResourceNotFoundException {
-        final Security Security = securityHandler.getSecurityById(id);
-        return ResponseEntity.ok().body(Security);
-    }
-
-    @PostMapping("/Security")
-    public Security createUser(@RequestBody Security Security) {
+    @PostMapping("/security/")
+    public Security createSecurity(@RequestBody Security Security) {
         return securityHandler.addSecurity(Security);
     }
 
-    @PutMapping("/Security/{id}")
+    @PutMapping("/Security/update/{id}")
     public ResponseEntity < Security > updateSecurity(@PathVariable(value = "id") Long id,
                                                       @Valid @RequestBody Security SecurityDetails) throws ResourceNotFoundException {
 
@@ -50,7 +43,7 @@ public class SecurityController {
         return ResponseEntity.ok(updatedSecurity);
     }
 
-    @DeleteMapping("/Security/{id}")
+    @DeleteMapping("/security/{id}")
     public Map< String, Boolean > deleteUser(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         boolean removed = securityHandler.removeSecurity(id);
@@ -62,4 +55,13 @@ public class SecurityController {
             response.put("deleted", Boolean.FALSE);
 
         return response;}
+
+    @GetMapping("/security/userBooks/{user_id}")
+    public List<Security> getSecuritiesMatchedWithBook(@PathVariable(value = "user_id") Long id)
+            throws ResourceNotFoundException {
+        List<Security> security = securityHandler.getSecuritiesMatchedWithBook(id);
+        return security;
+    }
+
+
 }

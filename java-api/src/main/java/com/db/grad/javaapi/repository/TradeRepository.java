@@ -13,6 +13,6 @@ public interface TradeRepository extends JpaRepository<Trade, Long> {
     @Query(nativeQuery = true, value = "select * from trades where book_id = :book_id")
     List<Trade> findByBookID(Trade book_id);
 
-    @Query(nativeQuery = true, value = "select * from trades where id = :id")
+    @Query(nativeQuery = true, value = "select * from trades where id = :trade_id")
     List<Trade> findByTradeID(Trade trade_id);
 }

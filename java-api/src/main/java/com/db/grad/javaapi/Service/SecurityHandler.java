@@ -1,16 +1,16 @@
 package com.db.grad.javaapi.Service;
 
 import com.db.grad.javaapi.model.Security;
-import com.db.grad.javaapi.model.User;
 import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SecurityHandler implements ISecurityInterface {
+public class SecurityHandler implements ISecurityService {
     private SecurityRepository securityRepository;
     @Autowired
     public SecurityHandler(SecurityRepository securityRepository) {
@@ -18,7 +18,7 @@ public class SecurityHandler implements ISecurityInterface {
     }
 
     @Override
-    public List<Security> getAllSecurity() {
+    public List<Security> getAllSecurities() {
         return securityRepository.findAll();
     }
 
@@ -28,7 +28,7 @@ public class SecurityHandler implements ISecurityInterface {
     }
 
     @Override
-    public long getNoOfSecurity() {
+    public long getNoOfSecurities() {
         return securityRepository.count();
     }
 
@@ -68,4 +68,16 @@ public class SecurityHandler implements ISecurityInterface {
     public Security updateSecurityDetails(Security securityToUpdate) {
         return securityRepository.save(securityToUpdate);
     }
+
+    public List<Security> getSecuritiesCustomRange(LocalDate startDate, LocalDate date) {
+        List<Security> securitiesDueForMaturity = securityRepository.findByMaturityDateBetween(startDate, date);
+        return securitiesDueForMaturity;
+    }
+
+    public List<Security> getSecuritiesMatchedWithBook(Long user_id){
+        List<Security> matchedSec = securityRepository.findSecurityByUserBooks(user_id);
+        return matchedSec;
+    }
+
+
 }

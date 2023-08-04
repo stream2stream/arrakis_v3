@@ -1,16 +1,15 @@
 package com.db.grad.javaapi.Service;
 
 import com.db.grad.javaapi.model.Security;
-import com.db.grad.javaapi.model.User;
 
 import java.util.List;
 
-public interface ISecurityInterface {
-    List<Security> getAllSecurity();
+public interface ISecurityService {
+    List<Security> getAllSecurities();
 
     Security addSecurity(Security theSecurity);
 
-    long getNoOfSecurity();
+    long getNoOfSecurities();
 
     boolean removeSecurity(long uniqueId);
 

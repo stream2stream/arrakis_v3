@@ -9,8 +9,9 @@ public class Security {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String isin;
-    private String cusin;
+    private String cusip;
     private String issuer_name ;
     private Date maturity_date;
     private int coupon;
@@ -24,10 +25,10 @@ public class Security {
     public long getId() {
         return id;
     }
-
     public void setId(long id) {
         this.id = id;
     }
+
     @Column(name = "isin", nullable = false)
     public String getIsin() {
         return isin;
@@ -35,14 +36,15 @@ public class Security {
     public void setIsin(String isin) {
         this.isin = isin;
     }
-    @Column(name = "cusin", nullable = false)
-    public String getCusin() {
-        return cusin;
+
+    @Column(name = "cusip", nullable = false)
+    public String getCusip() {
+        return cusip;
+    }
+    public void setCusip(String cusip) {
+        this.cusip = cusip;
     }
 
-    public void setCusin(String cusin) {
-        this.cusin = cusin;
-    }
     @Column(name = "issuer_name", nullable = false)
     public String getIssuer_name() {
         return issuer_name;
@@ -111,7 +113,7 @@ public class Security {
         return "Security{" +
                 "id=" + id +
                 ", isin=" + isin +
-                ", cusin=" + cusin +
+                ", cusip=" + cusip +
                 ", issuer_name='" + issuer_name + '\'' +
                 ", maturity_date=" + maturity_date +
                 ", coupon=" + coupon +

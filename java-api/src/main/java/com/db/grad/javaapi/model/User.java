@@ -1,6 +1,8 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -12,8 +14,13 @@ public class User {
     private String email;
     private String role;
 
-    @Id
-    @Column(name = "id", nullable = false)
+    @ManyToMany
+    @JoinTable(
+            name = "book_users",
+            joinColumns = @JoinColumn(name = "users_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id"))
+    Set<Book> books;
+
     public long getId() {
         return id;
     }
