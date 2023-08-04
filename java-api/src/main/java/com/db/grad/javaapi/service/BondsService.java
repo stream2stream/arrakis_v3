@@ -5,12 +5,8 @@ import com.db.grad.javaapi.repository.BondsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-import java.text.SimpleDateFormat;
 @Service
 public class BondsService {
 
@@ -27,9 +23,9 @@ public class BondsService {
 
         return bondsRepository.findAll();
     }
-    public List<Bond> getBondsByMaturity() {
+    public List<Bond> getBondsByMaturity(Date date) {
 
-        return bondsRepository.findByMaturity();
+        return bondsRepository.findByMaturity(date);
     }
 
     public Bond add(Bond bond) {

@@ -5,8 +5,10 @@ import com.db.grad.javaapi.service.BondsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,7 @@ public class BondsController {
         return bondsService.getAllBonds();
     }
     @GetMapping("/bonds/maturity")
-    public List<Bond> getBondsByMaturity(){
-        return bondsService.getBondsByMaturity();
+    public List<Bond> getBondsByMaturity(@RequestParam("date") Date date){
+        return bondsService.getBondsByMaturity(date);
     }
 }
