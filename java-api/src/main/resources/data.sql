@@ -22,8 +22,9 @@ VALUES
 INSERT INTO users
     (username, password, email, role)
 VALUES
-    ('admin', 'totallySecurePWD','admin@email.com', 'CEO');
-    ('user1', 'user1PWD', 'user1@rdmAddress.com', 'Trader')
+    ('admin', 'totallySecurePWD','admin@email.com', 'CEO'),
+    ('user1', 'user1PWD', 'user1@rdmAddress.com', 'Trader'),
+    ('two', '2', 'two@mail.com','Scrub');
 
 INSERT INTO books
     (name, id)
@@ -41,7 +42,8 @@ VALUES
     (2, 1),
     (3, 1),
     (4, 1),
-    (6, 1);
+    (6, 1),
+    (2, 2);
 
 INSERT INTO counterparties
     (name)
