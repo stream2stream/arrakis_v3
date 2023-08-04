@@ -30,7 +30,7 @@ public class TradesServiceTest {
 
     @Test
     @DisplayName("Test getAllTrades")
-    void testGetAllTrades() {
+    public void testGetAllTrades() {
         Trade trade1 = new Trade();
         Trade trade2 = new Trade();
 
@@ -43,7 +43,7 @@ public class TradesServiceTest {
 
     @Test
     @DisplayName("Test getTradeById")
-    void testGetTradeById() {
+    public void testGetTradeById() {
         Trade trade = new Trade();
         trade.setId(1);
 

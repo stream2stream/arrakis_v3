@@ -31,7 +31,7 @@ public class CounterPartiesServiceTest {
 
     @Test
     @DisplayName("Test getAllCounterParties")
-    void testGetAllCounterParties() {
+    public void testGetAllCounterParties() {
         CounterParty counterParty1 = new CounterParty();
         CounterParty counterParty2 = new CounterParty();
 
@@ -44,7 +44,7 @@ public class CounterPartiesServiceTest {
 
     @Test
     @DisplayName("Test getCounterPartyById")
-    void testGetCounterPartyById() {
+    public void testGetCounterPartyById() {
         CounterParty counterParty = new CounterParty();
         counterParty.setId(1);
 

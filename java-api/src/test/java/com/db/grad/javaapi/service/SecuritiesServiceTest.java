@@ -1,6 +1,6 @@
 package com.db.grad.javaapi.service;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -28,10 +28,9 @@ public class SecuritiesServiceTest {
     @MockBean
     private SecuritiesRepository securitiesRepository;
 
-
     @Test
     @DisplayName("Test getAllSecurities")
-    void testGetAllSecurities() {
+    public void testGetAllSecurities() {
         Security security1 = new Security();
         Security security2 = new Security();
 
@@ -44,7 +43,7 @@ public class SecuritiesServiceTest {
 
     @Test
     @DisplayName("Test getSecurityById")
-    void testGetSecurityById() {
+    public void testGetSecurityById() {
         Security security = new Security();
         security.setId(1);
         

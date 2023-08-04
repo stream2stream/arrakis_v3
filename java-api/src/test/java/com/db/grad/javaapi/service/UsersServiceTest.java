@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -28,7 +29,7 @@ public class UsersServiceTest {
 
     @Test
     @DisplayName("Test registerUser")
-    void testRegisterUser() {
+    public void testRegisterUser() {
         Users user = new Users();
         user.setPassword("password");
         user.setUsername("username");
@@ -41,13 +42,15 @@ public class UsersServiceTest {
 
     @Test
     @DisplayName("Test loadUserByUsername")
-    void testLoadUserByUsername() {
+    public void testLoadUserByUsername() {
         Users user = new Users();
+        user.setId(1);
         user.setUsername("mock");
         user.setPassword("password");
+        user.setRole("ADMIN");
         doReturn(user).when(usersRepository).findUserByUsername("mock");
 
-        UserBuilder userBuilder = org.springframework.security.core.userdetails.User.withUsername(user.getUsername());
+        UserBuilder userBuilder = User.withUsername(user.getUsername());
         userBuilder.password(user.getPassword());
         userBuilder.roles(user.getRole());
 
