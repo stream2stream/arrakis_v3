@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BookUsersRepository extends JpaRepository<BookUser, String> {
+public interface BookUsersRepository extends JpaRepository<BookUser, Integer> {
     @Query(nativeQuery = true, value = "select * from book_users")
     List<BookUser> getBookUsers();
 }

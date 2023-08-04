@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UsersRepository extends JpaRepository<User, String> {
+public interface UsersRepository extends JpaRepository<User, Integer> {
     @Query(nativeQuery = true, value = "select * from users")
     List<User> getUsers();
 }

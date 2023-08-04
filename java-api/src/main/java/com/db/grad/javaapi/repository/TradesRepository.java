@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface TradesRepository extends JpaRepository<Trade, String> {
+public interface TradesRepository extends JpaRepository<Trade, Integer> {
     @Query(nativeQuery = true, value = "select * from trades")
     List<Book> getTrades();
 }

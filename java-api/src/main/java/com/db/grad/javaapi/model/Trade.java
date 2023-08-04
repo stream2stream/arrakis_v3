@@ -2,9 +2,7 @@ package com.db.grad.javaapi.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 //Refers to only date (and not time)
 import java.sql.Date;
 
@@ -21,12 +19,9 @@ public class Trade {
     private String status;
     private String type;
     private float unit_price;
-    //@DateTimeFormat(pattern = "DD/MM/YYYY") //"YYYY-MM-DD"
-    private String trade_date; //Date
+    private String trade_date;
 
-    //@DateTimeFormat(pattern = "DD/MM/YYYY")
-    private String settlement_date; //Date
-
+    private String settlement_date;
 
     public int getId() {
         return id;
