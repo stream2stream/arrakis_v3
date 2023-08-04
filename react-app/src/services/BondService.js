@@ -68,3 +68,14 @@ export const getIssuerNameByID = async (id) => {
     throw error;
   }
 };
+
+export const getBondHolderNameById = async (id) => {
+  try {
+    const response = await axios.get(`${hostNameUrl}/bondHolderId/${id}`);
+    const issuerName = response.data;
+    return issuerName;
+  } catch (error) {
+    console.error("Error fetching bond holder name:", error);
+    throw error;
+  }
+};

@@ -7,8 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getAllTradesByISIN } from '../services/BondService';
-
+import { getAllTradesByISIN, getBondHolderNameById } from '../services/BondService';
+import { useState } from 'react';
 
 const columns = [
   { id: 'isin', label: 'ISIN', minWidth: 170 },
@@ -77,15 +77,10 @@ const columns = [
   },
 ];
 
-export default function StickyHeadTable() {
+export default function ZoomTradeTable({ isin }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
-  const [isin, setISIN] = React.useState('');
-
-  const handleChangeISIN = (event) => {
-    setISIN(event.target.value);
-  };
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -102,6 +97,9 @@ export default function StickyHeadTable() {
     fetchData();
   }, [isin]);
 
+  
+
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -114,17 +112,6 @@ export default function StickyHeadTable() {
   return (
     <div style={{ width: '100%' }}>
       <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-        {/* Input field for entering the ISIN */}
-        <div style={{ padding: '10px' }}>
-          <input
-            type="text"
-            value={isin}
-            onChange={handleChangeISIN}
-            placeholder="Enter ISIN"
-          />
-          <button onClick={() => setISIN('')}>Clear</button>
-        </div>
-
         <TableContainer sx={{ maxHeight: 400, overflowY: 'auto' }}>
           <Table stickyHeader aria-label="sticky table">
             <TableHead>

@@ -24,29 +24,32 @@ import Row from "react-bootstrap/Row";
 
 const ZoomBond = () => {
   const [expanded, setExpanded] = React.useState(false);
-
+  const [selectedISIN, setSelectedISIN] = useState('');
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleRowClick = (isin) => {
+    setSelectedISIN(isin);
+  };
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <Toolbar />
-           <Row className="row">
-              <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <div style={{ margin: "20px 0" }}>BOND TABLE</div>
-                
-                  <ZoomBondTable/>
-              
-                <div style={{ margin: "20px 0" }}>TRADE TABLE</div>
-              
-                <ZoomTradeTable/>
-            
-              </div>
-                
-            </Row>
+      <Toolbar />
+      <Row className="row">
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div style={{ margin: "20px 0" }}>BOND TABLE</div>
+
+          {/* Pass onRowClick prop to ZoomBondTable */}
+          <ZoomBondTable onRowClick={handleRowClick} />
+
+          <div style={{ margin: "20px 0" }}>TRADE TABLE</div>
+
+          {/* Pass isin prop to ZoomTradeTable */}
+          <ZoomTradeTable isin={selectedISIN} />
+
+        </div>
+      </Row>
     </Box>
   );
 };
-
 
 export default ZoomBond;

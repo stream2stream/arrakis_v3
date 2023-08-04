@@ -13,6 +13,7 @@ import BondCardTable from './BondCardTable';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 
+
 const columns = [
   { id: 'isin', label: 'ISIN', minWidth: 170 },
   { id: 'type', label: 'Type', minWidth: 100 },
@@ -69,7 +70,7 @@ const columns = [
 
 
 
-export default function StickyHeadTable() {
+export default function StickyHeadTable({onRowClick}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
@@ -136,46 +137,57 @@ export default function StickyHeadTable() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.isin}
-                      onMouseEnter={() => handleIssuerIDHover(row.issuerID)}
-                      onMouseLeave={() => setIssuerName('')}
-                    >
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.id === 'issuerID' ? (
-                              <Tooltip
-                                title={
-                                  <Typography variant="subtitle1">
-                                    {issuerName}
-                                  </Typography>
-                                }
-                              >
-                                <span style={{ fontSize: '16px' }}>{value}</span>
-                              </Tooltip>
-                            ) : (
-                              column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value
-                            )}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
+                {rows
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => {
+                    return (
+                      <TableRow
+                        hover
+                        role="checkbox"
+                        tabIndex={-1}
+                        key={row.isin}
+                        onMouseEnter={() => handleIssuerIDHover(row.issuerID)}
+                        onMouseLeave={() => setIssuerName('')}
+                        // Add onClick handler for each row
+                        onClick={() => onRowClick(row.isin)}
+                      >
+                        {columns.map((column) => {
+                          const value = row[column.id];
+                          return (
+                            <TableCell key={column.id} align={column.align}>
+                              {column.id === 'issuerID' ? (
+                                <Tooltip
+                                  title={
+                                    <Typography variant="subtitle1">
+                                      {issuerName}
+                                    </Typography>
+                                  }
+                                >
+                                  <span style={{ fontSize: '16px' }}>{value}</span>
+                                </Tooltip>
+                              ) : (
+                                column.format && typeof value === 'number'
+                                  ? column.format(value)
+                                  : value
+                              )}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+              </TableBody>
           </Table>
         </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 25, 100]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
       </Paper>
     </div>
   );

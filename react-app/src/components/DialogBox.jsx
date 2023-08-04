@@ -12,22 +12,27 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
-import { forwardRef, useRef } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import ZoomBond from '../pages/ZoomBond';
 
 export const DialogBox = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('xl');
+  const [bondHolderName, setBondHolderName] = useState('');
 
 
-  const openDialog = () => {
+  const openDialog = (name) => {
+    setBondHolderName(name);
     handleClickOpen();
   };
 
   // Expose the function to the parent component through the ref
   React.useImperativeHandle(ref, () => ({
-    openDialog,
+    openDialog: (name) => {
+      setOpen(true);
+      setBondHolderName(name);
+    },
   }));
 
   const handleClickOpen = () => {
@@ -57,10 +62,10 @@ export const DialogBox = forwardRef((props, ref) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Optional sizes</DialogTitle>
+        <DialogTitle>Bond Holder Name</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <ZoomBond/>
+            {bondHolderName}
           </DialogContentText>
           <Box
             noValidate
