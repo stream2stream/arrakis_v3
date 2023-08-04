@@ -72,7 +72,7 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.save(securityToUpdate);
     }
 
-    public List<Security> getSecuritiesByUserDateRange(Long userId, String startDateString, String endDateString) throws IllegalArgumentException {
+    public List<Security> getSecuritiesByUserDateRange(long userId, String startDateString, String endDateString) throws IllegalArgumentException {
         LocalDate startDate=LocalDate.parse(startDateString,dateFormatter);
         LocalDate endDate=LocalDate.parse(endDateString,dateFormatter);
 
@@ -97,6 +97,22 @@ public class SecurityHandler implements ISecurityService {
     // API 7: Get distinct issuer name in user books issuer_name
     public List<String> getDistinctSecurityIssuerByUserId(Long userId) {
         return securityRepository.findDistinctSecurityIssuerByUserId(userId);
+    }
+
+    //API 8: Filter securities by date, issuer name and type
+    public List<Security> getSecuritiesByDateIssuerAndType(long userId, String startDateString, String endDateString,
+                                                           String issuerName, String Type)
+    {
+        LocalDate startDate=LocalDate.parse(startDateString,dateFormatter);
+        LocalDate endDate=LocalDate.parse(endDateString,dateFormatter);
+
+        Date startDateSQL=Date.valueOf(startDate);
+        Date endDateSQL=Date.valueOf(endDate);
+
+        List<Security> filteredSecurities = securityRepository.findSecurityByDateTypeAndIssuer(userId, startDateSQL, endDateSQL, issuerName, Type);
+        return filteredSecurities;
+
+
     }
 
 }

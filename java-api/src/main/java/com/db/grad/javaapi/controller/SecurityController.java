@@ -92,4 +92,17 @@ public class SecurityController {
         return ResponseEntity.ok().body(issuerNames);
     }
 
+    @GetMapping("/security/date_range/issuer_name/type")
+    public ResponseEntity < ? > getSecuritiesByDateIssuerNameAndType(@RequestParam long user, @RequestParam String startDate,@RequestParam String endDate, @RequestParam String issuerName, @RequestParam String type)
+            throws ResourceNotFoundException {
+        try{
+            List<Security> securityList = securityHandler.getSecuritiesByDateIssuerAndType(user,startDate,endDate, issuerName, type);
+            return ResponseEntity.ok().body(securityList);
+        }
+        catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage()+" Invalid Date Range, User, Type , or Issuer Name!");
+        }
+
+    }
+
 }
