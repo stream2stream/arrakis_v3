@@ -79,11 +79,8 @@ export const DialogBox = forwardRef((props, ref) => {
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Bond Holder Name</DialogTitle>
+        <DialogTitle>Bond Holder Name:  {bondHolderName}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            {bondHolderName}
-          </DialogContentText>
           {bondHolderStats ? (
             <div>
               <p>Number of Bonds: {bondHolderStats.bondHolderNumberOfBonds}</p>
