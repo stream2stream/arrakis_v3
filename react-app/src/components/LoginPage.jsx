@@ -30,12 +30,6 @@ const LoginPage = () => {
         e.preventDefault();
     }
 
-    useEffect(() => {
-        getUsersFromAPI().then(res => {
-            users = (res["data"]);
-        }).then(() => {console.log(users);});
-    }, []);
-
     const getUsersFromAPI = async () => {
         return await findUsers();
     }
