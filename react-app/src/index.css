@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Add borders to the table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+} 
+
+
