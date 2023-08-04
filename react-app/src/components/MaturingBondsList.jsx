@@ -35,8 +35,10 @@ const MaturingBondsList = forwardRef((props, ref) => {
   };
 
 
-
+  const isBondNotEmpty = Object.keys(bonds).length >0;
   return (
+    <div>
+    { isBondNotEmpty ? (
     <table className="table table-striped">
       <thead>
         <tr>
@@ -65,6 +67,9 @@ const MaturingBondsList = forwardRef((props, ref) => {
         ))}
       </tbody>
     </table>
+    ):(<p>There is no bond to show this date.</p>
+    )}
+    </div>
   );
 });
 
