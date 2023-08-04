@@ -8,7 +8,17 @@ INSERT INTO users_books(user_email, book_id)
 VALUES('example@yahoo.com', 1);
 
 INSERT INTO trades_counter_parties (id, bond_holder_name)
-VALUES(1, 'AZ Holdings Inc');
+VALUES(1, 'AZ Holdings Inc'),
+(2, 'Acme Co'),
+(3, 'Astra Trading Ltd'),
+(4, 'Sovereign Investments'),
+(5, 'Muncipal Gov Of Orange County'),
+(6, 'Goldman Sachs'),
+(7, 'UBS'),
+(8, 'Barclays'),
+(9, 'British Telecom'),
+(10, 'Pension Holdings'),
+(11, 'Zurich Pension fund 4');
 
 INSERT INTO bonds_counter_parties (id, issuer_name)
 VALUES(1, 'BNPParibasIssu 4,37% Microsoft Corp (USD)'),
