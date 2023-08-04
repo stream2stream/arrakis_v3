@@ -21,17 +21,17 @@ const columns = [
 
   },
   {
-    dataField: "issuer",
-    text: "Issue"
+    dataField: "issuer_name",
+    text: "Issuer"
   },
   {
-    dataField: "maturity",
-    text: "Maturity",
+    dataField: "maturity_date",
+    text: "Maturity Date",
     sort: true
   },
   
   {
-    dataField: "faceValue",
+    dataField: "face_value",
     text: "FaceValue",
 
   },
