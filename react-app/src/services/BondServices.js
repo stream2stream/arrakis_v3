@@ -1,5 +1,6 @@
 import http from "axios";
 import moment from "moment";
+import { getAuth } from 'firebase/auth';
 //npm install moment --save
 
 // const bonds = [
@@ -29,8 +30,16 @@ import moment from "moment";
 //   return bonds;
 // };
 
-export function getAllBonds(){
-    return http.get("http://localhost:8080/api/v1/bondsdata/all")
+export function getAllBonds(userChecked) {
+    console.log(userChecked)
+    if (userChecked) {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        console.log(user)
+        return http.get("http://localhost:8080/api/v1/bondsdata/user?userid=" + user.uid)
+    } else {
+        return http.get("http://localhost:8080/api/v1/bondsdata/all")
+    }
 }
 
 // export const getBondsByDate = (date) => {
@@ -39,9 +48,9 @@ export function getAllBonds(){
 //     })
 // }
 
-export function getBondsByDate(props){
+export function getBondsByDate(props) {
     var date = props;
     date = moment(date).format('YYYY-MM-DD');
     console.log(date);
-    return http.get("http://localhost:8080/api/v1/bondsdata/all/{date}?date="+date)
+    return http.get("http://localhost:8080/api/v1/bondsdata/all/{date}?date=" + date)
 }
