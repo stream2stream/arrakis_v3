@@ -54,6 +54,7 @@
   width: 100%;
   display: flex;
   min-height: inherit;
+  justify-content: center;
 }
 
 .footer-container {
@@ -265,7 +266,7 @@
   }
 }
 
-.all-securities-table-container {
+.all-securities-table-container, .trades-table-container {
   overflow: scroll;
   height: 100%;
 }
