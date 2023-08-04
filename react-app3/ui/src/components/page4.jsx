@@ -1,6 +1,9 @@
-import React from "react";
+//import React from "react";
+import React, { useState } from 'react';
+import StatusFilter from './StatusFilter';
 
 const Page4 = () => {
+  const [filter, setFilter] = useState('All');
   const columns = [
     "ISIN",
     "Type",
@@ -34,11 +37,48 @@ const Page4 = () => {
       Status: "Inactive",
     },
    
+    {
+      ISIN: "US1234567890",
+      Type: "Bond",
+      Issuer: "ABC Corp",
+      Maturity: "2025-08-01",
+      "Face Value": "1000",
+      Currency: "USD",
+      "Coupon %": "5.00",
+      Status: "Active",
+    },
+    {
+      ISIN: "GB9876543210",
+      Type: "Equity",
+      Issuer: "XYZ Inc",
+      Maturity: "N/A",
+      "Face Value": "N/A",
+      Currency: "GBP",
+      "Coupon %": "N/A",
+      Status: "Inactive",
+    },
+   
   ];
+
+  // Function to handle filter change
+  const handleFilterChange = (selectedFilter) => {
+    setFilter(selectedFilter);
+    console.log("hello");
+    console.log(selectedFilter)
+  };
+
+  // Filtered data based on the selected filter
+  const filteredData =
+    filter === 'All'
+     ? data
+       :data.filter((item) => item.Status === filter);
 
   return (
     <div>
       <h2>Page4</h2>
+      <div>
+      <StatusFilter filter={filter} onFilterChange={handleFilterChange} />
+      </div>
       <table>
         <thead>
           <tr>
