@@ -13,41 +13,41 @@ import java.util.List;
 @RequestMapping("/api/v1/bondsdata")
 @CrossOrigin(origins = "http://localhost:3000")
 public class BondsDataController {
-    private BondsDataHandler dogsService;
+    private BondsDataHandler dataHandler;
 
     @Autowired
     public BondsDataController(BondsDataHandler handler)
     {
-        dogsService = handler;
+        dataHandler = handler;
     }
 
     @GetMapping("/all")
     public List<BondsData> getAllBondsData() {
-        return dogsService.getAll();
+        return dataHandler.getAll();
     }
 
     @GetMapping("/buys")
     public List<BondsData> getAllBuys() {
-        return dogsService.getAllBuys();
+        return dataHandler.getAllBuys();
     }
 
     @GetMapping("/sells")
     public List<BondsData> getAllSells() {
-        return dogsService.getAllSells();
+        return dataHandler.getAllSells();
     }
 
     // TODO: Find all bonds from past and next 5 days from date.
     @GetMapping("/all/{date}")
     public List<BondsData> getByMaturityDate(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
-        return dogsService.getByMaturityDate(date);
+        return dataHandler.getByMaturityDate(date);
     }
 
     @GetMapping("/all/bookName/{bookName}")
     public List<BondsData> getByBookName(@PathVariable String bookName) {
-        return dogsService.getByBookName(bookName);
+        return dataHandler.getByBookName(bookName);
     }
     @GetMapping("/all/ISIN/{isin}")
     public List<BondsData> getByIsin(@PathVariable String isin) {
-        return dogsService.getBondByISIN(isin);
+        return dataHandler.getBondByISIN(isin);
     }
 }
