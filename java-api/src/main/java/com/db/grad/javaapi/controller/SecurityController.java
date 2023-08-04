@@ -15,9 +15,9 @@ public class SecurityController {
     @Autowired
     private SecurityService securityService;
 
-    @PostMapping("/user/{userId}/bonds")
-    public ResponseEntity<List<Security>> getAllSecuritiesForUserBooks(@PathVariable String userId) {
-        List<Security> securities = securityService.getAllSecuritiesForUserBooks(userId);
+    @PostMapping("/bonds/user")
+    public ResponseEntity<List<Security>> getAllSecuritiesForUserBooks(@RequestParam("userMail") String userMail) {
+        List<Security> securities = securityService.getAllSecuritiesForUserBooks(userMail);
         return ResponseEntity.ok(securities);
     }
 }
