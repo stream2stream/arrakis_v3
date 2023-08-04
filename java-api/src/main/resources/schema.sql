@@ -17,7 +17,7 @@ CREATE TABLE bondsdata
     cusip                 VARCHAR(50),
     face_value            INT,
     isin                  VARCHAR(50),
-    issuer_name           VARCHAR(50),
+    issuer_name           VARCHAR(100),
     bond_maturity_date    DATE,
     status                VARCHAR(10),
     type                  VARCHAR(10),
