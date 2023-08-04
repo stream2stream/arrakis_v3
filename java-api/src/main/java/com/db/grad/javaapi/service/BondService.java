@@ -49,4 +49,14 @@ public class BondService {
         System.out.println(targetDate + " and " + currentDate);
         return br.findBondsWithMaturityDateFiveDaysBefore(targetDate, currentDate);
     }
+
+    public List<Bond> findUserBondsWithMaturityDateFiveDaysBefore(LocalDate currentDate, List<Integer> bookIds) {
+        LocalDate targetDate = currentDate.minusDays(5);
+        return br.findUserBondsWithMaturityDateFiveDaysBefore(targetDate, currentDate, bookIds) ;
+    }
+
+    public List<Bond> findUserBondsWithMaturityDateInFiveDays(LocalDate currentDate, List<Integer> bookIds) {
+        LocalDate targetDate = currentDate.plusDays(5);
+        return br.findUserBondsWithMaturityDateInFiveDays(currentDate, targetDate, bookIds) ;
+    }
 }

@@ -97,4 +97,16 @@ public class AppService {
         return  user.getBooks();
 
     }
+
+    public List<Bond> findUserBondsWithMaturityDateInFiveDays(LocalDate date, int userId) {
+        User user = userService.findById(userId);
+        List<Integer> bookIds = bookService.getBookIdsByUser(user) ;
+        return bondService.findUserBondsWithMaturityDateInFiveDays(date, bookIds) ;
+    }
+
+    public List<Bond> findUserBondsWithMaturityDateFiveDaysBefore(LocalDate date, int userId) {
+        User user = userService.findById(userId) ;
+        List<Integer> bookIds = bookService.getBookIdsByUser(user) ;
+        return bondService.findUserBondsWithMaturityDateFiveDaysBefore(date, bookIds) ;
+    }
 }
