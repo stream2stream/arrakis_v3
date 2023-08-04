@@ -25,7 +25,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import '../App.css';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const drawerWidth = 160;
 
@@ -39,6 +39,12 @@ export default function Home() {
   const onClickSidebarOption = (data) =>{
     console.log(data);
     navigate("/home/" + data);
+  }
+
+  const logOut = () => {
+    console.log('logout');
+    localStorage.setItem('jwtToken', null);
+    navigate("/login");
   }
   
 
@@ -57,7 +63,7 @@ export default function Home() {
             alt="Your logo."
             src={DB}
         />
-     
+        
         <div className="date-picker">
           <LocalizationProvider dateAdapter={AdapterDayjs} >
               <DatePicker 
@@ -69,8 +75,11 @@ export default function Home() {
                 svg: { color: '#fff' },
                 input: { color: '#fff' },
               }} />
-            </LocalizationProvider>
+          </LocalizationProvider>
+          <LogoutIcon style={{cursor:'pointer', marginTop: '6', marginLeft: '15', marginRight: '7'}} onClick={logOut}/>
         </div>
+        
+      
         
       
         </Toolbar>
