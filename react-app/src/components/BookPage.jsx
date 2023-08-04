@@ -108,7 +108,6 @@ export const BookPage = () => {
         })
     )
 
-
   return (
     <>
         <Box sx={{ height: '100%', width: '100%'}}>
