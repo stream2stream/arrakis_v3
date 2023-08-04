@@ -18,7 +18,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import DetailPage from "../DetailPage/DetailPage";
-
+import NavBar from "../../components/NavBar/NavBar";
 // const LandingPage = () => {
 //   const [selectedISIN, setSelectedISIN] = useState(null);
 
@@ -172,6 +172,7 @@ function Row(props) {
   const [open, setOpen] = React.useState(false);
 
   return (
+
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
@@ -228,6 +229,7 @@ function Row(props) {
         </TableCell>
       </TableRow>
     </React.Fragment>
+    
   );
 }
 
@@ -281,7 +283,8 @@ const LandingPage = () => {
   };
 
   return (
-    
+    <>
+    <NavBar/>
           <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
               <TableHead>
@@ -316,7 +319,7 @@ const LandingPage = () => {
               />
             </Table>
           </TableContainer>
-   
+          </>
   );
 };
 

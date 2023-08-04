@@ -3,12 +3,11 @@ import { Button, Grid, TextField, Paper, Typography } from "@mui/material";
 
 import "./Login.css";
 // To redirect after successful login
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -19,7 +18,9 @@ const Login = () => {
         username: username,
         password: password,
       });
+  
       if (response.status === 200) {
+        setIsLoggedIn(true);
         // Login successful, redirect to dashboard or other protected routes
         navigate("/dashboard"); // Adjust the path based on your routing configuration
       } else {
