@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CounterpartiesRepository extends JpaRepository<Counterparty, String> {
+public interface CounterpartiesRepository extends JpaRepository<Counterparty, Integer> {
     @Query(nativeQuery = true, value = "select * from counterparties")
     List<Book> getCounterparties();
 }

@@ -24,4 +24,9 @@ public class BondsController {
     public List<Bond> getBondsByMaturity(){
         return bondsService.getBondsByMaturity();
     }
+
+    @GetMapping("/bondsWithClients")
+    public List<Bond> getBondsWithClients(){
+        return bondsService.getBondsWithClients();
+    }
 }

@@ -32,6 +32,10 @@ public class BondsService {
         return bondsRepository.findByMaturity();
     }
 
+    public List<Bond> getBondsWithClients() {
+        return bondsRepository.findBondsWithCounterparty();
+    }
+
     public Bond add(Bond bond) {
 
         return bondsRepository.save(bond);

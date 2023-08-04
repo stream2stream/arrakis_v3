@@ -2,9 +2,7 @@ package com.db.grad.javaapi.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 //Refers to only date (and not time)
 import java.sql.Date;
 
@@ -21,12 +19,21 @@ public class Trade {
     private String status;
     private String type;
     private float unit_price;
-    //@DateTimeFormat(pattern = "DD/MM/YYYY") //"YYYY-MM-DD"
-    private String trade_date; //Date
+    private String trade_date;
 
-    //@DateTimeFormat(pattern = "DD/MM/YYYY")
-    private String settlement_date; //Date
+    private String settlement_date;
 
+
+    //~Handles sql JOIN logic
+    //JOIN trade's bond_id ON bond's isin
+    @OneToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name="bond_id", referencedColumnName="isin", insertable=false, updatable=false)
+    private Bond bond;
+
+    //JOIN counterparty's id ON trade's counterparty_id
+    @OneToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JoinColumn(name="counterparty_id", referencedColumnName="id", insertable=false, updatable=false)
+    private Counterparty counterparty;
 
     public int getId() {
         return id;

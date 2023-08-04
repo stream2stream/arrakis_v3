@@ -3,10 +3,10 @@
 --CREATE DATABASE FIC;
 --use FIC;
 
-DROP TABLE bonds IF EXISTS;
+DROP TABLE bonds IF EXISTS CASCADE;
 
 --Original bonds table:
--- CREATE TABLE bonds (
+-- CREATE TABLE IF NOT EXISTS bonds (
 --     id int NOT NULL AUTO_INCREMENT,
 --     isin varchar(50) DEFAULT NULL,
 --     cusip varchar(50) DEFAULT NULL,
@@ -20,7 +20,7 @@ DROP TABLE bonds IF EXISTS;
 --     PRIMARY KEY (id)
 -- ) ;
 
-CREATE TABLE bonds (
+CREATE TABLE IF NOT EXISTS bonds (
     isin varchar(50) PRIMARY KEY,
     cusip varchar(50),
     bond_currency varchar(10) NOT NULL,
@@ -33,16 +33,16 @@ CREATE TABLE bonds (
 );
 
 -- Given DDL format:
-DROP TABLE books IF EXISTS;
-CREATE TABLE books (
+DROP TABLE books IF EXISTS CASCADE;
+CREATE TABLE IF NOT EXISTS books (
   id int NOT NULL,
   name varchar(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
 --Cannot use 'user' keyword unless adding ";NON_KEYWORDS=USER" to the end of the JDBC url
-DROP TABLE users IF EXISTS;
-CREATE TABLE users (
+DROP TABLE users IF EXISTS CASCADE;
+CREATE TABLE IF NOT EXISTS users (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   email varchar(255) NOT NULL,
@@ -50,8 +50,8 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
-DROP TABLE book_users IF EXISTS;
-CREATE TABLE book_users (
+DROP TABLE book_users IF EXISTS CASCADE;
+CREATE TABLE IF NOT EXISTS book_users (
   book_id int NOT NULL,
   user_id int NOT NULL,
   -- From 'books' table
@@ -60,18 +60,18 @@ CREATE TABLE book_users (
   CONSTRAINT FK_user_id FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
-DROP TABLE counterparties IF EXISTS;
-CREATE TABLE counterparties (
+DROP TABLE counterparties IF EXISTS CASCADE;
+CREATE TABLE IF NOT EXISTS counterparties (
   id int NOT NULL AUTO_INCREMENT,
   name varchar(255) NOT NULL,
   PRIMARY KEY (id)
 ) ;
 
-DROP TABLE trades IF EXISTS;
-CREATE TABLE trades (
+DROP TABLE trades IF EXISTS CASCADE;
+CREATE TABLE IF NOT EXISTS trades (
   id int NOT NULL AUTO_INCREMENT,
   book_id int NOT NULL,
-  bond_id varchar(12) NOT NULL,
+  bond_id varchar(50) NOT NULL,
   counterparty_id int NOT NULL,
   type varchar(4) NOT NULL, -- len = 4 for 'buy'/'sell'
   currency varchar(10) NOT NULL,

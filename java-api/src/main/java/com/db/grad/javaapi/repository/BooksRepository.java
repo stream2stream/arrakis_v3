@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BooksRepository extends JpaRepository<Book, String> {
+public interface BooksRepository extends JpaRepository<Book, Integer> {
     @Query(nativeQuery = true, value = "select * from books")
     List<Book> getBooks();
 }
