@@ -7,9 +7,10 @@ import styles from "./App.css"
 const App = () => {
   return (
     <>
-      <LoginPage />
       <Routes>
         <Route path="dashboard" element={<Dashboard/>} />
+        <Route path="login" element={<LoginPage/>} />
+        <Route path="/" element={<LoginPage/>} />
       </Routes>
     </>
   )

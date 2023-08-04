@@ -2,13 +2,11 @@ import React from "react";
 import Form from "react-bootstrap/Form"
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
 
 export const LoginPage = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
@@ -24,7 +22,12 @@ export const LoginPage = () => {
         user.username = username;
         user.password = password;
         console.log(user);
-        navigate('./dashboard');
+        // handle login validation
+        if (true) {
+            window.location.href="http://localhost:3000/dashboard";
+        } else {
+            window.location.href="http://localhost:3000/";
+        }
     }
 
     return (
