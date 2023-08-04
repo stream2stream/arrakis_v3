@@ -10,14 +10,14 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import { red, green,orange } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import BondCardTable from './BondCardTable';
 import Row from "react-bootstrap/Row";
-import { format } from 'date-fns';
+import { format, compareAsc } from 'date-fns';
 
 
 const ExpandMore = styled((props) => {
@@ -31,7 +31,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function BondCard({ date, bond }) {
+export default function BondCard({ date, bond, currentDate }) {
   const [expanded, setExpanded] = React.useState(false);
   const [newDate, setDate ] = React.useState()
   const handleExpandClick = () => {
@@ -53,9 +53,21 @@ export default function BondCard({ date, bond }) {
     }
     return newDate;
   }
+    // Compare the selected date with the current date
+    const comparisonResult = compareAsc(new Date(date), new Date(currentDate));
 
+    // Set the card background color based on the comparison result
+    let cardColor;
+    if (comparisonResult === 0) {
+      cardColor = orange[500]; // Orange for the current date
+    } else if (comparisonResult === -1) {
+      cardColor = red[500]; // Red for dates before the current date
+    } else {
+      cardColor = green[500]; // Green for dates after the current date
+    }
+    
   return (
-    <Card sx={{ maxWidth: 450 }}>
+    <Card sx={{ maxWidth: 450, backgroundColor: cardColor }}>
         <CardHeader title={date} />
       <CardContent>
         <BondCardTable bond={bond} date={date} />
