@@ -17,7 +17,7 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import DetailPage from "../DetailPage/DetailPage";
+
 import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 
