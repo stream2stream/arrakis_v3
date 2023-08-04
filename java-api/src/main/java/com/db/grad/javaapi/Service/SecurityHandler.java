@@ -5,6 +5,7 @@ import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -46,7 +47,7 @@ public class SecurityHandler implements ISecurityService {
             result = true;
         }
 
-        return  result;
+        return result;
     }
 
     @Override
@@ -72,7 +73,18 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.save(securityToUpdate);
     }
 
-    public List<Security> getSecuritiesByUserDateRange(Long userId, String startDateString, String endDateString) throws IllegalArgumentException {
+
+    public Security updateSecurityStatus(long id) {
+        Optional<Security> theSecurity = securityRepository.findById(id);
+        if (theSecurity.isPresent()) {
+            theSecurity.get().setStatus("processing");
+            return securityRepository.save(theSecurity.get());
+        } else {
+            throw new EntityNotFoundException("Security with ID " + id + " not found");
+        }
+    }
+
+    public List<Security> getSecuritiesByUserDateRange(long userId, String startDateString, String endDateString) throws IllegalArgumentException {
         LocalDate startDate=LocalDate.parse(startDateString,dateFormatter);
         LocalDate endDate=LocalDate.parse(endDateString,dateFormatter);
 
@@ -94,5 +106,25 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.findDistinctSecurityTypesByUserId(userId);
     }
 
+    // API 7: Get distinct issuer name in user books issuer_name
+    public List<String> getDistinctSecurityIssuerByUserId(Long userId) {
+        return securityRepository.findDistinctSecurityIssuerByUserId(userId);
+    }
+
+    //API 8: Filter securities by date, issuer name and type
+    public List<Security> getSecuritiesByDateIssuerAndType(long userId, String startDateString, String endDateString,
+                                                           String issuerName, String Type)
+    {
+        LocalDate startDate=LocalDate.parse(startDateString,dateFormatter);
+        LocalDate endDate=LocalDate.parse(endDateString,dateFormatter);
+
+        Date startDateSQL=Date.valueOf(startDate);
+        Date endDateSQL=Date.valueOf(endDate);
+
+        List<Security> filteredSecurities = securityRepository.findSecurityByDateTypeAndIssuer(userId, startDateSQL, endDateSQL, issuerName, Type);
+        return filteredSecurities;
+
+
+    }
 
 }
