@@ -77,5 +77,6 @@ CREATE TABLE trades (
   trade_date datetime NOT NULL,
   settlement_date datetime NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (book_id) REFERENCES book (id)
+  FOREIGN KEY (book_id) REFERENCES book (id),
+  FOREIGN KEY (security_id) REFERENCES security(id)
 );
