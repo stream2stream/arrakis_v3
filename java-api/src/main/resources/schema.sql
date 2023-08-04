@@ -1,4 +1,3 @@
-
 Drop table IF exists Trade;
 Drop table IF exists bookuser;
 Drop Table IF exists users;
@@ -6,8 +5,20 @@ Drop Table IF exists CounterParty;
 Drop Table IF exists Book;
 Drop Table IF exists Security;
 
-CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+-- CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+CREATE TABLE TEST AS SELECT * FROM CSVREAD('/Users/monikazeng/Documents/DB/projects/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+
 UPDATE TEST SET BOND_HOLDER = LOWER(BOND_HOLDER), BOOK_NAME = LOWER(BOOK_NAME);
+
+UPDATE TEST SET BOND_MATURITY_DATE = PARSEDATETIME(BOND_MATURITY_DATE, 'dd/MM/yyyy');
+ALTER TABLE TEST ALTER COLUMN BOND_MATURITY_DATE SET DATA TYPE TIMESTAMP;
+
+UPDATE TEST SET TRADE_SETTLEMENT_DATE = PARSEDATETIME(TRADE_SETTLEMENT_DATE, 'dd/MM/yyyy');
+ALTER TABLE TEST ALTER COLUMN TRADE_SETTLEMENT_DATE SET DATA TYPE TIMESTAMP;
+
+UPDATE TEST SET TRADE_DATE = PARSEDATETIME(TRADE_DATE, 'dd/MM/yyyy');
+ALTER TABLE TEST ALTER COLUMN TRADE_DATE SET DATA TYPE TIMESTAMP;
+
 create table Book(
     book_id int not null AUTO_INCREMENT primary key,
     book_name varchar(50) not null
@@ -42,7 +53,7 @@ CREATE TABLE Security(
     cusip VARCHAR (50) DEFAULT NULL,
     type VARCHAR(50) DEFAULT NULL,
     issuer_name VARCHAR(250) NOT NULL,
-    maturity_date varchar(10) DEFAULT NULL,
+    maturity_date DATETIME DEFAULT NULL,
     faceValue float NOT NULL,
     bondCurrency varchar(10) NOT NULL,
     coupon float not null,
@@ -51,20 +62,19 @@ CREATE TABLE Security(
 
 Create table Trade(
     trade_id int not null AUTO_INCREMENT PRIMARY KEY,
-    security_id int not null,
+--     security_id int,
     book_id int not null,
     bond_holder_id int not null,
-    trade_date varchar(10) not null,
-    trade_settlement_date varchar(10) not null,
+    trade_date DATETIME not null,
+    trade_settlement_date DATETIME not null,
     trade_type varchar(10) not null,
     trade_currency varchar(10) not null,
     trade_status varchar(10) not null,
     unit_price float not null,
     quantity int not null,
     FOREIGN KEY (book_id) REFERENCES Book(book_id),
-    FOREIGN KEY (security_id) REFERENCES Security(security_id),
+--     FOREIGN KEY (security_id) REFERENCES Security(security_id),
     FOREIGN KEY (bond_holder_id) REFERENCES CounterParty(bond_holder_id)
-
 );
 
 
