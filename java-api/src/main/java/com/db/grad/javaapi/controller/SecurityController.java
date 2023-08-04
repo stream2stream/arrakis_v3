@@ -45,7 +45,7 @@ public class SecurityController {
     }
 
     @DeleteMapping("/security/{id}")
-    public Map< String, Boolean > deleteUser(@PathVariable(value = "id") Long id)
+    public Map< String, Boolean > deleteUser(@PathVariable(value = "id") long id)
             throws ResourceNotFoundException {
         boolean removed = securityHandler.removeSecurity(id);
 
@@ -58,7 +58,7 @@ public class SecurityController {
         return response;}
 
     @GetMapping("/security/userBooks/{user_id}")
-    public List<Security> getSecuritiesMatchedWithBook(@PathVariable(value = "user_id") Long id)
+    public List<Security> getSecuritiesMatchedWithBook(@PathVariable(value = "user_id") long id)
             throws ResourceNotFoundException {
         List<Security> security = securityHandler.getSecuritiesMatchedWithBook(id);
         return security;
