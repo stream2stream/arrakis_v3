@@ -19,6 +19,7 @@ import BondCardTable from './BondCardTable';
 import Row from "react-bootstrap/Row";
 import { format } from 'date-fns';
 
+
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -55,9 +56,9 @@ export default function BondCard({ date, bond }) {
 
   return (
     <Card sx={{ maxWidth: 450 }}>
-      <CardHeader title={date} />
+        <CardHeader title={date} />
       <CardContent>
-        <BondCardTable bond={bond} />
+        <BondCardTable bond={bond} date={date} />
       </CardContent>
     </Card>
   );

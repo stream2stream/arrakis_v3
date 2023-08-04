@@ -44,3 +44,16 @@ export const getAllBondsForBusinessDaysBeforeAndAfter = async (date) => {
     throw error;
   }
 };
+
+export const getMaturedBondsByBondTypeAndDate = async (bondType, date) => {
+  try {
+    const response = await axios.get(
+      `${hostNameUrl}/bonds/bondType/${bondType}/date/${date}`
+    );
+    const maturedBonds = response.data;
+    return maturedBonds;
+  } catch (error) {
+    console.error("Error fetching matured bonds:", error);
+    throw error;
+  }
+};

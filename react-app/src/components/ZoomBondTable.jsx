@@ -7,7 +7,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getAllBonds } from '../services/BondService';
+import { getMaturedBondsByBondTypeAndDate  } from '../services/BondService';
+import { useLocation } from 'react-router';
+import BondCardTable from './BondCardTable';
+import Tooltip from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 
 const columns = [
   { id: 'isin', label: 'ISIN', minWidth: 170 },
@@ -63,23 +67,31 @@ const columns = [
   },
 ];
 
+const issuerName = 'Example';
+
 export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
-
-  React.useEffect(() => {
+  const location = useLocation();
+  const bondType = location?.state?.type;
+  const bondDate = location?.state?.date;
+  
+  React.useEffect(( ) => {
+    console.log(bondType);
+    console.log(bondDate); 
     const fetchData = async () => {
       try {
-        const bonds = await getAllBonds();
-        setRows(bonds);
+        if (bondType) {
+          const maturedBonds = await getMaturedBondsByBondTypeAndDate(bondType, bondDate);
+          setRows(maturedBonds);
+        }
       } catch (error) {
         console.error('Error fetching bonds:', error);
       }
     };
-
     fetchData();
-  }, []);
+  }, [bondType, bondDate]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -119,7 +131,17 @@ export default function StickyHeadTable() {
                         const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number' ? column.format(value) : value}
+                            {column.id === 'issuerID' ? (
+                              <Tooltip
+                                title={<Typography variant="subtitle1">{issuerName}</Typography>}
+                              >
+                                <span style={{ fontSize: '16px' }}>{value}</span>
+                              </Tooltip>
+                            ) : (
+                              column.format && typeof value === 'number'
+                                ? column.format(value)
+                                : value
+                            )}
                           </TableCell>
                         );
                       })}
@@ -129,15 +151,7 @@ export default function StickyHeadTable() {
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[10, 25, 100]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        {/* Rest of the code */}
       </Paper>
     </div>
   );
