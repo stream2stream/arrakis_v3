@@ -38,7 +38,7 @@ const bonds2 = [{
   "isin":100,
   "type":"Sell",
   "issuer":"Someone",
-  "maturity":15/10/2023,
+  "maturity":"10-10-2023",
   "faceValue": 10.33,
   "currency": "USD",
   "coupon":1,
@@ -52,14 +52,92 @@ const bonds2 = [{
   "isin":200,
   "type":"Sell",
   "issuer":"Someone",
-  "maturity":15/10/2023,
+  "maturity":"15-10-2023",
   "faceValue": 10.33,
   "currency": "USD",
   "coupon":1,
   "status":"Active"
 
 
-}
+},
+{
+    "id":3,
+    "isin":300,
+    "type":"Sell",
+    "issuer":"Someone",
+    "maturity":"11-10-2023",
+    "faceValue": 10.33,
+    "currency": "USD",
+    "coupon":1,
+    "status":"Active"
+  
+  
+  },
+  {
+    "id":4,
+    "isin":400,
+    "type":"Sell",
+    "issuer":"Someone",
+    "maturity":"5-10-2023",
+    "faceValue": 10.33,
+    "currency": "USD",
+    "coupon":1,
+    "status":"Active"
+  
+  
+  },
+  {
+    "id":5,
+    "isin":500,
+    "type":"Sell",
+    "issuer":"Someone",
+    "maturity":"15-10-2023",
+    "faceValue": 10.33,
+    "currency": "USD",
+    "coupon":1,
+    "status":"Active"
+  
+  
+  },
+  {
+    "id":6,
+    "isin":600,
+    "type":"Sell",
+    "issuer":"Someone",
+    "maturity":"25-10-2023",
+    "faceValue": 10.33,
+    "currency": "USD",
+    "coupon":1,
+    "status":"Active"
+  
+  
+  },
+  {
+    "id":7,
+    "isin":700,
+    "type":"Sell",
+    "issuer":"Someone",
+    "maturity":"15-10-2023",
+    "faceValue": 10.33,
+    "currency": "USD",
+    "coupon":1,
+    "status":"Active"
+  
+  
+  },
+  {
+    "id":8,
+    "isin":800,
+    "type":"Sell",
+    "issuer":"Someone",
+    "maturity":"15-10-2023",
+    "faceValue": 10.33,
+    "currency": "USD",
+    "coupon":1,
+    "status":"Active"
+  
+  
+  }
 ]
 
   return (

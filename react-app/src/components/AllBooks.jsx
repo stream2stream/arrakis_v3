@@ -35,21 +35,53 @@ const getBooksFromAPI = ()=>{
 }
 const books2 = [{
   "id":1,
-  "name":"Anyone"
+  "bookName":"Anyone"
 
 
 },
 
 {
   "id":2,
-  "name":"somethingo"
+  "bookName":"somethingo"
 
 
-}, ]
+}, 
+{
+  "id":3,
+  "bookName":"somethingo"
+
+
+},
+{
+  "id":4,
+  "bookName":"somethingo"
+
+
+},
+
+{
+  "id":5,
+  "bookName":"somethingo"
+
+
+},
+
+{
+  "id":6,
+  "bookName":"somethingo"
+
+
+},
+{
+  "id":7,
+  "bookName":"somethingo"
+
+
+},]
 
   return (
     <div>
-      <BooksDetails data={books}></BooksDetails>
+      <BooksDetails data={books2}></BooksDetails>
     </div>
     
   )
