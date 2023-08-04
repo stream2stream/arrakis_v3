@@ -9,6 +9,9 @@ export function getAllBonds(){
 export function getAllBondsMaturity(){
   return http.get("/bonds/maturity");
 }
+export function getAllTrades(){
+  return http.get("/trades");
+}
 
 // export const findBonds = () => {
 //   const pets = axios.get(`${hostNameUrl}/dogs`);

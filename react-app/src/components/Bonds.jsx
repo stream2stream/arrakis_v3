@@ -1,25 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { getAllBonds, getAllBondsMaturity } from '../services/TradeServices';
+import { getAllBonds, getAllBondsMaturity, getAllTrades } from '../services/TradeServices';
 import { useNavigate } from "react-router-dom";
-import { Route, Routes } from 'react-router-dom';
-import Home from './home';
-
-// const trades = [
-//     { coupon_percent: 4.37, bond_currency: "USD", CUSIP: null, face_value: 1000, isin: "XS1988387210", issuer_name: "BNPParibasIssu 4,37% Microsoft Corp (USD)", bond_maturity_date: "5/8/2021", status: "active", type: "CORP" },
-//     { coupon_percent: 4.38, bond_currency: "USD", cusip: null, face_value: 1000, isin: "XS1988387210", issuer_name: "BNPParibasIssu 4,37% Microsoft Corp (USD)", bond_maturity_date: "5/8/2021", status: "active", type: "CORP" }
-// ]
-// coupon_percent	bond_currency	cusip	face_value (mn)	isin	issuer_name	bond_maturity_date	status	type
-// 4.37	USD		1000	XS1988387210	BNPParibasIssu 4,37% Microsoft Corp (USD)	5/8/2021	active	CORP
-// 4.37	USD		1000	XS1988387210	BNPParibasIssu 4,37% Microsoft Corp (USD)	5/8/2021	active	CORP
 
 
 export const Bonds = () => {
     
     const [bonds,setBonds] = useState([]);
     const [bondsMaturity,setBondsMaturity] = useState([]);
+    const [trades,setTrades] = useState([]);
     const navigate = useNavigate();
     useEffect(()=>{
-        getBondsFromAPI();}, 
+        getBondsFromAPI();
+        getTradesFromAPI()}, 
         []
     );
     const getBondsFromAPI = ()=>{
@@ -42,13 +34,24 @@ export const Bonds = () => {
                 console.log(err);
         })
     }
+    const getTradesFromAPI = ()=>{
+        getAllTrades()
+            .then(res => {
+                console.log(res.data);
+                setTrades(res.data);
+            })
+            .catch(err => {
+                setTrades([]);
+                console.log(err);
+        })
+    }
     const statusCheck = (status) => {
-        if (status === "active") {
+        if (status === "active" || status === "open") {
             return <font color="green">{status}</font>;
         }
-        return {status};
+        return status;
     }
-    const createRow = (data) => {     
+    const createBondRow = (data) => {     
         return <tr>
             <td>{data.couponPercent}</td>
             <td>{data.bondCurrency}</td>
@@ -60,15 +63,28 @@ export const Bonds = () => {
             <td>{statusCheck(data.status)}</td>
             <td>{data.type}</td>
         </tr>
-            
-        }
-        const onButtonClick = () => {
-            navigate("/");
-        }
+    }
+    const createTradeRow = (data) => {     
+        return <tr>
+            <td>{data.book_id}</td>
+            <td>{data.bond_id}</td>
+            <td>{data.counterparty_id}</td>
+            <td>{data.quantity}</td>
+            <td>{data.currency}</td>
+            <td>{statusCheck(data.status)}</td>
+            <td>{data.type}</td>
+            <td>{data.unit_price}</td>
+            <td>{statusCheck(data.trade_date)}</td>
+            <td>{data.settlement_date}</td>
+        </tr>
+    }
+    const onLogoutClick = () => {
+        navigate("/");
+    }
   return (
     <>
     <div class="align-right">
-        <input type="button" onClick={onButtonClick} value={"Logout"} class="right" />
+        <input type="button" onClick={onLogoutClick} value={"Logout"} class="right" />
       </div>
     <div>
         <table>
@@ -87,7 +103,32 @@ export const Bonds = () => {
                     <th>Status</th>
                     <th>Type</th>
                 </tr>
-                {bonds.map(row => createRow(row))}
+                {bonds.map(row => createBondRow(row))}
+            </tbody>
+            
+        </table>
+        
+    </div>
+    <div class="space"></div>
+    <div>
+        <table>
+            <thead>
+                <tr><th colSpan="10">All Trades</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Bond ID</th>
+                    <th>Counterparty ID</th>
+                    <th>Quantity</th>
+                    <th>Currency</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Unit Price</th>
+                    <th>Trade Date</th>
+                    <th>Settlement Date</th>
+                </tr>
+                {trades.map(row => createTradeRow(row))}
             </tbody>
             
         </table>
@@ -111,13 +152,14 @@ export const Bonds = () => {
                 <th>Status</th>
                 <th>Type</th>
             </tr>
-            {bondsMaturity.map(row => createRow(row))}
+            {bondsMaturity.map(row => createBondRow(row))}
         </tbody>
         
     </table>
 
     </div> 
-    <div class="space"></div></>
+    <div class="space"></div>
+    </>
   )
 }
 
