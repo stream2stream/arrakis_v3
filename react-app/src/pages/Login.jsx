@@ -4,13 +4,16 @@ import '../App.css';
 import Box from '@mui/material/Box';
 import DB from '../images/DB4.png';
 import { TextField, Button, Typography, Container, Grid, Link } from '@mui/material';
+import { SignIn } from '../services/LoginService';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+    
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
         // Perform login/authentication logic here
@@ -19,6 +22,10 @@ function Login() {
         try {
             // const user = await loginUser(username, password);
             setErrors({ login: 'Invalid username or password' });
+            const jwtToken = await SignIn(username, password);
+            if(jwtToken) {
+              navigate("/home/bonds");
+            }
             // onLogin(user.username);
           } catch (error) {
             
