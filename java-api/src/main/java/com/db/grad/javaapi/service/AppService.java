@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppService {
@@ -89,5 +90,11 @@ public class AppService {
             idList.add(book.getId());
         }
         return bondService.findBondsByBookIds(idList);
+    }
+
+    public List<Book> findBooksByUserID(int userID) {
+        User user = userService.findById(userID) ;
+        return  user.getBooks();
+
     }
 }

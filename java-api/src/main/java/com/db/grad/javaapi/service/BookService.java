@@ -17,13 +17,10 @@ import java.util.Optional;
 @Service
 public class BookService {
     private BookRepository br;
-    
-    private UserRepository ur ; 
 
     @Autowired
-    public BookService(BookRepository br, UserRepository ur) {
+    public BookService(BookRepository br) {
         this.br = br;
-        this.ur = ur ;
     }
 
 
@@ -37,13 +34,7 @@ public class BookService {
     }
 
 
-    public Book findById(int id){
+    public Book findById(int id) {
         return br.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
-
-      
-    public List<Book> findBooksByUserID(int userID) {
-        Optional<User> optfoundUser = ur.findById(userID) ;
-        return  optfoundUser.get().getBooks();
-
     }
 }

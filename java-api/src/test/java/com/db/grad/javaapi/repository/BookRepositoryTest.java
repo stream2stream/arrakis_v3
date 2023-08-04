@@ -24,7 +24,7 @@ public class BookRepositoryTest {
     @Autowired
     private UserRepository ur ;
     @Autowired
-    private BookService bs ;
+    private AppService as ;
 
     @Test
     public void testFindBooksByUserID() {
@@ -71,7 +71,7 @@ public class BookRepositoryTest {
                     + "  object: " + book );
         }
 
-        List<Book> service_books = bs.findBooksByUserID(userID) ;
+        List<Book> service_books = as.findBooksByUserID(userID) ;
         for(Book book: service_books) {
             System.out.println( "ACTUAL BOOKS  ID: " + book.getId() + ",  Name: " + book.getBookName()
                     + "  object: " + book );
