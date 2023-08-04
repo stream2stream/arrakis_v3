@@ -18,7 +18,7 @@ public class SecurityController {
     SecurityService securityService;
 
     @GetMapping("/bonds")
-    public List<BondDTO> getActiveBonds() {
+    public List<Security> getActiveBonds() {
         return securityService.getBonds();
     }
 
