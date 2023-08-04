@@ -5,9 +5,12 @@ import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import static com.db.grad.javaapi.utils.DateUtils.dateFormatter;
 
 @Service
 public class SecurityHandler implements ISecurityService {
@@ -69,8 +72,14 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.save(securityToUpdate);
     }
 
-    public List<Security> getSecuritiesCustomRange(LocalDate startDate, LocalDate date) {
-        List<Security> securitiesDueForMaturity = securityRepository.findByMaturityDateBetween(startDate, date);
+    public List<Security> getSecuritiesByUserDateRange(Long userId, String startDateString, String endDateString) throws IllegalArgumentException {
+        LocalDate startDate=LocalDate.parse(startDateString,dateFormatter);
+        LocalDate endDate=LocalDate.parse(endDateString,dateFormatter);
+
+        Date startDateSQL=Date.valueOf(startDate);
+        Date endDateSQL=Date.valueOf(endDate);
+
+        List<Security> securitiesDueForMaturity = securityRepository.findSecurityByUserDateRange(userId, startDateSQL, endDateSQL);
         return securitiesDueForMaturity;
     }
 
