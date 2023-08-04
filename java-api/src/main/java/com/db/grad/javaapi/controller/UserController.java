@@ -31,10 +31,10 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity < User > getEmployeeById(@PathVariable(value = "id") Long id)
+    public ResponseEntity < User > getUserById(@PathVariable(value = "id") long id)
             throws ResourceNotFoundException {
-        User Users = userHandler.getUserById(id);
-        return ResponseEntity.ok().body(Users);
+        User user = userHandler.getUserById(id);
+        return ResponseEntity.ok().body(user);
     }
 
     @PostMapping("/users")
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @PutMapping("/users/{id}")
-    public ResponseEntity < User > updateUser(@PathVariable(value = "id") Long id,
+    public ResponseEntity < User > updateUser(@PathVariable(value = "id") long id,
                                             @Valid @RequestBody User UserDetails) throws ResourceNotFoundException {
 
         final User updatedUsers = userHandler.updateUserDetails(UserDetails);
@@ -51,7 +51,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users/{id}")
-    public Map< String, Boolean > deleteUser(@PathVariable(value = "id") Long id)
+    public Map< String, Boolean > deleteUser(@PathVariable(value = "id") long id)
             throws ResourceNotFoundException {
         boolean removed = userHandler.removeUser(id);
 
@@ -62,5 +62,13 @@ public class UserController {
             response.put("deleted", Boolean.FALSE);
 
         return response;
+    }
+
+    //API6
+    @GetMapping("/users/email/{email}")
+    public ResponseEntity < User > getUserByEmail(@PathVariable(value = "email") String email )
+            throws ResourceNotFoundException {
+        User user = userHandler.getUserByEmail(email);
+        return ResponseEntity.ok().body(user);
     }
 }

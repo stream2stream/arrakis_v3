@@ -69,4 +69,8 @@ public class UserHandler implements IUserService{
     public User updateUserDetails(User userToUpdate) {
         return userRepository.save(userToUpdate);
     }
+
+    public User getUserByEmail(String email) {
+        return userRepository.getUserByEmail(email);
+    }
 }

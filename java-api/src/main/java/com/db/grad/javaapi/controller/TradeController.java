@@ -32,7 +32,7 @@ public class TradeController {
     }
 
     @GetMapping("/trades/{id}")
-    public ResponseEntity < Trade > getEmployeeById(@PathVariable(value = "id") Long id)
+    public ResponseEntity < Trade > getEmployeeById(@PathVariable(value = "id") long id)
             throws ResourceNotFoundException {
         Trade Trades = tradeHandler.getTradeById(id);
         return ResponseEntity.ok().body(Trades);
@@ -44,7 +44,7 @@ public class TradeController {
     }
 
     @PutMapping("/trades/{id}")
-    public ResponseEntity < Trade > updateTrade(@PathVariable(value = "id") Long id,
+    public ResponseEntity < Trade > updateTrade(@PathVariable(value = "id") long id,
                                               @Valid @RequestBody Trade TradeDetails) throws ResourceNotFoundException {
 
         final Trade updatedTrades = tradeHandler.updateTradeDetails(TradeDetails);
@@ -52,7 +52,7 @@ public class TradeController {
     }
 
     @DeleteMapping("/trades/{id}")
-    public Map< String, Boolean > deleteTrade(@PathVariable(value = "id") Long id)
+    public Map< String, Boolean > deleteTrade(@PathVariable(value = "id") long id)
             throws ResourceNotFoundException {
         boolean removed = tradeHandler.removeTrade(id);
 
