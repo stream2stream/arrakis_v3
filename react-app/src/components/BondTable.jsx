@@ -1,38 +1,76 @@
 
 import React from 'react';
+import { useState } from 'react';
+import "bootstrap/dist/css/bootstrap.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
-const BondTable = ({ data }) => {
+
+
+
+const columns = [
+  {
+    dataField: "isin",
+    text: "ISIN",
+    sort: true
+  },
+  {
+    dataField: "type",
+    text: "Bond Type",
+
+  },
+  {
+    dataField: "issuer",
+    text: "Issue"
+  },
+  {
+    dataField: "maturity",
+    text: "Maturity",
+    sort: true
+  },
+  
+  {
+    dataField: "faceValue",
+    text: "FaceValue",
+
+  },
+  {
+    dataField: "currency",
+    text: "Currency",
+   
+  },
+  {
+    dataField: "coupon",
+    text: "coupon",
+   
+  },
+  {
+    dataField: "status",
+    text: "status",
+   
+  }
+];
+
+
+
+
+
+
+
+const BondTable = ({ data}) => {
+
   return (
-    <table>
-      <thead>
-
-            <th>ISIN</th>
-            <th>Type</th>
-            <th>Issuer</th>
-            <th>Maturity</th>
-
-            <th>Face Value</th>
-            <th>Currency</th>
-            <th>Coupon %</th>
-            <th>Status</th>
-         
-      </thead>
-      <tbody>
-        {data.map((index) => (
-           <tr key={index.id}>
-       <td >{index.isin}</td> 
-           <td>{index.type}</td>
-           <td>{index.issuer}</td>
-           <td>{index.maturity}</td>
-
-           <td>{index.faceValue}</td>
-           <td>{index.currency}</td>
-           <td>{index.coupon}</td>
-           <td>{index.status}</td>
-         </tr>
-        ))}
-      </tbody>
-    </table>
+    
+    <div className="App">
+      <BootstrapTable
+        bootstrap4
+        keyField="id"
+        data={data}
+        columns={columns}
+        pagination={paginationFactory({ sizePerPage: 5 })}
+      />
+    </div>
   );
 };
 
