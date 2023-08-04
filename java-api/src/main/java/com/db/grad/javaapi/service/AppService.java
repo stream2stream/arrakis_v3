@@ -114,4 +114,10 @@ public class AppService {
         return tradeService.findTradesByBondId(bondId);
 
     }
+
+    public List<Trade> findTradesByBondIdAndUserId(int bondId, int userId) {
+        User user = userService.findById(userId);
+        List<Integer> bookIds = bookService.getBookIdsByUser(user);
+        return tradeService.findTradesByBondIdAndUserId(bondId, bookIds);
+    }
 }

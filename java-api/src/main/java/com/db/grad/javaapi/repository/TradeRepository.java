@@ -11,4 +11,7 @@ import java.util.List;
 public interface TradeRepository extends JpaRepository<Trade, Integer> {
     @Query(value = "SELECT * FROM trade WHERE bond_id = :bondId", nativeQuery = true)
     List<Trade> findTradesByBondId(int bondId);
+
+    @Query(value = "SELECT * FROM trade WHERE bond_id = :bondId and book_id in :bookIds", nativeQuery = true)
+    List<Trade> findTradesByBondIdAndUserId(int bondId, List<Integer> bookIds);
 }

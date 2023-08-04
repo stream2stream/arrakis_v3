@@ -30,4 +30,8 @@ public class TradeService {
     public List<Trade> findTradesByBondId(int bondId) {
         return tradeRepository.findTradesByBondId(bondId);
     }
+
+    public List<Trade> findTradesByBondIdAndUserId(int bondId, List<Integer> bookIds) {
+        return tradeRepository.findTradesByBondIdAndUserId(bondId, bookIds);
+    }
 }
