@@ -105,4 +105,11 @@ public class SecurityController {
 
     }
 
+    @PutMapping("/security/updateStatus/{id}")
+    public ResponseEntity < Security > updateSecurityStatus(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
+
+        final Security updatedSecurity = securityHandler.updateSecurityStatus(id);
+        return ResponseEntity.ok(updatedSecurity);
+    }
+
 }

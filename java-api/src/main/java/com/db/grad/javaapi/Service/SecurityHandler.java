@@ -5,6 +5,7 @@ import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -46,7 +47,7 @@ public class SecurityHandler implements ISecurityService {
             result = true;
         }
 
-        return  result;
+        return result;
     }
 
     @Override
@@ -70,6 +71,17 @@ public class SecurityHandler implements ISecurityService {
     @Override
     public Security updateSecurityDetails(Security securityToUpdate) {
         return securityRepository.save(securityToUpdate);
+    }
+
+
+    public Security updateSecurityStatus(long id) {
+        Optional<Security> theSecurity = securityRepository.findById(id);
+        if (theSecurity.isPresent()) {
+            theSecurity.get().setStatus("processing");
+            return securityRepository.save(theSecurity.get());
+        } else {
+            throw new EntityNotFoundException("Security with ID " + id + " not found");
+        }
     }
 
     public List<Security> getSecuritiesByUserDateRange(long userId, String startDateString, String endDateString) throws IllegalArgumentException {
