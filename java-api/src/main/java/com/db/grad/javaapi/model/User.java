@@ -23,7 +23,6 @@ public class User {
 
     public User() {}
 
-    @Id
     @Column(name = "id", nullable = false)
     public long getUserId() {return id;}
 
@@ -36,11 +35,13 @@ public class User {
     public String getUserEmail(){
         return email;
     }
-    
+
     @Column(name = "role", nullable = false)
     public String getUserRole(){
         return role;
     }
+
+
 
     public void setUserName(String name){
         this.name = name;
