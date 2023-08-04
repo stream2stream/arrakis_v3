@@ -13,12 +13,6 @@ public class Bond {
     private float couponPercent;
     private String cusip, bondCurrency, bondMaturity, issuerName, status, type;
 
-    //~Handles sql JOIN logic
-    //JOIN trade's bond_id ON bond's isin
-    @OneToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JoinColumn(name="isin", referencedColumnName="bond_id", insertable=false, updatable=false)
-    private Trade trade;
-
     public String getIsin() {
         return isin;
     }

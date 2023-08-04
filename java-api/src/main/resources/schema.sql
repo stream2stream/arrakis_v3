@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS books (
   PRIMARY KEY (id)
 );
 
---Cannot use 'user' keyword unless adding ";NON_KEYWORDS=USER" to the end of the JDBC url
+--Cannot use 'user' keyword unless adding ;NON_KEYWORDS=USER to the end of the JDBC url
 DROP TABLE users IF EXISTS CASCADE;
 CREATE TABLE IF NOT EXISTS users (
   id int NOT NULL AUTO_INCREMENT,
@@ -91,4 +91,15 @@ CREATE TABLE IF NOT EXISTS trades (
 
 
 ALTER TABLE book_users ADD PRIMARY KEY(book_id, user_id);
+
+--Create views/joined tables
+
+CREATE VIEW bondsWithClients as
+SELECT b.isin, b.cusip, b.bond_currency, b.face_value,
+       b.bond_maturity, b.coupon_percent, b.issuer_name,
+       b.status, b.type, c.id as client_id, c.name as client_name
+FROM bonds as b JOIN
+     trades as t ON b.isin = t.bond_id JOIN
+     counterparties as c ON t.counterparty_id = c.id
+WHERE True;
 
