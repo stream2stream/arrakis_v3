@@ -23,7 +23,7 @@ public class BondsController {
         return bondsService.getAllBonds();
     }
     @GetMapping("/bonds/maturity")
-    public List<Bond> getBondsByMaturity(@RequestParam("date") Date date){
+    public List<Bond> getBondsByMaturity(@RequestParam("date") String date){
         return bondsService.getBondsByMaturity(date);
     }
 }
