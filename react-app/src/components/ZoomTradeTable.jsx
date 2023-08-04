@@ -7,8 +7,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getAllTradesByISIN, getBondHolderNameById } from '../services/BondService';
-import { useState } from 'react';
+import { getAllTradesByISIN } from '../services/BondService';
+import { useState, useRef } from 'react';
+import { DialogBox } from './DialogBox';
 
 const columns = [
   { id: 'isin', label: 'ISIN', minWidth: 170 },
@@ -81,7 +82,9 @@ export default function ZoomTradeTable({ isin }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([]);
-
+  const [selectedBondHolderID, setSelectedBondHolderID] = useState(null);
+  const dialogRef = useRef();
+  
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -128,25 +131,28 @@ export default function ZoomTradeTable({ isin }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row) => {
-                  return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.isin}>
-                      {columns.map((column) => {
-                        const value = row[column.id];
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-            </TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => {
+                return (
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.isin}>
+                    {columns.map((column) => {
+                      const value = row[column.id];
+                      return (
+                        <TableCell key={column.id} align={column.align} onClick={() => {
+                          setSelectedBondHolderID(value);
+                          dialogRef.current.openDialog(value);
+                        }}>
+                          {column.format && typeof value === 'number'
+                            ? column.format(value)
+                            : value}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })}
+          </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
@@ -159,6 +165,7 @@ export default function ZoomTradeTable({ isin }) {
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Paper>
+      <DialogBox ref={dialogRef} bondHolderName={selectedBondHolderID} />
     </div>
   );
 }

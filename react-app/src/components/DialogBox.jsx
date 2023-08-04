@@ -12,8 +12,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Switch from '@mui/material/Switch';
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useRef, useState, useEffect } from 'react';
 import ZoomBond from '../pages/ZoomBond';
+import { getBondHolderNameById } from '../services/BondService';
+
 
 export const DialogBox = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
@@ -27,7 +29,22 @@ export const DialogBox = forwardRef((props, ref) => {
     handleClickOpen();
   };
 
-  // Expose the function to the parent component through the ref
+  useEffect(() => {
+    // Fetch the bond holder name when the component mounts or when bondHolderName prop changes.
+    if (props.bondHolderName) {
+      fetchBondHolderName();
+    }
+  }, [props.bondHolderName]);
+
+  const fetchBondHolderName = async () => {
+    try {
+      const name = await getBondHolderNameById(props.bondHolderName);
+      setBondHolderName(name);
+    } catch (error) {
+      console.error('Error fetching bond holder name:', error);
+    }
+  };
+
   React.useImperativeHandle(ref, () => ({
     openDialog: (name) => {
       setOpen(true);
