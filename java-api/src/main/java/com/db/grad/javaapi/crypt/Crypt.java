@@ -103,8 +103,13 @@ public class Crypt {
         //demoCrypt();
 
         Crypt.printEncodedKey();
-
         Crypt.printDecodedKey();
+
+        String txt = Crypt.encrypt("Hello world!", Crypt.encodedBase64Key);
+        System.out.println("Encrypted text: " + txt);
+
+        txt = Crypt.decrypt(txt, Crypt.encodedBase64Key);
+        System.out.println("Dencrypted text: " + txt);
 
     }
 
