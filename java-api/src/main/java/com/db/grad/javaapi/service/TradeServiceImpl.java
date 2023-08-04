@@ -1,6 +1,5 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.model.TradesCounterParty;
 import com.db.grad.javaapi.repository.TradesCounterPartiesRepository;
@@ -11,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

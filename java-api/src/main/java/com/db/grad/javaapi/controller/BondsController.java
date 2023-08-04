@@ -4,10 +4,13 @@ import com.db.grad.javaapi.exception.ResourceNotFoundException;
 import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.service.BondService;
 import com.db.grad.javaapi.service.BondServiceImpl;
+import com.db.grad.javaapi.service.UserService;
 import com.db.grad.javaapi.service.model.MaturingBondType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.text.ParseException;
@@ -19,10 +22,13 @@ import java.util.*;
 @CrossOrigin(origins = "http://localhost:3000")
 public class BondsController {
     private BondService bondService;
+    private UserService userService;
+
 
     @Autowired
-    public BondsController(BondService bondService) {
+    public BondsController(UserService userService, BondService bondService) {
         this.bondService = bondService;
+        this.userService = userService;
     }
 
     @GetMapping("/bonds")
@@ -34,13 +40,11 @@ public class BondsController {
     public Map<String, Map<String, Integer>> getNoOfBondsForBusinessDaysBeforeAndAfterOfType(@PathVariable(value = "date") String date,
                                                                                          @PathVariable(value = "daysBefore") int daysBefore,
                                                                                          @PathVariable(value = "daysAfter") int daysAfter) throws ParseException {
-
         return bondService.getAllBondsForBusinessDaysBeforeAndAfter(date, daysBefore, daysAfter);
     }
 
     @GetMapping(value = {"/bonds/bondType/{bondType}/date/{date}"})
-    public List<Bond> getMaturedBondsByBondTypeAndDate(@PathVariable(value = "bondType") String bondType,
-                                                                                         @PathVariable(value = "date") String date) throws ParseException {
+    public List<Bond> getMaturedBondsByBondTypeAndDate(@PathVariable(value = "bondType") String bondType, @PathVariable(value = "date") String date) throws ParseException {
 
         return bondService.getAllMatureBondsByBondTypeAndDate(bondType, date);
     }

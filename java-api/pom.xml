@@ -34,6 +34,23 @@
 			<artifactId>h2</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>0.11.2</version> <!-- use the latest version -->
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>0.11.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId> <!-- or gson if you prefer -->
+			<version>0.11.2</version>
+		</dependency>
+
+
 		<!-- MYSQL database -->
 		<dependency>
 			<groupId>mysql</groupId>

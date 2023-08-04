@@ -1,6 +1,6 @@
 package com.db.grad.javaapi.service.model;
 
-public class MaturingBondType {
+public class MaturingBondType { //Deprecated
     String bondType;
     int numberOfBondsMaturing;
 
