@@ -2,43 +2,33 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({userID, setUserID}) => {
-    const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [emailError, setEmailError] = useState("")
+    const [usernameError, setUsernameError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     
     const navigate = useNavigate();
         
     const onButtonClick = () => {
-        setEmailError("")
+        setUsernameError("")
         setPasswordError("")
 
-        // Check if the user has entered both fields correctly
         if ("" === email) {
-            setEmailError("Please enter your email")
+            setUsernameError("please enter your username")
             return
         }
 
-        if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-            setEmailError("Please enter a valid email")
+        if (!/^[A-Za-z0-9]*$/.test(username)) {
+            setUsernameError("invalid username")
             return
         }
 
         if ("" === password) {
-            setPasswordError("Please enter a password")
+            setPasswordError("please enter your password")
             return
         }
 
-        if (password.length < 7) {
-            setPasswordError("The password must be 8 characters or longer")
-            return
-        }
-
-        // Authentication calls will be made here...
-        if (email === "admin@mail.com" && password === "admin2023") {
-            setUserID(0)
-            navigate("/home")
-        }
+        navigate("/home")
     }
 
     return <div className={"mainContainer"}>
