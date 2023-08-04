@@ -10,9 +10,7 @@ public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-//    private int book_id;
-//    private int security_id;
-//    private int counter_party_id;
+
     private String currency;
     private int quantity;
     private float unit_price;
@@ -41,29 +39,6 @@ public class Trade {
         this.id = id;
     }
 
-//    public int getBook_id() {
-//        return book_id;
-//    }
-//
-//    public void setBook_id(int book_id) {
-//        this.book_id = book_id;
-//    }
-//
-//    public int getSecurity_id() {
-//        return security_id;
-//    }
-//
-//    public void setSecurity_id(int security_id) {
-//        this.security_id = security_id;
-//    }
-//
-//    public int getCounter_party_id() {
-//        return counter_party_id;
-//    }
-//
-//    public void setCounter_party_id(int counter_party_id) {
-//        this.counter_party_id = counter_party_id;
-//    }
 
     public String getCurrency() {
         return currency;
