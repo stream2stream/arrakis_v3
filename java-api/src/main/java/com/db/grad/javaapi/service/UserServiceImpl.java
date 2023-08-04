@@ -47,4 +47,14 @@ public class UserServiceImpl implements UserService {
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+            return true;
+        } catch (Exception e) {
+            // Log exception or handle as needed
+            return false;
+        }
+    }
 }

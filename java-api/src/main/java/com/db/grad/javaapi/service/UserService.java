@@ -4,4 +4,5 @@ import com.google.api.client.json.webtoken.JsonWebToken;
 
 public interface UserService {
     String signIn(String email, String password);
+    boolean validateToken(String token);
 }
