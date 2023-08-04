@@ -19,6 +19,6 @@ public interface SecurityRepository extends JpaRepository<Security, Integer> {
                     "on s.trading_book_id = bu.trading_book_id\n" +
                     "left join users as u\n" +
                     "on u.id = bu.user_id\n" +
-                    "where u.mail = 'user1@db.com'", nativeQuery = true)
-    List<Security> findSecuritiesForUserBooks(String userMail);
+                    "where u.mail =:userMail", nativeQuery = true)
+    List<Security> findSecuritiesForUserBooks(@Param("userMail") String userMail);
 }
