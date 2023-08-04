@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getAllBonds, getAllBondsMaturity, getAllTrades } from '../services/TradeServices';
 import { useNavigate } from "react-router-dom";
-// import DatePicker from "react-datepicker";
-// import 'react-datepicker/dist/react-datepicker.css'
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
 
 export const Bonds = () => {
     
@@ -10,7 +10,7 @@ export const Bonds = () => {
     const [bondsMaturity,setBondsMaturity] = useState([]);
     const [trades,setTrades] = useState([]);
 
-    // const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(new Date());
     const navigate = useNavigate();
     useEffect(()=>{
         getBondsFromAPI();
@@ -27,10 +27,10 @@ export const Bonds = () => {
                 setBonds([]);
                 console.log(err);
         })
-        getAllBondsMaturity()
+        getAllBondsMaturity(date)
             .then(res => {
                 console.log(res.data);
-                setBondsMaturity(res.data);
+                setBondsMaturity(date);
             })
             .catch(err => {
                 setBondsMaturity([]);
@@ -138,9 +138,9 @@ export const Bonds = () => {
         
     </div>
     <div class="space"></div>
-    {/* <div>
-      <DatePicker selected={date} onChange={(date) => setDate(date)} />
-    </div> */}
+    <div>
+      <DatePicker selected={date} onChange={(date) => {console.log(date.toISOString().split('T')[0]); setDate(date)}} />
+    </div>
     <div>
     <table>
         <thead>
