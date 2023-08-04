@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CounterParty")
-public class CounterParty {
+@Table(name = "Counterparty")
+public class Counterparty {
     @Id
     private int ID;
     private String Name;

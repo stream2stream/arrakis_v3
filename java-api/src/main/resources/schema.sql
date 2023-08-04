@@ -1,12 +1,12 @@
 Drop table IF exists Trade;
 Drop table IF exists bookuser;
 Drop Table IF exists users;
-Drop Table IF exists CounterParty;
+Drop Table IF exists Counterparty;
 Drop Table IF exists Book;
 Drop Table IF exists Security;
 
- CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
---CREATE TABLE TEST AS SELECT * FROM CSVREAD('/Users/monikazeng/Documents/DB/projects/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+--  CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+CREATE TABLE TEST AS SELECT * FROM CSVREAD('/Users/monikazeng/Documents/DB/projects/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
 
 UPDATE TEST SET BOND_HOLDER = LOWER(BOND_HOLDER), BOOK_NAME = LOWER(BOOK_NAME);
 
@@ -33,7 +33,7 @@ create table users(
 
 );
 
-create table CounterParty(
+create table Counterparty(
     bond_holder_id int not null AUTO_INCREMENT PRIMARY KEY,
     bond_holder varchar(250) not null
 
@@ -74,7 +74,7 @@ Create table Trade(
     quantity int not null,
     FOREIGN KEY (book_id) REFERENCES Book(book_id),
 --     FOREIGN KEY (security_id) REFERENCES Security(security_id),
-    FOREIGN KEY (bond_holder_id) REFERENCES CounterParty(bond_holder_id)
+    FOREIGN KEY (bond_holder_id) REFERENCES Counterparty(bond_holder_id)
 );
 
 
