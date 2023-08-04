@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import  {getAllBondsForBusinessDaysBeforeAndAfter, getAllBonds} from '../services/BondService';
 import { format } from 'date-fns';
 import { useState } from 'react';
+import { Grid } from '@mui/material';
 
 
 function Bonds() {
@@ -46,7 +47,8 @@ function Bonds() {
     }, [date]);
 
     return (
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <div>
+        {bonds && <Box component="main" sx={{ flexGrow: 1, p: 3 }} >
             <Toolbar />
             <Row className="row">
         
@@ -60,15 +62,17 @@ function Bonds() {
               ))}
       
             </Row>
-         
-            {/* <Row className="row">
-                  {bonds.map((bond, index) => (
-                    <div className="container" key={index}>
-                      <BondCard key={index} bond={bond} date={date} /> 
-                    </div>
-                  ))}
-            </Row> */}
-        </Box>
+          
+              {/* <Row className="row">
+                    {bonds.map((bond, index) => (
+                      <div className="container" key={index}>
+                        <BondCard key={index} bond={bond} date={date} /> 
+                      </div>
+                    ))}
+              </Row> */}
+          </Box>}
+          
+        </div>
       );
       
 }

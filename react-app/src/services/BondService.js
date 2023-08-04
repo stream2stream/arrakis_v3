@@ -31,13 +31,13 @@ export const getAllBondsForBusinessDaysBeforeAndAfter = async (date) => {
   const daysAfter = 5;
   try {
     const response = await axios.get(`${hostNameUrl}/bonds/dates/${date}/${daysBefore}/${daysAfter}`);
-    // const bonds = response.data;
-    const bonds = new Promise((resolve, reject) => {
-      // Simulating an asynchronous operation (e.g., fetching data from an API)
-      setTimeout(() => {
-        resolve(data); // Resolving the promise with an array of values
-      }, 100);
-    })
+    const bonds = response.data;
+    // const bonds = new Promise((resolve, reject) => {
+    //   // Simulating an asynchronous operation (e.g., fetching data from an API)
+    //   setTimeout(() => {
+    //     resolve(data); // Resolving the promise with an array of values
+    //   }, 100);
+    // })
     return bonds;
   } catch (error) {
     console.error("Error fetching bonds:", error);
