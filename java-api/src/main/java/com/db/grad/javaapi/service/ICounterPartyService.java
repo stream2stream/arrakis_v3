@@ -1,6 +1,6 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Bookuser;
+
 import com.db.grad.javaapi.model.CounterParty;
 
 import java.util.List;
