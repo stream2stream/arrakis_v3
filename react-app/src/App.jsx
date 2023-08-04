@@ -4,7 +4,7 @@ import { HomePage } from "./components/HomePage";
 import NavigationBar from "./components/NavigationBar";
 import { useState } from "react";
 import { UpcomingPage } from "./components/UpcomingPage";
-import BookPage from "./components/BookPage";
+import { BookPage } from "./components/BookPage";
 
 const App = () => {
   const [selectedTab, setSelectedTab] = useState(0);
