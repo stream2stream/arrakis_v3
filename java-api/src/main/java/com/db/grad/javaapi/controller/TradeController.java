@@ -32,11 +32,11 @@ public class TradeController {
         return ResponseEntity.ok().body(trades);
     }
 
-    @PostMapping("/Trades")
-    public Trade createTrade(@Valid @RequestBody Trade trade) {
-        return TradeService.addTrade(trade);
+    @GetMapping("/Trades/BeforeMaturity/{id}")
+    public ResponseEntity <List<Trade>> getTradesBeforeMaturity(@PathVariable(value = "id") Long id)
+        throws ResourceNotFoundException{
+        List<Trade> trades = TradeService.getTradesBeforeMaturity(id);
+        return ResponseEntity.ok().body(trades);
     }
-
-
 
 }
