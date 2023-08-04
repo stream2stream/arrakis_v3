@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TablePagination } from "@mui/material";
 import "./LandingPage.css";
 import * as React from "react";
@@ -17,119 +17,10 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import DetailPage from "../DetailPage/DetailPage";
+
 import NavBar from "../../components/NavBar/NavBar";
-// const LandingPage = () => {
-//   const [selectedISIN, setSelectedISIN] = useState(null);
+import axios from "axios";
 
-//   const [page, setPage] = useState(0);
-//   const [rowsPerPage, setRowsPerPage] = useState(5);
-
-//   const rows = [
-//       {
-//         ISIN: "US0378331005",
-//         CUSIP: "037833100",
-//         Issue_Name: "Apple Inc.",
-//         Maturity_Date: "01/01/2025",
-//         Coupon: "2.45%",
-//         Type: "Corporate Bond",
-//         Face_Value: "$1000",
-//         Currency: "USD",
-//         Status: "Active"
-//       },
-//       // Adaugă mai multe obiecte de acest gen pentru a reprezenta fiecare rând din tabel.
-//   ];
-
-//   // Presupunem că ai un array de tranzacții similar
-//   const transactions = [
-//       {
-//         ISIN: "US0378331005",
-//         TransactionID: "123456",
-//         Date: "01/01/2023",
-//         Amount: "1000"
-//       },
-//       // ...
-//   ];
-
-//   const handleChangePage = (event, newPage) => {
-//     setPage(newPage);
-// };
-
-// const handleChangeRowsPerPage = (event) => {
-//     setRowsPerPage(+event.target.value);
-//     setPage(0);
-// };
-
-// return (
-//     <div>
-//         <TableContainer component={Paper} className="table">
-//         <Table>
-//             <TableHead className="header" >
-//             <TableRow>
-//                 <TableCell>ISIN</TableCell>
-//                 <TableCell>CUSIP</TableCell>
-//                 <TableCell>Issue Name</TableCell>
-//                 <TableCell>Maturity Date</TableCell>
-//                 <TableCell>Coupon</TableCell>
-//                 <TableCell>Type</TableCell>
-//                 <TableCell>Face Value</TableCell>
-//                 <TableCell>Currency</TableCell>
-//                 <TableCell>Status</TableCell>
-//             </TableRow>
-//             </TableHead>
-//             <TableBody>
-//             {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row, index) => (
-//                 <TableRow key={index} onClick={() => setSelectedISIN(row.ISIN)}>
-//                 <TableCell>{row.ISIN}</TableCell>
-//                 <TableCell>{row.CUSIP}</TableCell>
-//                 <TableCell>{row.Issue_Name}</TableCell>
-//                 <TableCell>{row.Maturity_Date}</TableCell>
-//                 <TableCell>{row.Coupon}</TableCell>
-//                 <TableCell>{row.Type}</TableCell>
-//                 <TableCell>{row.Face_Value}</TableCell>
-//                 <TableCell>{row.Currency}</TableCell>
-//                 <TableCell>{row.Status}</TableCell>
-//                 </TableRow>
-//             ))}
-//             </TableBody>
-//             <TablePagination
-//                 rowsPerPageOptions={[5, 10, 25]}
-//                 component="div"
-//                 count={rows.length}
-//                 rowsPerPage={rowsPerPage}
-//                 page={page}
-//                 onPageChange={handleChangePage}
-//                 onRowsPerPageChange={handleChangeRowsPerPage}
-//             />
-
-//         </Table>
-//         </TableContainer>
-
-//         {selectedISIN && (
-//         <TableContainer component={Paper} className='table'>
-//             <Table>
-//             <TableHead>
-//                 <TableRow>
-//                 <TableCell>Transaction ID</TableCell>
-//                 <TableCell>Date</TableCell>
-//                 <TableCell>Amount</TableCell>
-//                 </TableRow>
-//             </TableHead>
-//             <TableBody>
-//                 {transactions.filter(t => t.ISIN === selectedISIN).map((transaction, index) => (
-//                 <TableRow key={index}>
-//                     <TableCell>{transaction.TransactionID}</TableCell>
-//                     <TableCell>{transaction.Date}</TableCell>
-//                     <TableCell>{transaction.Amount}</TableCell>
-//                 </TableRow>
-//                 ))}
-//             </TableBody>
-//             </Table>
-//         </TableContainer>
-//         )}
-//     </div>
-// );
-// }
 
 function createData(
   ISIN,
@@ -140,7 +31,8 @@ function createData(
   Type,
   Face_Value,
   Currency,
-  Status
+  Status,
+  transactions
 ) {
   return {
     ISIN,
@@ -152,18 +44,7 @@ function createData(
     Face_Value,
     Currency,
     Status,
-    history: [
-      {
-        transactionId: "123456",
-        date: "2023-01-01",
-        amount: 1000,
-      },
-      {
-        transactionId: "789012",
-        date: "2023-02-01",
-        amount: 2000,
-      },
-    ],
+    transactions
   };
 }
 
@@ -171,11 +52,13 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
 
-  return (
+  const showCollapse = row.transactions && row.transactions.length > 0;
 
+  return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
+        {showCollapse && (
           <IconButton
             aria-label="expand row"
             size="small"
@@ -183,9 +66,9 @@ function Row(props) {
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
+           )}
         </TableCell>
         <TableCell component="th" scope="row">
-          {/* {row.ISIN} */}
           <Link to={`/detail/${row.ISIN}`}>{row.ISIN}</Link>
         </TableCell>
         <TableCell>{row.CUSIP}</TableCell>
@@ -197,29 +80,44 @@ function Row(props) {
         <TableCell>{row.Currency}</TableCell>
         <TableCell>{row.Status}</TableCell>
       </TableRow>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={10}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Transaction History
-              </Typography>
-              <Table size="small" aria-label="purchases">
+      {showCollapse && (
+        <TableRow>
+          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={10}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+              <Box sx={{ margin: 1 }}>
+                <Typography variant="h6" gutterBottom component="div">
+                  Transaction History
+                </Typography>
+                <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
                     <TableCell>Transaction ID</TableCell>
-                    <TableCell>Date</TableCell>
-                    <TableCell align="right">Amount</TableCell>
+                    <TableCell>Currency</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell>Unit Price</TableCell>
+                    <TableCell>Quantity</TableCell>
+                    <TableCell>Buy/Sell</TableCell>
+                    <TableCell>Trade Date</TableCell>
+                    <TableCell>Settlement Date</TableCell>
+                    <TableCell>Book ID</TableCell>
+                    <TableCell>Security ID</TableCell>
+                    <TableCell>Counterparty ID</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.transactionId}>
-                      <TableCell component="th" scope="row">
-                        {historyRow.transactionId}
-                      </TableCell>
-                      <TableCell>{historyRow.date}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
+                  {row.transactions.map((transaction) => (
+                    <TableRow key={transaction.id}>
+                      <TableCell>{transaction.id}</TableCell>
+                      <TableCell>{transaction.currency}</TableCell>
+                      <TableCell>{transaction.status}</TableCell>
+                      <TableCell>{transaction.unitPrice}</TableCell>
+                      <TableCell>{transaction.quantity}</TableCell>
+                      <TableCell>{transaction.buySell}</TableCell>
+                      <TableCell>{transaction.tradeDate}</TableCell>
+                      <TableCell>{transaction.settlementDate}</TableCell>
+                      <TableCell>{transaction.book_id}</TableCell>
+                      <TableCell>{transaction.security_id}</TableCell>
+                      <TableCell>{transaction.counterparty_id}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -228,8 +126,8 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+       )}
     </React.Fragment>
-    
   );
 }
 
@@ -246,32 +144,75 @@ Row.propTypes = {
     Status: PropTypes.string.isRequired,
     history: PropTypes.arrayOf(
       PropTypes.shape({
-        transactionId: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        amount: PropTypes.number.isRequired,
+        
       })
     ).isRequired,
   }).isRequired,
 };
 
-const rows = [
-  createData(
-    "US0378331005",
-    "037833100",
-    "Apple Inc.",
-    "2025-01-01",
-    "2.45%",
-    "Corporate Bond",
-    "1000",
-    "USD",
-    "Active"
-  ),
-  // Add more rows here...
-];
-
 const LandingPage = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    // Fetch the data from the API endpoint using Axios
+    axios
+      .get("http://localhost:8080/api/v1/bonds_transactions")
+      .then((response) => {
+        const data = response.data;
+        // Map the API response to match the structure of createData
+        const mappedRows = data.map((item) => {
+          const { security, transactions } = item;
+          const {
+            id,
+            isin,
+            cusip,
+            issuerName,
+            maturityDate,
+            coupon,
+            type,
+            faceValue,
+            currency,
+            status,
+          } = security;
+
+          // Map the transactions to history
+          const history = transactions.map((transaction) => ({
+            id: transaction.id,
+           currency: transaction.currency,
+           status: transaction.status,
+           unitPrice:transaction.unitPrice,
+           quantity : transaction.quantity,
+           buySell : transaction.buySell,
+           tradeDate : transaction.tradeDate,
+           settlementDate : transaction.settlementDate,
+           book_id : transaction.book_id,
+           security_id: transaction.security_id,
+           counterparty_id : transaction.counterparty_id
+          }));
+
+          return createData(
+            isin,
+            cusip || "", // Handle null or undefined CUSIP
+            issuerName,
+            maturityDate,
+            coupon,
+            type,
+            faceValue,
+            currency,
+            status,
+            history
+          );
+        });
+
+        console.log(mappedRows);
+        setRows(mappedRows);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -284,42 +225,42 @@ const LandingPage = () => {
 
   return (
     <>
-    <NavBar/>
-          <TableContainer component={Paper}>
-            <Table aria-label="collapsible table">
-              <TableHead>
-                <TableRow>
-                  <TableCell />
-                  <TableCell>ISIN</TableCell>
-                  <TableCell>CUSIP</TableCell>
-                  <TableCell>Issue Name</TableCell>
-                  <TableCell>Maturity Date</TableCell>
-                  <TableCell>Coupon</TableCell>
-                  <TableCell>Type</TableCell>
-                  <TableCell>Face Value</TableCell>
-                  <TableCell>Currency</TableCell>
-                  <TableCell>Status</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <Row key={row.name} row={row} />
-                  ))}
-              </TableBody>
-              <TablePagination
-                rowsPerPageOptions={[5, 10, 25]}
-                component="div"
-                count={rows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-              />
-            </Table>
-          </TableContainer>
-          </>
+      <NavBar />
+      <TableContainer component={Paper}>
+        <Table aria-label="collapsible table">
+          <TableHead>
+            <TableRow>
+              <TableCell />
+              <TableCell>ISIN</TableCell>
+              <TableCell>CUSIP</TableCell>
+              <TableCell>Issue Name</TableCell>
+              <TableCell>Maturity Date</TableCell>
+              <TableCell>Coupon</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Face Value</TableCell>
+              <TableCell>Currency</TableCell>
+              <TableCell>Status</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((row) => (
+                <Row key={row.id} row={row} />
+              ))}
+          </TableBody>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={rows.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 
