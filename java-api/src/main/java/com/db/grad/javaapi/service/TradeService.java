@@ -26,4 +26,8 @@ public class TradeService {
     public Trade findById(int id){
         return tradeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
+
+    public List<Trade> findTradesByBondId(int bondId) {
+        return tradeRepository.findTradesByBondId(bondId);
+    }
 }
