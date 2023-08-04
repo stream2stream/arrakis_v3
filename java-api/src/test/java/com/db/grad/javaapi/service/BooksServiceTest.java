@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.doReturn;
 
@@ -25,6 +26,19 @@ public class BooksServiceTest {
 
     @MockBean
     private BooksRepository booksRepository;
+
+
+    @Test
+    @DisplayName("Test getBookById")
+    public void testGetBookById() {
+        Book book = new Book();
+        book.setId(1);
+
+        doReturn(Optional.of(book)).when(booksRepository).findById(1);
+        Book returnedBook = booksService.getBookById(1);
+
+        Assertions.assertEquals(returnedBook, booksRepository.findById(1).get());
+    }
 
     @Test
     @DisplayName("Test getAllBooks")
