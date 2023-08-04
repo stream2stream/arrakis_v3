@@ -1,18 +1,15 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.dto.BondDTO;
+import com.db.grad.javaapi.dto.BondTransactionDTO;
 import com.db.grad.javaapi.model.Security;
+import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.SecurityRepository;
+import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.db.grad.javaapi.model.Book;
-import com.db.grad.javaapi.model.Security;
 import com.db.grad.javaapi.repository.BookRepository;
-import com.db.grad.javaapi.repository.SecurityRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import java.util.List;
 
@@ -23,10 +20,36 @@ public class SecurityService {
     @Autowired
     private BookRepository bookRepository;
 
-    public List<Security> getAllSecuritiesForUserBooks(String userMail){
+    @Autowired
+    private TradeRepository tradeRepository;
+
+    public List<Security> getAllSecuritiesForUserBooks(String userMail) {
         return securityRepository.findSecuritiesForUserBooks(userMail);
     }
+
     public List<Security> getBonds() {
         return securityRepository.getActiveBonds();
+    }
+
+    public ArrayList<BondTransactionDTO> getActiveBondsTransactions() {
+
+        List<Trade> transactions = tradeRepository.getAllTransactions();
+        List<Security> securities = securityRepository.getActiveBonds();
+        ArrayList<BondTransactionDTO> bondTransactionAll = new ArrayList<>();
+
+        for (Security security : securities) {
+            BondTransactionDTO btdo = new BondTransactionDTO();
+            btdo.setSecurity(security);
+            ArrayList<Trade> currentTransactions = new ArrayList<Trade>();
+
+            for (Trade transaction : transactions) {
+                if (transaction.getSecurity_id() == security.getId()) {
+                    currentTransactions.add(transaction);
+                }
+            }
+            btdo.setTransactions(currentTransactions);
+            bondTransactionAll.add(btdo);
+        }
+        return bondTransactionAll;
     }
 }
