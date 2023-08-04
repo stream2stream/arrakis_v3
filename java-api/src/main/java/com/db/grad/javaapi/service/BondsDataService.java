@@ -1,23 +1,28 @@
 package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.model.BondsData;
+import com.db.grad.javaapi.model.User;
 import com.db.grad.javaapi.repository.BondsRepository;
+import com.db.grad.javaapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 @Service
-public class BondsDataHandler implements IBondsDataService
+public class BondsDataService implements IBondsDataService
 {
-    private BondsRepository repository;
+    private final BondsRepository repository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public BondsDataHandler(BondsRepository repository)
+    public BondsDataService(BondsRepository repository, UserRepository userRepository)
     {
         this.repository = repository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -98,5 +103,20 @@ public class BondsDataHandler implements IBondsDataService
     @Override
     public List<BondsData> getBondByISIN(String isin) {
         return repository.findByIsin(isin);
+    }
+
+    @Override
+    public List<BondsData> getForUser(int userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        if(user == null) {
+            return null;
+        }
+        List<BondsData> ret = new ArrayList<>();
+
+        for (String book : user.getTradingBooks()) {
+            ret.addAll(repository.findByBookName(book));
+        }
+
+        return ret;
     }
 }
