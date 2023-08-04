@@ -18,13 +18,13 @@ public class Crypt {
 
     // Share ONLY between server (encryption) and client (decryption)
 
-    public void encodedKey() {
+    public static void printEncodedKey() {
         System.out.println("encodedBase64Key = " + encodedBase64Key);
     }
 
     //Debug purposes only
     //Should match secretKey
-    public void decodedKey() {
+    public static void printDecodedKey() {
         String toDecodeBase64Key = decodeKey(encodedBase64Key);
         System.out.println("toDecodeBase64Key = " + toDecodeBase64Key);
         System.out.println("secretKey = " + secretKey);
@@ -77,8 +77,7 @@ public class Crypt {
         return null;
     }
 
-    //Showcases a use case example
-    public static void main(String[] args) {
+    public void demoCrypt() {
         String secretKey = "mustbe16byteskey";
         String encodedBase64Key = encodeKey(secretKey);
         System.out.println("EncodedBase64Key = " + encodedBase64Key); // This need to be share between client and server
@@ -97,6 +96,16 @@ public class Crypt {
         // AES Decryption based on above secretKey
         String decrStr = Crypt.decrypt(encrStr, encodedBase64Key);
         System.out.println("Decryption of str = " + decrStr);
+    }
+
+    //Showcases a use case example
+    public static void main(String[] args) {
+        //demoCrypt();
+
+        Crypt.printEncodedKey();
+
+        Crypt.printDecodedKey();
+
     }
 
 }
