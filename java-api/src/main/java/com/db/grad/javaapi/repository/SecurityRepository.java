@@ -5,6 +5,7 @@ import org.hibernate.annotations.Where;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -28,6 +29,20 @@ public interface SecurityRepository extends JpaRepository<Security,Long> {
             "        book on book.id = book_users.book_id)\n" +
             "        )")
     List<Security> findSecurityByUserBooks(long userID);
+
+    @Query(nativeQuery = true, value = "select * from security where maturity_date <= :endDate and maturity_date >= :startDate id in" +
+            "        (select distinct(security_id) from trades\n" +
+            "        where book_id in\n" +
+            "        (Select book_id from users\n" +
+            "        join\n" +
+            "        book_users on\n" +
+            "        users.id =book_users.users_id\n" +
+            "        and users.id = :userID\n" +
+            "        join\n" +
+            "        book on book.id = book_users.book_id)\n" +
+            "        )")
+    List<Security> findSecurityByUserDateRange(long userID, Date startDate, Date endDate);
+
 }
 
 /* select * from security where id in

@@ -3,6 +3,7 @@ package com.db.grad.javaapi.controller;
 import com.db.grad.javaapi.Service.SecurityHandler;
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
 import com.db.grad.javaapi.model.Security;
+import com.db.grad.javaapi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +62,20 @@ public class SecurityController {
             throws ResourceNotFoundException {
         List<Security> security = securityHandler.getSecuritiesMatchedWithBook(id);
         return security;
+    }
+
+    @GetMapping("/security/date_range")
+    public ResponseEntity < ? > getSecuritiesCustomRange(@RequestParam long user, @RequestParam String startDate,@RequestParam String endDate)
+            throws ResourceNotFoundException {
+       try{
+           List<Security> securityList = securityHandler.getSecuritiesByUserDateRange(user,startDate,endDate);
+
+           return ResponseEntity.ok().body(securityList);
+       }
+       catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage()+" Invalid Date Range or User!");
+       }
+
     }
 
 
