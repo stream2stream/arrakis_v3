@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,16 +21,12 @@ public class Trade {
     @Column(name = "settlement_date")
     private LocalDateTime settlementDate;
 
-    public Trade(int id, String currency, String status, float unitPrice, int quantity, String buySell, LocalDateTime tradeDate, LocalDateTime settlementDate) {
-        this.id = id;
-        this.currency = currency;
-        this.status = status;
-        this.unitPrice = unitPrice;
-        this.quantity = quantity;
-        this.buySell = buySell;
-        this.tradeDate = tradeDate;
-        this.settlementDate = settlementDate;
-    }
+    private int book_id;
+
+    private int security_id;
+
+    private int counterparty_id;
+
 
     public Trade() {
     }
@@ -112,5 +107,29 @@ public class Trade {
                 ", tradeDate=" + tradeDate +
                 ", settlementDate=" + settlementDate +
                 '}';
+    }
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
+
+    public int getSecurity_id() {
+        return security_id;
+    }
+
+    public void setSecurity_id(int security_id) {
+        this.security_id = security_id;
+    }
+
+    public int getCounterparty_id() {
+        return counterparty_id;
+    }
+
+    public void setCounterparty_id(int counterparty_id) {
+        this.counterparty_id = counterparty_id;
     }
 }
