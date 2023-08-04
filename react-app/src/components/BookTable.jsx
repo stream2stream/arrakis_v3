@@ -13,7 +13,7 @@ const BookTable = ({ data }) => {
         {data.map((index) => (
            <tr key={index.id}>
            <td>{index.id}</td>
-          <td >{index.name}</td>
+          <td >{index.bookName}</td>
         
          </tr>
         ))}
