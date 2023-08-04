@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 
 const MatureBondsWrapper = () => {
     const [checked, setChecked] = useState(false);
+    const [date, setDate] = useState(new Date());
 
     const ref = useRef();
 
@@ -23,7 +24,7 @@ const MatureBondsWrapper = () => {
           Show only my books 
         </label>
         <label>
-          <DatePicker/>
+          <DatePicker selected={date} onChange={(date) => setDate(date)} />
         </label>
     </div>
 
