@@ -8,13 +8,6 @@ Drop Table IF exists Security;
 
 CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
 
---ALTER TABLE TEST RENAME COLUMN `face_value(mn)` to facevalue;
---UPDATE TEST
---SET BOND_MATURITY_DATE = TO_DATE(BOND_MATURITY_DATE, '%d/%m/%y');
---ALTER TABLE TEST
---MODIFY COLUMN BOND_MATURITY_DATE DATE;
---UPDATE TEST ADD
-UPDATE TEST SET BOND_MATURITY_DATE = PARSE_DATE('dd-mm-yyyy', BOND_MATURITY_DATE)
 create table Book(
     book_id int not null AUTO_INCREMENT primary key,
     book_name varchar(50) not null
@@ -49,8 +42,7 @@ CREATE TABLE Security(
     cusip VARCHAR (50) DEFAULT NULL,
     type VARCHAR(50) DEFAULT NULL,
     issuer_name VARCHAR(250) NOT NULL,
-    maturity_date DATE DEFAULT NULL,
-    sample_date varchar(10) not null,
+    maturity_date varchar(10) DEFAULT NULL,
     faceValue float NOT NULL,
     bondCurrency varchar(10) NOT NULL,
     coupon float not null,
