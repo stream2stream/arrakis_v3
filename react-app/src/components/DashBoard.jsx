@@ -3,7 +3,7 @@ import {useState} from 'react';
 import Securities from './security/Securities';
 import Trades from './trade/Trades';
 
-const DashBoard = () => {
+const DashBoard = (props) => {
   const types = ["Bonds", "Trades", "User Management", "Settings"];
   const [active, setActive] = useState(types[0]);
 
@@ -23,7 +23,7 @@ const DashBoard = () => {
           ))}
         </div>
         <div className="tabs-content-container">
-          {active === "Bonds" && <div className="tab-1 tabs-content"> <Securities /> </div>}
+          {active === "Bonds" && <div className="tab-1 tabs-content"> <Securities info={props.info} /> </div>}
           {active === "Trades" && <div className="tab-2 tabs-content"> <Trades/> </div>}
           {active === "User Management" && <div className="tab-3 tabs-content"> User Management </div>}
           {active === "Settings" && <div className="tab-4 tabs-content"> Settings </div>}

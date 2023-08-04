@@ -24,8 +24,9 @@ const LoginForm = (props) => {
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
+                props.info.setUser(user)
                 navigate("/")
-                console.log(user);
+                console.log(user.email);
             })
             .catch((error) => {
                 const errorCode = error.code;

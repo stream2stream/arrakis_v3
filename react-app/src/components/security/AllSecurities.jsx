@@ -2,7 +2,8 @@ import React from 'react'
 import Table from 'react-bootstrap/Table';
 import { useState, useEffect } from 'react';
 import SecurityDetails from './SecurityDetails';
-import { getAllSecurities } from '../../services/security-service';
+import { auth } from '../../firebase';
+import { getAllSecurities, getUserFromEmail } from '../../services/security-service';
 
 const dummy = [
     {
@@ -20,14 +21,18 @@ const dummy = [
     }
 ]
 
-const AllSecurities = () => {
+const AllSecurities = (props) => {
     const [securities, setSecurities] = useState([]);
     const [error, setError] = useState("");
     const [loaded, setLoaded] = useState(false);
+    const [user,setUser] = useState(null);
+    
 
 
     const getAllSecuritiesFromAPI = () => {
-        getAllSecurities([1])
+        console.log(user)
+        const userId = user.id;
+        getAllSecurities(userId)
             .then(res => {
                 setLoaded(true);
                 setSecurities(res.data);
@@ -43,30 +48,45 @@ const AllSecurities = () => {
 
     }
 
+    const getUserFromEmailApi = () => {
+        getUserFromEmail(auth.currentUser.email)
+            .then(res => {
+                setUser(res.data);
+                console.log(res.data)
+                getAllSecuritiesFromAPI();
+            })
+            .catch(err => {
+
+            })
+
+
+    }
+
     useEffect(() => {
-        getAllSecuritiesFromAPI();
+        getUserFromEmailApi();
+       
     },
-        []
+        user
     );
 
-    if (error && !loaded) {
-        return (
-            <div className='x'>
-                <p>
-                    ERROR LOADING SECURITIES
-                </p>
-            </div>
-        )
-    }
-    if (!loaded) {
-        return (
-            <div className='x'>
-                <p>
-                    LOADING SECURITIES
-                </p>
-            </div>
-        )
-    }
+    // if (error && !loaded) {
+    //     return (
+    //         <div className='x'>
+    //             <p>
+    //                 ERROR LOADING SECURITIES
+    //             </p>
+    //         </div>
+    //     )
+    // }
+    // if (!loaded && !error) {
+    //     return (
+    //         <div className='x'>
+    //             <p>
+    //                 LOADING SECURITIES
+    //             </p>
+    //         </div>
+    //     )
+    // }
     if (loaded) {
         return (
             <div className='all-securities-table-container'>
@@ -87,7 +107,7 @@ const AllSecurities = () => {
                     </thead>
                     <tbody>
                         {
-                            dummy.map(security => (
+                            securities.map(security => (
                                 < SecurityDetails info={security} key={security.id} />
                             ))
                         }
