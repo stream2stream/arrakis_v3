@@ -1,6 +1,7 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "trade")
@@ -9,13 +10,26 @@ public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int book_id;
-    private int security_id;
-    private int counter_party_id;
+//    private int book_id;
+//    private int security_id;
+//    private int counter_party_id;
     private String currency;
     private int quantity;
     private float unit_price;
     private String buy_sell;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    @ManyToOne
+    @JoinColumn(name = "counter_party_id")
+    private CounterParty counterParty;
+
+    @ManyToOne
+    @JoinColumn(name = "security_id")
+    private Security security;
+
     private java.sql.Date trade_date;
     private java.sql.Date settlement_date;
 
@@ -27,29 +41,29 @@ public class Trade {
         this.id = id;
     }
 
-    public int getBook_id() {
-        return book_id;
-    }
-
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
-    }
-
-    public int getSecurity_id() {
-        return security_id;
-    }
-
-    public void setSecurity_id(int security_id) {
-        this.security_id = security_id;
-    }
-
-    public int getCounter_party_id() {
-        return counter_party_id;
-    }
-
-    public void setCounter_party_id(int counter_party_id) {
-        this.counter_party_id = counter_party_id;
-    }
+//    public int getBook_id() {
+//        return book_id;
+//    }
+//
+//    public void setBook_id(int book_id) {
+//        this.book_id = book_id;
+//    }
+//
+//    public int getSecurity_id() {
+//        return security_id;
+//    }
+//
+//    public void setSecurity_id(int security_id) {
+//        this.security_id = security_id;
+//    }
+//
+//    public int getCounter_party_id() {
+//        return counter_party_id;
+//    }
+//
+//    public void setCounter_party_id(int counter_party_id) {
+//        this.counter_party_id = counter_party_id;
+//    }
 
     public String getCurrency() {
         return currency;
@@ -99,4 +113,27 @@ public class Trade {
         this.settlement_date = settlement_date;
     }
 
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public CounterParty getCounterParty() {
+        return counterParty;
+    }
+
+    public void setCounterParty(CounterParty counterParty) {
+        this.counterParty = counterParty;
+    }
+
+    public Security getSecurity() {
+        return security;
+    }
+
+    public void setSecurity(Security security) {
+        this.security = security;
+    }
 }
