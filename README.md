@@ -134,4 +134,8 @@ The following guides illustrate how to use some features concretely:
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+* 
+
+
+[{"id":1,"isin":"XS1988387210","cusip":" ","issuer_name":"BNPParibasIssu 4,37% Microsoft Corp (USD)","maturity_date":"2021-08-04T23:00:00.000+00:00","coupon":4,"type":"CORP","face_value":1000,"currency":"USD","status":"active"},{"id":3,"isin":"A12356111","cusip":"123456bh0","issuer_name":"UBS Facebook (USD)","maturity_date":"2021-09-29T23:00:00.000+00:00","coupon":2,"type":"CORP","face_value":900,"currency":"USD","status":"active"}]
 
