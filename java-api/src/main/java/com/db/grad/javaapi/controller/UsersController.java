@@ -5,6 +5,7 @@ import com.google.api.client.json.webtoken.JsonWebToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.AuthenticationException;
 import java.util.Map;
 
 
@@ -21,7 +22,7 @@ public class UsersController {
     }
 
     @PostMapping(value = "/users/signin")
-    public String signIn(@RequestBody Map<String, String> credentials) {
+    public String signIn(@RequestBody Map<String, String> credentials) throws AuthenticationException {
         return userService.signIn(credentials.get("email"), credentials.get("password"));
     }
 }
