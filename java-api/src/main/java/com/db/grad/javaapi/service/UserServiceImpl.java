@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
         this.usersRepository = usersRepository;
     }
 
-    private String secret = "mySecretKey";
+    private String secret = "mySecretKeynskndnknsfnfdsnkfdnkdsfnsdkfnndskfnksdnfdnsfknskfnkskndfknfdksfnkdsnfksfkdsnkndsknfn";
     private long expirationTime = 3600000;  // 1 hour in milliseconds
 
     public String signIn(String email, String password) throws AuthenticationException {
