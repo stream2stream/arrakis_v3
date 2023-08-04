@@ -5,6 +5,8 @@ import com.google.api.client.json.webtoken.JsonWebToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/")
@@ -18,12 +20,8 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @PostMapping(value = {"/users/signin"})
-    public String signIn(@RequestBody String email, @RequestBody String password){
-
-        return userService.signIn(email, password);
+    @PostMapping(value = "/users/signin")
+    public String signIn(@RequestBody Map<String, String> credentials) {
+        return userService.signIn(credentials.get("email"), credentials.get("password"));
     }
-/*
-    Add UserController - login endpoint - post request - Response JSONWebToken
-*/
 }
