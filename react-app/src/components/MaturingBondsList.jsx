@@ -26,10 +26,8 @@ const MaturingBondsList = (props) => {
     return formattedDate;
   };
 
-  const isBondNotEmpty = Object.keys(bonds).length > 0;
+
   return (
-    <div>
-    {isBondNotEmpty ? (
     <table className="table table-striped">
       <thead>
         <tr>
@@ -58,10 +56,6 @@ const MaturingBondsList = (props) => {
         ))}
       </tbody>
     </table>
-    ) : (
-      <p>There is no bond data to show for this date.</p>
-    )}
-    </div>
   );
 };
 
