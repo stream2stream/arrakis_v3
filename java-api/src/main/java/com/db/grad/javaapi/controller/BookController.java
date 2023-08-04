@@ -31,9 +31,16 @@ public class BookController {
     }
 
     @GetMapping("/books/{id}")
-    public ResponseEntity < Book > getEmployeeById(@PathVariable(value = "id") Long id)
+    public ResponseEntity < Book > getBookById(@PathVariable(value = "id") Long id)
             throws ResourceNotFoundException {
         Book books = bookService.getBookById(id);
+        return ResponseEntity.ok().body(books);
+    }
+
+    @GetMapping("/books/userID")
+    public ResponseEntity < List<Book> > getAllBooksByUserId(@RequestParam long id)
+            throws ResourceNotFoundException {
+        List<Book> books = bookService.getAllBooksByUserID(id);
         return ResponseEntity.ok().body(books);
     }
 
