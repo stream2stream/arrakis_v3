@@ -30,7 +30,7 @@ export const getAllBondsForBusinessDaysBeforeAndAfter = async (date) => {
   const daysBefore = 5;
   const daysAfter = 5;
   try {
-    const response = await HttpService.get(`${hostNameUrl}/bonds/dates/${date}/${daysBefore}/${daysAfter}`);
+    const response = await HttpService.get(`/bonds/dates/${date}/${daysBefore}/${daysAfter}`);
     const bonds = response.data;
     // const bonds = new Promise((resolve, reject) => {
     //   // Simulating an asynchronous operation (e.g., fetching data from an API)

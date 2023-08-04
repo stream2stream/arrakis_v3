@@ -4,11 +4,12 @@ import ZoomBond from "./pages/ZoomBond";
 import Bonds from "./pages/Bonds";
 import Test from "./pages/Test";
 import Login from "./pages/Login";
-import { BrowserRouter as Router, Routes, Route, Navigate, } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import  { useEffect } from 'react';
 
 const isAuthenticated = () => {
   // Replace with your actual authentication logic
-  return localStorage.getItem('jwtToken') !== null ;
+  return localStorage.getItem('authenticated') == 'true' ;
 };
 
 // ProtectedRoute component
@@ -28,10 +29,18 @@ const ProtectedRoute = ({ component: Component, ...rest }) => (
 
 const App = () => {
 
+  const navigate = useNavigate();
+    
+  // useEffect(()=> {
+  //   if(localStorage.getItem('jwtToken')==null) {
+  //     navigate("/login");
+  //   }
+  // }, [])
+
   return (<>
   
     <Routes>
-      <Route path="/" element={<Navigate replace to="/home/bonds" />} />
+      <Route path="/" element={<Navigate replace to="/login" />} />
       <Route path="login" element={<Login />}/>
       <Route ProtectedRoute  path="home" element={<Home />}>
           <Route ProtectedRoute path="bonds" element={<Bonds />} />

@@ -26,7 +26,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import '../App.css';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import { useEffect } from 'react';
 const drawerWidth = 160;
 
 export default function Home() {
@@ -43,9 +43,15 @@ export default function Home() {
 
   const logOut = () => {
     console.log('logout');
-    localStorage.setItem('jwtToken', null);
+    localStorage.setItem('authenticated', 'false');
     navigate("/login");
   }
+
+  useEffect(()=> {
+    if(localStorage.getItem('authenticated') != 'true'){
+      navigate("/login");
+    }
+  })
   
 
   return (

@@ -37,14 +37,18 @@ function Bonds() {
     }  
 
     useEffect(() => {
+
        console.log(date)
         try {
-            getBondsByDate();
+            if (localStorage.getItem('authenticated')=='true'){
+                 getBondsByDate();
+            }
+            
         } catch (error) {
             console.error("Error fetching bonds:", error);
         }
 
-    }, [date]);
+    }, [date,localStorage.getItem('authenticated')]);
 
     return (
       <div>

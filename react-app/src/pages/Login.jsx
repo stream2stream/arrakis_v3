@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import  { useState } from 'react';
 import '../App.css';
 import Box from '@mui/material/Box';
@@ -13,6 +13,15 @@ function Login() {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
     
+  useEffect(()=> {
+    localStorage.setItem('jwtToken', null);
+    console.log('jwttoken')
+    console.log(localStorage.getItem('jwtToken'))
+    if(localStorage.getItem('authenticated')=='true') {
+      
+      navigate("/home/bonds");
+    }
+  }, [])
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
@@ -23,7 +32,8 @@ function Login() {
             // const user = await loginUser(username, password);
             setErrors({ login: 'Invalid username or password' });
             const jwtToken = await SignIn(username, password);
-            if(jwtToken) {
+            if(localStorage.getItem('authenticated')=='true') {
+              console.log(localStorage.getItem('jwtToken'))
               navigate("/home/bonds");
             }
             // onLogin(user.username);
