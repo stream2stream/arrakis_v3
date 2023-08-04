@@ -40,9 +40,9 @@ public class TradeController {
     }
 
     @GetMapping("Trades/TradeDisplay/{id}")
-    public ResponseEntity <List<Trade>> getTradeDisplay(@PathVariable(value = "id") Long id)
+    public ResponseEntity <List<String>> getTradeDisplay(@PathVariable(value = "id") Long id)
         throws ResourceNotFoundException{
-        List<Trade> trades = TradeService.getTradeDisplay(id);
+        List<String> trades = TradeService.getTradeDisplay(id);
         return ResponseEntity.ok().body(trades);
     }
 
