@@ -78,5 +78,6 @@ CREATE TABLE trades (
   settlement_date datetime NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (book_id) REFERENCES book (id)
-
 );
+
+
