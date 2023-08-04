@@ -15,6 +15,9 @@ public class Book {
         this.name = name;
     }
 
+    public Book() {
+    }
+
     public int getId() {
         return id;
     }

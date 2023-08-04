@@ -20,7 +20,9 @@ coupon FLOAT NOT NULL,
 type VARCHAR(100) NOT NULL,
 face_value FLOAT NOT NULL,
 currency VARCHAR(20) NOT NULL,
-status VARCHAR(50) NOT NULL
+status VARCHAR(50) NOT NULL,
+trading_book_id INT NOT NULL  UNIQUE,
+FOREIGN KEY (trading_book_id) REFERENCES book(id)
 );
 
 CREATE TABLE counterparty (

@@ -6,8 +6,8 @@ INSERT INTO book (id, name) VALUES  (4, 'trading_book_4');
 INSERT INTO book (id, name) VALUES  (5, 'trading_book_5');
 INSERT INTO book (id, name) VALUES  (6, 'trading_book_6');
 
-INSERT INTO security (coupon, currency, face_value, isin, issuer_name, maturity_date, status, type) VALUES  ('4.37', 'USD', '1000', 'XS1988387210', 'BNPParibasIssu 4,37% Microsoft Corp (USD)', '05-08-21', 'active', 'CORP');
-INSERT INTO security (coupon, currency, cusip, face_value, isin, issuer_name, maturity_date, status, type) VALUES  ('3.15', 'USD', '123456780', '900', 'USN0280EAR64', 'Airbus 3.15%  USD', '30-07-21', 'active', 'CORP');
+INSERT INTO security (coupon, currency, face_value, isin, issuer_name, maturity_date, status, type, trading_book_id) VALUES  ('4.37', 'USD', '1000', 'XS1988387210', 'BNPParibasIssu 4,37% Microsoft Corp (USD)', '05-08-21', 'active', 'CORP', 1);
+INSERT INTO security (coupon, currency, cusip, face_value, isin, issuer_name, maturity_date, status, type, trading_book_id) VALUES  ('3.15', 'USD', '123456780', '900', 'USN0280EAR64', 'Airbus 3.15%  USD', '30-07-21', 'active', 'CORP', 2);
 
 
 INSERT INTO counterparty (name) VALUES ('AZ Holdings Inc');

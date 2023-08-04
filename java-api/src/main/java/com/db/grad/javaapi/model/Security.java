@@ -24,9 +24,6 @@ public class Security {
     private String currency;
     private String status;
 
-    public Security() {
-    }
-
     public Security(int id, String isin, String cusip, String issuerName, LocalDateTime maturityDate, float coupon, String type, float faceValue, String currency, String status) {
         this.id = id;
         this.isin = isin;
@@ -38,6 +35,9 @@ public class Security {
         this.faceValue = faceValue;
         this.currency = currency;
         this.status = status;
+    }
+
+    public Security() {
     }
 
     public int getId() {

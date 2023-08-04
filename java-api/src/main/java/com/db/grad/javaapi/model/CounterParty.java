@@ -15,6 +15,9 @@ public class CounterParty {
         this.name = name;
     }
 
+    public CounterParty() {
+    }
+
     public int getId() {
         return id;
     }

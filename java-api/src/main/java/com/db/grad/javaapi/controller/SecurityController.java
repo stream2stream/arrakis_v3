@@ -8,6 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.db.grad.javaapi.model.Book;
+import com.db.grad.javaapi.model.Security;
+import com.db.grad.javaapi.service.SecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,7 +21,13 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class SecurityController {
     @Autowired
-    SecurityService securityService;
+    private SecurityService securityService;
+
+    @PostMapping("/bonds/user")
+    public ResponseEntity<List<Security>> getAllSecuritiesForUserBooks(@RequestParam("userMail") String userMail) {
+        List<Security> securities = securityService.getAllSecuritiesForUserBooks(userMail);
+        return ResponseEntity.ok(securities);
+    }
 
     @GetMapping("/bonds")
     public List<Security> getActiveBonds() {
