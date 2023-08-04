@@ -11,7 +11,7 @@ export const getBookingId = (user) => {
   return id;
 }
 
-export const getMaturityDates = (user) => {
-  const dates = axios.get(`${hostNameUrl}/`);
+export const getMaturityDates = (id) => {
+  const dates = axios.get(`${hostNameUrl}/Trades/MaturityDates/${id}`);
   return dates;
 }

@@ -11,25 +11,41 @@ const HomePage = (props) => {
     const navigate = useNavigate();
     let user = location.state;
     const [dates, setDates] = useState([]);
+    const [bookingId, setBookingId] = useState("");
+    const [maturityDates, setMaturityDates] = useState([]);
 
     useEffect(() => {
-        setBookingId(user['user']);
-        getDates().then(() => {
-
+        console.log("User = "+user['user']);
+        getBookingIdAPI(user['user']).then(res => {
+            getMaturityDates(res.data).then(res2 => {
+                setBookingId(res.data);
+                setMaturityDates(res2.data);
+                console.log("Booking ID - " + bookingId);
+                console.log(maturityDates);
+            })
         })
+
     }, []);
 
-    const getDates = () => {
-
+    const getBookingIdAPI = async (userName) => {
+        return await getBookingId(userName);
+        // getBookingId(userName).then(res => {
+        //     setBookingId(res.data);
+        //     console.log("Booking id - " + bookingId);
+        // });
     }
 
-    const setBookingId = (userName) => {
-        getBookingId(userName)
+    const getMaturityAPI = async (id) => {
+        return await getMaturityDates(id);
+        // getMaturityDates(id).then(res => {
+        //     setMaturityDates(res.data);
+        //     console.log(res.data);
+        // });
     }
+
 
   return(
         <div>
-            {dates.length > 0 ? console.log(dates) : console.log("Empty")}
             {user === null || user.user === "" ? navigate("/") : console.log("Successfully Logged In") }
             <Container>
               <Row>
