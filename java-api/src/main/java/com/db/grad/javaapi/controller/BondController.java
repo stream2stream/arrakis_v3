@@ -91,12 +91,12 @@ public class BondController {
 //        return s.findBondsWithMaturityDateFiveDaysBefore(date);
 //    }
 
-//FUNCTION FOR TESTING
-//    /getBondsBefore5Days?bondId=1
-@GetMapping("/getTradesByBondId")
-public List<Trade> getTradesByBookId(@RequestParam int bondId) {
-    return s.findTradesByBondId(bondId);
-}
+    //FUNCTION FOR TESTING
+    //    /getBondsBefore5Days?bondId=1
+    @GetMapping("/getTradesByBondId")
+    public List<Trade> getTradesByBookId(@RequestParam int bondId) {
+        return s.findTradesByBondId(bondId);
+    }
 
 
 
