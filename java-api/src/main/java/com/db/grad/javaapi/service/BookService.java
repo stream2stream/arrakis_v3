@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,5 +37,14 @@ public class BookService {
 
     public Book findById(int id) {
         return br.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
+    }
+
+    public List<Integer> getBookIdsByUser(User user) {
+        List<Book> userBooks = user.getBooks() ;
+        List<Integer> bookIds = new ArrayList<>() ;
+        for(Book book: userBooks){
+            bookIds.add(book.getId()) ;
+        }
+        return bookIds ;
     }
 }
