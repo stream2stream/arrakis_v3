@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import { getMaturedBondsByBondTypeAndDate  } from '../services/BondService';
+import { getMaturedBondsByBondTypeAndDate, getIssuerNameByID  } from '../services/BondService';
 import { useLocation } from 'react-router';
 import BondCardTable from './BondCardTable';
 import Tooltip from '@mui/material/Tooltip';
@@ -67,7 +67,7 @@ const columns = [
   },
 ];
 
-const issuerName = 'Example';
+
 
 export default function StickyHeadTable() {
   const [page, setPage] = React.useState(0);
@@ -76,7 +76,8 @@ export default function StickyHeadTable() {
   const location = useLocation();
   const bondType = location?.state?.type;
   const bondDate = location?.state?.date;
-  
+  const [issuerName, setIssuerName] = React.useState('');
+
   React.useEffect(( ) => {
     console.log(bondType);
     console.log(bondDate); 
@@ -92,6 +93,19 @@ export default function StickyHeadTable() {
     };
     fetchData();
   }, [bondType, bondDate]);
+
+  const fetchIssuerNameByID = async (id) => {
+    try {
+      const name = await getIssuerNameByID(id);
+      setIssuerName(name);
+    } catch (error) {
+      console.error('Error fetching issuer name:', error);
+    }
+  };
+
+  const handleIssuerIDHover = (id) => {
+    fetchIssuerNameByID(id);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -126,14 +140,25 @@ export default function StickyHeadTable() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.isin}>
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.isin}
+                      onMouseEnter={() => handleIssuerIDHover(row.issuerID)}
+                      onMouseLeave={() => setIssuerName('')}
+                    >
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
                             {column.id === 'issuerID' ? (
                               <Tooltip
-                                title={<Typography variant="subtitle1">{issuerName}</Typography>}
+                                title={
+                                  <Typography variant="subtitle1">
+                                    {issuerName}
+                                  </Typography>
+                                }
                               >
                                 <span style={{ fontSize: '16px' }}>{value}</span>
                               </Tooltip>
@@ -151,7 +176,6 @@ export default function StickyHeadTable() {
             </TableBody>
           </Table>
         </TableContainer>
-        {/* Rest of the code */}
       </Paper>
     </div>
   );

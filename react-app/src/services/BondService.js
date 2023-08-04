@@ -57,3 +57,14 @@ export const getMaturedBondsByBondTypeAndDate = async (bondType, date) => {
     throw error;
   }
 };
+
+export const getIssuerNameByID = async (id) => {
+  try {
+    const response = await axios.get(`${hostNameUrl}/issuer/${id}`);
+    const issuerName = response.data;
+    return issuerName;
+  } catch (error) {
+    console.error("Error fetching issuer name:", error);
+    throw error;
+  }
+};

@@ -33,11 +33,11 @@ const ZoomBond = () => {
         <Toolbar />
            <Row className="row">
               <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <div style={{ margin: "20px 0" }}>This is the ZoomBondTable</div>
+                <div style={{ margin: "20px 0" }}>BOND TABLE</div>
                 
                   <ZoomBondTable/>
               
-                <div style={{ margin: "20px 0" }}>This is the ZoomTradeTable.</div>
+                <div style={{ margin: "20px 0" }}>TRADE TABLE</div>
               
                 <ZoomTradeTable/>
             
