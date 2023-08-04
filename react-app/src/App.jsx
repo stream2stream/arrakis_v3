@@ -16,16 +16,12 @@ function App() {
   const auth = getAuth();
   const [authenticated, setAuthenticated] = useState(auth.currentUser);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(isLoading)
-  console.log(authenticated)
 
   onAuthStateChanged(auth, (usr) => {
     if (usr) {
-      console.log("user state updated to not null")
       setAuthenticated(true);
       setIsLoading(false)
     } else {
-      console.log("user state updated to null")
       setAuthenticated(false);
       setIsLoading(false)
     }
