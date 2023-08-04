@@ -17,7 +17,7 @@ public interface TradeRepository extends JpaRepository<Trade, Long> {
     List<Trade> findByTradeID(Trade trade_id);
 
 
-    @Query(nativeQuery = true, value = "select * from trades where security_id = :securities_ids")
+    @Query(nativeQuery = true, value = "select * from trades where security_id in :securities_ids")
     List<Trade> findTradesBySecuritiesID(List<Long> securities_ids);
 
 
