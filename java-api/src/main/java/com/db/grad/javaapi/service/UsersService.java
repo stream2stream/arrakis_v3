@@ -17,5 +17,15 @@ public class UsersService {
         return usersRepository.findAll();
     }
 
+    public int login(String username, String password) {
 
+        List<User> users = usersRepository.findUser(username);
+
+        if(users.size() != 1)
+            return -1;
+
+        User user = users.get(0);
+
+        return user.getPassword().equals(password) ? user.getId() : 0;
+    }
 }

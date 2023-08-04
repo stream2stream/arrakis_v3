@@ -15,7 +15,19 @@ export const Home = ({userID, setUserID}) => {
 
     if(userID == 0)
         navigate("/login")
-        
+
+    useEffect(()=>{
+        getAllBondsMaturity(date)
+            .then(res => {
+                console.log(res.data);
+                setBondsMaturity(res.data);
+                setDate(date);
+            })
+            .catch(err => {
+                setBondsMaturity([]);
+                console.log(err);
+        })
+    }, [date]);
     useEffect(()=>{
         getBondsFromAPI();
         getTradesFromAPI()}, 
@@ -29,15 +41,6 @@ export const Home = ({userID, setUserID}) => {
             })
             .catch(err => {
                 setBonds([]);
-                console.log(err);
-        })
-        getAllBondsMaturity(date)
-            .then(res => {
-                console.log(res.data);
-                setBondsMaturity(res.data);
-            })
-            .catch(err => {
-                setBondsMaturity([]);
                 console.log(err);
         })
     }
@@ -143,7 +146,7 @@ export const Home = ({userID, setUserID}) => {
     </div>
     <div class="space"></div>
     <div>
-      <DatePicker selected={date} onChange={(date) => {console.log(date.toISOString().split('T')[0]); setDate(date)}} />
+      <DatePicker selected={date} onChange={(d) => {console.log(d.toISOString().split('T')[0]); setDate(d)}} />
     </div>
     <div>
     <table>

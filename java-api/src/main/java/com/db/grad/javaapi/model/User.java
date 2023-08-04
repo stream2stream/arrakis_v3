@@ -8,9 +8,7 @@ import java.util.Set;
 public class User {
     @Id
     private int id;
-    private String name;
-    private String email;
-    private String role;
+    private String name, email, password, role;
 
 //    @OneToMany(mappedBy = "User", targetEntity = BookUser.class, fetch = FetchType.EAGER)
 //    private Set<BookUser> bookUserSet;
@@ -45,5 +43,9 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
