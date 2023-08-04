@@ -82,10 +82,9 @@ public class TradeHandler implements ITradeService{
         return tradeRepository.findTradesBySecuritiesID(securityIds);
     }
 
-
-
     @Override
     public Trade updateTradeDetails(Trade TradeToUpdate) {
         return tradeRepository.save(TradeToUpdate);
     }
+
 }

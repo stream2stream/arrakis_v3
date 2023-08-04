@@ -77,6 +77,13 @@ public class SecurityController {
        }
 
     }
+    //API 5
+    @GetMapping("/security/security-types/{userId}")
+    public ResponseEntity<?> getDistinctSecurityTypesByUserId(@PathVariable(value = "userId") long userId)
+            throws ResourceNotFoundException {
+        List<String> securityTypes = securityHandler.getDistinctSecurityTypesByUserId(userId);
+        return ResponseEntity.ok().body(securityTypes);
+    }
 
 
 }
