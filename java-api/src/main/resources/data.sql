@@ -46,6 +46,17 @@ values
     ('Unays Angus' , 'unaythesemperor@gmail.com' , 'admin'),
     ('Andreea Vancea' , 'andreeathequeen@email.com' , 'admin')
 ;
+INSERT into book_users
+    (book_id, users_id)
+   values
+   (1, 1),
+   (1, 2),
+   (1, 3),
+   (2, 2),
+   (3, 1),
+   (2, 4),
+   (1, 5)
+;
 
 INSERT into trades
     (book_id,security_id,counterparty_id,currency,status,quantity,unit_price,buy_sell,trade_date,settlement_date)

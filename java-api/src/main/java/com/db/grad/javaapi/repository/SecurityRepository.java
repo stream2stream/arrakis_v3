@@ -17,7 +17,7 @@ public interface SecurityRepository extends JpaRepository<Security,Long> {
 
 
     @Query(nativeQuery = true, value = "select * from security where id in" +
-            "        (select distinct(security_id) from trade\n" +
+            "        (select distinct(security_id) from trades\n" +
             "        where book_id in\n" +
             "        (Select book_id from users\n" +
             "        join\n" +
