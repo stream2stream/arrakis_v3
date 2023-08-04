@@ -9,9 +9,6 @@ public class User {
     private int id;
     private String username, email, password, role;
 
-//    @OneToMany(mappedBy = "User", targetEntity = BookUser.class, fetch = FetchType.EAGER)
-//    private Set<BookUser> bookUserSet;
-
     public int getId() {
         return id;
     }
