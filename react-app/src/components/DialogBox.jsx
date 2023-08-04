@@ -15,7 +15,12 @@ import Switch from '@mui/material/Switch';
 import { forwardRef, useRef, useState, useEffect } from 'react';
 import ZoomBond from '../pages/ZoomBond';
 import { getBondHolderNameById, getStatsByBondHolderID } from '../services/BondService';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 export const DialogBox = forwardRef((props, ref) => {
   const [open, setOpen] = React.useState(false);
@@ -74,32 +79,31 @@ export const DialogBox = forwardRef((props, ref) => {
   return (
     <React.Fragment>
       <Dialog
-        fullWidth={fullWidth}
-        maxWidth={maxWidth}
+        fullWidth
+        maxWidth="sm"
         open={open}
         onClose={handleClose}
       >
-        <DialogTitle>Bond Holder Name:  {bondHolderName}</DialogTitle>
+        <DialogTitle>Bond Holder Name: {bondHolderName}</DialogTitle>
         <DialogContent>
-          {bondHolderStats ? (
-            <div>
-              <p>Number of Bonds: {bondHolderStats.bondHolderNumberOfBonds}</p>
-              <p>Current position: {bondHolderStats.bondHolderCurrentPosition} USD</p>
-            </div>
-          ) : (
-            <p>Loading bond holder stats...</p>
-          )}
-          <Box
-            noValidate
-            component="form"
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              m: 'auto',
-              width: 'fit-content',
-            }}
-          >
-          </Box>
+          <TableContainer>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    Number of Bonds:
+                  </TableCell>
+                  <TableCell>{bondHolderStats?.bondHolderNumberOfBonds}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    Current Position:
+                  </TableCell>
+                  <TableCell>{bondHolderStats?.bondHolderCurrentPosition} USD</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>
