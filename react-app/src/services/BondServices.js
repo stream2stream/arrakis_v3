@@ -49,11 +49,12 @@ export function getAllBonds(userChecked) {
 // }
 
 export function getBondsByDate(props) {
-    console.log("service: " + props.info.check);
-    var date = props.date;
-    var check = props.check;
+    var date = props.info.date;
+    var check = props.info.check;
     date = moment(date).format('YYYY-MM-DD');
+
     if(!check){
+        console.log("here: " + date)
         return http.get("http://localhost:8080/api/v1/bondsdata/all/{date}?date=" + date)
     }else{
         const auth = getAuth();
