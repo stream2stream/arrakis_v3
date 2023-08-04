@@ -20,10 +20,11 @@ VALUES
     (0.75, 'GBP', 'BDCHBW8', 900, 'GB00B6460511', 'HM Treasury United Kingdon', '09/08/2021', 'active', 'GOVN');
 
 INSERT INTO users
-    (name, email, password, role)
+    (username, email, password, role)
 VALUES
     ('admin', 'admin@mail.com', 'password', 'CEO'),
-    ('two', 'two@mail.com', '2', 'Scrub');
+    ('two', 'two@mail.com', '2', 'Scrub'),
+    ('user1', 'user1PWD', 'user1@rdmAddress.com', 'Trader');
 
 INSERT INTO books
     (name, id)
