@@ -58,7 +58,7 @@ function Bonds() {
         
               {Object.entries(bonds).map(([date, values, index]) => (
                 <div className="container" key={date}>
-                  <BondCard key={date} date={date}  bond={values} /> 
+                  <BondCard key={date} date={date}  bond={values} currentDate={new Date()} /> 
                 </div>
                 // <div className="container" key={date}>
                 //   <BondCard key={index} bond={values} date={date} /> 

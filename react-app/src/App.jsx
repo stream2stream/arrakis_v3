@@ -7,6 +7,9 @@ import Login from "./pages/Login";
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import  { useEffect } from 'react';
 
+
+
+import ZoomBondAll from "./pages/ZoomBondAll";
 const isAuthenticated = () => {
   // Replace with your actual authentication logic
   return localStorage.getItem('authenticated') == 'true' ;
@@ -46,6 +49,7 @@ const App = () => {
           <Route ProtectedRoute path="bonds" element={<Bonds />} />
           <Route ProtectedRoute path="zoombond" element={<ZoomBond />} />
           <Route ProtectedRoute path="test" element={<Test />} />
+          <Route ProtectedRoute path="allbond" element={<ZoomBondAll />} />
       </Route>
     </Routes>
   </>);
