@@ -97,4 +97,8 @@ public class AppService {
         return  user.getBooks();
 
     }
+
+    public List<Trade> findTradesByBondId(int bondId) {
+        return tradeService.findTradesByBondId(bondId);
+    }
 }
