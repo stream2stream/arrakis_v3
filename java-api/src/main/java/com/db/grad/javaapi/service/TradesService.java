@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class TradesService {
 
     @Autowired
-    private TradesRepository repo;
+    private TradesRepository tradesRepository;
 
     public List<Trade> getAllTrades() {
-        return repo.findAll();
+        return tradesRepository.findAll();
     }
 
     public List<Trade> getAllTradesByUsername(String username) {
@@ -23,7 +23,7 @@ public class TradesService {
     }
     public Trade getTradeById( Integer id ) {
 
-        return repo.findById(id).get();
+        return tradesRepository.findById(id).get();
     }
 
 }
