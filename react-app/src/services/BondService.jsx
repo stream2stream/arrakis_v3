@@ -47,7 +47,7 @@ export const getAllBondsForBusinessDaysBeforeAndAfter = async (date) => {
 
 export const getMaturedBondsByBondTypeAndDate = async (bondType, date) => {
   try {
-    const response = await axios.get(
+    const response = await HttpService.get(
       `${hostNameUrl}/bonds/bondType/${bondType}/date/${date}`
     );
     const maturedBonds = response.data;
@@ -60,7 +60,7 @@ export const getMaturedBondsByBondTypeAndDate = async (bondType, date) => {
 
 export const getIssuerNameByID = async (id) => {
   try {
-    const response = await axios.get(`${hostNameUrl}/issuer/${id}`);
+    const response = await HttpService.get(`${hostNameUrl}/issuer/${id}`);
     const issuerName = response.data;
     return issuerName;
   } catch (error) {
@@ -71,7 +71,7 @@ export const getIssuerNameByID = async (id) => {
 
 export const getBondHolderNameById = async (id) => {
   try {
-    const response = await axios.get(`${hostNameUrl}/bondHolderId/${id}`);
+    const response = await HttpService.get(`${hostNameUrl}/bondHolderId/${id}`);
     const issuerName = response.data;
     return issuerName;
   } catch (error) {
@@ -82,7 +82,7 @@ export const getBondHolderNameById = async (id) => {
 
 export const getStatsByBondHolderID = async (bondHolderId) => {
   try {
-    const response = await axios.get(`${hostNameUrl}/stats/bondHolderId/${bondHolderId}`);
+    const response = await HttpService.get(`${hostNameUrl}/stats/bondHolderId/${bondHolderId}`);
     const stats = response.data;
     return stats;
   } catch (error) {
