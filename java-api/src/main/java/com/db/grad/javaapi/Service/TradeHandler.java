@@ -1,46 +1,49 @@
 package com.db.grad.javaapi.Service;
 
+
+import com.db.grad.javaapi.model.Security;
 import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TradeHandler implements ITradeService{
 
-    private TradeRepository TradeRepository;
+    private TradeRepository tradeRepository;
 
     @Autowired
     public TradeHandler(TradeRepository TradeRepository) {
-        this.TradeRepository = TradeRepository;
+        this.tradeRepository = TradeRepository;
     }
 
     @Override
     public List<Trade> getAllTrades() {
-        return TradeRepository.findAll();
+        return tradeRepository.findAll();
     }
 
     @Override
     public Trade addTrade(Trade theTrade) {
-        return TradeRepository.save(theTrade);
+        return tradeRepository.save(theTrade);
     }
 
     @Override
     public long getNoOfTrades() {
-        return TradeRepository.count();
+        return tradeRepository.count();
     }
 
     @Override
     public boolean removeTrade(long uniqueId) {
         boolean result = false;
 
-        Optional<Trade> theTrade = TradeRepository.findById(uniqueId);
+        Optional<Trade> theTrade = tradeRepository.findById(uniqueId);
         if(theTrade.isPresent())
         {
-            TradeRepository.delete(theTrade.get());
+            tradeRepository.delete(theTrade.get());
             result = true;
         }
 
@@ -51,7 +54,7 @@ public class TradeHandler implements ITradeService{
     public Trade getTradeById(long uniqueId) {
         Trade TradeToFind = new Trade();
         TradeToFind.setId(uniqueId);
-        List<Trade> Trades = TradeRepository.findByTradeID(TradeToFind);
+        List<Trade> Trades = tradeRepository.findByTradeID(TradeToFind);
         Trade result = null;
 
         if( Trades.size() == 1)
@@ -64,7 +67,7 @@ public class TradeHandler implements ITradeService{
     public Trade getTradeByBookID(long BookID) {
         Trade TradeToFind = new Trade();
         TradeToFind.setBook_id(BookID);
-        List<Trade> Trades = TradeRepository.findByBookID(TradeToFind);
+        List<Trade> Trades = tradeRepository.findByBookID(TradeToFind);
         Trade result = null;
 
         if( Trades.size() == 1)
@@ -73,10 +76,16 @@ public class TradeHandler implements ITradeService{
         return result;
     }
 
+    public List<Trade> getTradesBySecuritiesID(List<Long> securityIds){
+        if (securityIds == null) return null;
+        if (securityIds.isEmpty()) return new ArrayList<>();
+        return tradeRepository.findTradesBySecuritiesID(securityIds);
+    }
+
 
 
     @Override
     public Trade updateTradeDetails(Trade TradeToUpdate) {
-        return TradeRepository.save(TradeToUpdate);
+        return tradeRepository.save(TradeToUpdate);
     }
 }
