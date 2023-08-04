@@ -10,10 +10,9 @@ const MaturingBondsList = (props) => {
   }, []);
 
   const getBondsByDateFromAPI = () => {
-    getBondsByDate(props.props.info)
+    getBondsByDate(props.props)
       .then((res) => {
         setDateBonds(res.data);
-        console.log(res);
       })
       .catch((err) => {
         setDateBonds([]);
