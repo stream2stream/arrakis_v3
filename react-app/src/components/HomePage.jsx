@@ -10,14 +10,13 @@ const HomePage = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
     let user = location.state;
-    const [dates, setDates] = useState([]);
     const [bookingId, setBookingId] = useState("");
     const [maturityDates, setMaturityDates] = useState([]);
 
     useEffect(() => {
         console.log("User = "+user['user']);
         getBookingIdAPI(user['user']).then(res => {
-            getMaturityDates(res.data).then(res2 => {
+            getMaturityAPI(res.data).then(res2 => {
                 setBookingId(res.data);
                 setMaturityDates(res2.data);
                 console.log("Booking ID - " + bookingId);
