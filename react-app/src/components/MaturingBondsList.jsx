@@ -31,8 +31,10 @@ const MaturingBondsList = (props) => {
   };
 
 
-
+  const isBondNotChanged = Object.keys(bonds).length >0;
   return (
+    <div>
+      {isBondNotChanged? (
     <table className="table table-striped">
       <thead>
         <tr>
@@ -61,6 +63,8 @@ const MaturingBondsList = (props) => {
         ))}
       </tbody>
     </table>
+    ):(<p>There is no bond to show for this date</p>)}
+    </div>
   );
 };
 
