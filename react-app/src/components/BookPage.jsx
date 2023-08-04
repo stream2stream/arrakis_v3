@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { findUpcoming } from "../services/UpcomingServices";
+import { findBook } from "../services/BookService";
+import { findTrades } from "../services/TradeService";
 import { DataGrid } from '@mui/x-data-grid';
 import { Box, TextField } from "@mui/material";
 import styles from "./pets/Pets.module.css";
@@ -10,10 +11,12 @@ import { CardContent } from "@mui/material";
 
 export const BookPage = () => {
     const [securities, setSecurities] = useState([]);
+    const [books, setBooks] = useState([]);
+    const [trades, setTrades] = useState([]);
     const [date, setDate] = useState("");
     const [dateFinal, setDateFinal] = useState("");
     const [cardMessage, setCardMessage] = useState(false);
-    const [id, setID] = useState();
+    const [id, setID] = useState(0);
     const [couponPercent, setCouponPercent] = useState();
     const [bondCurrency, setBondCurrency] = useState("");
     const [cusip, setCusip] = useState();
@@ -24,82 +27,108 @@ export const BookPage = () => {
     const [status, setStatus] = useState("");
     const [type, setType] = useState("");
 
-
-    const handleDateInput = (event) => {
-        setDate(event.target.value);
-    }
-
-    const handleSubmit = () => {
-        console.log(date)
-        setDateFinal(date)
-    }
-
-    const handleRowClick = (params) => {
+    const handleRowClickBook = (params) => {
         setID(params.row.id);
-        setCouponPercent(params.row.couponPercent);
-        setBondCurrency(params.row.bondCurrency);
-        setCusip(params.row.cusip);
-        setFaceValue(params.row.faceValue);
-        setIsin(params.row.isin);
-        setIssuerName(params.row.issuerName);
-        setBondMaturityDate(params.row.bondMaturityDate);
-        setStatus(params.row.status);
-        setType(params.row.type);
-        if (params.row.id !== id) {
-            setCardMessage(true);
-        } else {
-            setCardMessage(!cardMessage);
-        }
+        console.log(params.row.id);
+    }
+
+    const handleRowClickTrade = (params) => {
+        // setID(params.row.id);
+        // setCouponPercent(params.row.couponPercent);
+        // setBondCurrency(params.row.bondCurrency);
+        // setCusip(params.row.cusip);
+        // setFaceValue(params.row.faceValue);
+        // setIsin(params.row.isin);
+        // setIssuerName(params.row.issuerName);
+        // setBondMaturityDate(params.row.bondMaturityDate);
+        // setStatus(params.row.status);
+        // setType(params.row.type);
+        // if (params.row.id !== id) {
+        //     setCardMessage(true);
+        // } else {
+        //     setCardMessage(!cardMessage);
+        // }
+        console.log('Clicked trade ID: ' + params.row.id);
     }
 
     useEffect(() => {
-      findUpcoming(dateFinal)
-            .then(({data}) => {
-            setSecurities(data);
-            });
-    }, [dateFinal]);
+        findBook()
+              .then(({data}) => {
+              setBooks(data);
+              });
+      }, []);
 
-    const columnDef = [
+      useEffect(() => {
+        findTrades(id)
+              .then(({data}) => {
+              setTrades(data);
+              });
+      }, [id]);
+
+    const columnDef2 = [
       {field: 'id', headerName: 'ID', flex: 1},
-      {field: 'couponPercent', headerName: 'Coupon %'},
-      {field: 'bondCurrency', headerName: 'Currency'},
-      {field: 'cusip', headerName: 'CUSIP', flex: 1},
-      {field: 'bondCurrency', headerName: 'Currency', flex: 1},
-      {field: 'faceValue', headerName: 'Face Value', flex: 1},
-      {field: 'isin', headerName: 'ISIN'},
-      {field: 'issuerName', headerName: 'Issuer'},
-      {field: 'bondMaturityDate', headerName: 'Maturity Date', flex: 1},
-      {field: 'status', headerName: 'Status', flex: 1},
-      {field: 'type', headerName: 'Type', flex: 1}
+      {field: 'tradeType', headerName: 'Type', flex: 1},
+      {field: 'tradeCurrency', headerName: 'Currency', flex: 1},
+      {field: 'quantity', headerName: 'Quantity', flex: 1},
+      {field: 'tradeSettlementDate', headerName: 'Settlement Date', flex: 1},
+      {field: 'tradeStatus', headerName: 'Status', flex: 1},
+      {field: 'tradeDate', headerName: 'Date', flex: 1},
+      {field: 'unitPrice', headerName: 'Unit Price', flex: 1},
+      {field: 'counterPartyID', headerName: 'Counter Party ID', flex: 1},
+      {field: 'securityID', headerName: 'Security ID', flex: 1},
+      {field: 'bookID', headerName: 'Book ID', flex: 1}
     ]
 
-    const rowDef = []
-    securities.map(security => 
-      rowDef.push({
-            id: security.id, 
-            couponPercent: security.couponPercent,
-            bondCurrency: security.bondCurrency,
-            cusip: security.cusip,
-            faceValue: security.faceValue,
-            isin: security.isin,
-            issuerName: security.issuerName,
-            bondMaturityDate: security.bondMaturityDate,
-            status: security.status,
-            type: security.type
+    const rowDef2 = []
+    trades.map(trade => 
+      rowDef2.push({
+            id: trade.id, 
+            tradeType: trade.tradeType,
+            tradeCurrency: trade.tradeCurrency,
+            quantity: trade.quantity,
+            tradeSettlementDate: trade.tradeSettlementDate,
+            tradeStatus: trade.tradeStatus,
+            tradeDate: trade.tradeDate,
+            unitPrice: trade.unitPrice,
+            counterPartyID: trade.counterPartyID,
+            securityID: trade.securityID,
+            bookID: trade.bookID
         })
     )
+
+    const columnDef1 = [
+        {field: 'bookName', headerName: 'Book', flex: 1}
+    ]
+
+    const rowDef1 = []
+    books.map(book => 
+        rowDef1.push({
+            id: book.id,
+            bookName: book.bookName
+        })
+    )
+
 
   return (
     <>
         <Box sx={{ height: '100%', width: '100%'}}>
             <div className={styles.container}>
-                <DataGrid
-                    rows={rowDef}
-                    columns={columnDef}
-                    sx={{ maxWidth: '75%' }}
-                    onRowClick={handleRowClick}
-                    maxColumns={6}
-                    />
+                <div className={styles.grid}>
+                    <DataGrid
+                        rows={rowDef1}
+                        columns={columnDef1}
+                        sx={{ height: '50%'}}
+                        onRowClick={handleRowClickBook}
+                        maxColumns={6}
+                        />
+                    <DataGrid
+                        rows={rowDef2}
+                        columns={columnDef2}
+                        sx={{ height: '50%' }}
+                        onRowClick={handleRowClickTrade}
+                        maxColumns={6}
+                        />
+                </div>
                     {cardMessage &&
             <Card sx={{ minWidth: '25%'}}>
                 <CardContent>
