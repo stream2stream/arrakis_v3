@@ -14,6 +14,10 @@ public interface BondService {
     Map<String, Map<String, Integer>> getAllBondsForBusinessDaysBeforeAndAfter(String date, int daysBefore, int daysAfter) throws ParseException;
 
     List<Bond> getAllMatureBondsByBondTypeAndDate(String bondType, String date) throws ParseException;
+
+    Map<String, Map<String, Integer>> getAllBondsForBusinessDaysBeforeAndAfterOfEmail(String date, int daysBefore, int daysAfter, String email) throws ParseException;
+
+    List<Bond> getAllMatureBondsByBondTypeAndDateOfEmail(String bondType, String date, String email) throws ParseException;
 //    Bond getBondByDate(Date date);
 //
 //
