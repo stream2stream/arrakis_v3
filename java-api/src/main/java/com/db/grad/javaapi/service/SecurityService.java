@@ -6,8 +6,8 @@ import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.SecurityRepository;
 import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.db.grad.javaapi.repository.BookRepository;
 import org.springframework.stereotype.Service;
+import com.db.grad.javaapi.repository.BookRepository;
 
 import java.util.*;
 
@@ -17,8 +17,6 @@ import java.util.List;
 public class SecurityService {
     @Autowired
     private SecurityRepository securityRepository;
-    @Autowired
-    private BookRepository bookRepository;
 
     @Autowired
     private TradeRepository tradeRepository;
@@ -30,6 +28,13 @@ public class SecurityService {
     public List<Security> getBonds() {
         return securityRepository.getActiveBonds();
     }
+
+    public List<Security> getBondsForNextFiveDays() {
+        return securityRepository.getBondsForNextFiveDays();
+    }
+
+    public List<Security> getBondsForPreviousFiveDays() {
+        return securityRepository.getBondsForPreviousFiveDays();
 
     public ArrayList<BondTransactionDTO> getActiveBondsTransactions() {
 
@@ -51,5 +56,6 @@ public class SecurityService {
             bondTransactionAll.add(btdo);
         }
         return bondTransactionAll;
+
     }
 }

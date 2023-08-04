@@ -25,4 +25,10 @@ public interface SecurityRepository extends JpaRepository<Security, Integer> {
     List<Security> findSecuritiesForUserBooks(@Param("userMail") String userMail);
     @Query("SELECT s FROM Security s WHERE s.status = 'active'")
     List<Security> getActiveBonds();
+
+    @Query(value = "SELECT * FROM security AS s WHERE s.maturity_date BETWEEN '0005-08-21' AND '0005-08-25'", nativeQuery = true)
+    List<Security> getBondsForNextFiveDays();
+
+    @Query(value = "SELECT * FROM security AS s WHERE s.maturity_date BETWEEN '0030-07-21' AND '0030-07-25'", nativeQuery = true)
+    List<Security> getBondsForPreviousFiveDays();
 }
