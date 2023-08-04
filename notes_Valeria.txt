@@ -1,0 +1,72 @@
+
+What is the project 
+    Diagnostic tool, monitor inaccuracies in the system, lead to redemption not taking place.
+    Redeeming binds
+    User can track the comming up bonds +5 and -5 days of maturity.
+    Examination tool, what went wrong and where problem arose.
+    the tooling should provide visibility on the trades linked to those bonds which may help identify failing trades, mis-booked trades, timing issues etc.
+
+Tasks
+    1. allow permissioned users to see bonds that are due to mature
+    2. allow permissioned users to see bonds that have not been fully settled
+    3. allow users to view bonds that have matured recently
+    4. show where almost mature bonds have been actioned by others (to prevent duplication of effort and allow oversight)
+    5. be the starting point for triggering the chain of events required to redeem
+    6. Optional: allow users to create a custom list of Bonds that they can track and monitor
+
+MVP
+    UI that is capable of displaying the redemptions due, and flag redemptions that should have been redeemed, with a dashboard and search page to allow both overviews of events.
+
+MUST    
+
+    1. A demonstration that you have understood the technology, including:
+    2. Architecture
+    3. SOLID design principles
+    4. Thought given to security
+    5. The importance of testing
+    6. Governance through adherence to the architectures given above (see Proposed Architecture) 
+    7. Work well as a team and give everyone an opportunity to contribute
+
+Product
+    Background: We have to be able to track bonds in our inventory and understand when bonds mature so that we can get back the face value of the bond from the issuer.
+    Goal: to provide transparency on maturing bonds, in particular those bonds that are still on the books post maturity.
+    User -> books (1..*)
+
+
+Tools should 
+    show bonds that are maturing, have matured, or have expired. 
+    select data periods (show +5 and -5 days of maturity).
+    Dive deep when selected bond
+
+Task depending on the stories
+    1. Populate DB with data and normilize the dat
+    2. Implement level of security
+
+    - Front - end
+        High
+            1. See all bonds, given credentials
+            2. See bonds maturying for the next +-5 days, when you login platform
+            9. Show only registered user can see the bond data
+        Medium
+            3. See bonds  +-5days
+            8. Show bonds details of individual bonds
+        Low
+            4. Show bonds ISIN nad CUSSIP
+            5. Show issuer of bond
+            6. Show client name of bond
+            7. Show bonds you are responsible for
+
+    - Back - end
+        1. Alert bonds that have matured and not reedemed
+        2. Being able to redeem bond on coming due for maturity
+        3. See bonds that have and havent been redeemed
+        4. See bonds that are maturing today
+        5. See bonds that  matured in the last 5 days
+        6. See bonds that your client books has
+        7. current position the clients holds (banking trading limits)
+
+Additional 
+    - Security
+        1. no encyption
+        2. email/password
+        3. google firebase (email/password)
