@@ -1,6 +1,8 @@
 import React from "react";
 import "../App.css";
 
+//I believe this component is no longer in use
+
 const BondDetail = (props) => {
   return (
     <>
@@ -19,5 +21,3 @@ const BondDetail = (props) => {
 };
 
 export default BondDetail;
-
-//isin, issuer_name, bond_maturity_date, coupon_percent, face_value
