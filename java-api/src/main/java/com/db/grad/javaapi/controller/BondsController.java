@@ -40,12 +40,11 @@ public class BondsController {
     public Map<String, Map<String, Integer>> getNoOfBondsForBusinessDaysBeforeAndAfterOfType(@PathVariable(value = "date") String date,
                                                                                          @PathVariable(value = "daysBefore") int daysBefore,
                                                                                          @PathVariable(value = "daysAfter") int daysAfter) throws ParseException {
-        throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized");
+        return bondService.getAllBondsForBusinessDaysBeforeAndAfter(date, daysBefore, daysAfter);
     }
 
     @GetMapping(value = {"/bonds/bondType/{bondType}/date/{date}"})
-    public List<Bond> getMaturedBondsByBondTypeAndDate(@PathVariable(value = "bondType") String bondType,
-                                                                                         @PathVariable(value = "date") String date) throws ParseException {
+    public List<Bond> getMaturedBondsByBondTypeAndDate(@PathVariable(value = "bondType") String bondType, @PathVariable(value = "date") String date) throws ParseException {
 
         return bondService.getAllMatureBondsByBondTypeAndDate(bondType, date);
     }

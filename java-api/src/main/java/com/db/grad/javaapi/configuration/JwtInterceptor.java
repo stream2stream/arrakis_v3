@@ -4,11 +4,13 @@ import com.db.grad.javaapi.service.UserService;
 import com.db.grad.javaapi.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class JwtInterceptor implements HandlerInterceptor {
     private UserService userService;
 
