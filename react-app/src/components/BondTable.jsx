@@ -1,12 +1,11 @@
 
 import React from 'react';
 
-const Table = ({ data }) => {
+const BondTable = ({ data }) => {
   return (
     <table>
       <thead>
 
-id, book name
             <th>ISIN</th>
             <th>Type</th>
             <th>Issuer</th>
@@ -21,8 +20,7 @@ id, book name
       <tbody>
         {data.map((index) => (
            <tr key={index.id}>
-
-          <td >{index.isin}</td>
+       <td >{index.isin}</td> 
            <td>{index.type}</td>
            <td>{index.issuer}</td>
            <td>{index.maturity}</td>
@@ -38,4 +36,4 @@ id, book name
   );
 };
 
-export default Table;
+export default BondTable;

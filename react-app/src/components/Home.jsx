@@ -1,21 +1,33 @@
 import React from 'react';
 import '../styles/layout.css'; 
-import AllBooks from './components/AllBooks'
+import AllBooks from './AllBooks'
+import AllBonds from './AllBonds'
+import DateBox from './DateBox'
 const Home = () => {
       return (
             <div className="container">
-                <div className="left-column">Left Column Content</div>
-                    
-                <div className="right-column">
-                    <table>
-                    <AllBooks></AllBooks>
-                        </table>
-                    
+             
+                <div className="left-column">
+                    <div className='box'>
+                       <DateBox></DateBox>
+                    </div>
+                    <div className='bidnumber'>
 
+                    </div>
+               
+                </div>
+                    
+                <div className='table-container'>
+                  <div className="right-column">
                     <table>
-                        {/* Table 1 content */}
+                         <AllBonds></AllBonds>
                     </table>
-                   
+                       
+                <div className="space-between-tables" />
+                    <table>
+                        <AllBooks></AllBooks>
+                    </table>
+                    </div>
                 </div>  
                 
                 </div>                          

@@ -33,38 +33,23 @@ const getBooksFromAPI = ()=>{
   })
 
 }
-// const bonds = [{
-//   "id":1,
-//   "isin":100,
-//   "type":"Sell",
-//   "issuer":"Someone",
-//   "maturity":15/10/2023,
-//   "faceValue": 10.33,
-//   "currency": "USD",
-//   "coupon":1,
-//   "status":"Active"
+const books2 = [{
+  "id":1,
+  "name":"Anyone"
 
 
-// },
+},
 
-// {
-//   "id":2,
-//   "isin":200,
-//   "type":"Sell",
-//   "issuer":"Someone",
-//   "maturity":15/10/2023,
-//   "faceValue": 10.33,
-//   "currency": "USD",
-//   "coupon":1,
-//   "status":"Active"
+{
+  "id":2,
+  "name":"somethingo"
 
 
-// }
-// ]
+}, ]
 
   return (
     <div>
-      <BooksDetails data={books}></BooksDetails>
+      <BooksDetails data={books2}></BooksDetails>
     </div>
     
   )
