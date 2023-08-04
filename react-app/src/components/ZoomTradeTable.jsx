@@ -131,7 +131,7 @@ export default function ZoomTradeTable({ isin }) {
               </TableRow>
             </TableHead>
             <TableBody>
-                    {rows
+                   {rows
                       .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                       .map((row) => {
                         return (
@@ -140,25 +140,32 @@ export default function ZoomTradeTable({ isin }) {
                               const value = row[column.id];
                               return (
                                 <TableCell key={column.id} align={column.align}>
-                                  {column.id === 'bondHolderID' ? (
-                                    <span
-                                      style={{ cursor: 'pointer' }}
-                                      onClick={() => {
-                                        setSelectedBondHolderID(value);
-                                        dialogRef.current.openDialog(value);
-                                      }}
-                                    >
+                                {column.id === 'bondHolderID' ? (
+                                  <span
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => {
+                                      setSelectedBondHolderID(value);
+                                      dialogRef.current.openDialog(value);
+                                    }}
+                                  >
+                                    {column.format && typeof value === 'number'
+                                      ? column.format(value)
+                                      : value}
+                                  </span>
+                                ) : (
+                                  column.id === 'status' ? (
+                                    <span style={{ color: value === 'closed' ? 'red' : '#33b652' }}>
                                       {column.format && typeof value === 'number'
                                         ? column.format(value)
                                         : value}
                                     </span>
                                   ) : (
-                                    // Render the cell without the click functionality for other columns
                                     column.format && typeof value === 'number'
                                       ? column.format(value)
                                       : value
-                                  )}
-                                </TableCell>
+                                  )
+                                )}
+                              </TableCell>
                               );
                             })}
                           </TableRow>
