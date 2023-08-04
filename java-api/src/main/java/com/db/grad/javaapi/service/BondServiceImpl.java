@@ -63,13 +63,13 @@ public class BondServiceImpl implements BondService {
         return maturityDateMap;
     }
 
-    private Date convertStringToDate(String date) throws ParseException {
+    private Date convertStringToDate(String date) throws ParseException {//utility class
         String format = "dd-MM-yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.parse(date);
     }
 
-    private String convertDateToString(Date date) throws ParseException {
+    private String convertDateToString(Date date) throws ParseException {//utility class
         String format = "dd-MM-yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return dateFormat.format(date);

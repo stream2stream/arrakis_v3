@@ -14,10 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import java.text.ParseException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,13 +28,13 @@ public class BondServiceTest {
     private BondsRepository bondsRepository;
 
 
-    /*@Test
+    @Test
     public void getBondsDueForMaturityPeriod() throws ParseException {
         Bond bond = new Bond();
         bond.setIsin("ISIN1");
         bond.setType("CORP");
         bond.setIssuerID(1);
-        Date date = new GregorianCalendar(2023, 7, 17).getTime();
+        Date date = new GregorianCalendar(2023, Calendar.AUGUST, 17).getTime();
         bond.setBondMaturityDate(date);
         bond.setFaceValue(1000);
         bond.setBondCurrency("USD");
@@ -50,7 +47,7 @@ public class BondServiceTest {
         bond2.setIsin("ISIN2");
         bond2.setType("GOVN");
         bond2.setIssuerID(1);
-        Date date2 = new GregorianCalendar(2023, 7, 11).getTime();
+        Date date2 = new GregorianCalendar(2023, Calendar.AUGUST, 11).getTime();
         bond2.setBondMaturityDate(date2);
         bond2.setFaceValue(340);
         bond2.setBondCurrency("GBP");
@@ -63,7 +60,7 @@ public class BondServiceTest {
         bond3.setIsin("ISIN3");
         bond3.setType("SOVN");
         bond3.setIssuerID(1);
-        Date date3 = new GregorianCalendar(2023, 04, 15).getTime();
+        Date date3 = new GregorianCalendar(2023, Calendar.MAY, 15).getTime();
         bond3.setBondMaturityDate(date3);
         bond3.setFaceValue(690);
         bond3.setBondCurrency("USD");
@@ -76,7 +73,7 @@ public class BondServiceTest {
         bond4.setIsin("ISIN3");
         bond4.setType("SOVN");
         bond4.setIssuerID(1);
-        Date date4 = new GregorianCalendar(2023, 04, 15).getTime();
+        Date date4 = new GregorianCalendar(2023, Calendar.MAY, 16).getTime();
         bond4.setBondMaturityDate(date4);
         bond4.setFaceValue(690);
         bond4.setBondCurrency("USD");
@@ -87,8 +84,16 @@ public class BondServiceTest {
 
         Mockito.when(bondsRepository.findAll()).thenReturn(Arrays.asList(bond, bond2, bond3, bond4));
 
-        List<Bond> maturityBonds = bondService.getAllBondsForBusinessDaysBeforeAndAfter("16-08-2023", 5, 5);
-        assertEquals(2, maturityBonds.size());
-    }*/
+        Map<String, Map<String, Integer>> expectedMap = new HashMap<>();
+        Map<String, Integer> date3Map = new HashMap<>();
+        date3Map.put("CORP", 1);
+        expectedMap.put("17-08-2023", date3Map);
+        Map<String, Integer> date4Map = new HashMap<>();
+        date4Map.put("GOVN", 1);
+        expectedMap.put("11-08-2023", date4Map);
+
+        Map<String, Map<String, Integer>> maturityBonds = bondService.getAllBondsForBusinessDaysBeforeAndAfter("17-08-2023", 5, 5);
+        assertEquals(expectedMap, maturityBonds);
+    }
 
 }

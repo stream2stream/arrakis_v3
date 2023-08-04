@@ -12,7 +12,7 @@ public class Trade {
     @Id
     private int id;
     private String isin;
-    private String bookName;
+    private int bookId;
     private int bondHolderID;
     private String status;
     private double unitPrice;
@@ -41,13 +41,13 @@ public class Trade {
         this.isin = isin;
     }
 
-    @Column(name = "book_name", nullable = false)
-    public String getBookName() {
-        return bookName;
+    @Column(name = "book_id", nullable = false)
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     @Column(name = "bond_holder_id", nullable = false)

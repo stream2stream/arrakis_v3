@@ -38,7 +38,7 @@ public class TradeTest {
         Trade trade = new Trade();
         trade.setId(5);
         trade.setIsin("XS1988387210");
-        trade.setBookName("trading_book_1");
+        trade.setBookId(1);
         trade.setBondHolderID(1);
         trade.setStatus("open");
         trade.setUnitPrice(90);
@@ -60,7 +60,7 @@ public class TradeTest {
         Trade trade = new Trade();
         trade.setId(5);
         trade.setIsin("XS1988387210");
-        trade.setBookName("trading_book_1");
+        trade.setBookId(1);
         trade.setBondHolderID(1);
         trade.setStatus("open");
         trade.setUnitPrice(90);
@@ -75,7 +75,7 @@ public class TradeTest {
         Trade trade1 = new Trade();
         trade1.setId(4);
         trade1.setIsin("XS1988387210");
-        trade1.setBookName("trading_book_2");
+        trade1.setBookId(1);
         trade1.setBondHolderID(1);
         trade1.setStatus("open");
         trade1.setUnitPrice(100);
@@ -89,7 +89,7 @@ public class TradeTest {
         Trade trade2 = new Trade();
         trade2.setId(3);
         trade2.setIsin("XS1988387210");
-        trade2.setBookName("trading_book_3");
+        trade2.setBookId(1);
         trade2.setBondHolderID(1);
         trade2.setStatus("open");
         trade2.setUnitPrice(100);
@@ -110,7 +110,7 @@ public class TradeTest {
         Trade trade1 = new Trade();
         trade1.setId(1);
         trade1.setIsin("XS1988387210");
-        trade1.setBookName("trading_book_3");
+        trade1.setBookId(1);
         trade1.setBondHolderID(4);
         trade1.setStatus("open");
         trade1.setUnitPrice(100);
