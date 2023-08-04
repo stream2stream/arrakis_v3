@@ -18,13 +18,4 @@ public class WebSecurityConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/users/signin");
     }
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .exposedHeaders("Authorization"); // Replace with the name of your JWT header if it's not "Authorization"
-    }
 }
