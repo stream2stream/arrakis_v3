@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 public class Book {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,7 +20,6 @@ public class Book {
     public int getId() {
         return id;
     }
-
 
     public String getBookName() {
         return bookName;
