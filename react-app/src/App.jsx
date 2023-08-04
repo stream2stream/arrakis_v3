@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import ZoomBond from "./pages/ZoomBond";
 import Bonds from "./pages/Bonds";
 import Test from "./pages/Test";
+import Login from "./pages/Login";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
   
     <Routes>
       <Route path="/" element={<Navigate replace to="/home/bonds" />} />
+      <Route path="login" element={<Login />}/>
       <Route path="home" element={<Home />}>
           <Route path="bonds" element={<Bonds />} />
           <Route path="zoombond" element={<ZoomBond />} />

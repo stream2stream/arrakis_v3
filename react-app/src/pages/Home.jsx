@@ -71,8 +71,6 @@ export default function Home() {
             </LocalizationProvider>
         </div>
       
-    
-      
         </Toolbar>
       </AppBar>
       <Drawer
