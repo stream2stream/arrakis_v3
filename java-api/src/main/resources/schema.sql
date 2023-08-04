@@ -5,8 +5,8 @@ Drop Table IF exists CounterParty;
 Drop Table IF exists Book;
 Drop Table IF exists Security;
 
--- CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
-CREATE TABLE TEST AS SELECT * FROM CSVREAD('/Users/monikazeng/Documents/DB/projects/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+ CREATE TABLE TEST AS SELECT * FROM CSVREAD('C:/work/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
+--CREATE TABLE TEST AS SELECT * FROM CSVREAD('/Users/monikazeng/Documents/DB/projects/arrakis_v3/java-api/src/main/resources/db-bonds-data.csv');
 
 UPDATE TEST SET BOND_HOLDER = LOWER(BOND_HOLDER), BOOK_NAME = LOWER(BOOK_NAME);
 

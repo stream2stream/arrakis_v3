@@ -17,17 +17,21 @@ public interface SecurityRepository extends JpaRepository<Security,Integer> {
     List<Security> findActiveBonds();
 
     // mvp 1.0 story 2
-    @Query(nativeQuery = true, value = "SELECT * FROM SECURITY WHERE MATURITY_DATE BETWEEN DATEADD('DAY', -5, :USER_DATE) AND DATEADD('DAY', 5, :USER_DATE);")
-    List<Security> find5DaysBonds(LocalDateTime USER_DATE);
+    @Query(nativeQuery = true, value = "SELECT * FROM SECURITY WHERE MATURITY_DATE BETWEEN DATEADD('DAY', -5, :user_date) AND DATEADD('DAY', 5, :user_date);")
+    List<Security> find5DaysBonds(LocalDateTime user_date);
 
 
     // mvp 1.0 story 3
 
 
     // mvp 1.0 story 4
-
+    @Query(nativeQuery = true, value = "SELECT ISIN, CUSIP FROM SECURITY WHERE ISSUER_NAME = :issuer;")
+    List<Security> findIsinCUSIP(String issuer);
 
     // mvp 1.0 story 5
+    @Query(nativeQuery = true, value = "SELECT DISTINCT ISSUER_NAME FROM SECURITY WHERE CUSIP = :cusip;")
+    List<Security> identifyIssuer(String cusip);
+
     @Query(nativeQuery = true, value ="select issuer from Security where ID= :id")
     List<Security> findIssuerfromBondID(Integer id);
 
