@@ -5,6 +5,7 @@ import com.db.grad.javaapi.model.Security;
 import com.db.grad.javaapi.repository.SecurityRepository;
 import com.db.grad.javaapi.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,8 +31,18 @@ public class SecurityController {
     }
 
     @GetMapping("/bonds")
-    public List<Security> getActiveBonds() {
-        return securityService.getBonds();
+    public ResponseEntity<List<Security>> getActiveBonds() {
+
+        return new ResponseEntity<>(securityService.getBonds(), HttpStatus.OK);
     }
 
+    @GetMapping("/calendar/next-five-days")
+    public ResponseEntity<List<Security>> getBondsForNextFiveDays() {
+        return new ResponseEntity<>(securityService.getBondsForNextFiveDays(), HttpStatus.OK);
+    }
+
+    @GetMapping("/calendar/previous-five-days")
+    public ResponseEntity<List<Security>> getBondsForPreviousFiveDays() {
+        return new ResponseEntity<>(securityService.getBondsForPreviousFiveDays(), HttpStatus.OK);
+    }
 }
