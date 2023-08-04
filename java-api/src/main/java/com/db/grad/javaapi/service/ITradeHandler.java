@@ -14,8 +14,8 @@ public interface ITradeHandler
 
     public long getNoOfTrades();
 
-    public List<Trade> findTradeByBookId(long id);
-//    public List<Trade> getTradesByBookId(long id);
+//    public List<Trade> findTradeByBookId(long id);
+    public List<Trade> getTradesByBookId(long id);
 //
 //    public Trade getTradeByBookId(long id);
     // public boolean removeTrade(long Trade);

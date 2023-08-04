@@ -9,7 +9,7 @@ import java.util.*;
 public interface TradeRepository extends JpaRepository<Trade, Long> {
 
 
-    @Query(nativeQuery = true, value = "select * from book b natural join trades t where b.book_id = t.book_id")
+    @Query(nativeQuery = true, value = "select * from book b natural join trades t where b.id = t.book_id and b.id=:id")
     List<Trade> getTradesByBookId(long id);
 
 }

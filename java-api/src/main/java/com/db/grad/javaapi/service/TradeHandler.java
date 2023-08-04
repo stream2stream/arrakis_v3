@@ -27,8 +27,8 @@ public class TradeHandler implements ITradeHandler {
                 return itsTradesRepo.count();
         }
 
-        public List<Trade> findTradeByBookId(long id){
-                List<Trade> trades = itsTradesRepo.getTradesByBookId(1);
+        public List<Trade> getTradesByBookId(long id){
+                List<Trade> trades = itsTradesRepo.getTradesByBookId(id);
                 return trades;
         }
 
