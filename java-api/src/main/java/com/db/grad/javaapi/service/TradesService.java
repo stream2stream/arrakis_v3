@@ -14,10 +14,6 @@ public class TradesService {
     @Autowired
     private TradesRepository tradesRepository;
 
-    public TradesService(TradesRepository repo) {
-        tradesRepository = repo;
-    }
-
     public List<Trade> getAllTrades() {
         return tradesRepository.findAll();
     }

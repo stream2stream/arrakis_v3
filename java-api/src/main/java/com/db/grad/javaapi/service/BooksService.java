@@ -13,10 +13,6 @@ public class BooksService {
     @Autowired
     private BooksRepository booksRepository;
 
-    public BooksService( BooksRepository repo ) {
-        booksRepository = repo;
-    }
-
     public List<Book> getAllBooks() {
         return booksRepository.findAll();
     }

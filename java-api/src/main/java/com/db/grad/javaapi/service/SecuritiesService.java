@@ -13,11 +13,7 @@ public class SecuritiesService {
 
     @Autowired
     private SecuritiesRepository securitiesRepository;
-
-    public SecuritiesService(SecuritiesRepository repo) {
-        securitiesRepository = repo;
-    }
-
+    
     public List<Security> getAllSecurities() {
         return securitiesRepository.findAll();
     }

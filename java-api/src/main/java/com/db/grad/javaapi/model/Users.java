@@ -1,10 +1,25 @@
 package com.db.grad.javaapi.model;
 
+<<<<<<< HEAD
+=======
+import com.db.grad.javaapi.utils.Role;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+>>>>>>> 6da42905aa67f6f758100eafbe3e6e56b8b71402
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 public class Users {
+    public Set<Book> getOwnedBooks() {
+        return ownedBooks;
+    }
+
+    public void setOwnedBooks(Set<Book> ownedBooks) {
+        this.ownedBooks = ownedBooks;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -12,6 +27,16 @@ public class Users {
     private String password;
 
     private String role;
+
+
+    @JsonIgnoreProperties(value = "users")
+    @ManyToMany
+    @JoinTable(
+            name = "book_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id")
+    )
+    private Set<Book> ownedBooks;
 
     public int getId() {
         return id;
