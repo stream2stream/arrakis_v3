@@ -94,5 +94,9 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.findDistinctSecurityTypesByUserId(userId);
     }
 
+    // API 7: Get distinct issuer name in user books issuer_name
+    public List<String> getDistinctSecurityIssuerByUserId(Long userId) {
+        return securityRepository.findDistinctSecurityIssuerByUserId(userId);
+    }
 
 }

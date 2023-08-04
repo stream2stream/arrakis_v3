@@ -85,5 +85,11 @@ public class SecurityController {
         return ResponseEntity.ok().body(securityTypes);
     }
 
+    @GetMapping("/security/security-issuer/{userId}")
+    public ResponseEntity<?> getDistinctSecurityIssuerByUserId(@PathVariable(value = "userId") long userId)
+            throws ResourceNotFoundException {
+        List<String> issuerNames = securityHandler.getDistinctSecurityIssuerByUserId(userId);
+        return ResponseEntity.ok().body(issuerNames);
+    }
 
 }
