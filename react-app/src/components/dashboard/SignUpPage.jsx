@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form"
 import { Button } from "@mui/material";
 import { useState } from "react";
 
-export const LoginPage = () => {
+export const SignUpPage = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -34,9 +34,8 @@ export const LoginPage = () => {
         <>
         <h1>Bond Dashboard</h1>
         <br/>
-        <h2>Login</h2>
+        <h2>Sign Up</h2>
         <h2></h2>
-        <body>Enter username and password or sign up <a href="/signup">here</a>.</body>
         <Form className="form">
             <Form.Group>
                 <Form.Label>Username: </Form.Label>
@@ -47,7 +46,7 @@ export const LoginPage = () => {
                 <Form.Control type="text" value={password} onChange={handlePasswordChange}/>
             </Form.Group>
             <br/>
-            <Button type="submit" onClick={handleSubmit} variant="contained">Login</Button>
+            <Button type="submit" onClick={handleSubmit} variant="contained">Sign Up</Button>
         </Form>
         </>
     )

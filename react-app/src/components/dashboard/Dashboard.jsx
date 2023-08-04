@@ -14,10 +14,19 @@ export const Dashboard = () => {
         {field: "favoriteFood", headerName: "Food of Favorite", width: 150}
     ];
 
+//    const [data, setData] = useState([]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         window.location.href="http://localhost:3000/";
     }
+
+//    useEffect(() => {
+//        getBondData()
+//              .then(({data}) => {
+//              setData(data);
+//              });
+//    }, []);
 
     return (
         <>
