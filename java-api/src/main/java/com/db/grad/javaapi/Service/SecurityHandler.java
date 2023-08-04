@@ -88,5 +88,11 @@ public class SecurityHandler implements ISecurityService {
         return matchedSec;
     }
 
+    //API 5
+
+    public List<String> getDistinctSecurityTypesByUserId(Long userId) {
+        return securityRepository.findDistinctSecurityTypesByUserId(userId);
+    }
+
 
 }
