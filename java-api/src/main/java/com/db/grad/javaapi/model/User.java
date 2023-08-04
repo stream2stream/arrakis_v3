@@ -1,7 +1,6 @@
 package com.db.grad.javaapi.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table(name = "users")
@@ -12,6 +11,7 @@ public class User {
     private int id;
     private String userName;
 
+//     @ManyToMany(cascade = CascadeType.PERSIST)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_books",
             joinColumns = @JoinColumn(name = "user_id"),

@@ -6,6 +6,7 @@ import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
@@ -20,5 +21,9 @@ public class TradeService {
 
     public List<Trade> getAllTrades() {
         return tradeRepository.findAll();
+    }
+
+    public Trade findById(int id){
+        return tradeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 }
