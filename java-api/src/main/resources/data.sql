@@ -22,7 +22,7 @@ VALUES
 INSERT INTO users
     (name, email, password, role)
 VALUES
-    ('admin', 'admin@mail.com', 'password' 'CEO'),
+    ('admin', 'admin@mail.com', 'password', 'CEO'),
     ('two', 'two@mail.com', '2', 'Scrub');
 
 INSERT INTO books
@@ -41,7 +41,8 @@ VALUES
     (2, 1),
     (3, 1),
     (4, 1),
-    (6, 1);
+    (6, 1),
+    (2, 2);
 
 INSERT INTO counterparties
     (name)
