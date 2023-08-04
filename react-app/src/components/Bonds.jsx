@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { getAllBonds, getAllBondsMaturity, getAllTrades } from '../services/TradeServices';
 import { useNavigate } from "react-router-dom";
-
+import DatePicker from "react-datepicker";
+import 'react-datepicker/dist/react-datepicker.css'
 
 export const Bonds = () => {
     
     const [bonds,setBonds] = useState([]);
     const [bondsMaturity,setBondsMaturity] = useState([]);
     const [trades,setTrades] = useState([]);
+
+    const [date, setDate] = useState(new Date());
     const navigate = useNavigate();
     useEffect(()=>{
         getBondsFromAPI();
@@ -135,6 +138,9 @@ export const Bonds = () => {
         
     </div>
     <div class="space"></div>
+    <div>
+      <DatePicker selected={date} onChange={(date) => setDate(date)} />
+    </div>
     <div>
     <table>
         <thead>
