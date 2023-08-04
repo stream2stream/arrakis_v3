@@ -20,6 +20,9 @@ public class User {
     @Column(name = "lastname", nullable = false)
     private String lastName;
 
+    @Column(name = "hash", nullable = false)
+    private String hash;
+
     public long getId() {
         return id;
     }
@@ -49,5 +52,13 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 }

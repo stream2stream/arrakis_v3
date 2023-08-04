@@ -12,7 +12,8 @@ CREATE TABLE security (
 );
 
 CREATE TABLE users (
-    id int auto_increment PRIMARY KEY, username varchar(50)
+    id int auto_increment PRIMARY KEY, username varchar(50), firstname varchar(50),
+    lastname varchar(50), hash varchar(64)
 );
 
 CREATE TABLE book (
