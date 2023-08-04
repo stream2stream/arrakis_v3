@@ -27,6 +27,5 @@ public interface IBondsDataService
     List<BondsData> getByBookName(String bookName);
     List<BondsData> getByMaturityDate(Date date);
     List<BondsData> getBondByISIN(String bookName);
-
-    // TODO: Add more as needed by front-end
+    List<BondsData> getForUser(int userId);
 }

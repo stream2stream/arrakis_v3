@@ -1,7 +1,10 @@
 package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.model.BondsData;
-import com.db.grad.javaapi.service.BondsDataHandler;
+import com.db.grad.javaapi.service.BondsDataService;
+import com.db.grad.javaapi.service.IBondsDataService;
+import com.db.grad.javaapi.service.IUserService;
+import com.db.grad.javaapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -13,41 +16,47 @@ import java.util.List;
 @RequestMapping("/api/v1/bondsdata")
 @CrossOrigin(origins = "http://localhost:3000")
 public class BondsDataController {
-    private BondsDataHandler dogsService;
+    private BondsDataService dataService;
+    private UserService userService;
 
     @Autowired
-    public BondsDataController(BondsDataHandler handler)
-    {
-        dogsService = handler;
+    public BondsDataController(BondsDataService bondsDataService, UserService userService) {
+        this.dataService = bondsDataService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
     public List<BondsData> getAllBondsData() {
-        return dogsService.getAll();
+        return dataService.getAll();
     }
 
     @GetMapping("/buys")
     public List<BondsData> getAllBuys() {
-        return dogsService.getAllBuys();
+        return dataService.getAllBuys();
     }
 
     @GetMapping("/sells")
     public List<BondsData> getAllSells() {
-        return dogsService.getAllSells();
+        return dataService.getAllSells();
     }
 
-    // TODO: Find all bonds from past and next 5 days from date.
     @GetMapping("/all/{date}")
     public List<BondsData> getByMaturityDate(@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
-        return dogsService.getByMaturityDate(date);
+        return dataService.getByMaturityDate(date);
     }
 
     @GetMapping("/all/bookName/{bookName}")
     public List<BondsData> getByBookName(@PathVariable String bookName) {
-        return dogsService.getByBookName(bookName);
+        return dataService.getByBookName(bookName);
     }
     @GetMapping("/all/ISIN/{isin}")
     public List<BondsData> getByIsin(@PathVariable String isin) {
-        return dogsService.getBondByISIN(isin);
+        return dataService.getBondByISIN(isin);
+    }
+
+    @GetMapping("/all/user/{firebaseUserId}")
+    public List<BondsData> getForUser(@PathVariable String firebaseUserId) {
+        int userId = userService.getByFirebaseUserId(firebaseUserId).getId();
+        return dataService.getForUser(userId);
     }
 }
