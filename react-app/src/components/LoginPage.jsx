@@ -1,17 +1,43 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import {useNavigate} from 'react-router-dom';
+import {findUsers} from "../services/BondServices";
 
 const LoginPage = () => {
 
     const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
+    let users = [];
 
     const navigate = useNavigate();
+
     const handleSubmit = (e) => {
-        console.log(`Username: ${user} | Email: ${email}`);
-        navigate('/bonds', {state: {user: user}});
-        e.preventDefault()
+        getUsersFromAPI().then(res => {
+            users = (res["data"]);
+        }).then(() => {
+            console.log("names " + users);
+            if (users.length === 0) {
+                console.log("ERROR HAS OCCURRED ON SUBMISSION");
+                return;
+            }
+            for (let i = 0; i < users.length; i++) {
+                if (user.toLowerCase() == users[i]["userName"].toLowerCase()) {
+                    console.log("SUCCESSFUL LOGIN");
+                    navigate('/bonds', {state: {user: user}});
+                }
+            }
+        });
+        e.preventDefault();
+    }
+
+    useEffect(() => {
+        getUsersFromAPI().then(res => {
+            users = (res["data"]);
+        }).then(() => {console.log(users);});
+    }, []);
+
+    const getUsersFromAPI = async () => {
+        return await findUsers();
     }
 
 
@@ -38,7 +64,7 @@ const LoginPage = () => {
                             </Form.Group>
                             <br />
 
-                            <Button variant="primary" type="submit" onClick={handleSubmit}>
+                            <Button variant="primary" onClick={handleSubmit}>
                                 Login
                             </Button>
                         </div>
