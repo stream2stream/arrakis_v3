@@ -9,6 +9,8 @@ import java.util.List;
 
 @Service
 public class BondHandler implements BondService {
+
+    @Autowired
     private BondRepository itsBondRepo;
 
     @Autowired

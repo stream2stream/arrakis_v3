@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/bond")
 @CrossOrigin(origins = "http://localhost:3001")
 public class BondController {
 
@@ -27,7 +27,7 @@ public class BondController {
         bondService = ds;
     }
 
-    @GetMapping("/bond")
+    @GetMapping()
     public List <Bond> getAllBonds() {
         return bondService.getAllBonds();
     }

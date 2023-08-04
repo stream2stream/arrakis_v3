@@ -6,7 +6,6 @@ import org.springframework.context.annotation.ComponentScan;
 import java.util.List;
 
 @SpringBootApplication
-@ComponentScan("com.db.grab.javaapi")
 public class JavaApiApplication {
 
 
