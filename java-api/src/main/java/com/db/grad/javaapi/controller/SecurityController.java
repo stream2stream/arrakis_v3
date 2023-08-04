@@ -58,7 +58,11 @@ public class SecurityController {
 
         return response;}
 
+<<<<<<< HEAD
     @PostMapping("/security/userBooks/{user_id}")
+=======
+    @GetMapping("/security/userBooks/{user_id}")
+>>>>>>> d342c69656e549dd8f7e0e0a13f0e4b78951013b
     public List<Security> getSecuritiesMatchedWithBook(@PathVariable(value = "user_id") long id)
             throws ResourceNotFoundException {
         List<Security> security = securityHandler.getSecuritiesMatchedWithBook(id);
@@ -86,5 +90,34 @@ public class SecurityController {
         return ResponseEntity.ok().body(securityTypes);
     }
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/security/security-issuer/{userId}")
+    public ResponseEntity<?> getDistinctSecurityIssuerByUserId(@PathVariable(value = "userId") long userId)
+            throws ResourceNotFoundException {
+        List<String> issuerNames = securityHandler.getDistinctSecurityIssuerByUserId(userId);
+        return ResponseEntity.ok().body(issuerNames);
+    }
+
+    @GetMapping("/security/date_range/issuer_name/type")
+    public ResponseEntity < ? > getSecuritiesByDateIssuerNameAndType(@RequestParam long user, @RequestParam String startDate,@RequestParam String endDate, @RequestParam String issuerName, @RequestParam String type)
+            throws ResourceNotFoundException {
+        try{
+            List<Security> securityList = securityHandler.getSecuritiesByDateIssuerAndType(user,startDate,endDate, issuerName, type);
+            return ResponseEntity.ok().body(securityList);
+        }
+        catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage()+" Invalid Date Range, User, Type , or Issuer Name!");
+        }
+
+    }
+
+    @PutMapping("/security/updateStatus/{id}")
+    public ResponseEntity < Security > updateSecurityStatus(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
+
+        final Security updatedSecurity = securityHandler.updateSecurityStatus(id);
+        return ResponseEntity.ok(updatedSecurity);
+    }
+>>>>>>> d342c69656e549dd8f7e0e0a13f0e4b78951013b
 
 }
