@@ -13,6 +13,10 @@ public class CounterPartiesService {
     @Autowired
     private CounterPartiesRepository counterPartiesRepository;
 
+    public CounterPartiesService(CounterPartiesRepository repo) {
+        counterPartiesRepository = repo;
+    }
+
     public List<CounterParty> getAllCounterParties() {
         return counterPartiesRepository.findAll();
     }

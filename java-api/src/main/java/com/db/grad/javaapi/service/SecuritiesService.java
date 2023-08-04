@@ -12,15 +12,19 @@ import com.db.grad.javaapi.repository.SecuritiesRepository;
 public class SecuritiesService {
 
     @Autowired
-    private SecuritiesRepository repo;
+    private SecuritiesRepository securitiesRepository;
+
+    public SecuritiesService(SecuritiesRepository repo) {
+        securitiesRepository = repo;
+    }
 
     public List<Security> getAllSecurities() {
-        return repo.findAll();
+        return securitiesRepository.findAll();
     }
 
     public Security getSecurityById(Integer id) {
 
-        return repo.findById(id).get();
+        return securitiesRepository.findById(id).get();
     }
 
 }

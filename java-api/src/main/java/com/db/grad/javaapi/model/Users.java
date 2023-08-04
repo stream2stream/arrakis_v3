@@ -1,7 +1,5 @@
 package com.db.grad.javaapi.model;
 
-import com.db.grad.javaapi.utils.Role;
-
 import javax.persistence.*;
 
 @Entity

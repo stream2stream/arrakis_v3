@@ -12,15 +12,19 @@ import org.springframework.stereotype.Service;
 public class TradesService {
 
     @Autowired
-    private TradesRepository repo;
+    private TradesRepository tradesRepository;
+
+    public TradesService(TradesRepository repo) {
+        tradesRepository = repo;
+    }
 
     public List<Trade> getAllTrades() {
-        return repo.findAll();
+        return tradesRepository.findAll();
     }
 
     public Trade getTradeById( Integer id ) {
 
-        return repo.findById(id).get();
+        return tradesRepository.findById(id).get();
     }
 
 }
