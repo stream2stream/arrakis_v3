@@ -1,34 +1,20 @@
-package com.db.grad.javaapi.model;
+package com.db.grad.javaapi.dto;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
+import javax.persistence.Column;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "security")
-public class Security {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class BondDTO {
     private String isin;
     private String cusip;
-    @Column(name = "issuer_name")
     private String issuerName;
-    @Column(name = "maturity_date")
     private LocalDateTime maturityDate;
     private float coupon;
     private String type;
-    @Column(name = "face_value")
     private float faceValue;
     private String currency;
     private String status;
 
-    public Security() {
-    }
-
-    public Security(int id, String isin, String cusip, String issuerName, LocalDateTime maturityDate, float coupon, String type, float faceValue, String currency, String status) {
-        this.id = id;
+    public BondDTO(String isin, String cusip, String issuerName, LocalDateTime maturityDate, float coupon, String type, float faceValue, String currency, String status) {
         this.isin = isin;
         this.cusip = cusip;
         this.issuerName = issuerName;
@@ -40,15 +26,7 @@ public class Security {
         this.status = status;
     }
 
-    public Security() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public BondDTO() {
     }
 
     public String getIsin() {
@@ -125,9 +103,8 @@ public class Security {
 
     @Override
     public String toString() {
-        return "Security{" +
-                "id=" + id +
-                ", isin='" + isin + '\'' +
+        return "BondDTO{" +
+                "isin='" + isin + '\'' +
                 ", cusip='" + cusip + '\'' +
                 ", issuerName='" + issuerName + '\'' +
                 ", maturityDate=" + maturityDate +

@@ -1,12 +1,14 @@
 package com.db.grad.javaapi.repository;
 
 import com.db.grad.javaapi.model.Book;
-import com.db.grad.javaapi.model.Dog;
 import com.db.grad.javaapi.model.Security;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -21,4 +23,6 @@ public interface SecurityRepository extends JpaRepository<Security, Integer> {
                     "on u.id = bu.user_id\n" +
                     "where u.mail =:userMail", nativeQuery = true)
     List<Security> findSecuritiesForUserBooks(@Param("userMail") String userMail);
+    @Query("SELECT s FROM Security s WHERE s.status = 'active'")
+    List<Security> getActiveBonds();
 }
