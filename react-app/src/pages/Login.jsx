@@ -2,72 +2,79 @@ import Navigation from "../components/Navigation";
 import Datepicker from "../components/Datepicker";
 import Table from "../components/Table";
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Form from 'react-bootstrap/Form';
+import { Link } from "react-router-dom";
 
 import React from 'react'
 
 const Login = () => {
-  return (
-
-    <section className="vh-100">
-      <div className="container-fluid h-custom">
-        <div className="row mt-5">
-        <div className="col-md-9 col-lg-6 col-xl-5">
-          <div className="mx-auto pt-5">
-          <img src="/images/logo-light.png"
-            className="img-fluid" alt="Sample image" />
-          </div>
-
-        </div>
-        <div className="col-md-3 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
-            <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-              <p className="lead fw-normal mb-0 me-3">Sign in with Google</p>
-  
-            </div>
-
-            <div className="divider d-flex align-items-center my-4">
-              <p className="text-center fw-bold mx-3 mb-0">Or</p>
-            </div>
-
-            {/* <!-- Email input --> */}
-            <div className="form-outline mb-4">
-              <input type="email" id="form3Example3" className="form-control form-control-lg"
-                placeholder="Enter a valid email address" />
-              <label className="form-label" for="form3Example3">Email address</label>
-            </div>
-
-            {/* <!-- Password input --> */}
-            <div className="form-outline mb-3">
-              <input type="password" id="form3Example4" className="form-control form-control-lg"
-                placeholder="Enter password" />
-              <label className="form-label" for="form3Example4">Password</label>
-            </div>
-
-            <div className="d-flex justify-content-between align-items-center">
-              {/* <!-- Checkbox --> */}
-              <div className="form-check mb-0">
-                <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                <label className="form-check-label" for="form2Example3">
-                  Remember me
-                </label>
-              </div>
-              <a href="#!" className="text-body">Forgot password?</a>
-            </div>
-
-            <div className="text-center text-lg-start mt-4 pt-2">
-                 <Button variant="primary">Login</Button>
-              {/* <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                className="link-danger">Register</a></p> */}
-            </div>
-          </form>
-        </div>
-        </div>
+  return ( 
+  <section className="vh-100">
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-sm-6 text-black">
     
+            <div className="px-5 ms-xl-4 pt-5">
+            <img
+              src="/images/logo.png"
+              width="50"
+              height="50"
+              className="d-inline-block align-top"
+              alt="Db logo"
+            /> 
+              <span className="h1 fw-bold mb-0" style={{color:"#1620a8"}}> Bonds Tracker </span>
+            </div>
+    
+            <div className="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+    
+              <form style={{width: "23rem"}}>
+    
+                <h3 className="fw-normal mb-3 pb-3" style={{letterSpacing: "1px"}}>Log in</h3>
+    
+                <div className="form-outline mb-4">
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      aria-label="Email"
+                      className="form-control-lg"
+                      aria-describedby="basic-addon1"
+                    />
+                  </InputGroup>
+                  <label className="form-label" for="form2Example18">Email address</label>
+                </div>
+    
+                <div className="form-outline mb-4">
+                  <InputGroup className="mb-3">
+                    <Form.Control
+                      type="password"
+                      aria-label="password"
+                      className="form-control-lg"
+                      aria-describedby="basic-addon1"
+                    />
+                  </InputGroup>
+                  <label className="form-label" for="form2Example28">Password</label>
+                </div>
+    
+                <div className="pt-1 mb-4">
+                  <button className="btn btn-info btn-lg btn-block" type="button">Login</button>
+                </div>
+    
+                <p className="small mb-5 pb-lg-2"><a className="text-muted" href="">Forgot password?</a></p>
+                <p>Don't have a google account? <Link to="https://www.google.com/account/about/?hl=en-US">Register here</Link></p>
+    
+              </form>
+    
+            </div>
+    
+          </div>
+          <div className="col-sm-6 px-0 d-none d-sm-block">
+            <img src="/images/login.jpg"
+              alt="Login image" className="w-100 vh-100" style={{objectFit: "cover", objectPosition: "left"}}/>
+              Photo by <a href="https://unsplash.com/@jeffreyblum?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jeffrey Blum</a> on <a href="https://unsplash.com/photos/7-gaPkhIgqs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+          </div>
+        </div>
       </div>
-            {/* <!-- Right --> */ }
-      
-
-      </section >
+    </section>
    
   )
 }

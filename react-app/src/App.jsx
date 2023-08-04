@@ -8,14 +8,21 @@ import Navigation from './components/Navigation';
 
 
 const App = () => {
-  return <> 
-  <Navigation/>
+
+  let isLoggedIn = true;
+
+  if (!isLoggedIn) {
+      return <Login/>;
+  }
+  return (
+    <> 
+    <Navigation/>
     <Routes>
       <Route path="/Login" element={<Login/>} />
       <Route path="/Details/:bookId" element={<Details/>} />
       <Route path="/" element={<Home/>} />
     </Routes>
-  </>
+  </>)
 };
 
 export default App;

@@ -2,7 +2,7 @@ import Navigation from "../components/Navigation";
 import Datepicker from "../components/Datepicker";
 import Table from "../components/Table";
 import {Route, Link, Routes, useParams} from 'react-router-dom';
-import BookService from "../../services/BookService";
+import BookService from "../services/BookService";
 
 import React from 'react'
 
