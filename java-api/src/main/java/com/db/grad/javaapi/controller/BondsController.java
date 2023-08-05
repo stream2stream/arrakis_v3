@@ -57,8 +57,8 @@ public class BondsController {
                                                                                                     @PathVariable(value = "date") String date,
                                                                                                     @PathVariable(value = "daysBefore") int daysBefore,
                                                                                                     @PathVariable(value = "daysAfter") int daysAfter) throws ParseException {
-        String token = request.getHeader("Authorization").substring(7); // Assuming the token is preceded by "Bearer "
-        String email = userService.getEmailFromToken(token); // Assuming this method is available in your service
+        String token = request.getHeader("Authorization").substring(7);
+        String email = userService.getEmailFromToken(token);
         return bondService.getAllBondsForBusinessDaysBeforeAndAfterOfEmail(date, daysBefore, daysAfter, email);
     }
 
