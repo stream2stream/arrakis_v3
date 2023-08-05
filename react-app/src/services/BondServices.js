@@ -6,12 +6,10 @@ export const findUsers = () => {
   return users;
 };
 
-export const getBookingId = (user) => {
-  const id = axios.get(`${hostNameUrl}/User/getId/${user}`);
-  return id;
+export const getBookingId = async (user) => {
+  return await axios.get(`${hostNameUrl}/User/getId/${user}`);
 }
 
-export const getMaturityDates = (id) => {
-  const dates = axios.get(`${hostNameUrl}/Trades/MaturityDates/${id}`);
-  return dates;
+export const getMaturityDates = async (id) => {
+  return await axios.get(`${hostNameUrl}/Trades/MaturityDates/${id}`);
 }
