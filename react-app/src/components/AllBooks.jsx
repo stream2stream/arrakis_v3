@@ -81,7 +81,7 @@ const books2 = [{
 
   return (
     <div>
-      <BooksDetails data={books2}></BooksDetails>
+      <BooksDetails data={books}></BooksDetails>
     </div>
     
   )

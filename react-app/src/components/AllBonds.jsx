@@ -142,7 +142,7 @@ const bonds2 = [{
 
   return (
     <div>
-      <BondDetails data={bonds2}></BondDetails>
+      <BondDetails data={bonds}></BondDetails>
     </div>
     
   )
