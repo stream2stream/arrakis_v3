@@ -4,53 +4,40 @@ import "./LoginStyle.css";
 //import { useNavigate } from 'react'
 import { useNavigate } from "react-router-dom";
 //import { redirect } from "react-router-dom";
+import { useEffect } from 'react';
+import {checkUser} from '../services/login-service';
+
 
 
 export default function Login() {
+  
   // React States
   const navigate = useNavigate();
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
 
 
 
   const handleSubmit = (event) => {
     //Prevent page reload
     event.preventDefault();
-
     var { uname, pass } = document.forms[0];
+    const email = uname.value
+    const password = pass.value
+    let user = { email, password  };
 
     // Find user login info
-    const userData = database.find((user) => 
-    user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "error", message: 'Invalid username or password'});
-      } else {
-        setIsSubmitted(true);
-        navigate("/dummy");
-        //return redirect("/dummy");
-      }
-    } else {
-      // Username not found
+    checkUser(user)
+    .then(res => {
+      console.log('loggedin');
+       navigate("/Home")
+       })
+     .catch(err=>{
+      console.log('notloggedin');
       setErrorMessages({ name: "error", message: 'Invalid username or password'});
-    }
-  };
+       })
+       }
+  
 
   // Generate JSX code for error message
   const renderErrorMessage = (name) =>
