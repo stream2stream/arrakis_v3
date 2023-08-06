@@ -13,3 +13,7 @@ export const getBookingId = async (user) => {
 export const getMaturityDates = async (id) => {
   return await axios.get(`${hostNameUrl}/Trades/MaturityDates/${id}`);
 }
+
+export const getTradesFromBookingId = async (id) => {
+  return await axios.get(`${hostNameUrl}/Trades/TradeDisplay/${id}`);
+}

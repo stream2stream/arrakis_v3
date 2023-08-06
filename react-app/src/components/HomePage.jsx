@@ -3,16 +3,15 @@ import BondCard from './BondCard'
 import {Container, Row, Col} from 'react-bootstrap'
 import {useSnapCarousel} from 'react-snap-carousel'
 import {Link, useLocation, useNavigate} from "react-router-dom";
-import {getBookingId, getMaturityDates} from "../services/BondServices";
+import {getBookingId, getMaturityDates, getTradesFromBookingId} from "../services/BondServices";
 
 const HomePage = (props) => {
     const {scrollRef} = useSnapCarousel();
     const location = useLocation();
     const navigate = useNavigate();
     let user = location.state;
-    // let maturityDates = [];
-    const bonds = new Map();
     const [maturityDates, setMaturityDates] = useState([]);
+    const [bonds, setBonds] = useState([]);
 
     useEffect(() => {
         getBookingId(user['user']).then((res) => {
@@ -21,9 +20,30 @@ const HomePage = (props) => {
                 dates.forEach((date, i) => {dates[i] = date.substring(0,10)});
                 dates = [...new Set(dates)];
                 setMaturityDates(dates);
+            }).then(() => {
+                getTradesFromBookingId(res.data).then(res2 => {
+                    console.log("BOND INFO ------------------");
+                    let bondInfo = [];
+                    res2.data.forEach(data => {
+                        let splitData = data.split(',');
+                        bondInfo[bondInfo.length] = splitData;
+                    })
+                    console.log(bondInfo);
+                    setBonds(bondInfo);
+                });
             });
-        })
+        });
     }, []);
+
+    const getBonds = (date, bondsArray) => {
+        let result = [];
+        for(let i = 0; i < bondsArray.length; i++) {
+            if(bondsArray[i][1].substring(0,10) === date) {
+                result[result.length] = bondsArray[i][0];
+            }
+        }
+        return result;
+    }
 
   return(
         <div>
@@ -42,7 +62,7 @@ const HomePage = (props) => {
                                                      display: 'flex',
                                                      justifyContent: 'center',
                                                      alignItems: 'center'}}>
-                                            <BondCard date={date} bonds={["bond 1", "bond 2", "bond 3"]}/>
+                                            <BondCard date={date} bonds={getBonds(date, bonds)}/>
                                          </li>)}
             </ul>
         </div>
