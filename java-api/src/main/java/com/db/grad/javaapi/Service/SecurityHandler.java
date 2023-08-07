@@ -131,4 +131,9 @@ public class SecurityHandler implements ISecurityService {
 
     }
 
+    //API Filter securities by issuer name
+    public List<Security> getSecuritiesByIssuerName(long user, List<String> issuerName) {
+        List<Security> filteredSecurities = securityRepository.getSecuritiesByIssuerName(user, issuerName);
+        return filteredSecurities;
+    }
 }
