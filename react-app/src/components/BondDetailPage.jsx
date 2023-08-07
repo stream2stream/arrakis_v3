@@ -32,15 +32,13 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
     navigate('/bonds', {state: {user: params["user"]}})
   }
 
-  const Button = styled.button`
-  background-color: black;
-  color: white;
-  font-size: 20px;
-  padding: 10px 60px;
-  border-radius: 5px;
-  margin: 10px 0px;
-  cursor: pointer;
-`;
+  /* const Button = {
+  /*background-color: 'black',
+  color: 'white',
+  font-size: '20px',
+  border-radius: '5px',
+  cursor: 'pointer'
+  } */
 
   return (<>
         <div style={{marginTop: '5%', marginLeft: "5%"}}>
@@ -101,6 +99,7 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
                 </tr>
             )}
         </table>
+
       <Button onClick={handleHome}>Home Page</Button>
 
       </>
