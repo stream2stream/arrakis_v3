@@ -14,10 +14,23 @@ code {
 
 /* Add borders to the table */
 table {
-  word-wrap: break-word;
   white-space: normal;
+  overflow-wrap: break-word;
   border-collapse: collapse;
-  width: 100%;
-} 
+  font-size: 15px;
+  width: 100% !important;
+}
+th{
+  overflow-wrap: normal;
+  width: fit-content;
+  align-items: center;
+}
+tr{
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+#root > div > div.input-group{
+  width: fit-content;
+}
 
 
