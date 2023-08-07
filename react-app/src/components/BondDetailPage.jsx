@@ -1,14 +1,33 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import BondCard from './BondCard'
 import {useNavigate, useParams} from 'react-router-dom'
 import {Button} from "react-bootstrap";
+import {getAllSecuritiesFromBookingId, getAllTradesFromBookingId, getBookingId} from "../services/BondServices";
 
 const BondDetailPage = (props) => {
-  let data = [{ISIN : 'A12356112', Type : 'Sovereign' , Issuer :'BunderBank', Maturity : '15/07/2021'
-, FaceValue: '900', BondCurrency: 'USD', Coupon : '2', Status: 'active', BookID:'book4', Client: 'Goldman Sachs', Quantity: '60', UnitPrice: '70.5',
-TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '27/09/2021' , TradeStatus: 'open'}];
+  let [data, setData] = useState([{}]);
 
   const params = useParams();
+
+  useEffect(() => {
+    getBookingId(params["user"]).then(res => {
+      getAllSecuritiesFromBookingId(res.data).then(res2 => {
+        let finalData = [];
+        for(let i = 0; i < res2.data.length; i++){
+          if(res2.data[i][0].substring(0,10) == params["date"]) {
+            console.log("VALID RECORD");
+            console.log(res2.data[i]);
+            let results = {ISIN: res2.data[i][1], Type: res2.data[i][4], Issuer: res2.data[i][6], Maturity: res2.data[i][0].substring(0,10), FaceValue: res2.data[i][3],
+                           BondCurrency: res2.data[i][2], Coupon: res2.data[i][5], Status: res2.data[i][8], BookID: res.data, Quantity: res2.data[i][9], UnitPrice: res2.data[i][10],
+                           TradeCurrency: res2.data[i][7], Buysell: res2.data[i][11], TradeDate: res2.data[i][12].substring(0,10), SettlementDate: res2.data[i][13].substring(0,10),
+                           TradeStatus: res2.data[i][8]};
+            finalData[i] = results;
+          }
+        }
+        setData(finalData);
+      })
+    });
+  }, []);
 
   const TableStyle = {
     border: '1px solid grey',
@@ -32,6 +51,14 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
     navigate('/bonds', {state: {user: params["user"]}})
   }
 
+  const getBondInfo = () => {
+    let res = [];
+    data.forEach(d => {
+      res[res.length] = d["ISIN"];
+    })
+    return res;
+  }
+
   /* const Button = {
   /*background-color: 'black',
   color: 'white',
@@ -42,7 +69,7 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
 
   return (<>
         <div style={{marginTop: '5%', marginLeft: "5%"}}>
-          <BondCard bonds= {["test", "test2"]}/>
+          <BondCard date={params["date"]} user={params["user"]} bonds= {getBondInfo()}/>
         </div>
         <table style = {TableStyle}>
           <tr>
@@ -74,7 +101,6 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
           <tr>
             <th style = {THStyle}> ISIN </th>
             <th style = {THStyle}> Book ID </th>
-            <th style = {THStyle}> Client </th>
             <th style = {THStyle}> Trade Status </th>
             <th style = {THStyle}> Quantity </th>
             <th style = {THStyle}> Unit Price </th>
@@ -88,8 +114,7 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
                 <tr>
                     <td style={TDStyle}>{bond["ISIN"]}</td>
                     <td style={TDStyle}>{bond["BookID"]}</td>
-                    <td style={TDStyle}>{bond["Client"]}</td>
-                    <td style={{textAlign: "center", color: bond["TradeStatus"]==="open" ? "green" : "red"}}>{bond["TradeStatus"]}</td>
+                    <td style={{textAlign: "center", color: bond["TradeStatus"]==="open" || bond["TradeStatus"]==="active" ? "green" : "red"}}>{bond["TradeStatus"]}</td>
                     <td style={TDStyle}>{bond["Quantity"]}</td>
                     <td style={TDStyle}>{bond["UnitPrice"]}</td>
                     <td style={TDStyle}>{bond["TradeCurrency"]}</td>
