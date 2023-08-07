@@ -12,9 +12,11 @@ const HomePage = (props) => {
     let user = location.state;
     const [maturityDates, setMaturityDates] = useState([]);
     const [bonds, setBonds] = useState([]);
+    const [bookingId, setBookingId] = useState("");
 
     useEffect(() => {
         getBookingId(user['user']).then((res) => {
+            setBookingId(res.data);
             getMaturityDates(res.data).then(res2 => {
                 let dates = res2.data;
                 dates.forEach((date, i) => {dates[i] = date.substring(0,10)});
@@ -62,7 +64,7 @@ const HomePage = (props) => {
                                                      display: 'flex',
                                                      justifyContent: 'center',
                                                      alignItems: 'center'}}>
-                                            <BondCard date={date} bonds={getBonds(date, bonds)}/>
+                                            <BondCard user={user['user']} date={date} bonds={getBonds(date, bonds)}/>
                                          </li>)}
             </ul>
         </div>

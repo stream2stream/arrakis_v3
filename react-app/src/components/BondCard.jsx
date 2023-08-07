@@ -7,7 +7,7 @@ const BondCard= (props) =>{
       <Card.Body>
         <Card.Title>{props.date}</Card.Title>
         {props.bonds.map((bond, i) => (i < 4 ? <Card.Text>{bond} </Card.Text> : ""))}
-        <Card.Link href={`/bonds/details/${props.date}`}>Bond Details</Card.Link>
+        <Card.Link href={`/bonds/details/${props.date}/${props.user}`}>Bond Details</Card.Link>
       </Card.Body>
     </Card>
   );

@@ -1,6 +1,7 @@
 import React from 'react'
 import BondCard from './BondCard'
-import { useParams } from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
+import {Button} from "react-bootstrap";
 
 const BondDetailPage = (props) => {
   let data = [{ISIN : 'A12356112', Type : 'Sovereign' , Issuer :'BunderBank', Maturity : '15/07/2021'
@@ -9,22 +10,27 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
 
   const params = useParams();
 
-    const TableStyle = {
-      border: '1px solid grey',
-      marginLeft: '30%',
-      paddingBottom: 20,
-      maxHeight: 400,
-      overflow: "auto",
-      minHeight: 100,
-      width: "60%",
-      marginBottom: "5%"
-    }
-    const THStyle = {
-      borderBottom: '1px solid black'
-    }
-    const TDStyle = {
-        textAlign: "center"
-    }
+  const TableStyle = {
+    border: '1px solid grey',
+    marginLeft: '30%',
+    paddingBottom: 20,
+    maxHeight: 400,
+    overflow: "auto",
+    minHeight: 100,
+    width: "60%",
+    marginBottom: "5%"
+  }
+  const THStyle = {
+    borderBottom: '1px solid black'
+  }
+  const TDStyle = {
+      textAlign: "center"
+  }
+
+  const navigate = useNavigate();
+  const handleHome = () => {
+    navigate('/bonds', {state: {user: params["user"]}})
+  }
 
   return (<>
         <div style={{marginTop: '5%', marginLeft: "5%"}}>
@@ -55,7 +61,7 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
                 </tr>
             )}
         </table>
-        <div style={{marginLeft: "50%", backgroundColor:"#5885AF"}}><h1>Transations by ISIN - {params["date"]}</h1></div>
+        <div style={{marginLeft: "45%", backgroundColor:"#5885AF", marginRight: "20%"}}><h1>Transations by ISIN - {params["date"]} - {params["user"]}</h1></div>
         <table style = {TableStyle}>
           <tr>
             <th style = {THStyle}> ISIN </th>
@@ -85,7 +91,7 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
                 </tr>
             )}
         </table>
-
+      <Button onClick={handleHome}>Home Page</Button>
 
       </>
   )
