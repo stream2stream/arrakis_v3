@@ -100,7 +100,7 @@ TradeCurrency: "GBP", Buysell: 'buy', TradeDate: '04/02/2021', SettlementDate: '
             )}
         </table>
 
-      <Button onClick={handleHome}>Home Page</Button>
+      <Button onClick={handleHome} style={{ color: "white", background: "silver" }}>Home Page</Button>
 
       </>
   )
