@@ -69,9 +69,6 @@ To run the maven project use following mvn command
 
 	http://localhost:8080/h2-console
 	
-![H2 Console](H2_CONSOLE.PNG)
-
-![H2 Console 2](H2_CONSOLE2.PNG)
 
 
 **Swagger Console**
@@ -79,8 +76,6 @@ To run the maven project use following mvn command
 Swagger2 is an open source project used to generate the REST API documents for RESTful web services. It provides a user interface to access our RESTful web services via the web browser. 
 
 You also test the APIs using this.
-
-![Swagger](SWAGGER.PNG)
 	
 
 ### Reference Documentation
