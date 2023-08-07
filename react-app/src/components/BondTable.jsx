@@ -1,11 +1,9 @@
 
-import React from 'react';
-import { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
-import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import React from 'react';
 import BootstrapTable from "react-bootstrap-table-next";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
-
 
 
 
@@ -22,12 +20,16 @@ const columns = [
   },
   {
     dataField: "issuer_name",
-    text: "Issuer"
+    text: "Issuer",
+    headerStyle: { width: '200px' },
+    style: { width: '200px' },
   },
   {
     dataField: "maturity_date",
     text: "Maturity Date",
-    sort: true
+    sort: true,
+    headerStyle: { width: '150px' },
+    style: { width: '150px' },
   },
   
   {
