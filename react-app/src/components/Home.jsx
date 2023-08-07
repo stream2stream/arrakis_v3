@@ -148,7 +148,7 @@ export const Home = ({userID, setUserID}) => {
     </div>
     <div class="space"></div>
     <div>
-      <DatePicker selected={date} onChange={(d) => {console.log(d.toISOString().split('T')[0]); setDate(d)}} />
+      <DatePicker dateFormat="dd/MM/yyyy" selected={date} onChange={(d) => {console.log(d.toISOString().split('T')[0]); setDate(d)}} />
     </div>
     <div>
     <table>
