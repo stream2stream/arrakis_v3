@@ -46,9 +46,9 @@ const Login = ({userID, setUserID}) => {
     return <div className={"mainContainer"}>
         <div className={"titleContainer"}>
             <div>ARRAKIS</div>
-            <div> <img  src={Planet} /> </div>
         </div>
-        <br />
+        <div>Bond Management System</div>
+        <br /><br />
         <div className={"inputContainer"}>
             <input
                 value={username}
