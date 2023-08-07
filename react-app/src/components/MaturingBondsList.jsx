@@ -1,15 +1,21 @@
 import { getBondsByDate } from "../services/BondServices";
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 
 const MaturingBondsList = (props) => {
   const [bonds, setDateBonds] = useState([]);
 
+  // useEffect(() => {
+  //   if(props.props.info.check){
+  //     getBondsByDateFromAPI();
+  //   }else{
+  //     getBondsByDateFromAPI();
+  //   }
+  // }, [props.props.info.check]);
+
   useEffect(() => {
     getBondsByDateFromAPI();
-  }, []);
-
-
+}, [props.props.info.check]);
 
   const getBondsByDateFromAPI = () => {
     getBondsByDate(props.props)

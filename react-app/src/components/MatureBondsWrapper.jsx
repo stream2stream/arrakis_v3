@@ -1,19 +1,16 @@
 import React from 'react'
 import AllMaturingBonds from './AllMaturingBonds'
 import { useState } from 'react';
-import { useRef } from 'react';
 import DatePicker from "react-datepicker";
 
 const MatureBondsWrapper = () => {
     const [checked, setChecked] = useState(false);
     const [date, setDate] = useState(new Date());
 
-    const ref = useRef();
 
     const handleChange = () => {
-      var c = !checked;
+      var c = !checked; 
       setChecked(c);
-      ref.current.getBondsByDateFromAPI();
     };
 
   return (
