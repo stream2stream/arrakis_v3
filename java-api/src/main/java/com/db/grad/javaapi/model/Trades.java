@@ -15,16 +15,16 @@ import java.util.Date;
 public class Trades {
     @Id
     private int id;
-    private int bookId;
-    private int securityId;
-    private int counterpartyId;
-    private String currency;
-    private String status;
+    private int book_id;
+    private int security_id;
+    private int counterparty_id;
+    private String trade_currency;
+    private String trade_status;
     private int quantity;
-    private float unitPrice;
-    private String buySell;
-    private Date tradeDate;
-    private Date settlementDate;
+    private float unit_price;
+    private String trade_type;
+    private Date trade_date;
+    private Date trade_settlement_date;
 
     /*public Trades(int id, int bookId, int securityId, int counterpartyId, String currency, String status, int quantity, float unitPrice, String buySell, Date tradeDate, Date settlementDate) {
         this.id = id;
@@ -53,41 +53,41 @@ public class Trades {
 
     @Column(name = "book_id", nullable = false)
     public int getBookId() {
-        return bookId;
+        return book_id;
     }
     public void setBookId(int bookId) {
-        this.bookId = bookId;
+        this.book_id = bookId;
     }
     @Column(name = "security_id", nullable = false)
     public int getSecurityId() {
-        return securityId;
+        return security_id;
     }
     public void setSecurityId(int securityId) {
-        this.securityId = securityId;
+        this.security_id = securityId;
     }
 
     @Column(name = "counterparty_id", nullable = false)
     public int getCounterpartyId() {
-        return counterpartyId;
+        return counterparty_id;
     }
     public void setCounterpartyId(int counterpartyId) {
-        this.counterpartyId = counterpartyId;
+        this.counterparty_id = counterpartyId;
     }
 
     @Column(name = "trade_currency", nullable = false)
     public String getCurrency() {
-        return currency;
+        return trade_currency;
     }
     public void setCurrency(String currency) {
-        this.currency = currency;
+        this.trade_currency = currency;
     }
 
     @Column(name = "trade_status", nullable = false)
     public String getStatus() {
-        return status;
+        return trade_status;
     }
     public void setStatus(String status) {
-        this.status = status;
+        this.trade_status = status;
     }
 
     @Column(name = "quantity", nullable = false)
@@ -100,34 +100,34 @@ public class Trades {
 
     @Column(name = "unit_price", nullable = false)
     public float getUnitPrice() {
-        return unitPrice;
+        return unit_price;
     }
     public void setUnitPrice(float unitPrice) {
-        this.unitPrice = unitPrice;
+        this.unit_price = unitPrice;
     }
 
     @Column(name = "trade_type", nullable = false)
     public String getBuySell() {
-        return buySell;
+        return trade_type;
     }
     public void setBuySell(String buySell) {
-        this.buySell = buySell;
+        this.trade_type = buySell;
     }
 
     @Column(name = "trade_date", nullable = false)
     public Date getTradeDate() {
-        return tradeDate;
+        return trade_date;
     }
     public void setTradeDate(Date tradeDate) {
-        this.tradeDate = tradeDate;
+        this.trade_date = tradeDate;
     }
 
     @Column(name = "trade_settlement_date", nullable = false)
     public Date getSettlementDate() {
-        return settlementDate;
+        return trade_settlement_date;
     }
     public void setSettlementDate(Date settlementDate) {
-        this.settlementDate = settlementDate;
+        this.trade_settlement_date = settlementDate;
     }
 }
 

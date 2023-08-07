@@ -20,7 +20,7 @@ public class BondViewer {
                 "FROM security s " +
                 "JOIN trades t ON t.security_id = s.id " +
                 "JOIN book_user bu ON bu.book_id = t.book_id " +
-                "WHERE bu.user_id = ? AND DATEDIFF('day', s.maturity_date, '2021-08-02') BETWEEN -5 AND 5";
+                "WHERE DATEDIFF('day', s.maturity_date, '2021-08-02') BETWEEN -5 AND 5";
         PreparedStatement stmt = conn.prepareStatement(query);
         stmt.setInt(1, userId);
         ResultSet rs = stmt.executeQuery();

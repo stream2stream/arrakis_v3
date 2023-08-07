@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SecurityRepository extends JpaRepository<Security, Long> {
 
-    @Query(nativeQuery = true, value = "select * from security where name = :name")
+    @Query(nativeQuery = true, value = "select * from security")
     List<Security> findAll();
 
 }

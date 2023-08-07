@@ -10,9 +10,10 @@ import java.util.List;
 @Service
 public class TradesHandler implements ITradesService
 {
+    @Autowired
     private TradesRepository itsTradesRepo;
 
-    @Autowired
+
     public TradesHandler( TradesRepository tradeRepo )
     {
         itsTradesRepo = tradeRepo;
