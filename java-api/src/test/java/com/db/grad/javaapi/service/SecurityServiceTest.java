@@ -79,9 +79,10 @@ class SecurityServiceTest {
     }
 
     @Test
-    void getAllSecuritiesForUserBooks(){
+    void getAllSecuritiesForUserBooks() {
         List<Security> availableSecurities = securityService.getAllSecuritiesForUserBooks("user1@db.com");
         Assert.assertEquals(1, availableSecurities.size());
+    }
 
     @Test
     void testGetBondByIsin() {
