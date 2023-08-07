@@ -44,6 +44,15 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
 
         <Button
           color="inherit"
+          component={NavLink}
+          to="/userbonds"
+          className="linkButton"
+        >
+         Your Bonds
+        </Button>
+
+        <Button
+          color="inherit"
           component={Link}
           to="/login"
           className="linkButton"
