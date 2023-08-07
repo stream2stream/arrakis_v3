@@ -74,14 +74,18 @@ public class SecurityHandler implements ISecurityService {
     }
 
 
-    public Security updateSecurityStatus(long id) {
+    public boolean updateSecurityStatus(long id) {
+
+        boolean result = false;
         Optional<Security> theSecurity = securityRepository.findById(id);
-        if (theSecurity.isPresent()) {
+        if(theSecurity.isPresent())
+        {
             theSecurity.get().setStatus("processing");
-            return securityRepository.save(theSecurity.get());
-        } else {
-            throw new EntityNotFoundException("Security with ID " + id + " not found");
+            result = true;
+            securityRepository.save(theSecurity.get());
         }
+        return result;
+
     }
 
     public List<Security> getSecuritiesByUserDateRange(long userId, String startDateString, String endDateString) throws IllegalArgumentException {
