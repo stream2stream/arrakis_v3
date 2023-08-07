@@ -11,4 +11,17 @@ import java.util.List;
 public interface UsersRepository extends JpaRepository<User, Integer> {
     @Query(nativeQuery = true, value = "select * from users")
     List<User> getUsers();
+
+//    @Query(nativeQuery = true, value = "SELECT * FROM users WHERE id = :id")
+//    List<User> getUserById(int id);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM users as u WHERE u.email = :email")
+    List<User> findUserByEmail(String email);
+
+    @Query(nativeQuery = true, value = "UPDATE users SET password = :password WHERE id = :id")
+    List<User> updateUserPwd(String password, int id);
+
+    @Query(nativeQuery = true, value = "INSERT INTO users (username, password, email, role) VALUES (:username, :password, :email, :role)")
+    void addUser(String username, String password, String email, String role);
+
 }
