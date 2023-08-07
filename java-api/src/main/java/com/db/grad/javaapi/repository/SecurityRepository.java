@@ -84,6 +84,20 @@ public interface SecurityRepository extends JpaRepository<Security,Long> {
             "        book on book.id = book_users.book_id)\n" +
             "        ) or issuer_name in :issuerName or type in :type")
     List<Security> findSecurityByDateTypeAndIssuer(long userId, Date startDate, Date endDate, List<String> issuerName, List<String> type);
+
+
+    @Query(nativeQuery = true, value = "select * from security where id in" +
+            "        (select distinct(security_id) from trades\n" +
+            "        where book_id in\n" +
+            "        (Select book_id from users\n" +
+            "        join\n" +
+            "        book_users on\n" +
+            "        users.id =book_users.users_id\n" +
+            "        and users.id = :userId\n" +
+            "        join\n" +
+            "        book on book.id = book_users.book_id)\n" +
+            "        ) and issuer_name in :issuerName")
+    List<Security> getSecuritiesByIssuerName(long userId, List<String> issuerName);
 }
 
 

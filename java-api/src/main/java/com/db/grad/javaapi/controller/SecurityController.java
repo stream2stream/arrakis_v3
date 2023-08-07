@@ -101,8 +101,20 @@ public class SecurityController {
         catch(Exception e){
             return ResponseEntity.badRequest().body(e.getMessage()+" Invalid Date Range, User, Type , or Issuer Name!");
         }
-
     }
+
+    @GetMapping("/security/issuer_name")
+    public ResponseEntity < ? > getSecuritiesByIssuerName(@RequestParam long user, @RequestParam List<String> issuerName)
+            throws ResourceNotFoundException {
+        try{
+            List<Security> securityList = securityHandler.getSecuritiesByIssuerName(user,issuerName);
+            return ResponseEntity.ok().body(securityList);
+        }
+        catch(Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage()+" Invalid Date Range, User, Type , or Issuer Name!");
+        }
+    }
+
 
     @PutMapping("/security/updateStatus/{id}")
     public ResponseEntity<Boolean> updateSecurityStatus(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
