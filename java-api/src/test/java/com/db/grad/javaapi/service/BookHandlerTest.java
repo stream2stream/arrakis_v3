@@ -1,4 +1,4 @@
-package service;
+package com.db.grad.javaapi.service;
 
 import com.db.grad.javaapi.Service.BookHandler;
 import com.db.grad.javaapi.model.Book;
