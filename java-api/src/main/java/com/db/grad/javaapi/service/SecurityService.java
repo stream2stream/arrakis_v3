@@ -77,4 +77,8 @@ public class SecurityService {
         return bondTransactionAll;
 
     }
+
+    public Security getBondByIsin(String isin) {
+        return securityRepository.findBondByIsin(isin);
+    }
 }

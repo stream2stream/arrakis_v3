@@ -49,4 +49,9 @@ public class SecurityController {
         return securityService.getActiveBondsTransactions();
     }
 
+    @PostMapping("/bond_details")
+    public ResponseEntity<Security> getBondByIsin(@RequestParam("isin") String isin) {
+        return ResponseEntity.ok(securityService.getBondByIsin(isin));
+    }
+
 }
