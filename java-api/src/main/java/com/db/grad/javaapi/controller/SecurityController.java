@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/securities")
@@ -28,4 +29,30 @@ public class SecurityController {
         List<Security> datesList = securityService.getSecuritiesByMaturityDate(date);
         return new ResponseEntity<>(datesList, HttpStatus.OK);
     }
+
+//    @PostMapping("/user")
+//    public ResponseEntity<List<Security>> getSecuritiesByUserId(@RequestBody String email){
+//        List<Security> securities = securityService.getSecuritiesByUserEmail(email);
+//        return new ResponseEntity<>(securities, HttpStatus.OK);
+//    }
+
+    @PostMapping("/isinOrCusip")
+    public ResponseEntity<List<Security>> findByIsinOrCusip(@RequestBody Map<String,String> data){
+        List<Security> securities = securityService.findByIsinOrCusip(data.get("isin"), data.get("cusip"));
+        return new ResponseEntity<>(securities, HttpStatus.OK);
+    }
+
+    @PostMapping("/counterparty")
+    public ResponseEntity<String> searchForCounterParty(@RequestBody Map<String,String> data){
+        String counterParty = securityService.searchForCounterParty(data.get("isin"));
+        return new ResponseEntity<>(counterParty, HttpStatus.OK);
+    }
+
+    @PostMapping("/mybonds")
+    public ResponseEntity<List<String>> getMyBonds(@RequestBody Map<String,String> data){
+        List<String> securities = securityService.getMyBonds(data.get("email"));
+        return new ResponseEntity<>(securities, HttpStatus.OK);
+    }
+
+
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "security")
-public class Security {
+public class Security extends Object {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
