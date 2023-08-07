@@ -17,3 +17,11 @@ export const getMaturityDates = async (id) => {
 export const getTradesFromBookingId = async (id) => {
   return await axios.get(`${hostNameUrl}/Trades/TradeDisplay/${id}`);
 }
+
+export const getAllTradesFromBookingId = async (id) => {
+  return await axios.get(`${hostNameUrl}/Trades/TradesInfo/${id}`);
+}
+
+export const getAllSecuritiesFromBookingId = async (id) => {
+  return await axios.get(`${hostNameUrl}/Trades/SecurityInfo/${id}`);
+}
