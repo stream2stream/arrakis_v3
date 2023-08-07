@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BookService{
+public class BookHandler {
 
     private BookRepository bookRepository;
 
     @Autowired
-    public BookService(BookRepository bookRepository) {
+    public BookHandler(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
@@ -48,7 +48,7 @@ public class BookService{
     }
 
     public Book getBookById(long uniqueId) {
-        return bookRepository.findById(uniqueId).get();
+        return bookRepository.findById(uniqueId).orElse(null); //.get();
     }
 
     public Book getBookByName(String BooksName) {

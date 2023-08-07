@@ -6,6 +6,7 @@ import com.db.grad.javaapi.model.Trade;
 import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.webjars.NotFoundException;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -53,29 +54,17 @@ public class TradeHandler implements ITradeService{
 
     @Override
     public Trade getTradeById(long uniqueId) {
-        Trade TradeToFind = new Trade();
-        TradeToFind.setId(uniqueId);
-        List<Trade> Trades = tradeRepository.findByTradeID(TradeToFind);
-        Trade result = null;
-
-        if( Trades.size() == 1)
-            result = Trades.get(0);
-
-        return result;
+//        Trade TradeToFind = new Trade();
+//        TradeToFind.setId(uniqueId);
+        Optional<Trade> theTrade = tradeRepository.findById(uniqueId);
+        if(theTrade.isPresent())
+        {
+            return theTrade.get();
+        } else {
+            throw new NotFoundException("Trade not found with id: " + uniqueId);
+        }
     }
 
-    @Override
-    public Trade getTradeByBookID(long BookID) {
-        Trade TradeToFind = new Trade();
-        TradeToFind.setBook_id(BookID);
-        List<Trade> Trades = tradeRepository.findByBookID(TradeToFind);
-        Trade result = null;
-
-        if( Trades.size() == 1)
-            result = Trades.get(0);
-
-        return result;
-    }
 
     public List<Trade> getTradesBySecuritiesID(List<Long> securityIds){
         if (securityIds == null) return null;

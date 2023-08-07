@@ -3,7 +3,6 @@ package com.db.grad.javaapi.controller;
 import com.db.grad.javaapi.Service.SecurityHandler;
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
 import com.db.grad.javaapi.model.Security;
-import com.db.grad.javaapi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -87,8 +86,13 @@ public class SecurityController {
         return ResponseEntity.ok().body(issuerNames);
     }
 
+
     @GetMapping("/security/date_range/issuer_name/type")
-    public ResponseEntity < ? > getSecuritiesByDateIssuerNameAndType(@RequestParam long user, @RequestParam String startDate,@RequestParam String endDate, @RequestParam String issuerName, @RequestParam String type)
+    public ResponseEntity < ? > getSecuritiesByDateIssuerNameAndType(@RequestParam long user,
+                                                                     @RequestParam String startDate,
+                                                                     @RequestParam String endDate,
+                                                                     @RequestParam List<String> issuerName,
+                                                                     @RequestParam List<String> type)
             throws ResourceNotFoundException {
         try{
             List<Security> securityList = securityHandler.getSecuritiesByDateIssuerAndType(user,startDate,endDate, issuerName, type);

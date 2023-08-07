@@ -15,7 +15,6 @@ public interface ITradeService {
 
     Trade getTradeById(long uniqueId);
 
-    Trade getTradeByBookID(long BookID);
 
     Trade updateTradeDetails(Trade TradeToUpdate);
 
