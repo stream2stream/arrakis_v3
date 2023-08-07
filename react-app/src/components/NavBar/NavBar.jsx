@@ -3,12 +3,14 @@ import { Link, NavLink } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
+const NavBar = ({  setIsLoggedIn }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    // Logica pentru delogare
+    // Remove the loggedInUser from local storage
+    localStorage.removeItem("loggedInUser");
+    
+    // Set the loggedIn state to false
     setIsLoggedIn(false);
-    navigate("/login"); // Redirecționează către pagina de login după delogare
   };
 
   return (
@@ -44,12 +46,22 @@ const NavBar = ({ isLoggedIn, setIsLoggedIn }) => {
 
         <Button
           color="inherit"
-          component={Link}
-          to="/login"
+          component={NavLink}
+          to="/userbonds"
           className="linkButton"
         >
-          LogOut
+         Your Bonds
         </Button>
+
+        <Button
+      color="inherit"
+      component={Link}
+      // to="/login"
+      onClick={handleLogout}
+      className="linkButton"
+    >
+      LogOut
+    </Button>
       </Toolbar>
     </AppBar>
   );

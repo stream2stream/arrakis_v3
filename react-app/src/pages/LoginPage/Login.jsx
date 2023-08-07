@@ -20,6 +20,7 @@ const Login = ({ setIsLoggedIn }) => {
       });
   
       if (response.status === 200) {
+        localStorage.setItem("loggedInUser", username);
         setIsLoggedIn(true);
         // Login successful, redirect to dashboard or other protected routes
         navigate("/dashboard"); // Adjust the path based on your routing configuration
