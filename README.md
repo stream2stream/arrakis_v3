@@ -63,8 +63,6 @@ To run the maven project use following mvn command
 
 	http://localhost:8080/api/v1/<endpoint>
 
-![REST API](REST_API_URL.PNG)
-
 **H2 Database Console:**
 
 	http://localhost:8080/h2-console
