@@ -1,6 +1,6 @@
 # Bonds Management Application
 
-This repository contains our final capstone training project for a bond management system.
+This repository contains our final capstone training project for a bond management system. This applications runs on an in-memory H2 database alogn with a Java based Springboot middleware. The frontend is based on React mainly using Material UI components.
 
 
 # Let's get the back-end running!
