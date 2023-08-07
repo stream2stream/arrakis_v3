@@ -15,7 +15,7 @@ const MaturingBondsList = (props) => {
 
   useEffect(() => {
     getBondsByDateFromAPI();
-}, [props.props.info.check]);
+}, [props.props.info.check, props.props.info.date]);
 
   const getBondsByDateFromAPI = () => {
     getBondsByDate(props.props)

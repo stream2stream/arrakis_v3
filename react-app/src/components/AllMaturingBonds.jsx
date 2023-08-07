@@ -22,7 +22,7 @@ const AllMaturingBonds = (props) => {
     while (c < 5) {
       var d = moment(date, "YYYY-MM-DD").add(i, "d").toDate();
       if (d.getDay() != 0 && d.getDay() != 6) {
-        a.unshift({ date: d, color: 'maroon', key:(c-1)*-1 });
+        a.unshift({ date: d, color: 'maroon', key:(c+1)*-1 });
         c++;
       }
       i--;
