@@ -1,4 +1,4 @@
-package com.db.grad.javaapi.service;
+package service;
 
 import com.db.grad.javaapi.Service.UserHandler;
 import com.db.grad.javaapi.model.User;
