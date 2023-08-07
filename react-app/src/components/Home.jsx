@@ -18,7 +18,7 @@ const Home = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#link">User Bonds</Nav.Link>
+              <Nav.Link href="#userbonds">User Bonds</Nav.Link>
             </Nav>        
           </Navbar.Collapse>
         </Container>    
