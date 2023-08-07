@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/TradeServices";
 import { Link } from "react-router-dom";
-import Planet from "../venus.png"
+// import Planet from "../venus.png"
 
 const Login = ({userID, setUserID}) => {
     const [username, setUsername] = useState("")
