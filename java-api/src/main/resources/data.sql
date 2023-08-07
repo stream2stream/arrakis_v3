@@ -6,8 +6,8 @@ INSERT INTO book (name) VALUES ('Trading_book_4');
 INSERT INTO book (name) VALUES ('Trading_book_6');
 
 -- Users Table
-INSERT INTO users (name, email, role) VALUES ('BNPParibasIssu 4,37% Microsoft Corp (USD)', 'm.asghar5@icloud.com', 'SWE');
-INSERT INTO users (name, email, role) VALUES ('Airbus 3.15%  USD', 'm.asghar5@icloud.com', 'SWE');
+INSERT INTO users (name, email, role) VALUES ('BNPParibasIssu 4,37 Microsoft Corp (USD)', 'm.asghar5@icloud.com', 'SWE');
+INSERT INTO users (name, email, role) VALUES ('Airbus 3.15  USD', 'm.asghar5@icloud.com', 'SWE');
 INSERT INTO users (name, email, role) VALUES ('UBS Facebook (USD)', 'm.asghar5@icloud.com', 'SWE');
 INSERT INTO users (name, email, role) VALUES ('Amazon', 'm.asghar5@icloud.com', 'SWE');
 INSERT INTO users (name, email, role) VALUES ('HM Treasury United Kingdon', 'm.asghar5@icloud.com', 'SWE');
