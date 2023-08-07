@@ -17,6 +17,8 @@ public interface SecurityRepository extends JpaRepository<Security, Long> {
     List<Security> findAll();
 
     @Query(nativeQuery = true, value = "SELECT * FROM security s \n" +
+            "JOIN trades t ON t.security_id = s.id \n" +
+            "JOIN book_user bu ON bu.book_id = t.book_id \n" +
             "WHERE DATEDIFF('day', s.maturity_date, '2021-08-02') BETWEEN -5 AND 5\n")
     List<Security> findMaturedBondsForUser();
 
