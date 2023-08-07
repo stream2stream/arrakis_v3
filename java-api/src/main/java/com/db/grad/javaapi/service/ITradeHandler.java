@@ -1,10 +1,8 @@
 package com.db.grad.javaapi.service;
 
-import com.db.grad.javaapi.model.Bond;
 import com.db.grad.javaapi.model.Trade;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ITradeHandler
 {
