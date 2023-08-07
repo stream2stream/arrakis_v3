@@ -104,7 +104,7 @@ public class DogsHandlerTest
         // arrange
         Dog theDog = new Dog();
         theDog.setName("Bruno");
-        Dog uniqueDog = cut.addDog( theDog );
+        cut.addDog( theDog );
 
         long invalidId = 33;
         long expectedResult = 1;
@@ -142,7 +142,6 @@ public class DogsHandlerTest
         theDog.setName("Penny");
         cut.addDog( theDog );
 
-        Dog jpaDog = addedDog;
         Optional<Dog> opt = Optional.of(addedDog);
         Mockito.when(itsDogsRepo.findById(addedDog.getId())).thenReturn(opt);
 
@@ -217,7 +216,6 @@ public class DogsHandlerTest
         theDog = new Dog();
         theDog.setName("Bruno");
         cut.addDog( theDog );
-        Dog expectedDog = theDog;
         String dogToFind = "Bruno";
         theDog = new Dog();
         theDog.setName("Penny");
@@ -269,7 +267,6 @@ public class DogsHandlerTest
         Mockito.when(itsDogsRepo.save(theDog)).thenReturn(theDog);
         Dog expectedDog = cut.addDog( theDog );
         Dog dogToUpdate = theDog;
-        String dogToFind = "Frank";
         theDog = new Dog();
         theDog.setName("Penny");
         cut.addDog( theDog );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/*import React, { useState, useEffect } from "react";
 import { findPets } from "../../services/PetServices";
 import styles from "./Pets.module.css";
 
@@ -23,3 +23,4 @@ export const Pets = () => {
     </>
   )
 };
+*/
