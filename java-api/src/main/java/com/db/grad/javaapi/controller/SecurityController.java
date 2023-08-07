@@ -35,4 +35,9 @@ public class SecurityController {
     public List<Security> getMaturedBondsForUser() {
         return securityService.getMaturedBondsForUser();
     }
+
+    @GetMapping("/activeBonds")
+    public List<Security> getActiveBonds() {
+        return securityService.getActiveBonds();
+    }
 }

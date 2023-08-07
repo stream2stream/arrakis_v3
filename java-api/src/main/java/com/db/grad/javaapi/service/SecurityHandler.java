@@ -31,4 +31,9 @@ public class SecurityHandler implements ISecurityService {
     public List<Security>  getMaturedBondsForUser() {
         return itsSecurityRepo.findMaturedBondsForUser();
     }
+
+    public List<Security>  getActiveBonds() {
+        return itsSecurityRepo.findActiveBonds();
+    }
+
 }
