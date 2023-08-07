@@ -10,12 +10,12 @@ const Securities = () => {
         <div className='hot-all-securities'>
           <div className='hot-securities-container'>
           <h5> Hot Securities</h5>
-              <AllSecurities />
+              <AllSecurities all={false}/>
           </div>
 
           <div className='all-securities-container'>
             <h5> All Securities</h5>
-              <AllSecurities />
+              <AllSecurities all={true} />
           </div>
         </div>
 

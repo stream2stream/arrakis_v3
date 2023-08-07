@@ -5,6 +5,7 @@ import SecurityDetails from './SecurityDetails';
 import DateRangePickerOverlay from '../includes/DateRangePickerOverlay';
 import { useLocalStore } from "mobx-react-lite";
 import { CheckboxDropdown } from '../includes/CheckBoxDropdown';
+import { Button } from "react-bootstrap";
 
 const dummy = [
     {
@@ -22,7 +23,7 @@ const dummy = [
     }
 ]
 
-const AllSecurities = () => {
+const AllSecurities = (props) => {
     const [securities, setSecurities] = useState([]);
     const [error, setError] = useState("");
     const [loaded, setLoaded] = useState(false);
@@ -31,36 +32,39 @@ const AllSecurities = () => {
 
     }, []);
 
-    const issuerMethod= ()=>{
+    const issuerMethod = () => {
         console.log("donnee")
     }
     const issuer = useLocalStore(() => ({
-        title:"issuer",
+        title: "select issuer",
         method: issuerMethod,
         items: [
-          { id: "em", label: "Exact Mass", checked: true },
-          { id: "f", label: "Formula", checked: true },
-          { id: "mw", label: "Molecular Weight", checked: true },
-          { id: "cp1", label: "Custom Property 1", checked: true },
-          { id: "cp2", label: "Custom Property 2", checked: true }
+            { id: "em", label: "Exact Mass", checked: true },
+            { id: "f", label: "Formula", checked: true },
+            { id: "mw", label: "Molecular Weight", checked: true },
+            { id: "cp1", label: "Custom Property 1", checked: true },
+            { id: "cp2", label: "Custom Property 2", checked: true }
         ]
-      }));
+    }));
 
-      const typeMethod= ()=>{
+    const typeMethod = () => {
         console.log("type")
     }
     const type = useLocalStore(() => ({
-        title:"type",
+        title: "select type",
         method: typeMethod,
         items: [
-          { id: "em", label: "Exact Mass", checked: true },
-          { id: "f", label: "Formula", checked: true },
-          { id: "mw", label: "Molecular Weight", checked: true },
-          { id: "cp1", label: "Custom Property 1", checked: true },
-          { id: "cp2", label: "Custom Property 2", checked: true }
+            { id: "em", label: "Exact Mass", checked: true },
+            { id: "f", label: "Formula", checked: true },
+            { id: "mw", label: "Molecular Weight", checked: true },
+            { id: "cp1", label: "Custom Property 1", checked: true },
+            { id: "cp2", label: "Custom Property 2", checked: true }
         ]
-      }));
+    }));
 
+    const applyFilter = (e) => {
+        e.preventDefault();
+    }
 
     return (
 
@@ -74,18 +78,32 @@ const AllSecurities = () => {
                         </div>
                     </form>
                 </div>
+
                 <div className='vl-white'></div>
+
                 <div className='securities-attributes-container'>
                     <div className="date-range-container">
                         <DateRangePickerOverlay />
                     </div>
+                    {
+                        props.all ? (
+                            <><div className="issuer-name-container">
+                                <div><span className="filter-label">Issuer Name</span></div>
+                                <CheckboxDropdown info={issuer} />
+                            </div>
 
-                    <div className="issuer-name-container">
-                        <CheckboxDropdown info={issuer} />
-                    </div>
 
-                    <div className="type-container">
-                        <CheckboxDropdown info={type} />
+                                <div className="type-container">
+                                    <div><span className="filter-label">Type</span></div>
+                                    <CheckboxDropdown info={type} />
+                                </div>
+                            </>) : <></>
+                    }
+
+                    <div className="apply-filter-btn-container">
+                        <Button id='btn-filter-white' onClick={applyFilter}>
+                            apply
+                        </Button>
                     </div>
                 </div>
 
@@ -113,12 +131,7 @@ const AllSecurities = () => {
                                 < SecurityDetails info={security} key={security.id} />
                             ))
                         }
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
+
                     </tbody>
                 </Table>
             </div>

@@ -167,6 +167,26 @@
   --bs-btn-disabled-bg: #38393a;
   --bs-btn-disabled-border-color: #38393a;
 }
+#btn-filter-white{
+  --bs-btn-color: #171717;
+  --bs-btn-bg: #f3f6f9;
+  --bs-btn-border-color: #38393a;
+  --bs-btn-hover-color: #b0afaf;
+  --bs-btn-hover-bg: #787a7b;
+  --bs-btn-hover-border-color: #38393a;
+  --bs-btn-focus-shadow-rgb: 49, 132, 253;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: #38393a;
+  --bs-btn-active-border-color: #38393a;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #fff;
+  --bs-btn-disabled-bg: #38393a;
+  --bs-btn-disabled-border-color: #38393a;
+  height: 50px;
+  padding: 10px;
+  position: relative;
+  top: 15px;
+}
 
 .tabs {
   display: flex;
@@ -231,7 +251,7 @@
 
 .securities-container {
   height: 100%;
-  padding: 20px;
+  padding: 0px;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -275,16 +295,24 @@
   overflow: hidden;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1100px) {
+  .content-wrap, .content-container{
+    height: auto;
+  }
+
   .hot-all-securities {
     flex-direction: column;
     align-items: center;
     width: 80vw;
+    height: 50%;
   }
 
   .hot-securities-container,
-  .all-securities-container {
+  .all-securities-container,
+  .all-securities-table-container {
+    overflow: visible;
     width: 100%;
+    height: auto;
   }
 }
 
@@ -326,7 +354,7 @@
 }
 
 #date-range-text-box {
-  width: 120px;
+  width: 90px;
 }
 
 
@@ -352,7 +380,13 @@
 }
 
 .search-bar-container {
+  min-width: 100px;
   width: 200px;
+  display: flex;
+  margin-top: auto;
+}
+.search-form{
+  position: relative;
 }
 
 /* ============================================================== */
@@ -366,4 +400,10 @@
 .CheckboxMenu .dropdown-item:active {
   background-color: transparent;
   color: black;
+}
+
+.apply-filter-btn-container{
+  display: flex;
+  flex-direction: column;
+  justify-content:baseline;
 }

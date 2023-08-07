@@ -35,7 +35,7 @@ const DateRangePickerOverlay = () => {
     <Container className="date-form-picker-container">
       <Form className="date-range-form">
         <Form.Group className="date-range-form-group">
-          <Form.Label><span className="filter-label">Start Date</span></Form.Label>
+          <span className="filter-label">Start Date</span>
           <Form.Control id="date-range-text-box"
             type="text"
             onFocus={handleFocus}
@@ -46,7 +46,7 @@ const DateRangePickerOverlay = () => {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Label><span className="filter-label">End Date</span></Form.Label>
+          <span className="filter-label">End Date</span>
           <Form.Control id="date-range-text-box"
             type="text"
             onFocus={handleFocus}
