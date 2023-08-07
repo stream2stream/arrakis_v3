@@ -26,6 +26,11 @@ public class SecurityService {
         this.securityRepository = securityRepository;
     }
 
+    public SecurityService(SecurityRepository securityRepository, TradeRepository tradeRepository) {
+        this.securityRepository = securityRepository;
+        this.tradeRepository = tradeRepository;
+    }
+
     public SecurityRepository getSecurityRepository() {
         return securityRepository;
     }
