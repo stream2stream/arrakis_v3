@@ -6,7 +6,7 @@ const MaturingBond = (props) => {
   const date = new Date(props.info.date);
 
   const dateStyle = {
-    backgroundColor: '#E1341E',
+    backgroundColor: props.info.color,
   };
 
   return (

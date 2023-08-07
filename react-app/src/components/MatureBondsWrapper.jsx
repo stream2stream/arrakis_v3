@@ -2,10 +2,12 @@ import React from 'react'
 import AllMaturingBonds from './AllMaturingBonds'
 import { useState } from 'react';
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 const MatureBondsWrapper = () => {
     const [checked, setChecked] = useState(false);
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState(new Date("2021-08-05"));
 
 
     const handleChange = () => {
@@ -21,13 +23,13 @@ const MatureBondsWrapper = () => {
           Show only my books 
         </label>
         <label>
-          <DatePicker selected={date} onChange={(date) => setDate(date)} />
+          <DatePicker selected={date} onChange={(ndate) => setDate(ndate)} />
         </label>
     </div>
 
     <div>
       <AllMaturingBonds
-      info={checked} key={"key"}/>
+      info={checked} key={"key"} date={date}/>
     </div>
     </>
   )
