@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/TradeServices";
+import { Link } from "react-router-dom";
 
 const Login = ({userID, setUserID}) => {
     const [username, setUsername] = useState("")
@@ -71,6 +72,18 @@ const Login = ({userID, setUserID}) => {
                 type="button"
                 onClick={onButtonClick}
                 value={"Log in"} />
+        </div>
+        {/* Reset password option */}
+        <br />
+        <div className={"resetOption"}>
+            <Link to="/resetLogin">
+                Forgot Password?
+            </Link>
+        </div>
+        <div className={"resetOption"}>
+            <Link to="/createAccount">
+                Create New Account
+            </Link>
         </div>
     </div>
 }
