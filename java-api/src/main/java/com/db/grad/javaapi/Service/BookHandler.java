@@ -48,7 +48,7 @@ public class BookHandler {
     }
 
     public Book getBookById(long uniqueId) {
-        return bookRepository.findById(uniqueId).get();
+        return bookRepository.findById(uniqueId).orElse(null); //.get();
     }
 
     public Book getBookByName(String BooksName) {

@@ -49,7 +49,7 @@ public class UserHandler implements IUserService{
 
     @Override
     public User getUserById(long uniqueId) {
-        return userRepository.findById(uniqueId).get();
+        return userRepository.findById(uniqueId).orElse(null); //.get();
     }
 
     @Override

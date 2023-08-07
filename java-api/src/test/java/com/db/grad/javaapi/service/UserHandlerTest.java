@@ -137,7 +137,7 @@ public class UserHandlerTest {
         // Assert
         assertEquals(expectedUser, actualUser);
     }
-/*
+
     @Test
     public void testGetUserById_UserDoesNotExist() {
         // Arrange
@@ -150,7 +150,7 @@ public class UserHandlerTest {
         // Assert
         assertNull(actualUser);
     }
- */
+
     @Test
     public void testGetUserByName_UserExists() {
     // Arrange
@@ -226,7 +226,7 @@ public class UserHandlerTest {
     @Test
     public void testGetUserByEmail_UserDoesNotExist() {
         // Arrange
-        String emailToFind = "nonexistent@example.com";
+        String emailToFind = "userdoesnotexist@example.com";
         when(userRepository.getUserByEmail(emailToFind)).thenReturn(null);
 
         // Act
