@@ -58,11 +58,7 @@ public class SecurityController {
 
         return response;}
 
-<<<<<<< HEAD
     @PostMapping("/security/userBooks/{user_id}")
-=======
-    @GetMapping("/security/userBooks/{user_id}")
->>>>>>> d342c69656e549dd8f7e0e0a13f0e4b78951013b
     public List<Security> getSecuritiesMatchedWithBook(@PathVariable(value = "user_id") long id)
             throws ResourceNotFoundException {
         List<Security> security = securityHandler.getSecuritiesMatchedWithBook(id);
@@ -83,15 +79,7 @@ public class SecurityController {
 
     }
     //API 5
-    @GetMapping("/security/security-types/{userId}")
-    public ResponseEntity<?> getDistinctSecurityTypesByUserId(@PathVariable(value = "userId") long userId)
-            throws ResourceNotFoundException {
-        List<String> securityTypes = securityHandler.getDistinctSecurityTypesByUserId(userId);
-        return ResponseEntity.ok().body(securityTypes);
-    }
 
-<<<<<<< HEAD
-=======
     @GetMapping("/security/security-issuer/{userId}")
     public ResponseEntity<?> getDistinctSecurityIssuerByUserId(@PathVariable(value = "userId") long userId)
             throws ResourceNotFoundException {
@@ -118,6 +106,5 @@ public class SecurityController {
         final Security updatedSecurity = securityHandler.updateSecurityStatus(id);
         return ResponseEntity.ok(updatedSecurity);
     }
->>>>>>> d342c69656e549dd8f7e0e0a13f0e4b78951013b
 
 }
