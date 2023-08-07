@@ -2,8 +2,8 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react'
-import Home from "./components/home";
-import Login from "./components/login";
+import Home from "./components/Home";
+import Login from "./components/Login";
 import ResetLogin from "./components/resetLogin";
 import AccountCreation from "./components/AccountCreation";
 
