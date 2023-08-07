@@ -65,7 +65,7 @@ const MaturingBondsList = (props) => {
         ))}
       </tbody>
     </table>
-    ):(<p>There is no bond to show for this date</p>)}
+    ):(<p>There are no bonds to display for this date.</p>)}
     </div>
   );
 };
