@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const DetailPage = () => {
+const DetailPage = ({ setIsLoggedIn }) => {
     const classes = useStyles();
   const bond = {
     ISIN: "Example ISIN",
@@ -34,7 +34,7 @@ const DetailPage = () => {
 
   return (
     <>
-    <NavBar/>
+   <NavBar setIsLoggedIn={setIsLoggedIn} />
     <Card>
       <CardContent>
         <Typography variant="h5" component="div">

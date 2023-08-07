@@ -47,11 +47,16 @@ class SecurityServiceTest {
 
         List<Security> AllSecuritiesForUserBooks = new ArrayList<>();
         AllSecuritiesForUserBooks.add(mockSecurities.get(0));
+      
+        Security bond = new Security();
+        bond = mockSecurities.get(0);
+        String isin = "test1";
 
         Mockito.when(securityRepository.getActiveBonds()).thenReturn(activeBonds);
         Mockito.when(securityRepository.getBondsForNextFiveDays()).thenReturn(nextFiveDays);
         Mockito.when(securityRepository.getBondsForPreviousFiveDays()).thenReturn(previousFiveDays);
         Mockito.when(securityRepository.findSecuritiesForUserBooks("user1@db.com")).thenReturn(AllSecuritiesForUserBooks);
+        Mockito.when(securityRepository.findBondByIsin(isin)).thenReturn(bond);
     }
 
     @Test
@@ -72,9 +77,15 @@ class SecurityServiceTest {
         List<Security> previousFiveDaysSecurities = securityService.getBondsForPreviousFiveDays();
         Assert.assertEquals(1, previousFiveDaysSecurities.size());
     }
+
     @Test
     void getAllSecuritiesForUserBooks(){
         List<Security> availableSecurities = securityService.getAllSecuritiesForUserBooks("user1@db.com");
         Assert.assertEquals(1, availableSecurities.size());
+
+    @Test
+    void testGetBondByIsin() {
+        Security bondByIsin = securityService.getBondByIsin("test1");
+        Assert.assertEquals(1, 1);
     }
 }

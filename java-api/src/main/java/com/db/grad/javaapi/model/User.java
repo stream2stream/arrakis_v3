@@ -27,6 +27,12 @@ public class User {
     public User() {
     }
 
+    public User(int id, String mail, String password) {
+        this.id = id;
+        this.mail = mail;
+        this.password = password;
+    }
+
     public int getId() {
         return id;
     }
