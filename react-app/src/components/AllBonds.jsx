@@ -2,7 +2,7 @@ import React from 'react'
 import BondDetails from './BondDetails'
 import { useState } from 'react';
 import { useEffect } from 'react';
-import {getAllBonds} from '../services/bond-service';
+import { getAllBonds } from '../services/bond-service';
 
 
 
@@ -149,6 +149,3 @@ const bonds2 = [{
 }
 
 export default AllBonds
-
-
-

@@ -4,12 +4,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import {getAllBooks} from '../services/book-service';
 
-
-
-
 const AllBooks = () => {
 
-const [books,setBooks] = useState([]);
+  const [books,setBooks] = useState([]);
 
 useEffect(()=>{
   getBooksFromAPI();}, 
