@@ -7,6 +7,7 @@ import com.db.grad.javaapi.repository.TradeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -92,4 +93,8 @@ public class TradeHandler implements ITradeService{
         return tradeRepository.findTradeByBidType(bidLower);
     }
 
+    public List<Trade> getTradesBySettlementDate(String settlementDate) {
+        Date settlementDateSQL=Date.valueOf(settlementDate);
+        return tradeRepository.getTradesBySettlementDate(settlementDateSQL);
+    }
 }

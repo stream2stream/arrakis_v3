@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,5 +80,15 @@ public class TradeController {
             throws ResourceNotFoundException {
         List<Trade> trades = tradeHandler.filterTradeByBidType(bid);
         return ResponseEntity.ok().body(trades);
+    }
+
+    @GetMapping("/trades/filter")
+    public List<Trade> getTradesBySettlementDate(@RequestParam String settlementDate)
+            throws ResourceNotFoundException {
+        try {
+            return tradeHandler.getTradesBySettlementDate(settlementDate);
+        } catch (DateTimeParseException e) {
+            throw new ResourceNotFoundException("Invalid date format. Please provide the date in yyyy-MM-dd format.");
+        }
     }
 }
