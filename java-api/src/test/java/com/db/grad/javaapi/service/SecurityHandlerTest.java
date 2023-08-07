@@ -9,7 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import static com.db.grad.javaapi.utils.DateUtils.dateFormatter;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -67,57 +69,151 @@ public class SecurityHandlerTest {
 
     @Test
     void testGetNoOfSecurities() {
-        // ... (test for getNoOfSecurities)
+        when(SecurityRepository.count()).thenReturn(5L);
+
+        long result = SecurityHandler.getNoOfSecurities();
+
+        assertEquals(5L, result);
     }
 
     @Test
     void testRemoveSecurity() {
-        // ... (test for removeSecurity)
+        long uniqueId = 1L;
+        Security security = createSecurity(uniqueId, "ISIN123", "CUSIP123", "Issuer A", "USD", "active",
+                new Date(System.currentTimeMillis()), 2, "GOVN", 1000);
+        when(SecurityRepository.findById(uniqueId)).thenReturn(Optional.of(security));
+
+        boolean result = SecurityHandler.removeSecurity(uniqueId);
+
+        assertTrue(result);
     }
 
     @Test
     void testGetSecurityById() {
-        // ... (test for getSecurityById)
+        long uniqueId = 1L;
+        Security expectedSecurity = createSecurity(uniqueId, "ISIN123", "CUSIP123", "Issuer A", "USD", "active",
+                new Date(System.currentTimeMillis()), 2, "GOVN", 1000);
+        when(SecurityRepository.findById(uniqueId)).thenReturn(Optional.of(expectedSecurity));
+
+        Security result = SecurityHandler.getSecurityById(uniqueId);
+
+        assertEquals(expectedSecurity, result);
     }
 
     @Test
     void testGetSecurityByIsin() {
-        // ... (test for getSecurityByIsin)
+        String isin = "ISIN123";
+        Security expectedSecurity = createSecurity(1L, isin, "CUSIP123", "Issuer A", "USD", "active",
+                new Date(System.currentTimeMillis()), 2, "Type A", 1000);
+        List<Security> securityList = new ArrayList<>();
+        securityList.add(expectedSecurity);
+        when(SecurityRepository.findByIsin(any(Security.class))).thenReturn(securityList);
+
+        Security result = SecurityHandler.getSecurityByIsin(isin);
+
+        assertEquals(expectedSecurity, result);
     }
 
     @Test
     void testUpdateSecurityDetails() {
-        // ... (test for updateSecurityDetails)
+        Security securityToUpdate = createSecurity(1L, "ISIN123", "CUSIP123", "Issuer A", "USD", "active",
+                new Date(System.currentTimeMillis()), 2, "Type A", 1000);
+        when(SecurityRepository.save(securityToUpdate)).thenReturn(securityToUpdate);
+
+        Security result = SecurityHandler.updateSecurityDetails(securityToUpdate);
+
+        assertEquals(securityToUpdate, result);
     }
 
+
+    // check this again
     @Test
     void testUpdateSecurityStatus() {
-        // ... (test for updateSecurityStatus)
+        long id = 1L;
+        Security security = createSecurity(id, "ISIN123", "CUSIP123", "Issuer A", "USD", "active",
+                new Date(System.currentTimeMillis()), 2, "Type A", 1000);
+        when(SecurityRepository.findById(id)).thenReturn(Optional.of(security));
+
+        boolean result = SecurityHandler.updateSecurityStatus(id);
+
+        assertEquals(true, result);
+        verify(SecurityRepository, times(1)).save(security);
     }
 
     @Test
     void testGetSecuritiesByUserDateRange() {
-        // ... (test for getSecuritiesByUserDateRange)
+        long userId = 1L;
+        String startDateString = "08-01-2023";
+        String endDateString = "08-10-2023";
+        LocalDate startDate = LocalDate.parse(startDateString, dateFormatter);
+        LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
+
+        java.sql.Date startDateSQL= java.sql.Date.valueOf(startDate);
+        java.sql.Date endDateSQL= java.sql.Date.valueOf(endDate);
+        List<Security> expectedSecurities = new ArrayList<>();
+        when(SecurityRepository.findSecurityByUserDateRange(userId, startDateSQL, endDateSQL))
+                .thenReturn(expectedSecurities);
+
+        List<Security> result = SecurityHandler.getSecuritiesByUserDateRange(userId, startDateString, endDateString);
+
+        assertEquals(expectedSecurities, result);
     }
 
     @Test
     void testGetSecuritiesMatchedWithBook() {
-        // ... (test for getSecuritiesMatchedWithBook)
+        long userId = 1L;
+        List<Security> expectedSecurities = new ArrayList<>();
+        when(SecurityRepository.findSecurityByUserBooks(userId)).thenReturn(expectedSecurities);
+
+        List<Security> result = SecurityHandler.getSecuritiesMatchedWithBook(userId);
+
+        assertEquals(expectedSecurities, result);
     }
 
     @Test
     void testGetDistinctSecurityTypesByUserId() {
-        // ... (test for getDistinctSecurityTypesByUserId)
+        long userId = 1L;
+        List<String> expectedTypes = Arrays.asList("Type A", "Type B");
+        when(SecurityRepository.findDistinctSecurityTypesByUserId(userId)).thenReturn(expectedTypes);
+
+        List<String> result = SecurityHandler.getDistinctSecurityTypesByUserId(userId);
+
+        assertEquals(expectedTypes, result);
     }
 
     @Test
     void testGetDistinctSecurityIssuerByUserId() {
-        // ... (test for getDistinctSecurityIssuerByUserId)
+        long userId = 1L;
+        List<String> expectedIssuers = Arrays.asList("Issuer A", "Issuer B");
+        when(SecurityRepository.findDistinctSecurityIssuerByUserId(userId)).thenReturn(expectedIssuers);
+
+        List<String> result = SecurityHandler.getDistinctSecurityIssuerByUserId(userId);
+
+        assertEquals(expectedIssuers, result);
     }
 
     @Test
     void testGetSecuritiesByDateIssuerAndType() {
-        // ... (test for getSecuritiesByDateIssuerAndType)
+        long userId = 1L;
+        String startDateString = "08-01-2023";
+        String endDateString = "08-01-2023";
+
+        LocalDate startDate = LocalDate.parse(startDateString, dateFormatter);
+        LocalDate endDate = LocalDate.parse(endDateString, dateFormatter);
+
+        java.sql.Date startDateSQL= java.sql.Date.valueOf(startDate);
+        java.sql.Date endDateSQL= java.sql.Date.valueOf(endDate);
+
+        String issuerName = "Issuer A";
+        String type = "Type A";
+
+        List<Security> expectedSecurities = new ArrayList<>();
+        when(SecurityRepository.findSecurityByDateTypeAndIssuer(userId, startDateSQL, endDateSQL, issuerName, type))
+                .thenReturn(expectedSecurities);
+
+        List<Security> result = SecurityHandler.getSecuritiesByDateIssuerAndType(userId, startDateString, endDateString, issuerName, type);
+
+        assertEquals(expectedSecurities, result);
     }
 
 }
