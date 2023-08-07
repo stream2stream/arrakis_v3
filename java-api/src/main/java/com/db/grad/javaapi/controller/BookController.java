@@ -1,7 +1,7 @@
 package com.db.grad.javaapi.controller;
 
 
-import com.db.grad.javaapi.Service.BookService;
+import com.db.grad.javaapi.Service.BookHandler;
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
 import com.db.grad.javaapi.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +18,10 @@ import java.util.Map;
 //@CrossOrigin(origins = "http://localhost:3000")
 public class BookController {
 
-    BookService bookService;
+    BookHandler bookService;
 
     @Autowired
-    public BookController(BookService bookService) {
+    public BookController(BookHandler bookService) {
         this.bookService = bookService;
     }
 

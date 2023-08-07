@@ -3,7 +3,6 @@ package com.db.grad.javaapi.controller;
 import com.db.grad.javaapi.Service.SecurityHandler;
 import com.db.grad.javaapi.exception.ResourceNotFoundException;
 import com.db.grad.javaapi.model.Security;
-import com.db.grad.javaapi.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -106,9 +105,9 @@ public class SecurityController {
     }
 
     @PutMapping("/security/updateStatus/{id}")
-    public ResponseEntity < Security > updateSecurityStatus(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
+    public ResponseEntity<Boolean> updateSecurityStatus(@PathVariable(value = "id") long id) throws ResourceNotFoundException {
 
-        final Security updatedSecurity = securityHandler.updateSecurityStatus(id);
+        final boolean updatedSecurity = securityHandler.updateSecurityStatus(id);
         return ResponseEntity.ok(updatedSecurity);
     }
 
