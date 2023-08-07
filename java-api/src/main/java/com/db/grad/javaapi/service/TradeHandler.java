@@ -46,6 +46,16 @@ public class TradeHandler implements ITradeHandler {
                 List<String> trades = itsTradesRepo.getMaturityDates(id);
                 return trades;
         }
+
+        public List<Object> getSecurityInfo(long id){
+                List<Object> trades = itsTradesRepo.getSecurityInfo(id);
+                return trades;
+        }
+
+        public List<Object> getTradesInfo (long id){
+                List<Object> trades = itsTradesRepo.getSecurityInfo(id);
+                return trades;
+        }
 //        public Trade getTradeByBookId(long id){
 //                return itsTradesRepo.findById()
 //        }

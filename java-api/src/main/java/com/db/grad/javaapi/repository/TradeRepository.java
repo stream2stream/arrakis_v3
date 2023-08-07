@@ -21,5 +21,10 @@ public interface TradeRepository extends JpaRepository<Trade, Long> {
     @Query(nativeQuery = true, value = "select security.maturity_date FROM trades JOIN security on trades.book_id = :id WHERE trades.security_id = security.id")
     List<String> getMaturityDates (long id);
 
+    @Query(nativeQuery = true, value = "SELECT s.currency, s.face_value, s.type, s.coupon, s.issuer_name from security s JOIN Trades t ON t.security_id = s.id AND t.book_id = :id")
+    List<Object> getSecurityInfo (long id);
+
+    @Query(nativeQuery = true, value = "SELECT currency, status, quantity, unit_price, buy_sell, trade_date, settlement_date from trades where book_id = :id")
+    List<Object> getTradesInfo (long id);
 
 }

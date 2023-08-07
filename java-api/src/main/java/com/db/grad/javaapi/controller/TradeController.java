@@ -53,4 +53,18 @@ public class TradeController {
         return ResponseEntity.ok().body(trades);
     }
 
+    @GetMapping("Trades/SecurityInfo/{id}")
+    public ResponseEntity <List<Object>> getSecurityInfo(@PathVariable(value = "id") Long id)
+        throws ResourceNotFoundException{
+        List<Object> trades = TradeService.getSecurityInfo(id);
+        return ResponseEntity.ok().body(trades);
+    }
+
+    @GetMapping("Trades/TradesInfo/{id}")
+    public ResponseEntity <List<Object>> getTradesInfo(@PathVariable(value = "id") Long id)
+            throws ResourceNotFoundException{
+        List<Object> trades = TradeService.getTradesInfo(id);
+        return ResponseEntity.ok().body(trades);
+    }
+
 }
