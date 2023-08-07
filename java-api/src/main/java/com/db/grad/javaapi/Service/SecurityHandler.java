@@ -117,7 +117,7 @@ public class SecurityHandler implements ISecurityService {
 
     //API 8: Filter securities by date, issuer name and type
     public List<Security> getSecuritiesByDateIssuerAndType(long userId, String startDateString, String endDateString,
-                                                           String issuerName, String Type)
+                                                           List<String> issuerName, List<String> Type)
     {
         LocalDate startDate=LocalDate.parse(startDateString,dateFormatter);
         LocalDate endDate=LocalDate.parse(endDateString,dateFormatter);

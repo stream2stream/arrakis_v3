@@ -205,13 +205,15 @@ public class SecurityHandlerTest {
         java.sql.Date endDateSQL= java.sql.Date.valueOf(endDate);
 
         String issuerName = "Issuer A";
+        List<String> issuerNameList = Arrays.asList(issuerName);
         String type = "Type A";
+        List<String> typeList = Arrays.asList(type);
 
         List<Security> expectedSecurities = new ArrayList<>();
-        when(SecurityRepository.findSecurityByDateTypeAndIssuer(userId, startDateSQL, endDateSQL, issuerName, type))
+        when(SecurityRepository.findSecurityByDateTypeAndIssuer(userId, startDateSQL, endDateSQL, issuerNameList, typeList))
                 .thenReturn(expectedSecurities);
 
-        List<Security> result = SecurityHandler.getSecuritiesByDateIssuerAndType(userId, startDateString, endDateString, issuerName, type);
+        List<Security> result = SecurityHandler.getSecuritiesByDateIssuerAndType(userId, startDateString, endDateString, issuerNameList, typeList);
 
         assertEquals(expectedSecurities, result);
     }

@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-
 public interface SecurityRepository extends JpaRepository<Security,Long> {
     @Query(nativeQuery = true, value = "select * from security where isin = :isin")
     List<Security> findByIsin(Security isin);
@@ -73,7 +72,7 @@ public interface SecurityRepository extends JpaRepository<Security,Long> {
 
 
 
-    @Query(nativeQuery = true, value = "select * from security where maturity_date <= :endDate and maturity_date >= :startDate and id in" +
+    @Query(nativeQuery = true, value = "select * from security where (maturity_date <= :endDate and maturity_date >= :startDate) and id in" +
             "        (select distinct(security_id) from trades\n" +
             "        where book_id in\n" +
             "        (Select book_id from users\n" +
@@ -83,9 +82,10 @@ public interface SecurityRepository extends JpaRepository<Security,Long> {
             "        and users.id = :userId\n" +
             "        join\n" +
             "        book on book.id = book_users.book_id)\n" +
-            "        ) and issuer_name = :issuerName and type = :type")
-    List<Security> findSecurityByDateTypeAndIssuer(long userId, Date startDate, Date endDate, String issuerName, String type);
+            "        ) or issuer_name in :issuerName or type in :type")
+    List<Security> findSecurityByDateTypeAndIssuer(long userId, Date startDate, Date endDate, List<String> issuerName, List<String> type);
 }
+
 
 /* select * from security where id in
         (select distinct(security_id) from trade
