@@ -58,6 +58,7 @@ const AllSecurities = (props) => {
                 console.log(err);
                 setLoaded(false);
             })
+        }
 
         const getAllSecuritiesFromAPI = () => {
             const userId = user.id;
@@ -185,6 +186,5 @@ const AllSecurities = (props) => {
         }
 
     }
-}
 
 export default AllSecurities
