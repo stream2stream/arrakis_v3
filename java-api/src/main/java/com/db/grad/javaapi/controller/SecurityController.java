@@ -50,7 +50,7 @@ public class SecurityController {
 
     @PostMapping("/mybonds")
     public ResponseEntity<List<String>> getMyBonds(@RequestBody Map<String,String> data){
-        List<String> securities = securityService.getMyBonds(data.get("email"));
+        List<String> securities = securityService.getMyBonds(data.get("email"), data.get("password"));
         return new ResponseEntity<>(securities, HttpStatus.OK);
     }
 

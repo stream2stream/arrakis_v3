@@ -51,7 +51,7 @@ public class SecurityHandler {
         return securityRepository.searchForCounterParty(isin);
     }
 
-    public List<String> getMyBonds(String email){
-        return securityRepository.searchByUserEmail(email);
+    public List<String> getMyBonds(String email, String password){
+        return securityRepository.searchByUserEmailAndPassword(email, password);
     }
 }

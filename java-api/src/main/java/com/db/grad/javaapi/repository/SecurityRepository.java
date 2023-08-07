@@ -36,6 +36,6 @@ public interface SecurityRepository extends JpaRepository<Security, Integer>
             "JOIN books b ON t.book_id = b.id " +
             "JOIN book_user bu ON b.id = bu.book_id " +
             "JOIN users u ON bu.user_id = u.id " +
-            "WHERE u.email = :email")
-    List<String> searchByUserEmail(String email);
+            "WHERE u.email = :email AND u.password = :password")
+    List<String> searchByUserEmailAndPassword(String email, String password);
 }
