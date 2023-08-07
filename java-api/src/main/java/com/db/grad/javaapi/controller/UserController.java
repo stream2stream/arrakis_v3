@@ -31,10 +31,6 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/maturityBonds")
-    public List<User>getMaturedBondsForUser() {
-        return userService.getMaturedBondsForUser();
-    }
 
 
 }

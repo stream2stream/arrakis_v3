@@ -31,9 +31,6 @@ public class UserHandler implements IUserService {
         return itsUserRepo.findAll();
     }
 
-    public List<User>  getMaturedBondsForUser() {
-        return itsUserRepo.findMaturedBondsForUser();
-    }
 }
 
 /*

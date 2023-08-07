@@ -2,6 +2,7 @@ package com.db.grad.javaapi.controller;
 
 import com.db.grad.javaapi.model.Book;
 import com.db.grad.javaapi.model.Security;
+import com.db.grad.javaapi.model.User;
 import com.db.grad.javaapi.service.BookHandler;
 import com.db.grad.javaapi.service.SecurityHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,8 @@ public class SecurityController {
         return securityService.getAllSecurity();
     }
 
+    @GetMapping("/maturityBonds")
+    public List<Security> getMaturedBondsForUser() {
+        return securityService.getMaturedBondsForUser();
+    }
 }
