@@ -4,6 +4,7 @@ import com.db.grad.javaapi.model.Security;
 import com.db.grad.javaapi.repository.SecurityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import javax.persistence.EntityNotFoundException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -72,6 +73,7 @@ public class SecurityHandler implements ISecurityService {
         return securityRepository.save(securityToUpdate);
     }
 
+
     public boolean updateSecurityStatus(long id) {
 
         boolean result = false;
@@ -104,6 +106,9 @@ public class SecurityHandler implements ISecurityService {
 
     //API 5
 
+    public List<String> getDistinctSecurityTypesByUserId(Long userId) {
+        return securityRepository.findDistinctSecurityTypesByUserId(userId);
+    }
 
     // API 7: Get distinct issuer name in user books issuer_name
     public List<String> getDistinctSecurityIssuerByUserId(Long userId) {
