@@ -43,6 +43,11 @@ public class SecurityRepositoryStub implements SecurityRepository {
         return null;
     }
 
+    @Override
+    public Security findBondByIsin(String isin) {
+        return null;
+    }
+
     public void setSecurityList(ArrayList<Security> securityList) {
         this.securityList = securityList;
     }
