@@ -21,4 +21,6 @@ public interface TradeRepository extends JpaRepository<Trade, Long> {
     List<Trade> findTradesBySecuritiesID(List<Long> securities_ids);
 
 
+    @Query(nativeQuery = true, value = "select * from trades where buy_sell = :bidLower")
+    List<Trade> findTradeByBidType(String bidLower);
 }

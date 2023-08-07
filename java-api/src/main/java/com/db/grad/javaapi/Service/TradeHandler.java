@@ -87,4 +87,9 @@ public class TradeHandler implements ITradeService{
         return tradeRepository.save(TradeToUpdate);
     }
 
+    public List<Trade> filterTradeByBidType(String bid){
+        String bidLower = bid.toLowerCase();
+        return tradeRepository.findTradeByBidType(bidLower);
+    }
+
 }
