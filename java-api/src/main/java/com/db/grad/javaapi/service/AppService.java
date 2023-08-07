@@ -120,4 +120,10 @@ public class AppService {
         List<Integer> bookIds = bookService.getBookIdsByUser(user);
         return tradeService.findTradesByBondIdAndUserId(bondId, bookIds);
     }
+
+    public Boolean redeemBondById(Integer bondId) {
+        Bond bondToRedeem = bondService.findById(bondId);
+        return userService.redeemBond(bondToRedeem);
+    }
+
 }
