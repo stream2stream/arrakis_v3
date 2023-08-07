@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class UserRepositoryStub implements UserRepository {
 
@@ -22,13 +23,16 @@ public class UserRepositoryStub implements UserRepository {
         return userList.size();
     }
 
-    public void emptyAllData(){
-        userList.clear();
+    @Override
+    public List<User> findUserForLogin(String mail){
+        return userList.stream()
+                .filter(user -> user.getMail().equals(mail))
+                .collect(Collectors.toList());
+
     }
 
-    @Override
-    public List<User> findUserForLogin(String mail) {
-        return null;
+    public void emptyAllData(){
+        userList.clear();
     }
 
     @Override

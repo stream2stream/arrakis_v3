@@ -25,15 +25,24 @@ public class UserServiceLoginTest {
     @Test
     public void testLogin(){
 
-        User user1 = new User(1, "user1@db.com", "1234");
+        User user1 = new User(1, "user1@db.com", "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4");
+        User user2 = new User(2, "user2@db.com", "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5");
+
         userRepo.addUser(user1);
+        userRepo.addUser(user2);
 
         UserService userService = new UserService(userRepo);
-        boolean result = userService.checkLoginDetails()
+
+        boolean result1 = userService.checkLoginDetails("user1@db.com", "1234");
+        boolean result2 = userService.checkLoginDetails("user2@db.com", "12345");
+        boolean result3 = userService.checkLoginDetails("user1@db.com", "43525");
+        boolean result4 = userService.checkLoginDetails("user2@db.com", "1234");
 
 
-        assertEquals(resulDto.get(0).getTransactions().isEmpty(), true);
-        assertEquals(resulDto.get(0).getSecurity(), security1);
+        assertEquals(result1, true);
+        assertEquals(result2, true);
+        assertEquals(result3, false);
+        assertEquals(result4, false);
 
     }
 
