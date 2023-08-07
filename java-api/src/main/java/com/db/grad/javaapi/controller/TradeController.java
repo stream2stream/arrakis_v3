@@ -73,5 +73,11 @@ public class TradeController {
         return ResponseEntity.ok().body(trades);
     }
 
-
+    //API 5
+    @GetMapping("/trades/trade-bid-types/{bid}")
+    public ResponseEntity<?> getTradesByBidType(@PathVariable(value = "bid") String bid)
+            throws ResourceNotFoundException {
+        List<Trade> trades = tradeHandler.filterTradeByBidType(bid);
+        return ResponseEntity.ok().body(trades);
+    }
 }
