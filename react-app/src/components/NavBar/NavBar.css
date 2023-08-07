@@ -48,13 +48,13 @@
 }
 
 .linkButton:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: white;
 }
 
 .linkButton.logoutButton {
-  background-color: red;
+  background-color:blue;
 }
 
 .linkButton.logoutButton:hover {
-  background-color: red;
+  background-color:gray;
 }

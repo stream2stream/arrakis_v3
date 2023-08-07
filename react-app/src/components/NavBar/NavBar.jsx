@@ -4,6 +4,14 @@ import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ".//NavBar.css"
 import logo from "./logo.svg";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#81D4FA", // Baby blue color
+    },
+  },
+});
 const NavBar = ({  setIsLoggedIn }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -15,7 +23,7 @@ const NavBar = ({  setIsLoggedIn }) => {
   };
 
   return (
-    <AppBar position="static" className="AppBar" style={{ backgroundColor: "black" }} >
+    <AppBar position="static" className="AppBar" style={{ backgroundColor: theme.palette.primary.main }} >
       <Toolbar>
       <div className="logoContainer" >
           <img src={logo} alt="Logo" className="logoImage" />
@@ -56,13 +64,13 @@ const NavBar = ({  setIsLoggedIn }) => {
          My Bonds
         </Button>
 </div>
-<div className="logoutButtonContainer">
+<div className="logoutButtonContainer" >
           <Button
             color="inherit"
             component={Link}
             onClick={handleLogout}
             className="linkButton logoutButton"
-      sx={buttonStyles}
+      sx={{buttonStyles, color:'white'}}
     >
       LogOut
     </Button>
