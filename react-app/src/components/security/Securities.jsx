@@ -11,7 +11,6 @@ const Securities = (props) => {
           <div className='hot-securities-container'>
             <h5> Hot Securities</h5>
               <AllSecurities info={props.info} allFilters={false}/>
-            
           </div>
 
           <div className='all-securities-container'>

@@ -9,7 +9,6 @@ import { useLocalStore } from "mobx-react-lite";
 import { CheckboxDropdown } from '../includes/CheckBoxDropDown';
 import { Button } from "react-bootstrap";
 
-
 const AllSecurities = (props) => {
     const [securities, setSecurities] = useState([]);
     const [error, setError] = useState("");
@@ -184,7 +183,7 @@ const AllSecurities = (props) => {
                 </>
             )
         }
-
     }
+
 
 export default AllSecurities
