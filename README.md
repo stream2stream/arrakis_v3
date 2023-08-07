@@ -23,9 +23,6 @@ Make sure following Environment Variables are defined:
 # Getting Started
 In this project, we build a Spring Boot Rest CRUD API with Maven that use Spring Data JPA to interact with MySQL/H2 database. 
 
-# Project Flow
-
-![This is an image](Business-Service-Controller-and-Repository.jpg)
 
 # Database 
 
