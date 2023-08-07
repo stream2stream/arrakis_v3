@@ -53,7 +53,7 @@ const BondTable = ({ data }) => {
         keyField = "id"
         data = {data}
         columns = {columns}
-        filter = {filterFactory() } 
+        filter = {filterFactory()} 
         pagination = {paginationFactory({ sizePerPage: 5 })} />
     </div>
   );

@@ -7,7 +7,7 @@ import AllBonds from './AllBonds';
 
 const Calendar = () => {
 
-  const [date, setDate] = useState([]);   
+  const [date, setDate] = useState(new Date());   
   const [bonds, setBonds] = useState([]);
 
 
@@ -16,21 +16,17 @@ const Calendar = () => {
 
     checkDateBonds(date)
         .then(res => {
-            console.log('data returned from Springboot get API');
             setBonds(res.data);
         })
         .catch(err => {
-            console.log('when no data returned from Springboot get API')
             setBonds([]);
         console.log(err);
         })
   } 
 
-
   return (
     <div>
-        <Form.Control type="date" name="datepic" placeholder="DateRange"
-        value={date} onChange={updateDate} />
+        <Form.Control type = "date" value = {date} onChange = {updateDate} />
         <BondTable data = {bonds} />
     </div>
   )
