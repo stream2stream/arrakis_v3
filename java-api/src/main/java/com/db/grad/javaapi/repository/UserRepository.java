@@ -15,6 +15,8 @@ import java.util.Map;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(nativeQuery = true, value = "select * from user where name = :name")
-    List<User> findAll();
+    @Query(nativeQuery = true, value = "SELECT s.isin, s.cusip, s.issuer_name, s.maturity_date, s.coupon, s.type, s.face_value, s.currency \n" + "FROM security s \n" +
+            "JOIN trades t ON t.security_id = s.id \n" +
+            "WHERE DATEDIFF('day', s.maturity_date, '2021-08-02') BETWEEN -5 AND 5\n")
+    List<User> findMaturedBondsForUser();
 }

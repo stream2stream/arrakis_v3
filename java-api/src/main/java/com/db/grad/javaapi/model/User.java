@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "userr")
 public class User {
     @Id
     private int id;
@@ -15,7 +15,7 @@ public class User {
     private String role;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "bookUsers")
+    @ManyToMany(mappedBy = "book_user")
     private Set<Book> books = new HashSet<>();
 
     @Id

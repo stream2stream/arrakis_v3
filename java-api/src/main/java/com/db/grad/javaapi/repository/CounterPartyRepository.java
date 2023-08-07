@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface CounterPartyRepository extends JpaRepository<CounterParty, Long> {
 
-    @Query(nativeQuery = true, value = "select * from CounterParty where name = :name")
+    @Query(nativeQuery = true, value = "select * from CounterParty")
     List<CounterParty> findAll();
 
 }

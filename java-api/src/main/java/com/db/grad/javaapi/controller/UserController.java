@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/maturityBonds")
-    public List<Map<String, Object>> getMaturedBondsForUser() {
+    public List<User>getMaturedBondsForUser() {
         return userService.getMaturedBondsForUser();
     }
 

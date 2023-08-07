@@ -31,8 +31,13 @@ public class UserHandler implements IUserService {
         return itsUserRepo.findAll();
     }
 
-    public List<Map<String, Object>> getMaturedBondsForUser() {
-        List<Map<String, Object>> result = new ArrayList<>();
+    public List<User>  getMaturedBondsForUser() {
+        return itsUserRepo.findMaturedBondsForUser();
+    }
+}
+
+/*
+List<Map<String, Object>> result = new ArrayList<>();
         String query = "SELECT s.isin, s.cusip, s.issuer_name, s.maturity_date, s.coupon, s.type, s.face_value, s.currency " +
                 "FROM security s " +
                 "JOIN trades t ON t.security_id = s.id " +
@@ -54,5 +59,4 @@ public class UserHandler implements IUserService {
             result.add(row);
         }
         return result;
-    }
-}
+ */

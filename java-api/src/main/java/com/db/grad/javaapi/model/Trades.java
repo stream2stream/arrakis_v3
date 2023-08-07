@@ -18,13 +18,13 @@ public class Trades {
     private int book_id;
     private int security_id;
     private int counterparty_id;
-    private String trade_currency;
-    private String trade_status;
+    private String currency;
+    private String status;
     private int quantity;
     private float unit_price;
-    private String trade_type;
+    private String buy_sell;
     private Date trade_date;
-    private Date trade_settlement_date;
+    private Date settlement_date;
 
     /*public Trades(int id, int bookId, int securityId, int counterpartyId, String currency, String status, int quantity, float unitPrice, String buySell, Date tradeDate, Date settlementDate) {
         this.id = id;
@@ -74,20 +74,20 @@ public class Trades {
         this.counterparty_id = counterpartyId;
     }
 
-    @Column(name = "trade_currency", nullable = false)
+    @Column(name = "currency", nullable = false)
     public String getCurrency() {
-        return trade_currency;
+        return currency;
     }
     public void setCurrency(String currency) {
-        this.trade_currency = currency;
+        this.currency = currency;
     }
 
-    @Column(name = "trade_status", nullable = false)
+    @Column(name = "status", nullable = false)
     public String getStatus() {
-        return trade_status;
+        return status;
     }
     public void setStatus(String status) {
-        this.trade_status = status;
+        this.status = status;
     }
 
     @Column(name = "quantity", nullable = false)
@@ -106,12 +106,12 @@ public class Trades {
         this.unit_price = unitPrice;
     }
 
-    @Column(name = "trade_type", nullable = false)
+    @Column(name = "buy_sell", nullable = false)
     public String getBuySell() {
-        return trade_type;
+        return buy_sell;
     }
     public void setBuySell(String buySell) {
-        this.trade_type = buySell;
+        this.buy_sell = buySell;
     }
 
     @Column(name = "trade_date", nullable = false)
@@ -122,12 +122,12 @@ public class Trades {
         this.trade_date = tradeDate;
     }
 
-    @Column(name = "trade_settlement_date", nullable = false)
+    @Column(name = "settlement_date", nullable = false)
     public Date getSettlementDate() {
-        return trade_settlement_date;
+        return settlement_date;
     }
     public void setSettlementDate(Date settlementDate) {
-        this.trade_settlement_date = settlementDate;
+        this.settlement_date = settlementDate;
     }
 }
 
