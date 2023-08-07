@@ -1,63 +1,156 @@
-import React from "react";
-import { Grid, Card, CardContent, CardHeader, Select, MenuItem } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardHeader,
+  Select,
+  MenuItem,
+  Modal,
+  List,
+  ListItem,
+  ListItemText,
+  Box,
+  Typography,
+} from "@mui/material";
 import NavBar from "../../components/NavBar/NavBar";
-import { useState} from "react";
+import axios from "axios";
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  height: 500,
+  overflowY: "scroll",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
-const Dashboard = () => {
-  const today = new Date();
-  const [selectedDay, setSelectedDay] = useState(0);
-  
+const Dashboard = ({ setIsLoggedIn }) => {
+  const [groupedDates, setGroupedDates] = useState([]);
+  const [selectedValue, setSelectedValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedBonds, setSelectedBonds] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
+
+  useEffect(() => {
+    fetchNextOrPreviousDates(0);
+  }, []);
+
+  const fetchNextOrPreviousDates = (days) => {
+    const endpoint =
+      days > 0
+        ? "http://localhost:8080/api/v1/calendar/next-five-days"
+        : "http://localhost:8080/api/v1/calendar/previous-five-days";
+
+    axios
+      .get(endpoint)
+      .then((response) => {
+        console.log("Response data:", response.data);
+
+        const dataByDate = response.data.reduce((acc, curr) => {
+          const date = curr.maturityDate.split("T")[0];
+          if (!acc[date]) {
+            acc[date] = [];
+          }
+          acc[date].push(curr);
+          return acc;
+        }, {});
+
+        setGroupedDates(Object.entries(dataByDate));
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
+
   const handleChange = (event) => {
-    setSelectedDay(event.target.value);
-  };
-  const generateDates = (numberOfDays) => {
-    const dates = [];
-    for (let i = -2; i < numberOfDays - 2; i++) {
-      const date = new Date(today.getTime() + i * 24 * 60 * 60 * 1000);
-      dates.push(date);
-    }
-    return dates;
+    setSelectedValue(event.target.value);
+    fetchNextOrPreviousDates(event.target.value);
   };
 
-  const handleDateChange = (date) => {
-    return date.toLocaleDateString("en-US", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-    });
+  const handleCardClick = (dateString, bonds) => {
+    setSelectedBonds(bonds);
+    setSelectedDate(dateString);
+    setOpenModal(true);
   };
 
-  const dates = generateDates(5 + selectedDay);
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <>
-    <NavBar />
-    <Select value={selectedDay} onChange={handleChange}>
-        {[...Array(11).keys()].map((index) => (
-          <MenuItem key={index} value={index - 5}>
-            {index - 5 === 0 ? "Today" : `${index - 5 > 0 ? "+" : ""}${index - 5} days`}
-          </MenuItem>
-        ))}
+      <NavBar setIsLoggedIn={setIsLoggedIn} />
+      <Select value={selectedValue} onChange={handleChange}>
+        <MenuItem value={-5}>-5 days</MenuItem>
+        <MenuItem value={5}>+5 days</MenuItem>
       </Select>
-    <Grid container spacing={2} direction="row" justify="center" className="container">
-    {dates.map((date, index) => (
-      <Grid item xs={2} key={index} className="grid-content">
-        <Card>
-          <CardHeader
-            title={date.toLocaleDateString("en-US", {
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justify="center"
+        className="container"
+      >
+        {groupedDates &&
+          groupedDates.map(([dateString, bonds], index) => {
+            const date = new Date(dateString);
+            return (
+              <Grid item xs={2} key={index} className="grid-content">
+                <Card onClick={() => handleCardClick(dateString, bonds)}>
+                  <CardHeader
+                    title={date.toLocaleDateString("en-US", {
+                      weekday: "long",
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                    subheader={`Total Bonds: ${bonds.length}`}
+                  />
+                </Card>
+              </Grid>
+            );
+          })}
+      </Grid>
+      <Modal
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            {`Bonds for ${new Date(selectedDate).toLocaleDateString("en-US", {
               weekday: "long",
               day: "numeric",
               month: "long",
-            })}
-          />
-          <CardContent>
-            {/* Alte informații despre card pot fi aici */}No bonds expiring
-          </CardContent>{" "}
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-  </>
+              year: "numeric",
+            })}`}
+          </Typography>
+          <List>
+            {selectedBonds &&
+              selectedBonds.map((bond) => (
+                <ListItem
+                  key={bond.id}
+                  button
+                  onClick={() =>
+                    (window.location.href = `/details/${bond.isin}`)
+                  }
+                >
+                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                    {bond.isin}
+                  </Typography>
+                </ListItem>
+              ))}
+          </List>
+        </Box>
+      </Modal>
+    </>
   );
 };
 

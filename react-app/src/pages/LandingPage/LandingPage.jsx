@@ -150,7 +150,7 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const LandingPage = () => {
+const LandingPage = ({ setIsLoggedIn }) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [rows, setRows] = useState([]);
@@ -225,7 +225,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar setIsLoggedIn={setIsLoggedIn} />
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>

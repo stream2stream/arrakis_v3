@@ -3,7 +3,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import axios from 'axios';
 import NavBar from '../../components/NavBar/NavBar';
 
-const UserBonds = () => {
+const UserBonds = ({ setIsLoggedIn }) => {
 
     const [bondsData, setBondsData] = useState([]);
     const loggedInUser = localStorage.getItem('loggedInUser');
@@ -25,7 +25,7 @@ const UserBonds = () => {
 
   return (
     <>
-    <NavBar/>
+   <NavBar setIsLoggedIn={setIsLoggedIn} />
     <TableContainer component={Paper}>
     <Table>
       <TableHead>
