@@ -8,3 +8,7 @@ export function getUserFromEmail(email)
 export function getAllSecurities(userId){
     return http.post("/security/userBooks/"+userId);
 }
+
+export function getIssuerNames(userId){
+    return http.get("/security/security-issuer/"+userId);
+}
