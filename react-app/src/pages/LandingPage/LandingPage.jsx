@@ -17,9 +17,10 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
+
 
 
 function createData(
@@ -50,10 +51,17 @@ function createData(
 
 function Row(props) {
   const { row } = props;
+
   const [open, setOpen] = React.useState(false);
 
   const showCollapse = row.transactions && row.transactions.length > 0;
+  
+  let navigate = useNavigate();
 
+  const handleISINClick = (isin) => {
+    navigate(`/detail/${isin}`);
+};
+  
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -69,8 +77,10 @@ function Row(props) {
            )}
         </TableCell>
         <TableCell component="th" scope="row">
-          <Link to={`/detail/${row.ISIN}`}>{row.ISIN}</Link>
-        </TableCell>
+        <span style={{cursor: 'pointer', textDecoration: 'underline', color: 'blue'}} onClick={() => handleISINClick(row.ISIN)}>
+          {row.ISIN}
+        </span>
+      </TableCell>
         <TableCell>{row.CUSIP}</TableCell>
         <TableCell>{row.Issue_Name}</TableCell>
         <TableCell>{row.Maturity_Date}</TableCell>
@@ -214,6 +224,8 @@ const LandingPage = ({ setIsLoggedIn }) => {
       });
   }, []);
 
+
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -222,6 +234,8 @@ const LandingPage = ({ setIsLoggedIn }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+
 
   return (
     <>

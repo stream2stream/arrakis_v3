@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = ({  setIsLoggedIn }) => {
+  
   const navigate = useNavigate();
   const handleLogout = () => {
     // Remove the loggedInUser from local storage
@@ -12,6 +13,7 @@ const NavBar = ({  setIsLoggedIn }) => {
     // Set the loggedIn state to false
     setIsLoggedIn(false);
   };
+  
 
   return (
     <AppBar position="static" className="AppBar">
