@@ -2,6 +2,7 @@ import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 
 
+
 {/*import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 const StatusFilter = ({ filter, onFilterChange }) => {
@@ -39,6 +40,7 @@ export default StatusFilter;
 
 function StatusFilter() {
   return (
+    <>
     <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         STATUS
@@ -49,7 +51,7 @@ function StatusFilter() {
         <Dropdown.Item href="#/action-2">Active</Dropdown.Item>
         <Dropdown.Item href="#/action-3">Inactive</Dropdown.Item>
       </Dropdown.Menu>
-    </Dropdown>
+    </Dropdown></>
   );
 }
 
