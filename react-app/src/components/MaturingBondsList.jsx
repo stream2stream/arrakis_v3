@@ -1,6 +1,5 @@
+import React, { useState, useEffect } from "react";
 import { getBondsByDate } from "../services/BondServices";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const MaturingBondsList = (props) => {
   const [bonds, setDateBonds] = useState([]);
@@ -14,10 +13,6 @@ const MaturingBondsList = (props) => {
   // }, [props.props.info.check]);
 
   useEffect(() => {
-    getBondsByDateFromAPI();
-}, [props.props.info.check, props.props.info.date]);
-
-  const getBondsByDateFromAPI = () => {
     getBondsByDate(props.props)
       .then((res) => {
         setDateBonds(res.data);
@@ -26,7 +21,8 @@ const MaturingBondsList = (props) => {
         setDateBonds([]);
         console.log(err);
       });
-  };
+}, [props.props]);
+
 
 
 

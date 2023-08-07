@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllBonds } from "../services/BondServices";
-import { useState } from "react";
-import { createRoutesFromElements } from "react-router-dom";
+import SingleBondView from "./SingleBondView";
+
 
 const AllBonds = () => {
   const [bonds, setBonds] = useState([]);
@@ -48,10 +48,16 @@ const AllBonds = () => {
 
   return (
     <>
-      <div>
-        <label>
-          <input type="checkbox" checked={checked} onChange={handleChange} />
-          Show only my books 
+      <div className="form-check">
+        <input
+          type="checkbox"
+          className="form-check-input"
+          checked={checked}
+          onChange={handleChange}
+          id="showOnlyMyBooks"
+        />
+        <label className="form-check-label" htmlFor="showOnlyMyBooks">
+          Show only my books
         </label>
       </div>
       <table className="table table-striped">
@@ -74,7 +80,16 @@ const AllBonds = () => {
           {bonds.map((row, index) => (
             <React.Fragment key={index + 'p'}>
               <tr key={index}>
-                <td><button id={index} onClick={handleExpand}>{row.expanded ? "<" : ">"}</button></td>
+                <td>
+                  <button
+                    id={index}
+                    onClick={handleExpand}
+                    className="btn btn-outline-primary"
+                    style={{ width: '50px' }}
+                  >
+                    {row.expanded ? '-' : '+'}
+                  </button>
+                </td>
                 <td>{row.isin}</td>
                 <td>{row.cusip}</td>
                 <td>{row.type}</td>
@@ -87,7 +102,7 @@ const AllBonds = () => {
                 <td>{row.status}</td>
               </tr>
               {row.expanded ? <tr key={index + 'e'}>
-                <td colSpan={11}><p>heyo</p></td>
+                <td colSpan={11}><SingleBondView bond={row} /></td>
               </tr> : null}
             </React.Fragment>
           ))}

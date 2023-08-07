@@ -1,7 +1,9 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SingleBondView = ({ bond }) => {
+    const {expanded, ...other} = bond;
+    bond = other;
+
     const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(dateString).toLocaleDateString(undefined, options);
