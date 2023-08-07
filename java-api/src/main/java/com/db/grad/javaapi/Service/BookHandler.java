@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class BookService{
+public class BookHandler {
 
     private BookRepository bookRepository;
 
     @Autowired
-    public BookService(BookRepository bookRepository) {
+    public BookHandler(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
