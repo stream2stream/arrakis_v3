@@ -6,6 +6,8 @@ import './custom-scss.scss';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
+import "react-date-range/dist/styles.css"; // date range main css file
+import "react-date-range/dist/theme/default.css"; // date range theme css file
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
