@@ -30,7 +30,7 @@ const App = () => {
           />
 
           <Route 
-            path="/detail/:ISIN" 
+            path="/detail/:isin" 
             element={isLoggedIn ? <DetailPage /> : <Navigate to="/login" replace />} 
           />
 

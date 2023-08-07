@@ -13,6 +13,7 @@ const theme = createTheme({
   },
 });
 const NavBar = ({  setIsLoggedIn }) => {
+  
   const navigate = useNavigate();
   const handleLogout = () => {
     // Remove the loggedInUser from local storage
@@ -21,6 +22,7 @@ const NavBar = ({  setIsLoggedIn }) => {
     // Set the loggedIn state to false
     setIsLoggedIn(false);
   };
+  
 
   return (
     <AppBar position="static" className="AppBar" style={{ backgroundColor: theme.palette.primary.main }} >

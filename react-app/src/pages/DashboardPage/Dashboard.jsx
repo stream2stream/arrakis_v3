@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -36,6 +37,8 @@ const Dashboard = ({ setIsLoggedIn }) => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedBonds, setSelectedBonds] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
+  const [bondDetails, setBondDetails] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchNextOrPreviousDates(0);
@@ -82,6 +85,14 @@ const Dashboard = ({ setIsLoggedIn }) => {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
+
+  const handleISINClick = (isin) => {
+    console.log("Trying to navigate to details for ISIN:", isin); 
+ 
+    navigate(`/detail/${isin}`);
+
+};
+
 
   return (
     <>
@@ -137,12 +148,10 @@ const Dashboard = ({ setIsLoggedIn }) => {
             {selectedBonds &&
               selectedBonds.map((bond) => (
                 <ListItem
-                  key={bond.id}
-                  button
-                  onClick={() =>
-                    (window.location.href = `/details/${bond.isin}`)
-                  }
-                >
+    key={bond.id}
+    button
+    onClick={() => handleISINClick(bond.isin)}
+>
                   <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                     {bond.isin}
                   </Typography>

@@ -31,4 +31,8 @@ public interface SecurityRepository extends JpaRepository<Security, Integer> {
 
     @Query(value = "SELECT * FROM security AS s WHERE s.maturity_date BETWEEN '2021-08-01' AND '2021-08-05'", nativeQuery = true)
     List<Security> getBondsForPreviousFiveDays();
+
+
+    @Query(value = "SELECT * from security AS s WHERE s.isin =:isin", nativeQuery = true)
+    Security findBondByIsin(@Param("isin") String isin);
 }

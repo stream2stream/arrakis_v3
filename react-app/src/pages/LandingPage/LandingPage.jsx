@@ -17,7 +17,7 @@ import Paper from "@mui/material/Paper";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { Link, Route, BrowserRouter as Router, Routes } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import axios from "axios";
 
@@ -51,10 +51,17 @@ function createData(
 
 function Row(props) {
   const { row } = props;
+
   const [open, setOpen] = React.useState(false);
 
   const showCollapse = row.transactions && row.transactions.length > 0;
+  
+  let navigate = useNavigate();
 
+  const handleISINClick = (isin) => {
+    navigate(`/detail/${isin}`);
+};
+  
   return (
     <React.Fragment>
       <TableRow
@@ -73,9 +80,11 @@ function Row(props) {
            )}
         </TableCell>
         <TableCell className={`${row.id % 2 === 0 ? "TableCellString" : "TableCellNumber"} ${"TableHeadCell"}`}>
-        <Link to={`/detail/${row.ISIN}`} className="ISINLink">{row.ISIN}</Link>
-        </TableCell>
-        <TableCell className={`${row.id % 2 === 0 ? "TableCellString" : "TableCellString"} ${"TableHeadCell"}`}>{row.CUSIP}</TableCell>
+        <span style={{cursor: 'pointer', textDecoration: 'underline', color: 'blue'}} onClick={() => handleISINClick(row.ISIN)}>
+          {row.ISIN}
+        </span>
+      </TableCell>
+      <TableCell className={`${row.id % 2 === 0 ? "TableCellString" : "TableCellString"} ${"TableHeadCell"}`}>{row.CUSIP}</TableCell>
         <TableCell className={`${row.id % 2 === 0 ? "TableCellString" : "TableCellString"} ${"TableHeadCell"}`}>{row.Issue_Name}</TableCell>
         <TableCell className={`${row.id % 2 === 0 ? "TableCellString" : "TableCellString"} ${"TableHeadCell"}`}>{row.Maturity_Date}</TableCell>
         <TableCell className={`${row.id % 2 === 0 ? "TableCellString" : "TableCellNumber"} ${"TableHeadCell"}`}>{row.Coupon}</TableCell>
@@ -218,6 +227,8 @@ const LandingPage = ({ setIsLoggedIn }) => {
       });
   }, []);
 
+
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -226,6 +237,8 @@ const LandingPage = ({ setIsLoggedIn }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+
 
   return (
     <>
