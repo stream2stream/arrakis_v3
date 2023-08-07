@@ -10,9 +10,8 @@ const Securities = (props) => {
         <div className='hot-all-securities'>
           <div className='hot-securities-container'>
             <h5> Hot Securities</h5>
-            <div className='scroll-container'>
               <AllSecurities info={props.info} allFilters={false}/>
-            </div>
+            
           </div>
 
           <div className='all-securities-container'>

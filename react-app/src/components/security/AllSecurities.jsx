@@ -21,7 +21,7 @@ const AllSecurities = (props) => {
         console.log("donnee")
     }
     const issuer = useLocalStore(() => ({
-        title: "issuer",
+        title: "select issuer",
         method: issuerMethod,
         items: [
             { id: "em", label: "Exact Mass", checked: true },
@@ -36,7 +36,7 @@ const AllSecurities = (props) => {
         console.log("type")
     }
     const type = useLocalStore(() => ({
-        title: "type",
+        title: "select type",
         method: typeMethod,
         items: [
             { id: "em", label: "Exact Mass", checked: true },
@@ -59,134 +59,132 @@ const AllSecurities = (props) => {
                 setLoaded(false);
             })
 
-    }
-
-    const getAllSecuritiesFromAPI = () => {
-        const userId = user.id;
-        getAllSecurities(userId)
-            .then(res => {
-                setLoaded(true);
-                setSecurities(res.data);
-                setError('');
-            })
-            .catch(err => {
-                setSecurities([]);
-                setError(err);
-                console.log(err);
-                setLoaded(false);
-            })
-    }
-
-    useEffect(() => {
-        getUserFromEmailAPI();
-
-    },
-        []
-    );
-    useEffect(() => {
-        if (!user) {
-            return;
+        const getAllSecuritiesFromAPI = () => {
+            const userId = user.id;
+            getAllSecurities(userId)
+                .then(res => {
+                    setLoaded(true);
+                    setSecurities(res.data);
+                    setError('');
+                })
+                .catch(err => {
+                    setSecurities([]);
+                    setError(err);
+                    console.log(err);
+                    setLoaded(false);
+                })
         }
-        getAllSecuritiesFromAPI();
 
-    },
-        [user]
-    );
+        useEffect(() => {
+            getUserFromEmailAPI();
+        },
+            []
+        );
+        useEffect(() => {
+            if (!user) {
+                return;
+            }
+            getAllSecuritiesFromAPI();
 
-    const applyFilter = (e) => {
-        e.preventDefault();
-    }
+        },
+            [user]
+        );
 
-    if (error && !loaded) {
-        return (
-            <div className='x'>
-                <p>
-                    ERROR LOADING SECURITIES
-                </p>
-            </div>
-        )
-    }
-    if (!loaded && !error) {
-        return (
-            <div className='x'>
-                <p>
-                    LOADING SECURITIES
-                </p>
-            </div>
-        )
-    }
-    if (loaded) {
-        return (
+        const applyFilter = (e) => {
+            e.preventDefault();
+        }
 
-            <>
-                <div className='securities-filter-container'>
+        if (error && !loaded) {
+            return (
+                <div className='x'>
+                    <p>
+                        ERROR LOADING SECURITIES
+                    </p>
+                </div>
+            )
+        }
+        if (!loaded && !error) {
+            return (
+                <div className='x'>
+                    <p>
+                        LOADING SECURITIES
+                    </p>
+                </div>
+            )
+        }
+        if (loaded) {
+            return (
 
-                    <div className='search-bar-container'>
-                        <form className='search-form'>
-                            <div className="mb-3">
-                                <input type="text" className="form-control" placeholder="Search" />
-                            </div>
-                        </form>
-                    </div>
-                    <div className='vl-white'></div>
+                <>
+                    <div className='securities-filter-container'>
 
-                    <div className='securities-attributes-container'>
-                        <div className="date-range-container">
-                            <DateRangePickerOverlay />
-                        </div>
-                        {
-                            props.allFilters ? (
-                                <><div className="issuer-name-container">
-                                    <div><span className="filter-label">Issuer Name</span></div>
-                                    <CheckboxDropdown info={issuer} />
+                        <div className='search-bar-container'>
+                            <form className='search-form'>
+                                <div className="mb-3">
+                                    <input type="text" className="form-control" placeholder="Search" />
                                 </div>
-
-
-                                    <div className="type-container">
-                                        <div><span className="filter-label">Type</span></div>
-                                        <CheckboxDropdown info={type} />
-                                    </div>
-                                </>) : <></>
-                        }
-
-                        <div className="apply-filter-btn-container">
-                            <Button id='btn-filter-white' onClick={applyFilter}>
-                                apply
-                            </Button>
+                            </form>
                         </div>
+                        <div className='vl-white'></div>
 
-                    </div>
-                </div>
-
-                <div className='all-securities-table-container'>
-                    <Table striped bordered hover className='all-securities-table'>
-                        <thead>
-                            <tr>
-                                <th>ISIN</th>
-                                <th>CUSIP</th>
-                                <th>Issuer Name</th>
-                                <th>Maturity Date</th>
-                                <th>Coupon</th>
-                                <th>Type</th>
-                                <th>Face Value</th>
-                                <th>Currency</th>
-                                <th>Status</th>
-                            </tr>
-
-                        </thead>
-                        <tbody>
+                        <div className='securities-attributes-container'>
+                            <div className="date-range-container">
+                                <DateRangePickerOverlay />
+                            </div>
                             {
-                                securities.map(security => (
-                                    < SecurityDetails info={security} key={security.id} />
-                                ))
-                            }
-                        </tbody>
-                    </Table>
-                </div>
-            </>
-        )
-    }
+                                props.allFilters ? (
+                                    <><div className="issuer-name-container">
+                                        <div><span className="filter-label">Issuer Name</span></div>
+                                        <CheckboxDropdown info={issuer} />
+                                    </div>
 
+
+                                        <div className="type-container">
+                                            <div><span className="filter-label">Type</span></div>
+                                            <CheckboxDropdown info={type} />
+                                        </div>
+                                    </>) : <></>
+                            }
+
+                            <div className="apply-filter-btn-container">
+                                <Button id='btn-filter-white' onClick={applyFilter}>
+                                    apply
+                                </Button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div className='all-securities-table-container'>
+                        <Table striped bordered hover className='all-securities-table'>
+                            <thead>
+                                <tr>
+                                    <th>ISIN</th>
+                                    <th>CUSIP</th>
+                                    <th>Issuer Name</th>
+                                    <th>Maturity Date</th>
+                                    <th>Coupon</th>
+                                    <th>Type</th>
+                                    <th>Face Value</th>
+                                    <th>Currency</th>
+                                    <th>Status</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                {
+                                    securities.map(security => (
+                                        < SecurityDetails info={security} key={security.id} />
+                                    ))
+                                }
+                            </tbody>
+                        </Table>
+                    </div>
+                </>
+            )
+        }
+
+    }
 }
 
 export default AllSecurities
