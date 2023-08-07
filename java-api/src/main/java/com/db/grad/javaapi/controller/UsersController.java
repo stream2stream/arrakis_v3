@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins="http://localhost:3000")
-//@CrossOrigin(origins= "http://localhost:3000")
-//@CrossOrigin(origins= {"http://localhost:3000", "http://localhost:8080"})
-//@CrossOrigin(origins= "*")
+//@CrossOrigin(origins= "http://localhost:3000") //"http://localhost:8080"
+@CrossOrigin
 public class UsersController {
     @Autowired
     UsersService usersService;
@@ -35,7 +33,8 @@ public class UsersController {
 
         //Only make a new account if the email is not already in use
         if(users == null || users.size() == 0) {
-            usersService.addNewUser(username, password, email, role);
+            User u = new User(username, password, email, role);
+            usersService.addNewUser(u);
 
             //Verify it was added
             users = usersService.findUserByEmail(email);
@@ -51,7 +50,7 @@ public class UsersController {
     public int updateUser(@RequestParam("email") String email,
                          @RequestParam("username") String username,
                          @RequestParam("password") String password) {
-        int id = usersService.findUserId(username, email);
+        int id = usersService.findUserId(email, username);
         boolean isUpdated = false;
 
         //Only update the account of a matching email AND username

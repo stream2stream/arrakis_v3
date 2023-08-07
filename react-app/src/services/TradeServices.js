@@ -13,13 +13,13 @@ export function getAllTrades(userID){
 }
 
 export function updateUser(email, username, password){
-  return http.get("/updateUser?" + "email=" + email + 
+  return http.put("/updateUser?" + "email=" + email + 
                                  "&username=" + username + 
                                  "&password=" + password);
 }
 
 export function createAcc(email, username, password, role) {
-  return http.get("/createAcc?" + "email=" + email + 
+  return http.post("/createAcc?" + "email=" + email + 
                                   "&username=" + username + 
                                   "&password=" + password +
                                   "&role=" + role);

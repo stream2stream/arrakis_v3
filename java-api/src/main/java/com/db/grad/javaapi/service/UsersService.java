@@ -16,11 +16,8 @@ public class UsersService {
         return usersRepository.findAll();
     }
 
-    public void addNewUser(String email, String username, String password, String role) {
-        if(email == null || username == null || password == null || role == null) {
-            return;
-        }
-        usersRepository.addUser(username, password, email, role);
+    public void addNewUser(User u) {
+        usersRepository.save(u);
     }
 
     public List<User> findUserByEmail(String email) {
@@ -68,6 +65,17 @@ public class UsersService {
         //that does not match the given id (WHERE conditions)
 
         //Successful update returns an updated row (since id is unique)
-        return (usersRepository.updateUserPwd(password, id).size() == 1);
+//        return (usersRepository.updateUserPwd(password, id).size() == 1);
+        List<User> users = usersRepository.getUserById(id);
+
+        if(users == null || users.size() == 0) {
+            return false;
+        }
+
+        User u = users.get(0);
+        u.setPassword(password);
+
+        usersRepository.save(u);
+        return true;
     }
 }
