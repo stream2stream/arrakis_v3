@@ -10,6 +10,7 @@ const Calendar = () => {
   const [date, setDate] = useState([]);   
   const [bonds, setBonds] = useState([]);
 
+
   const updateDate = (event) => {
     setDate(event.target.value)
 
@@ -17,8 +18,6 @@ const Calendar = () => {
         .then(res => {
             console.log('data returned from Springboot get API');
             setBonds(res.data);
-            console.log(res.data);
-            console.log(bonds);
         })
         .catch(err => {
             console.log('when no data returned from Springboot get API')
@@ -32,7 +31,7 @@ const Calendar = () => {
     <div>
         <Form.Control type="date" name="datepic" placeholder="DateRange"
         value={date} onChange={updateDate} />
-        <AllBonds data = {bonds} />
+        <BondTable data = {bonds} />
     </div>
   )
 }
