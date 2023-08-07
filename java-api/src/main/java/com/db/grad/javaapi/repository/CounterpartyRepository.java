@@ -15,8 +15,6 @@ public interface CounterpartyRepository extends JpaRepository<Counterparty, Inte
         In order to identify who currently owns the bond,
         as a user I want to be able to see the client name of the bond
      */
-    @Query(nativeQuery = true, value = "SELECT DISTINCT c.bond_holder FROM Trade t JOIN Counterparty c ON t.bond_holder_id = c.bond_holder_id\n" +
-            "JOIN Security s ON t.trade_id = s.security_id\n" +
-            "WHERE s.issuer_name = :issuer;")
-    List<Trade> findClientName(String issuer);
+    @Query(nativeQuery = true, value = "SELECT c.bond_holder_id, c.bond_holder FROM Trade t JOIN Counterparty c ON t.bond_holder_id = c.bond_holder_id  JOIN Security s ON t.trade_id = s.security_id WHERE s.issuer_name = :issuer")
+    List<Counterparty> findClientName(String issuer);
 }

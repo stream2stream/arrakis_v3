@@ -15,9 +15,7 @@ public interface TradeRepository extends JpaRepository<Trade, Integer> {
         In order to be able to uniquely identify bond trades,
         as a user I want to be able to see a Bond’s ISIN and CUSIP code
      */
-    @Query(nativeQuery = true, value = "SELECT trade_date, trade_settlement_date, trade_type, trade_currency, trade_status, unit_price, quantity, s.isin, s.cusip\n" +
-            "FROM Trade t JOIN Security s ON t.trade_id = security_id\n" +
-            "WHERE s.issuer_name = :issuer;")
+    @Query(nativeQuery = true, value = "SELECT trade_id, book_id, bond_holder_id, trade_date, trade_settlement_date, trade_type, trade_currency, trade_status, unit_price, quantity, s.isin, s.cusip FROM Security s JOIN Trade t ON t.trade_id = s.security_id WHERE s.issuer_name = :issuer")
     List<Trade> identifyIsinCusip(String issuer);
 
 

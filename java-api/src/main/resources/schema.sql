@@ -54,9 +54,9 @@ CREATE TABLE Security(
     type VARCHAR(50) DEFAULT NULL,
     issuer_name VARCHAR(250) NOT NULL,
     maturity_date DATETIME DEFAULT NULL,
-    faceValue float NOT NULL,
-    bondCurrency varchar(10) NOT NULL,
-    coupon float not null,
+    facevalue float NOT NULL,
+    bondcurrency varchar(10) NOT NULL,
+    coupon float DEFAULT NULL,
     status varchar(20) not null
 );
 

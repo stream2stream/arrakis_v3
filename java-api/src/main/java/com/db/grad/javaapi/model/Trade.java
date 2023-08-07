@@ -11,7 +11,7 @@ public class Trade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int book_id;
-    private int security_id;
+//    private int security_id;
     private int counterparty_id;
     private String currency;
     private String status;
@@ -40,14 +40,14 @@ public class Trade {
         this.book_id = book_id;
     }
 
-    @Column(name = "security_id", nullable = false)
-    public int getSecurity_id() {
-        return security_id;
-    }
-
-    public void setSecurity_id(int security_id) {
-        this.security_id = security_id;
-    }
+//    @Column(name = "security_id", nullable = false)
+//    public int getSecurity_id() {
+//        return security_id;
+//    }
+//
+//    public void setSecurity_id(int security_id) {
+//        this.security_id = security_id;
+//    }
 
     @Column(name = "bond_holder_id", nullable = false)
     public int getCounterparty_id() {
@@ -126,7 +126,7 @@ public class Trade {
         return "Trade{" +
                 "id=" + id +
                 ", book_id=" + book_id +
-                ", security_id=" + security_id +
+//                ", security_id=" + security_id +
                 ", counterparty_id=" + counterparty_id +
                 ", currency='" + currency + '\'' +
                 ", status='" + status + '\'' +

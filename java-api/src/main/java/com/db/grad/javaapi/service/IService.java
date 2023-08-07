@@ -14,7 +14,9 @@ public interface IService<T> {
 
     public T getById(Integer uniqueId);
 
-    public T getByName(String issuer);
+//    public List<T> getByName(String issuer);
+    public List<T> getByName(String issuer);
+
 
 //    public T updateIssuerDetails(T bondToUpdate);
 }

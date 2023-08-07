@@ -15,8 +15,7 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
         In order to manage my portfolio of bonds,
         as a user I want to be able to see bonds in books I am responsible for
      */
-    @Query(nativeQuery = true, value = "SELECT DISTINCT b.book_name FROM Trade t JOIN Security s ON t.trade_id = s.security_id\n" +
-            "JOIN Book b ON t.book_id = b.book_id WHERE s.issuer_name = :issuer;")
+    @Query(nativeQuery = true, value = "SELECT DISTINCT b.book_id, b.book_name FROM Trade t JOIN Security s ON t.trade_id = s.security_id JOIN Book b ON t.book_id = b.book_id WHERE s.issuer_name = :issuer")
     List<Book> findBook(String issuer);
 
 }

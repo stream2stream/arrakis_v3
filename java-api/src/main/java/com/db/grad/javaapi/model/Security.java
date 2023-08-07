@@ -52,7 +52,7 @@ public class Security {
     public void setMaturity_date(Date maturity_date) {
         Maturity_date = maturity_date;
     }
-    @Column(name="issuer", nullable = false)
+    @Column(name="issuer_name", nullable = false)
     public String getIssuer(){
         return Issuer;
     }
@@ -60,7 +60,7 @@ public class Security {
         this.Issuer=Issuer;
     }
 
-    @Column(name="coupon", nullable = false)
+    @Column(name="coupon", nullable = true)
     public float getCoupon() {
         return coupon;
     }
@@ -77,7 +77,7 @@ public class Security {
     public void setType(String type) {
         Type = type;
     }
-    @Column(name="faceValue", nullable = false)
+    @Column(name="facevalue", nullable = false)
     public float getFace_Value() {
         return Face_Value;
     }
@@ -86,7 +86,7 @@ public class Security {
         Face_Value = face_Value;
     }
 
-    @Column(name="bondCurrency")
+    @Column(name="bondcurrency")
     public String getCurrency() {
         return Currency;
     }

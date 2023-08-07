@@ -24,7 +24,7 @@ public class User {
         this.user_id = user_id;
     }
 
-    @Column(name = "issuer", nullable = false)
+    @Column(name = "issuer_name", nullable = false)
     public String getIssuer() {
         return issuer;
     }
