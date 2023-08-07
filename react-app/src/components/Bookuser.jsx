@@ -14,8 +14,8 @@ export const Bookusers = () => {
     <>
         { bookusers.map(bookuser => 
         <div >
-            <div>ID: {bookuser.user_id}</div>
-            <div>Name: {bookuser.book_id} </div>
+            <div>Issuer name: {bookuser.issuer_name}</div>
+            <div>ID: {bookuser.id} </div>
         </div>) 
         }
     </>
