@@ -1,7 +1,5 @@
 
 import React from 'react';
-
-import { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
@@ -20,27 +18,9 @@ const BookTable = ({ data }) => {
       text: "Book Name",
   
     },
-    
   ];
+  
   return (
-    // <table>
-    //   <thead>
-    //         <th>Id</th>
-    //         <th>Book Name</th>
-         
-    //   </thead>
-    //   <tbody>
-    //     {data.map((index) => (
-    //        <tr key={index.id}>
-    //        <td>{index.id}</td>
-    //       <td >{index.bookName}</td>
-        
-    //      </tr>
-    //     ))}
-    //   </tbody>
-    // </table>
-
-
     <div className="App">
       <BootstrapTable
         bootstrap4

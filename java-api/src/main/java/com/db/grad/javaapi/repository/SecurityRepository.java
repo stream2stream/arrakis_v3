@@ -16,7 +16,4 @@ public interface SecurityRepository extends JpaRepository<Security, Integer>
 
     @Query(nativeQuery = true, value = "SELECT * FROM Security s WHERE DATEDIFF('DAY', :date, s.maturity_date) BETWEEN -5 AND 5")
     List<Security> findByMaturityDateNear(Date date);
-
-
-
 }
