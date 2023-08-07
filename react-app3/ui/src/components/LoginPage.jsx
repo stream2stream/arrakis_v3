@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom'; // Import withRouter from react-router-dom
+//import { withRouter } from 'react-router-dom'; // Import withRouter from react-router-dom
 import Page4 from './Page4';
 
 const LoginPage = ({ history }) => { // Pass the 'history' prop from withRouter
@@ -21,15 +21,12 @@ const LoginPage = ({ history }) => { // Pass the 'history' prop from withRouter
     // For simplicity, we'll assume the login is successful with any non-empty email and password
     if (email.trim() !== '' && password.trim() !== '') {
       setLoggedIn(true);
-      history.push('/main'); // Redirect to the main content page after successful login
+      history.push('/Page4'); // Redirect to the main content page after successful login
     } else {
       alert('Invalid credentials. Please try again.');
     }
   };
 
-  if (loggedIn) {
-    return <Page4 />;
-  }
 
   return (
     <div>
@@ -41,4 +38,4 @@ const LoginPage = ({ history }) => { // Pass the 'history' prop from withRouter
   );
 };
 
-export default withRouter(LoginPage); // Wrap LoginPage with withRouter
+export default LoginPage; // Wrap LoginPage with withRouter
