@@ -1,3 +1,9 @@
+# Use this link for all the front end files! I had to work on a separate fork due to bugs.
+https://github.com/lisadesai/arrakis_v3/tree/test_5
+
+
+
+
 # arrakis_v3
 # Dogs APIs
 
