@@ -2,6 +2,7 @@ import React, { createContext, useState } from 'react';
 import onChange from "react";
 import ReactSwitch from "react-switch";
 import '../styles/layout.css';
+import Modal from './Modal'
 import AllBooks from './AllBooks'
 import AllBonds from './AllBonds'
 import DateBox from './DateBox'
@@ -38,6 +39,12 @@ const Home = () => {
     navigate("/filter");
 
   }
+    const handleLogout = (event) => {
+        //Prevent page reload
+        event.preventDefault();
+
+        navigate("/")
+    }
   const [theme, setTheme] = useState("light")
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark": "light"));
@@ -62,28 +69,42 @@ const Home = () => {
         
       </Navbar>
       </header>
+          <div className="left-column" id={theme}>
+
       <div className='main'>
+          <div className="top-right">
+              <Button as="input" type="logout" value="Sign out" onClick={handleLogout} />
+          </div>
+
+          <div className='box'>
+              <Modal></Modal>
+          </div>
+
       <div className='switch'>
         <label>{theme ==="light" ? "Light Mode" : "Dark Mode"}</label>
         <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
+
+
+          <div className="filter">
+              <Button onClick={handleCalendar}>Filter By Date</Button>
+          </div>
+              <div className='bidnumber'></div>
+
         </div>
 
-      <div className="left-column" id={theme}>
-        <div className='box'id={theme}>
-          <DateBox></DateBox>
-        </div>
-        <div>
-          <Button onClick={handleCalendar}>Filter By Date</Button>
-        </div>
+
+
+
         <div className='bidnumber'>
 
         </div>
+
 
       </div>
 
       <div className='table-container' id={theme}>
         <div className="right-column" id={theme}>
-          
+
           <table id={theme}>
 
             <AllBonds></AllBonds>
