@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,44 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+ */
+
+ /* TwoColumnLayout.css */
+
+.two-column-container {
+  display: flex;
+}
+
+.left-column {
+  flex: 1;
+  padding: 10px;
+  /* Add any other styles for the left column */
+}
+
+.right-column {
+  flex: 1;
+  padding: 10px;
+  /* Add any other styles for the right column */
+}
+
+/* Add any additional styles for the tables as needed */
+
+
+/* Add borders to the table header */
+th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+/* Add borders to the table rows */
+tr {
+  border: 1px solid #ddd;
+}
+
+/* Add borders to the table cells */
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
 }

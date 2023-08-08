@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Add borders to the table */
+table {
+  white-space: normal;
+  overflow-wrap: break-word;
+  border-collapse: collapse;
+  font-size: 15px;
+  width: 100% !important;
+}
+th{
+  overflow-wrap: normal;
+  width: fit-content;
+  align-items: center;
+}
+tr{
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+#root > div > div.input-group{
+  width: fit-content;
+}
+
+
