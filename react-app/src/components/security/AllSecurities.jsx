@@ -3,14 +3,11 @@ import Table from 'react-bootstrap/Table';
 import { useState, useEffect } from 'react';
 import SecurityDetails from './SecurityDetails';
 import { auth } from '../../firebase';
-import { getAllSecurities, getUserFromEmail, getIssuerNames } from '../../services/security-service';
+import { getAllSecurities, getUserFromEmail, getIssuerNames, getSecuritiesByIssuerName, getSecuritiesByDateTypeIssuer } from '../../services/security-service';
 import DateRangePickerOverlay from '../includes/DateRangePickerOverlay';
 import { useLocalStore } from "mobx-react-lite";
 import { CheckboxDropdown } from '../includes/CheckBoxDropDown';
 import { Button } from "react-bootstrap";
-import { runInAction } from "mobx"
-import BasicDropDown from '../includes/BasicDropdown';
-import MyDateRangePicker from '../includes/MyDateRangePicker';
 
 const AllSecurities = (props) => {
     //loading securities
@@ -30,6 +27,7 @@ const AllSecurities = (props) => {
     setOfIssuerNames.add("HM Treasury United Kingdon")
     setOfIssuerNames.add("TEMASEK FINL I LTD GLOBAL MEDIUM TERM NTS BOOK ENTRY REG S")
     setOfIssuerNames.add("First Norway Alpha Kl.IV")
+    setOfIssuerNames.add("x0x0")
     const [selectedIssuerNames, setSelectedIssuerNames] = useState(setOfIssuerNames)
 
 
@@ -37,6 +35,8 @@ const AllSecurities = (props) => {
     const [dateRange, setDateRange] = useState({
         startDate: null,
         endDate: null,
+        startDateString: "",
+        endDateString: "",
         key: "selection",
     });
     const setNewDateRange = (newDateRange) => {
@@ -45,22 +45,21 @@ const AllSecurities = (props) => {
 
     const filterParams = {
         user: user,
-        date_range: dateRange,
-        issuer_names: selectedIssuerNames,
-        types: []
+        dateRange: dateRange,
+        issuerName: [...selectedIssuerNames],
+        type: []
     }
 
     const issuerMethod = (issuer) => {
-        if(selectedIssuerNames.has(issuer)){
+        if (selectedIssuerNames.has(issuer)) {
             selectedIssuerNames.delete(issuer);
             console.log("deleted")
-        }else{
+        } else {
             selectedIssuerNames.add(issuer)
             console.log("added")
         }
-        console.log(selectedIssuerNames)
-        setSelectedIssuerNames(selectedIssuerNames)
-    }
+        setSelectedIssuerNames([...selectedIssuerNames])
+    }
 
 
     const issuerItems = useLocalStore(() => ({
@@ -70,8 +69,56 @@ const AllSecurities = (props) => {
     }));
 
     const applyFilter = (e) => {
-        e.preventDefault();
-        console.log(filterParams)
+
+        if (filterParams.dateRange.endDate && filterParams.dateRange.startDate) {
+            prepareFilter(filterParams)
+
+            getSecuritiesByDateTypeIssuer(filterParams)
+                .then(res => {
+                    setLoaded(true);
+                    setSecurities(res.data);
+                    console.log(res.data)
+                    setError('');
+
+                })
+                .catch(err => {
+                    setSecurities([]);
+                    setError(err);
+                    console.log(err);
+                    setLoaded(false);
+                })
+        } else {
+            filterParams.user = user.id
+            getSecuritiesByIssuerName(filterParams)
+                .then(res => {
+                    setLoaded(true);
+                    setSecurities(res.data);
+                    console.log(res.data)
+                    setError('');
+
+                })
+                .catch(err => {
+                    setSecurities([]);
+                    setError(err);
+                    console.log(err);
+                    setLoaded(false);
+                })
+        }
+
+    }
+
+    const prepareFilter = (parameters) => {
+        let d = parameters.dateRange.startDate
+        let datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+            d.getFullYear()
+        parameters.dateRange.startDateString = datestring;
+
+        d = parameters.dateRange.endDate
+        datestring = ("0" + d.getDate()).slice(-2) + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+            d.getFullYear()
+        parameters.dateRange.endDateString = datestring;
+
+        parameters.user = user.id
     }
 
     const getUserFromEmailAPI = () => {
@@ -89,12 +136,47 @@ const AllSecurities = (props) => {
 
     const getAllSecuritiesFromAPI = () => {
         const userId = user.id;
+        //get hot securities
+        if (!props.allFilters) {
+            let dateOffset = (24 * 60 * 60 * 1000) * 5; //5 days
+            const fiveDaysAgo = new Date();
+            fiveDaysAgo.setTime(fiveDaysAgo.getTime() - dateOffset);
+            const nextFiveDays = new Date();
+            nextFiveDays.setTime(nextFiveDays.getTime() + dateOffset);
+            const range = {
+                startDate: fiveDaysAgo,
+                endDate: nextFiveDays
+            }
+            const params = {
+                user: userId,
+                dateRange: range,
+                issuerName: [...selectedIssuerNames],
+                type: []
+            }
+            prepareFilter(params)
+            getSecuritiesByDateTypeIssuer(params)
+                .then(res => {
+                    setLoaded(true);
+                    setSecurities(res.data);
+                    console.log(params)
+                    console.log(res.data)
+                    setError('');
+
+                })
+                .catch(err => {
+                    setSecurities([]);
+                    setError(err);
+                    console.log(err);
+                    setLoaded(false);
+                })
+            return;
+        }
+
         getAllSecurities(userId)
             .then(res => {
                 setLoaded(true);
                 setSecurities(res.data);
                 setError('');
-
             })
             .catch(err => {
                 setSecurities([]);
@@ -114,24 +196,59 @@ const AllSecurities = (props) => {
             return;
         }
         getAllSecuritiesFromAPI();
+        filterParams.user = user.id
         //getIssuerNamesAPI();
 
     },
         [user]
     );
     useEffect(() => {
-        filterParams.issuer_names = selectedIssuerNames
-        if(dateRange.endDate && dateRange.startDate){
-            filterParams.date_range = dateRange
-            
-        }else{
-            
-        }
-        //console.log(filterParams)
-        
+        filterParams.issuerName = [...selectedIssuerNames]
+        console.log(filterParams)
     },
-        [selectedIssuerNames, dateRange]
+        [selectedIssuerNames]
     );
+    useEffect(() => {
+        filterParams.dateRange = dateRange
+        console.log(filterParams)
+    },
+        [dateRange]
+    );
+    useEffect(() => {
+        //Update current security id
+        if (securities.length > 0)
+            props.update(securities[0])
+    },
+        [securities]
+    );
+
+
+
+    //Search Function
+    const [q, setQ] = useState("");
+    const [searchParam] = useState(["isin", "cusip", "currency", "issuer_name", "status"]);
+
+    useEffect(() => {
+        // our fetch codes
+    }, []);
+
+    function search(securities) {
+        return securities.filter((item) => {
+            return searchParam.some((newItem) => {
+                return (
+                    item[newItem]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(q.toLowerCase()) > -1
+                );
+            });
+        })
+    };
+
+    //Click Function
+    const updateCurrentSecurity = (id) => {
+        props.update(id)
+    }
 
     if (error && !loaded) {
         return (
@@ -160,7 +277,10 @@ const AllSecurities = (props) => {
                     <div className='search-bar-container'>
                         <form className='search-form'>
                             <div className="mb-3">
-                                <input type="text" className="form-control" placeholder="Search" />
+                                <input type="text"
+                                    value={q}
+                                    onChange={(e) => setQ(e.target.value)}
+                                    className="form-control" placeholder="Search" />
                             </div>
                         </form>
                     </div>
@@ -201,6 +321,7 @@ const AllSecurities = (props) => {
                     <Table striped bordered hover className='all-securities-table'>
                         <thead>
                             <tr>
+                                <th>S/N</th>
                                 <th>ISIN</th>
                                 <th>CUSIP</th>
                                 <th>Issuer Name</th>
@@ -215,8 +336,8 @@ const AllSecurities = (props) => {
                         </thead>
                         <tbody>
                             {
-                                securities.map(security => (
-                                    < SecurityDetails info={security} key={security.id} />
+                                search(securities).map((security, index) => (
+                                    < SecurityDetails info={security} key={security.id} id={security.id} index={index} update={updateCurrentSecurity} />
                                 ))
                             }
                         </tbody>
