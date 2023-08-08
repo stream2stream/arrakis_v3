@@ -16,7 +16,7 @@ function StaticExample() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>bonds mature today</p>
+                    <p>No bonds mature today</p>
                 </Modal.Body>
             </Modal.Dialog>
         </div>

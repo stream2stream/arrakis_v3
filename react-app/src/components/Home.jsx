@@ -66,33 +66,31 @@ const Home = () => {
             </Nav>
           </Navbar.Collapse>
         </Container>
-        
+        <div className="top-right">
+              <Button as="input" type="logout" value="Sign out" onClick={handleLogout} />
+          </div>
       </Navbar>
       </header>
           <div className="left-column" id={theme}>
 
       <div className='main'>
-          <div className="top-right">
-              <Button as="input" type="logout" value="Sign out" onClick={handleLogout} />
-          </div>
+          
 
-          <div className='box'>
-              <Modal></Modal>
-          </div>
+          
 
       <div className='switch'>
         <label>{theme ==="light" ? "Light Mode" : "Dark Mode"}</label>
         <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
 
 
-          <div className="filter">
-              <Button onClick={handleCalendar}>Filter By Date</Button>
-          </div>
-              <div className='bidnumber'></div>
+          
 
         </div>
 
-
+        <div className="filter">
+              <Button onClick={handleCalendar}>Filter By Date</Button>
+          </div>
+              <div className='bidnumber'></div>
 
 
         <div className='bidnumber'>
@@ -101,7 +99,9 @@ const Home = () => {
 
 
       </div>
-
+      <div className='box'>
+              <Modal></Modal>
+          </div>
       <div className='table-container' id={theme}>
         <div className="right-column" id={theme}>
 
