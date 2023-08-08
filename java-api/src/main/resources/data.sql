@@ -2,9 +2,9 @@ INSERT INTO dogs (dog_id, name, age) VALUES (1, 'Einstein', 3);
 INSERT INTO dogs (dog_id, name, age) VALUES (2, 'Kaya', 5);
 INSERT INTO dogs (dog_id, name, age) VALUES (3, 'Lassie', 7);
 
-INSERT INTO users (name, email, password) VALUES ('Bianca Serban', 'bianca@email.com', '123');
-INSERT INTO users (name, email, password) VALUES ('Nicolas Muler', 'nicolas@email.com', '123');
-INSERT INTO users (name, email, password) VALUES ('Catalin Badulescu', 'cata@email.com', '123');
+INSERT INTO users (name, email, password) VALUES ('Bianca Serban', 'bianca@email.com', '4P3MNjZbyP0gUO8VUJVIcg==');
+INSERT INTO users (name, email, password) VALUES ('Nicolas Muler', 'nicolas@email.com', 'PMZbA7dKDEKwrh9JKmRgPQ==');
+INSERT INTO users (name, email, password) VALUES ('Catalin Badulescu', 'cata@email.com', 'Qa/afvgs2/bt3p/qg/R2pA==');
 
 --INSERT INTO books(bookName)
 --SELECT  "book_name"

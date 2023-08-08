@@ -25,7 +25,7 @@ public class UserController {
     private BookUserHandler bookUserService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody User user) throws Exception {
         String email = user.getEmail();
         String password = user.getPassword();
         int loginResponse = userService.checkEmailAndPassword(email, password);
