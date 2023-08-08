@@ -1,0 +1,14 @@
+.smaller-table {
+    font-size: 12px; /* Adjust font size */
+    padding: 3px; /* Adjust cell padding */
+    /* You can add more styles here to further customize the table size */
+}
+
+table {
+    max-width: 50%;
+}
+
+.table-container {
+    max-height: 400px; /* Adjust the height as needed */
+    overflow-y: auto;
+}

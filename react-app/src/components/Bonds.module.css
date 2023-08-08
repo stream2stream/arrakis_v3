@@ -1,0 +1,29 @@
+/* .bonds {
+    margin:20px 100px 20px 100px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr 1fr;
+} */
+
+tbody, td, tfoot, th, thead, tr {
+    border-width: 1px;
+}
+
+td, th{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.card {
+    width: 30%;
+    margin-bottom: 30px;
+}
+
+.logout {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 20px;
+}
+

@@ -1,12 +1,14 @@
 package com.db.grad.javaapi.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "security")
-public class Security {
+public class Security extends Object {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +16,7 @@ public class Security {
     private String isin;
     private String cusip;
     private String issuer_name;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "GMT+2")
     private Date maturity_date;
     private float coupon;
     private String type;
