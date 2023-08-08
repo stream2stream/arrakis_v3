@@ -6,7 +6,7 @@ function StaticExample() {
     return (
         <div
             className="modal"
-            style={{ display: 'block', position: 'initial' }}
+            style={{ display: 'block', position: 'initial', float: 'right'}}
         >
             <Modal.Dialog   className="modal-dialog">
                 <Modal.Header className="modal-header">
@@ -16,7 +16,7 @@ function StaticExample() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>No bonds mature today</p>
+                    <p style={{color: 'black'}}>No bonds mature today</p>
                 </Modal.Body>
             </Modal.Dialog>
         </div>
