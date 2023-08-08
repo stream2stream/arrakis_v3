@@ -43,8 +43,8 @@ public class SecurityController {
     }
 
     @PostMapping("/counterparty")
-    public ResponseEntity<String> searchForCounterParty(@RequestBody Map<String,String> data){
-        String counterParty = securityService.searchForCounterParty(data.get("isin"));
+    public ResponseEntity<List<String>> searchForCounterParty(@RequestBody Map<String,String> data){
+        List<String> counterParty = securityService.searchForCounterParty(data.get("isin"));
         return new ResponseEntity<>(counterParty, HttpStatus.OK);
     }
 

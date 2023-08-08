@@ -47,7 +47,7 @@ public class SecurityHandler {
         return securityRepository.findByIsinAndCusip(isin,cusip);
     }
 
-    public String searchForCounterParty(String isin){
+    public List<String> searchForCounterParty(String isin){
         return securityRepository.searchForCounterParty(isin);
     }
 
