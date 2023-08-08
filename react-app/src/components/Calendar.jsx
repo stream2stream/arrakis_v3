@@ -53,12 +53,12 @@ const Calendar = () => {
     <Navbar expand="lg" className="bg-body-tertiary" id='nav'>
         <Container>
           <Navbar.Brand id='nav' href="#home">Bond Overview</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle id='nav' aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav id='nav' className="me-auto">
-              <Nav.Link onClick={handleOnClick1} >All Bonds</Nav.Link>
+              <Nav.Link id='nav' onClick={handleOnClick1} >All Bonds</Nav.Link>
 
-              <Nav.Link onClick={handleOnClick2} >My Bonds</Nav.Link>
+              <Nav.Link id='nav' onClick={handleOnClick2} >My Bonds</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
