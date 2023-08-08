@@ -40,9 +40,36 @@
  */
 
  /* TwoColumnLayout.css */
-
+#light{
+  background-color: white !important;
+  color: black !important;
+}
+#dark,#root{
+  background-color: #252525 !important;
+  color: white !important;
+}
+#light,#root{
+  background-color: white !important;
+  color: black !important;
+}
+#dark{
+  background-color: #4c4e52 !important;
+  color: white !important;
+}
 .two-column-container {
   display: flex;
+}
+#nav{
+  background-color: #0d6efd !important;
+  color: white !important;
+  text-align: center;
+}
+#header{
+  width: 100% !important;
+}
+body{
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .left-column {
@@ -55,6 +82,13 @@
   flex: 1;
   padding: 10px;
   /* Add any other styles for the right column */
+}
+.switch{
+  float: right;
+  padding-bottom: 5%;
+}
+.main{
+  padding: 5%;
 }
 
 /* Add any additional styles for the tables as needed */

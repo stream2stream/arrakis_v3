@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
+import ReactSwitch from "react-switch";
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
 import { checkDateBonds } from '../services/marturity-service';
 import BondTable from './BondTable';
 import AllBonds from './AllBonds';
@@ -9,6 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 import { useNavigate } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
 import BondTable2 from './BondTable2';
+export const ThemeContext = createContext(null);
 
 const Calendar = () => {
 
@@ -42,15 +43,19 @@ const Calendar = () => {
         console.log(err);
         })
   } 
-
+  const [theme, setTheme] = useState("light")
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark": "light"));
+  }
   return (
-    <div>
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+    <div id={theme}>
+    <Navbar expand="lg" className="bg-body-tertiary" id='nav'>
         <Container>
-          <Navbar.Brand href="#home">Bond overview</Navbar.Brand>
+          <Navbar.Brand id='nav' href="#home">Bond Overview</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav id='nav' className="me-auto">
               <Nav.Link onClick={handleOnClick1} >All Bonds</Nav.Link>
 
               <Nav.Link onClick={handleOnClick2} >My Bonds</Nav.Link>
@@ -59,9 +64,16 @@ const Calendar = () => {
         </Container>
       </Navbar>
     
+        <div className='main'>
+        <div className='switch'>
+        <label>{theme ==="light" ? "Light Mode" : "Dark Mode"}</label>
+        <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
+        </div>
         <Form.Control type = "date" value = {date} onChange = {updateDate} />
         <BondTable2 data = {bonds} />
+        </div>
     </div>
+    </ThemeContext.Provider>
   )
 }
 

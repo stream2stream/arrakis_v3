@@ -43,18 +43,14 @@ const BondTable = ({ data }) => {
     text: "Bond Type",
   }, {
     dataField: "issuer_name",
-    text: "Issuer",
-    headerStyle: { width: '200px' },
-    style: { width: '200px' },
+    text: "Issuer"
   }, {
     dataField: "maturity_date",
     text: "Maturity Date",
-    sort: true,
-    headerStyle: { width: '150px' },
-    style: { width: '150px' },
+    sort: true
   }, {
     dataField: "face_value",
-    text: "FaceValue",
+    text: "Face Value",
   }, {
     dataField: "currency",
     text: "Currency",
@@ -71,8 +67,9 @@ const BondTable = ({ data }) => {
   ];
 
   return (
-    <div>
+    <div >
       <BootstrapTable
+      
         keyField="id"
         data={processedData}
         columns={columns}

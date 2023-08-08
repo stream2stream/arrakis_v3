@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
+import onChange from "react";
+import ReactSwitch from "react-switch";
 import '../styles/layout.css';
 import AllBooks from './AllBooks'
 import AllBonds from './AllBonds'
@@ -9,6 +11,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useNavigate } from "react-router-dom";
 import { Button } from 'react-bootstrap';
+export const ThemeContext = createContext(null);
 
 const Home = () => {
 
@@ -17,7 +20,7 @@ const Home = () => {
     //Prevent page reload
 
     event.preventDefault();
-    navigate("/home");
+    navigate("/Home");
 
   }
 
@@ -35,25 +38,38 @@ const Home = () => {
     navigate("/filter");
 
   }
+  const [theme, setTheme] = useState("light")
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark": "light"));
+  }
   return (
+    
+    <ThemeContext.Provider value={{theme, toggleTheme}}>
+      <div  id={theme}>
+      <header id='header'>
+      <Navbar id='nav' expand="lg" className="bg-body-tertiary">
+        <Container id='nav' >
+          <Navbar.Brand id='nav' href="#home">Bond Overview</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav"  />
+          <Navbar.Collapse  id="basic-navbar-nav" >
+            <Nav className="me-auto" >
+              <Nav.Link id='nav' onClick={handleOnClick1}  >All Bonds</Nav.Link>
 
-    <div className="container">
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand href="#home">Bond overview</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link onClick={handleOnClick1} >All Bonds</Nav.Link>
-
-              <Nav.Link onClick={handleOnClick2} >My Bonds</Nav.Link>
+              <Nav.Link id='nav' onClick={handleOnClick2} >My Bonds</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
+        
       </Navbar>
+      </header>
+      <div className='main'>
+      <div className='switch'>
+        <label>{theme ==="light" ? "Light Mode" : "Dark Mode"}</label>
+        <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
+        </div>
 
-      <div className="left-column">
-        <div className='box'>
+      <div className="left-column" id={theme}>
+        <div className='box'id={theme}>
           <DateBox></DateBox>
         </div>
         <div>
@@ -65,20 +81,22 @@ const Home = () => {
 
       </div>
 
-      <div className='table-container'>
-        <div className="right-column">
+      <div className='table-container' id={theme}>
+        <div className="right-column" id={theme}>
           
-          <table>
+          <table id={theme}>
 
             <AllBonds></AllBonds>
 
           </table>
 
-          <div className="space-between-tables" />
+          <div className="space-between-tables" id={theme}/>
         </div>
       </div>
 
+      </div>
     </div>
+    </ThemeContext.Provider>
   );
 };
 
